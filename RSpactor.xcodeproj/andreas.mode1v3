@@ -231,6 +231,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -267,14 +269,16 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateExpansionKey</key>
 							<array>
 								<string>29B97314FDCFA39411CA2CEA</string>
+								<string>080E96DDFE201D6D7F000001</string>
 								<string>1C37FABC05509CD000000102</string>
 								<string>1CC0EA4004350EF90041110B</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>16</integer>
-									<integer>15</integer>
+									<integer>6</integer>
+									<integer>1</integer>
+									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
@@ -325,10 +329,10 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>E1E162C00DB2A680000805F9</string>
+										<string>E1AAE1FF0DB2B35E00C03126</string>
 										<key>history</key>
 										<array>
-											<string>E19E0EA40DB2A2CD00CC2BEB</string>
+											<string>E121AE990DB2ADA700591AE1</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -350,8 +354,6 @@
 							<string>0pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -388,9 +390,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>E1E162BB0DB2A3AE000805F9</string>
+				<string>E1AAE1DC0DB2AF7500C03126</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>E1E162BC0DB2A3AE000805F9</string>
+				<string>E1AAE1DD0DB2AF7500C03126</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -524,9 +526,10 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>1CD10A99069EF8BA00B06720</string>
 		<string>E11C54D50DA97E3300F67EB4</string>
-		<string>1C78EAAD065D492600B07095</string>
 		<string>/Users/andreas/ruby/rspactor/RSpactor.xcodeproj</string>
+		<string>1C78EAAD065D492600B07095</string>
 	</array>
 	<key>WindowString</key>
 	<string>138 184 1016 556 0 0 1440 878 </string>
@@ -606,7 +609,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>E11C54D50DA97E3300F67EB4</string>
-				<string>E1E162C10DB2A680000805F9</string>
+				<string>E1AAE1E20DB2B01F00C03126</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -726,13 +729,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>E19E0E800DB29BBB00CC2BEB</string>
+				<string>E1AAE1E30DB2B01F00C03126</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>E19E0E810DB29BBB00CC2BEB</string>
-				<string>E19E0E820DB29BBB00CC2BEB</string>
-				<string>E19E0E830DB29BBB00CC2BEB</string>
-				<string>E19E0E840DB29BBB00CC2BEB</string>
-				<string>E19E0E850DB29BBB00CC2BEB</string>
+				<string>E1AAE1E40DB2B01F00C03126</string>
+				<string>E1AAE1E50DB2B01F00C03126</string>
+				<string>E1AAE1E60DB2B01F00C03126</string>
+				<string>E1AAE1E70DB2B01F00C03126</string>
+				<string>E1AAE1E80DB2B01F00C03126</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
@@ -896,7 +899,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C78EAAD065D492600B07095</string>
-				<string>E1E162BD0DB2A3BF000805F9</string>
+				<string>E1AAE1E90DB2B01F00C03126</string>
 				<string>1C78EAAC065D492600B07095</string>
 			</array>
 			<key>ToolbarConfiguration</key>
@@ -906,7 +909,7 @@
 			<key>WindowToolGUID</key>
 			<string>1C78EAAD065D492600B07095</string>
 			<key>WindowToolIsVisible</key>
-			<false/>
+			<true/>
 		</dict>
 		<dict>
 			<key>Identifier</key>

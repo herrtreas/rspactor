@@ -3,13 +3,14 @@ module RSpactor
     class Interop
   
       attr_accessor :change_location
+      attr_accessor :ping
   
       attr_accessor :spec_run_start             # example_count
-      attr_accessor :spec_run_example_passed    #
-      attr_accessor :spec_run_example_pending   #
+      attr_accessor :spec_run_example_passed
+      attr_accessor :spec_run_example_pending
       attr_accessor :spec_run_example_failed    # spec (RSpactor::Core::Spec)
       attr_accessor :spec_run_dump_summary      # duration, example_count, failure_count, pending_count
-      attr_accessor :spec_run_close             #
+      attr_accessor :spec_run_close
       
   
       def initialize

@@ -14,7 +14,7 @@ class Listener
       end
 
       OSX.require_framework '/System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework'
-      @stream = OSX::FSEventStreamCreate(OSX::KCFAllocatorDefault, callback, nil, [path], OSX::KFSEventStreamEventIdSinceNow, 0.5, 0)
+      @stream = OSX::FSEventStreamCreate(OSX::KCFAllocatorDefault, callback, nil, [path], OSX::KFSEventStreamEventIdSinceNow, 0.0, 0)
 
       OSX::FSEventStreamScheduleWithRunLoop(@stream, OSX::CFRunLoopGetMain(), OSX::KCFRunLoopDefaultMode)
       OSX::FSEventStreamStart(@stream)
