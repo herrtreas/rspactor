@@ -1,11 +1,3 @@
-#
-#  rb_main.rb
-#  RSpactor
-#
-#  Created by Andreas Wolff on 04.04.08.
-#  Copyright (c) 2008 __MyCompanyName__. All rights reserved.
-#
-
 require 'osx/cocoa'
 
 def rb_main_init
@@ -13,11 +5,13 @@ def rb_main_init
   rbfiles = Dir.entries(path).select {|x| /\.rb\z/ =~ x}
   rbfiles -= [ File.basename(__FILE__) ]
   rbfiles.each do |path|
-    require( File.basename(path) )
+    require( File.basename(path) ) unless path.include?('rspactor_bin.rb')
   end
 end
 
 if $0 == __FILE__ then
   rb_main_init
+  $failed_specs = []
+  $coreInterop = RSpactor::Core::Interop.new
   OSX.NSApplicationMain(0, nil)
 end
