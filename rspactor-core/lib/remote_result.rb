@@ -8,7 +8,7 @@ module RSpactor
       def initialize(options, where)
         @options = options
         @where = where
-        @remote_service = DRbObject.new(nil, "druby://127.0.0.1:281282")
+        @remote_service = DRbObject.new(nil, "druby://127.0.0.1:28128")
       end
   
       def dump_summary(duration, example_count, failure_count, pending_count)

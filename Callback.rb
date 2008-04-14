@@ -5,8 +5,10 @@ module Callback
   def setCallbacks
     
     # Return with true to signal availability
-    $coreInterop.ping = lambda do
-      true
+    $coreInterop.ping = lambda { true }
+    
+    $coreInterop.command_error = lambda do |error_message|
+      Alert("ERROR: #{error_message}")
     end
     
     # Change location (invoke from command line)

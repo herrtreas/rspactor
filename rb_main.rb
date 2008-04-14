@@ -12,6 +12,5 @@ end
 if $0 == __FILE__ then
   rb_main_init
   $failed_specs = []
-  $coreInterop = RSpactor::Core::Interop.new
   OSX.NSApplicationMain(0, nil)
 end

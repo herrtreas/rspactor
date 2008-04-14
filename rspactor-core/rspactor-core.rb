@@ -4,3 +4,5 @@ require 'interop'
 require 'inspection'
 require 'runtime'
 require 'command'
+
+$coreInterop = RSpactor::Core::Interop.new

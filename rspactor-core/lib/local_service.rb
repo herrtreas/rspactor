@@ -12,7 +12,7 @@ module RSpactor
       
       # TODO: Implement searching for a free port
       def init_drb_service
-        service_url = "%s:%s" % ['127.0.0.1', '281282']
+        service_url = "%s:%s" % ['127.0.0.1', '28128']
         puts "Loading RSpactor-core service at druby://#{service_url}"
         DRb.install_acl(ACL.new(%w(deny all allow 127.0.0.1)))
         DRb.start_service("druby://#{service_url}", self)

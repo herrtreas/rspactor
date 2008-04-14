@@ -3,8 +3,9 @@ module RSpactor
     class Interop
   
       attr_accessor :change_location
+      attr_accessor :command_error              # error_message
       attr_accessor :ping
-  
+    
       attr_accessor :spec_run_start             # example_count
       attr_accessor :spec_run_example_passed
       attr_accessor :spec_run_example_pending

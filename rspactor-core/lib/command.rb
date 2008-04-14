@@ -11,7 +11,16 @@ module RSpactor
         cmd <<  "#{locations} #{spec_opts(base_spec_root)} "
         cmd <<  "-r #{File.dirname(__FILE__)}/remote_result.rb -f RSpactor::Core::RemoteResult:STDOUT"
         puts cmd
-        system(cmd)
+
+        notify_about_error("asdasdda") #unless @@status == 0
+        
+        Open4.popen4("#{cmd}; echo $?") do |pid, stdin, stdout, stderr|
+          @@result = stdout.readlines
+          @@error = stderr.readlines
+          @@status = @result.reverse.shift
+        end
+
+        notify_about_error(@@error) #unless @@status == 0
       end
   
       def self.spec_opts(base_spec_root)
@@ -36,6 +45,9 @@ module RSpactor
         file[0..file.index("spec") + 4]
       end  
       
+      def self.notify_about_error(error_message)
+        $coreInterop.command_error.call(error_message) unless $coreInterop.command_error.nil?
+      end
     end    
   end
 end

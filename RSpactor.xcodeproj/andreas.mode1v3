@@ -270,13 +270,17 @@
 							<array>
 								<string>29B97314FDCFA39411CA2CEA</string>
 								<string>080E96DDFE201D6D7F000001</string>
+								<string>E18DE6780DB01E6F00018473</string>
+								<string>E18DE6790DB01E6F00018473</string>
 								<string>1C37FABC05509CD000000102</string>
 								<string>1CC0EA4004350EF90041110B</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>6</integer>
+									<integer>13</integer>
+									<integer>4</integer>
+									<integer>2</integer>
 									<integer>1</integer>
 									<integer>0</integer>
 								</array>
@@ -329,7 +333,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>E1AAE1FF0DB2B35E00C03126</string>
+										<string>E1AAE2170DB2BB1F00C03126</string>
 										<key>history</key>
 										<array>
 											<string>E121AE990DB2ADA700591AE1</string>
