@@ -8,7 +8,9 @@ module Callback
     $coreInterop.ping = lambda { true }
     
     $coreInterop.command_error = lambda do |error_message|
-      Alert("ERROR: #{error_message}")
+      stop_spec_run
+      updateDetailView(error_message.join("\n"))
+      @growl.notify(MESSAGE_KIND, "Error loading spec environment!", error_message[0...2].join("\n"), 'clickcontext', false)
     end
     
     # Change location (invoke from command line)
@@ -58,9 +60,7 @@ module Callback
 
     # Stop Spec Runner Progress
     $coreInterop.spec_run_close = lambda do
-      @specRunButton.Enabled = true
-      @specRunningIndicator.stopAnimation(self)     
-      $coreInterop.start_listen(@specPath.stringValue)
+      stop_spec_run
     end
   end
   

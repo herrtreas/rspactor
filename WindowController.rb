@@ -20,7 +20,6 @@ class WindowController < OSX::NSWindowController
     @failed_spec_table = SpecTable.alloc.init(self)    
     $coreInterop.start_listen(@specPath.stringValue)    
     setCallbacks
-    setAlert("ERROR")    
   end
   
   def updateDetailView(content)
@@ -35,5 +34,11 @@ class WindowController < OSX::NSWindowController
     $coreInterop.run_specs_in_path(@specPath.stringValue)
     @failed_spec_table.clearSelection
   end  
+  
+  def stop_spec_run
+    @specRunButton.Enabled = true
+    @specRunningIndicator.stopAnimation(self)     
+    $coreInterop.start_listen(@specPath.stringValue)    
+  end
   
 end

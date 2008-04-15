@@ -12,15 +12,12 @@ module RSpactor
         cmd <<  "-r #{File.dirname(__FILE__)}/remote_result.rb -f RSpactor::Core::RemoteResult:STDOUT"
         puts cmd
 
-        notify_about_error("asdasdda") #unless @@status == 0
-        
         Open4.popen4("#{cmd}; echo $?") do |pid, stdin, stdout, stderr|
           @@result = stdout.readlines
           @@error = stderr.readlines
-          @@status = @result.reverse.shift
         end
-
-        notify_about_error(@@error) #unless @@status == 0
+      
+        notify_about_error(@@error.map { |e| e.strip }) unless @@error.empty?
       end
   
       def self.spec_opts(base_spec_root)
