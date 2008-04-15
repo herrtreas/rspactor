@@ -24,5 +24,7 @@
 	<string>com.apple.rubycocoa.RSpactorApp</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
+	<key>SUFeedURL</key>
+	<string>http://labs.dynamicdudes.com/appcast/rspactor.xml</string>
 </dict>
 </plist>

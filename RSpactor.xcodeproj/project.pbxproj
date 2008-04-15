@@ -32,7 +32,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		E1C699270DB47E65009F3B0C /* CopyFiles */ = {
+		E1B1CDD60DB48B1200D7FFA2 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = Sparkle.framework;
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E1C6993E0DB480DF009F3B0C /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = Users/andreas/ruby/rspactor/Sparkle.framework;
@@ -212,7 +221,8 @@
 				4DDCA7050ACC9A6100E082CE /* Resources */,
 				4DDCA7090ACC9A6100E082CE /* Sources */,
 				4DDCA70B0ACC9A6100E082CE /* Frameworks */,
-				E1C699270DB47E65009F3B0C /* CopyFiles */,
+				E1C6993E0DB480DF009F3B0C /* CopyFiles */,
+				E1B1CDD60DB48B1200D7FFA2 /* CopyFiles */,
 			);
 			buildRules = (
 			);

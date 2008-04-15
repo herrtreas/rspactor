@@ -20,7 +20,7 @@ class WindowController < OSX::NSWindowController
     @failed_spec_table = SpecTable.alloc.init(self)    
     $coreInterop.start_listen(@specPath.stringValue)    
     setCallbacks
-    setAlert("ERROR")    
+#    setAlert("ERROR")    
   end
   
   def updateDetailView(content)
