@@ -1,2 +1,5 @@
+* BUGS
+  * Spec run in non spec directories
+
 * release
   * update description for gitorious

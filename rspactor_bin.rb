@@ -9,7 +9,7 @@ rspactor_bin_path += "/RSpactor.app"
 # Load application
 system("open #{rspactor_bin_path}")
 
-drb = DRbObject.new(nil, "druby://127.0.0.1:281282")
+drb = DRbObject.new(nil, "druby://127.0.0.1:28128")
 
 # Wait until RSpactor has registered callbacks
 begin
