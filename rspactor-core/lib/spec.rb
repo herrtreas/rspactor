@@ -4,7 +4,7 @@ module RSpactor
   
       attr_accessor :state
       attr_accessor :name, :example_group_name
-      attr_accessor :error_header, :error_message, :error_type, :backtrace
+      attr_accessor :error_header, :error_message, :error_type, :error_line, :error_file, :backtrace
   
       def initialize(opts = {})
         opts.each { |key, value| self.send("#{key.to_s}=".intern, value) }
@@ -12,6 +12,12 @@ module RSpactor
   
       def to_s
         "#{@example_group_name} #{@name}"
+      end
+      
+      def backtrace=(trace)
+        @backtrace = trace
+        @error_line = trace[0].split(":").last
+        @error_file = trace[0].split("/").last.split(":").first
       end
       
       def description

@@ -197,48 +197,7 @@
 	<key>Notifications</key>
 	<array/>
 	<key>OpenEditors</key>
-	<array>
-		<dict>
-			<key>Content</key>
-			<dict>
-				<key>PBXProjectModuleGUID</key>
-				<string>E1F4476D0DB56E0E00B66E2A</string>
-				<key>PBXProjectModuleLabel</key>
-				<string>Info.plist</string>
-				<key>PBXSplitModuleInNavigatorKey</key>
-				<dict>
-					<key>Split0</key>
-					<dict>
-						<key>PBXProjectModuleGUID</key>
-						<string>E1F4476E0DB56E0E00B66E2A</string>
-						<key>PBXProjectModuleLabel</key>
-						<string>Info.plist</string>
-						<key>_historyCapacity</key>
-						<integer>0</integer>
-						<key>bookmark</key>
-						<string>E10BD9CA0DB5F31400C6CDB6</string>
-						<key>history</key>
-						<array>
-							<string>E1CA3A0F0DB5F1770090D746</string>
-						</array>
-					</dict>
-					<key>SplitCount</key>
-					<string>1</string>
-				</dict>
-				<key>StatusBarVisibility</key>
-				<true/>
-			</dict>
-			<key>Geometry</key>
-			<dict>
-				<key>Frame</key>
-				<string>{{0, 20}, {750, 461}}</string>
-				<key>PBXModuleWindowStatusBarHidden2</key>
-				<false/>
-				<key>RubberWindowFrame</key>
-				<string>15 371 750 502 0 0 1440 878 </string>
-			</dict>
-		</dict>
-	</array>
+	<array/>
 	<key>PerspectiveWidths</key>
 	<array>
 		<integer>-1</integer>
@@ -343,7 +302,7 @@
 							<real>289</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>137 187 1016 556 0 0 1440 878 </string>
+						<string>234 220 1016 556 0 0 1440 878 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -380,7 +339,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {705, 0}}</string>
 								<key>RubberWindowFrame</key>
-								<string>137 187 1016 556 0 0 1440 878 </string>
+								<string>234 220 1016 556 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -400,7 +359,7 @@
 								<key>Frame</key>
 								<string>{{0, 5}, {705, 510}}</string>
 								<key>RubberWindowFrame</key>
-								<string>137 187 1016 556 0 0 1440 878 </string>
+								<string>234 220 1016 556 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -424,9 +383,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>E10BD9C60DB5F2AC00C6CDB6</string>
+				<string>E16E7D380DB6201D009D451D</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>E10BD9C70DB5F2AC00C6CDB6</string>
+				<string>E16E7D390DB6201D009D451D</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -565,7 +524,7 @@
 		<string>/Users/andreas/ruby/rspactor/RSpactor.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>137 187 1016 556 0 0 1440 878 </string>
+	<string>234 220 1016 556 0 0 1440 878 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>
@@ -642,7 +601,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>E11C54D50DA97E3300F67EB4</string>
-				<string>E10BD9C90DB5F2AC00C6CDB6</string>
+				<string>E16E7D3B0DB6201D009D451D</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>

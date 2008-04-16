@@ -2,7 +2,7 @@
 {
 	29B97313FDCFA39411CA2CEA /* Project object */ = {
 		activeArchitecture = i386;
-		activeBuildConfigurationName = Release;
+		activeBuildConfigurationName = Debug;
 		activeExecutable = E1F692580DB55B3800874F15 /* RSpactor */;
 		activeTarget = 4DDCA7030ACC9A6100E082CE /* RSpactor */;
 		addToTargets = (
@@ -95,12 +95,13 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 230027914;
-			PBXWorkspaceStateSaveDate = 230027914;
+			PBXPerProjectTemplateStateSaveDate = 230039570;
+			PBXWorkspaceStateSaveDate = 230039570;
 		};
 		perUserProjectItems = {
-			E10BD9CA0DB5F31400C6CDB6 /* PBXTextBookmark */ = E10BD9CA0DB5F31400C6CDB6 /* PBXTextBookmark */;
-			E1CA3A0F0DB5F1770090D746 /* PBXTextBookmark */ = E1CA3A0F0DB5F1770090D746 /* PBXTextBookmark */;
+			E10BD9CA0DB5F31400C6CDB6 = E10BD9CA0DB5F31400C6CDB6 /* PBXTextBookmark */;
+			E16E7D3A0DB6201D009D451D /* PBXTextBookmark */ = E16E7D3A0DB6201D009D451D /* PBXTextBookmark */;
+			E1CA3A0F0DB5F1770090D746 = E1CA3A0F0DB5F1770090D746 /* PBXTextBookmark */;
 		};
 		sourceControlManager = E109BF4F0DB55ABE0098A6F3 /* Source Control */;
 		userBuildSettings = {
@@ -132,6 +133,16 @@
 		indexTemplatePath = "";
 	};
 	E10BD9CA0DB5F31400C6CDB6 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 4DDCA7110ACC9A6100E082CE /* Info.plist */;
+		name = "Info.plist: 18";
+		rLen = 0;
+		rLoc = 564;
+		rType = 0;
+		vrLen = 881;
+		vrLoc = 0;
+	};
+	E16E7D3A0DB6201D009D451D /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 4DDCA7110ACC9A6100E082CE /* Info.plist */;
 		name = "Info.plist: 18";

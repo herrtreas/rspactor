@@ -49,7 +49,14 @@ module Callback
       @specRunningIndicator.incrementBy(1.0)      
       $failed_specs << spec
       @failed_spec_table.reload!
-      @growl.notify(MESSAGE_KIND, "#{spec.name}", spec.error_header, 'clickcontext', false)      
+      
+      error_message = [
+        spec.error_header,
+        "\n#{spec.error_file}:#{spec.error_line}", 
+        spec.error_message
+      ].join("\n")
+      
+      @growl.notify(MESSAGE_KIND, "#{spec.name}", error_message, 'clickcontext', false)      
     end    
     
     # Receive summary dump
