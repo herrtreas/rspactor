@@ -7,13 +7,12 @@ require 'rake/testtask'
 require 'pathname'
 
 # Application own Settings
-APPNAME               = "«PROJECTNAME»"
-TARGET                = "#{APPNAME}.app"
-#APPVERSION           = "rev#{`svn info`[/Revision: (\d+)/, 1]}"
-APPVERSION            = Time.now.strftime("%Y-%m-%d")
+APPNAME               = "RSpactor"
+TARGET                = "RSpactor.app"
+APPVERSION            = File.open('VERSION', 'r') { |f| f.readlines.join("") }
 PUBLISH               = 'yourname@yourhost:path'
 DEFAULT_TARGET        = APPNAME
-DEFAULT_CONFIGURATION = 'Release'
+DEFAULT_CONFIGURATION = 'Debug'
 RELEASE_CONFIGURATION = 'Release'
 
 # Tasks
@@ -58,9 +57,9 @@ end
 
 desc "Package the application"
 task :package => ["xcode:build:#{DEFAULT_TARGET}:#{RELEASE_CONFIGURATION}", "pkg"] do
-  name = "#{APPNAME}.#{APPVERSION}"
+  name = "#{APPNAME}_#{APPVERSION}"
   mkdir "image"
-  sh %{rubycocoa standaloneify "build/#{DEFAULT_CONFIGURATION}/#{APPNAME}.app" "image/#{APPNAME}.app"}
+  sh %{ruby /System/Library/Frameworks/RubyCocoa.framework/Versions/Current/Tools/standaloneify.rb "build/#{DEFAULT_CONFIGURATION}/#{APPNAME}.app" -d "image/#{APPNAME}.app"}
   puts 'Creating Image...'
   sh %{
   hdiutil create -volname '#{name}' -srcfolder image '#{name}'.dmg

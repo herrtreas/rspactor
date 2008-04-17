@@ -24,5 +24,7 @@
 	<string>com.apple.rubycocoa.RSpactorApp</string>
 	<key>SUFeedURL</key>
 	<string>http://labs.dynamicdudes.com/appcast/rspactor_edge.xml</string>
+	<key>SUCheckAtStartup</key>
+  <true/>  
 </dict>
 </plist>

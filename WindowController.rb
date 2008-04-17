@@ -5,21 +5,27 @@ class WindowController < OSX::NSWindowController
   include OSX
   include Callback
   
-  attr_accessor :failed_spec_table
+  attr_accessor :failed_spec_table, :preferences_visible
 
   ib_outlet :specPath, :detailView, :specRunButton, :specRunningIndicator
   ib_action :runSpecs
+  ib_action :showPreferences
   
   def init
     @growl = Growl::Notifier.alloc.initWithDelegate(self)
     @growl.start(:RSpactor, [MESSAGE_KIND, CLICKED_KIND])    
-    super_init
+    @pref = false
+    super_init    
   end
     
   def awakeFromNib
     @failed_spec_table = SpecTable.alloc.init(self)    
     $coreInterop.start_listen(@specPath.stringValue)    
     setCallbacks
+  end
+  
+  def selectSpecUnlessSelected
+    NSLog "Halo: #{failed_spec_table.selectedRow}"
   end
   
   def updateDetailView(content)
@@ -41,4 +47,7 @@ class WindowController < OSX::NSWindowController
     $coreInterop.start_listen(@specPath.stringValue)    
   end
   
+  def showPreferences(sender)
+    @preferences_visible = true
+  end
 end
