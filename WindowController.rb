@@ -25,7 +25,7 @@ class WindowController < OSX::NSWindowController
   end
   
   def selectSpecUnlessSelected
-    NSLog "Halo: #{failed_spec_table.selectedRow}"
+    puts "Halo: #{failed_spec_table.selectedRow}"
   end
   
   def updateDetailView(content)
@@ -48,6 +48,6 @@ class WindowController < OSX::NSWindowController
   end
   
   def showPreferences(sender)
-    @preferences_visible = true
+    $pref_controller.show
   end
 end

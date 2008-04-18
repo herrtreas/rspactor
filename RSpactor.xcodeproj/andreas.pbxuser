@@ -2,7 +2,7 @@
 {
 	29B97313FDCFA39411CA2CEA /* Project object */ = {
 		activeArchitecture = i386;
-		activeBuildConfigurationName = Debug;
+		activeBuildConfigurationName = Release;
 		activeExecutable = E1F692580DB55B3800874F15 /* RSpactor */;
 		activeTarget = 4DDCA7030ACC9A6100E082CE /* RSpactor */;
 		addToTargets = (
@@ -95,8 +95,8 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 230158551;
-			PBXWorkspaceStateSaveDate = 230158551;
+			PBXPerProjectTemplateStateSaveDate = 230202351;
+			PBXWorkspaceStateSaveDate = 230202351;
 		};
 		sourceControlManager = E109BF4F0DB55ABE0098A6F3 /* Source Control */;
 		userBuildSettings = {
@@ -127,6 +127,14 @@
 		isa = PBXCodeSenseManager;
 		indexTemplatePath = "";
 	};
+	E1C19B790DB8016200075B08 /* PrefController.rb */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {691, 430}}";
+			sepNavSelRange = "{230, 0}";
+			sepNavVisRange = "{0, 297}";
+			sepNavWindowFrame = "{{38, 294}, {750, 558}}";
+		};
+	};
 	E1F692580DB55B3800874F15 /* RSpactor */ = {
 		isa = PBXExecutable;
 		activeArgIndices = (
@@ -148,6 +156,8 @@
 		executableUserSymbolLevel = 0;
 		libgmallocEnabled = 0;
 		name = RSpactor;
+		savedGlobals = {
+		};
 		sourceDirectories = (
 		);
 	};

@@ -56,7 +56,7 @@ module Callback
         spec.error_message
       ].join("\n")
       
-      selectSpecUnlessSelected
+#      selectSpecUnlessSelected
       @growl.notify(MESSAGE_KIND, "#{spec.name}", error_message, 'clickcontext', false)      
     end    
     
