@@ -1,5 +1,6 @@
 * BUGS
   * Spec run in non spec directories
-
+  * app/mailer doesn't work
+  
 * release
   * update description for gitorious
