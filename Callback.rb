@@ -11,7 +11,8 @@ module Callback
       setSystemMenuIcon(:error)
       stop_spec_run
       updateDetailView(error_message.join("\n"))
-      @growl.notify(MESSAGE_KIND, "Error loading spec environment!", error_message[0...2].join("\n"), 'clickcontext', false)
+      title, message = 'Error loading spec environment!', error_message[0...2].join("\n")
+      @growl.notify(MESSAGE_KIND, title, message, 'clickcontext', false, 0, growlImage(:error))
     end
     
     # Change location (invoke from command line)
@@ -34,7 +35,7 @@ module Callback
       @specRunningIndicator.setDoubleValue(1.0)      
       @specRunningIndicator.setMaxValue(example_count)
 
-      @growl.notify(MESSAGE_KIND, "Running #{example_count} specs", '', 'clickcontext', false)      
+      @growl.notify(MESSAGE_KIND, "Running #{example_count} specs", '', 'clickcontext', false, 0, growlImage(:ok))      
     end
 
     # An example has passed
@@ -62,13 +63,14 @@ module Callback
       ].join("\n")
       
 #      selectSpecUnlessSelected
-      @growl.notify(MESSAGE_KIND, "#{spec.name}", error_message, 'clickcontext', false)      
+      @growl.notify(MESSAGE_KIND, "#{spec.name}", error_message, 'clickcontext', false, 0, growlImage(:failure))      
     end    
     
     # Receive summary dump
     $coreInterop.spec_run_dump_summary = lambda do |duration, example_count, failure_count, pending_count|
       msg = "#{example_count} examples, #{failure_count} failed, #{pending_count} pending\nTook: #{duration} seconds"
-      @growl.notify(MESSAGE_KIND, 'RSpactor results', msg, 'clickcontext', false)      
+      status_image = growlImage((failure_count == 0) ? :pass : :failure)
+      @growl.notify(MESSAGE_KIND, 'RSpactor results', msg, 'clickcontext', false, 0, status_image)
     end
 
     # Stop Spec Runner Progress

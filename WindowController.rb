@@ -65,14 +65,32 @@ class WindowController < OSX::NSWindowController
   end
   
   def setSystemMenuIcon(type = :ok)
-    file = case type
+    file = fileFromType(type)
+    @system_icon.setImage(imageFromFileName(file))
+  end
+  
+  def growlImage(type = :ok)
+    file = fileFromType(type)
+    imageFromFileName(file, 128)
+  end
+  
+  
+  private
+  
+  def fileFromType(type = :ok)
+    case type
     when :ok
       'add'
+    when :pass
+      'accept'
     when :failure
       'remove'
     when :error
       'warning'
     end
-    @system_icon.setImage(NSImage.new.initByReferencingFile(File.join(File.dirname(__FILE__), "#{file}_16.png")))
+  end
+  
+  def imageFromFileName(file_name, size = 16)
+    NSImage.new.initByReferencingFile(File.join(File.dirname(__FILE__), "#{file_name}_#{size}.png"))
   end
 end

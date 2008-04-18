@@ -21,6 +21,9 @@
 		E13865720DB9361400B13C60 /* add_515.png in Resources */ = {isa = PBXBuildFile; fileRef = E13865710DB9361400B13C60 /* add_515.png */; };
 		E13865F50DB9476400B13C60 /* remove_16.png in Resources */ = {isa = PBXBuildFile; fileRef = E13865F30DB9476400B13C60 /* remove_16.png */; };
 		E13865F60DB9476400B13C60 /* warning_16.png in Resources */ = {isa = PBXBuildFile; fileRef = E13865F40DB9476400B13C60 /* warning_16.png */; };
+		E138660F0DB94A5E00B13C60 /* accept_128.png in Resources */ = {isa = PBXBuildFile; fileRef = E138660C0DB94A5E00B13C60 /* accept_128.png */; };
+		E13866100DB94A5E00B13C60 /* remove_128.png in Resources */ = {isa = PBXBuildFile; fileRef = E138660D0DB94A5E00B13C60 /* remove_128.png */; };
+		E13866110DB94A5E00B13C60 /* warning_128.png in Resources */ = {isa = PBXBuildFile; fileRef = E138660E0DB94A5E00B13C60 /* warning_128.png */; };
 		E17BFD7D0DB0294800E78CCC /* spec.rb in Resources */ = {isa = PBXBuildFile; fileRef = E17BFD7C0DB0294800E78CCC /* spec.rb */; };
 		E17CFC8D0DB0B91D0022A24E /* command.rb in Resources */ = {isa = PBXBuildFile; fileRef = E17CFC8A0DB0B91D0022A24E /* command.rb */; };
 		E17CFC8E0DB0B91D0022A24E /* inspection.rb in Resources */ = {isa = PBXBuildFile; fileRef = E17CFC8B0DB0B91D0022A24E /* inspection.rb */; };
@@ -66,6 +69,9 @@
 		E13865710DB9361400B13C60 /* add_515.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_515.png; sourceTree = "<group>"; };
 		E13865F30DB9476400B13C60 /* remove_16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = remove_16.png; sourceTree = "<group>"; };
 		E13865F40DB9476400B13C60 /* warning_16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = warning_16.png; sourceTree = "<group>"; };
+		E138660C0DB94A5E00B13C60 /* accept_128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = accept_128.png; sourceTree = "<group>"; };
+		E138660D0DB94A5E00B13C60 /* remove_128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = remove_128.png; sourceTree = "<group>"; };
+		E138660E0DB94A5E00B13C60 /* warning_128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = warning_128.png; sourceTree = "<group>"; };
 		E17BFD7C0DB0294800E78CCC /* spec.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = spec.rb; sourceTree = "<group>"; };
 		E17CFC8A0DB0B91D0022A24E /* command.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = command.rb; sourceTree = "<group>"; };
 		E17CFC8B0DB0B91D0022A24E /* inspection.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = inspection.rb; sourceTree = "<group>"; };
@@ -183,6 +189,7 @@
 		E138656C0DB935F900B13C60 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				E138660B0DB94A5E00B13C60 /* 128 */,
 				E13865700DB9361400B13C60 /* 512 */,
 				E138656D0DB9360A00B13C60 /* 16 */,
 			);
@@ -207,6 +214,17 @@
 			);
 			name = 512;
 			path = assets/512;
+			sourceTree = "<group>";
+		};
+		E138660B0DB94A5E00B13C60 /* 128 */ = {
+			isa = PBXGroup;
+			children = (
+				E138660C0DB94A5E00B13C60 /* accept_128.png */,
+				E138660D0DB94A5E00B13C60 /* remove_128.png */,
+				E138660E0DB94A5E00B13C60 /* warning_128.png */,
+			);
+			name = 128;
+			path = assets/128;
 			sourceTree = "<group>";
 		};
 		E18DE6780DB01E6F00018473 /* rspactor-core */ = {
@@ -312,6 +330,9 @@
 				E13865720DB9361400B13C60 /* add_515.png in Resources */,
 				E13865F50DB9476400B13C60 /* remove_16.png in Resources */,
 				E13865F60DB9476400B13C60 /* warning_16.png in Resources */,
+				E138660F0DB94A5E00B13C60 /* accept_128.png in Resources */,
+				E13866100DB94A5E00B13C60 /* remove_128.png in Resources */,
+				E13866110DB94A5E00B13C60 /* warning_128.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
