@@ -31,35 +31,11 @@ task :clean do
   puts %x{ xcodebuild -alltargets clean }
 end
 
-desc "Add files to Xcode project"
-task :add do |t|
- files = ARGV[1..-1]
- project = %x{ xcodebuild -list }[/Information about project "([^"]+)":/, 1]
- files << "#{project}.xcodeproj"
- exec("rubycocoa", "add", *files)
-end
-
-desc "Create ruby skelton and add to Xcode project"
-task :create do |t|
- args = ARGV[1..-1]
- if system("rubycocoa", "create", *args)
-   project = %x{ xcodebuild -list }[/Information about project "([^"]+)":/, 1]
-   exec("rubycocoa", "add", args.last + ".rb", "#{project}.xcodeproj")
- end
-end
-
-desc "Update nib with ruby file"
-task :update do |t|
- args = ARGV[1..-1]
- args.unshift("English.lproj/MainMenu.nib")
- exec("rubycocoa", "update", *args)
-end
-
 desc "Package the application"
 task :package => ["xcode:build:#{DEFAULT_TARGET}:#{RELEASE_CONFIGURATION}", "pkg"] do
   name = "#{APPNAME}_#{APPVERSION}"
   mkdir "image"
-  sh %{ruby /System/Library/Frameworks/RubyCocoa.framework/Versions/Current/Tools/standaloneify.rb "build/#{DEFAULT_CONFIGURATION}/#{APPNAME}.app" -d "image/#{APPNAME}.app"}
+  sh %{cp -R build/Release/RSpactor.app image/}
   puts 'Creating Image...'
   sh %{
   hdiutil create -volname '#{name}' -srcfolder image '#{name}'.dmg
