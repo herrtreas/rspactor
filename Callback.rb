@@ -8,6 +8,7 @@ module Callback
     $coreInterop.ping = lambda { true }
     
     $coreInterop.command_error = lambda do |error_message|
+      setSystemMenuIcon(:error)
       stop_spec_run
       updateDetailView(error_message.join("\n"))
       @growl.notify(MESSAGE_KIND, "Error loading spec environment!", error_message[0...2].join("\n"), 'clickcontext', false)
@@ -21,6 +22,8 @@ module Callback
 
     # Spec running has started
     $coreInterop.spec_run_start = lambda do |example_count|
+      setSystemMenuIcon # set to ok
+      
       $failed_specs = []
       updateDetailView('')
       @failed_spec_table.reload!
@@ -46,6 +49,8 @@ module Callback
 
     # Receive failed specs
     $coreInterop.spec_run_example_failed = lambda do |spec|
+      setSystemMenuIcon(:failure)
+      
       @specRunningIndicator.incrementBy(1.0)      
       $failed_specs << spec
       @failed_spec_table.reload!

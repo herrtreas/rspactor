@@ -17,6 +17,10 @@
 		E11A1B190DB0C0BD00732A93 /* local_service.rb in Resources */ = {isa = PBXBuildFile; fileRef = E11A1B180DB0C0BD00732A93 /* local_service.rb */; };
 		E12B55340DAFF907002651EA /* SpecTable.rb in Resources */ = {isa = PBXBuildFile; fileRef = E12B55330DAFF907002651EA /* SpecTable.rb */; };
 		E1385BDC0DB91E3E00B13C60 /* APPL.icns in Resources */ = {isa = PBXBuildFile; fileRef = E1385BDB0DB91E3E00B13C60 /* APPL.icns */; };
+		E138656F0DB9360A00B13C60 /* add_16.png in Resources */ = {isa = PBXBuildFile; fileRef = E138656E0DB9360A00B13C60 /* add_16.png */; };
+		E13865720DB9361400B13C60 /* add_515.png in Resources */ = {isa = PBXBuildFile; fileRef = E13865710DB9361400B13C60 /* add_515.png */; };
+		E13865F50DB9476400B13C60 /* remove_16.png in Resources */ = {isa = PBXBuildFile; fileRef = E13865F30DB9476400B13C60 /* remove_16.png */; };
+		E13865F60DB9476400B13C60 /* warning_16.png in Resources */ = {isa = PBXBuildFile; fileRef = E13865F40DB9476400B13C60 /* warning_16.png */; };
 		E17BFD7D0DB0294800E78CCC /* spec.rb in Resources */ = {isa = PBXBuildFile; fileRef = E17BFD7C0DB0294800E78CCC /* spec.rb */; };
 		E17CFC8D0DB0B91D0022A24E /* command.rb in Resources */ = {isa = PBXBuildFile; fileRef = E17CFC8A0DB0B91D0022A24E /* command.rb */; };
 		E17CFC8E0DB0B91D0022A24E /* inspection.rb in Resources */ = {isa = PBXBuildFile; fileRef = E17CFC8B0DB0B91D0022A24E /* inspection.rb */; };
@@ -58,6 +62,10 @@
 		E11A1B180DB0C0BD00732A93 /* local_service.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = local_service.rb; sourceTree = "<group>"; };
 		E12B55330DAFF907002651EA /* SpecTable.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = SpecTable.rb; sourceTree = "<group>"; };
 		E1385BDB0DB91E3E00B13C60 /* APPL.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = APPL.icns; sourceTree = "<group>"; };
+		E138656E0DB9360A00B13C60 /* add_16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_16.png; sourceTree = "<group>"; };
+		E13865710DB9361400B13C60 /* add_515.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_515.png; sourceTree = "<group>"; };
+		E13865F30DB9476400B13C60 /* remove_16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = remove_16.png; sourceTree = "<group>"; };
+		E13865F40DB9476400B13C60 /* warning_16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = warning_16.png; sourceTree = "<group>"; };
 		E17BFD7C0DB0294800E78CCC /* spec.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = spec.rb; sourceTree = "<group>"; };
 		E17CFC8A0DB0B91D0022A24E /* command.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = command.rb; sourceTree = "<group>"; };
 		E17CFC8B0DB0B91D0022A24E /* inspection.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = inspection.rb; sourceTree = "<group>"; };
@@ -156,6 +164,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E138656C0DB935F900B13C60 /* Assets */,
 				29B97318FDCFA39411CA2CEA /* MainMenu.nib */,
 				E1D9F1150DB189CD009B2E6C /* rspactor_bin.rb */,
 			);
@@ -169,6 +178,35 @@
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E138656C0DB935F900B13C60 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				E13865700DB9361400B13C60 /* 512 */,
+				E138656D0DB9360A00B13C60 /* 16 */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
+		E138656D0DB9360A00B13C60 /* 16 */ = {
+			isa = PBXGroup;
+			children = (
+				E13865F30DB9476400B13C60 /* remove_16.png */,
+				E13865F40DB9476400B13C60 /* warning_16.png */,
+				E138656E0DB9360A00B13C60 /* add_16.png */,
+			);
+			name = 16;
+			path = assets/16;
+			sourceTree = "<group>";
+		};
+		E13865700DB9361400B13C60 /* 512 */ = {
+			isa = PBXGroup;
+			children = (
+				E13865710DB9361400B13C60 /* add_515.png */,
+			);
+			name = 512;
+			path = assets/512;
 			sourceTree = "<group>";
 		};
 		E18DE6780DB01E6F00018473 /* rspactor-core */ = {
@@ -270,6 +308,10 @@
 				E1AAE2060DB2B66000C03126 /* open4.rb in Resources */,
 				E1C19B7A0DB8016200075B08 /* PrefController.rb in Resources */,
 				E1385BDC0DB91E3E00B13C60 /* APPL.icns in Resources */,
+				E138656F0DB9360A00B13C60 /* add_16.png in Resources */,
+				E13865720DB9361400B13C60 /* add_515.png in Resources */,
+				E13865F50DB9476400B13C60 /* remove_16.png in Resources */,
+				E13865F60DB9476400B13C60 /* warning_16.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -22,6 +22,7 @@ class WindowController < OSX::NSWindowController
     @failed_spec_table = SpecTable.alloc.init(self)    
     $coreInterop.start_listen(@specPath.stringValue)    
     setCallbacks
+    initStatusBar
   end
   
   def selectSpecUnlessSelected
@@ -49,5 +50,29 @@ class WindowController < OSX::NSWindowController
   
   def showPreferences(sender)
     $pref_controller.show
+  end
+  
+  def initStatusBar
+    system_menu = NSMenu.new
+    system_menu_item = NSMenuItem.new
+    system_menu_item.title = "Halloasd"
+    system_menu.addItem(system_menu_item)
+    menu_bar = NSStatusBar.systemStatusBar()
+    @system_icon = menu_bar.statusItemWithLength(NSVariableStatusItemLength)
+    @system_icon.setHighlightMode(true)
+    @system_icon.setMenu(system_menu)
+    setSystemMenuIcon
+  end
+  
+  def setSystemMenuIcon(type = :ok)
+    file = case type
+    when :ok
+      'add'
+    when :failure
+      'remove'
+    when :error
+      'warning'
+    end
+    @system_icon.setImage(NSImage.new.initByReferencingFile(File.join(File.dirname(__FILE__), "#{file}_16.png")))
   end
 end
