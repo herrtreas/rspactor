@@ -513,8 +513,10 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>1CD10A99069EF8BA00B06720</string>
 		<string>E11C54D50DA97E3300F67EB4</string>
 		<string>/Users/andreas/ruby/rspactor/RSpactor.xcodeproj</string>
+		<string>1C78EAAD065D492600B07095</string>
 	</array>
 	<key>WindowString</key>
 	<string>215 221 1016 556 0 0 1440 878 </string>
@@ -555,6 +557,8 @@
 							<string>218pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -714,13 +718,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>E1C34CE90DB89E0E0044FAAD</string>
+				<string>E1385BE30DB9213A00B13C60</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>E1C34CEA0DB89E0E0044FAAD</string>
-				<string>E1C34CEB0DB89E0E0044FAAD</string>
-				<string>E1C34CEC0DB89E0E0044FAAD</string>
-				<string>E1C34CED0DB89E0E0044FAAD</string>
-				<string>E1C34CEE0DB89E0E0044FAAD</string>
+				<string>E1385BE40DB9213A00B13C60</string>
+				<string>E1385BE50DB9213A00B13C60</string>
+				<string>E1385BE60DB9213A00B13C60</string>
+				<string>E1385BE70DB9213A00B13C60</string>
+				<string>E1385BE80DB9213A00B13C60</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
@@ -884,7 +888,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C78EAAD065D492600B07095</string>
-				<string>E1C34CEF0DB89E0E0044FAAD</string>
+				<string>E1385BE90DB9213A00B13C60</string>
 				<string>1C78EAAC065D492600B07095</string>
 			</array>
 			<key>ToolbarConfiguration</key>

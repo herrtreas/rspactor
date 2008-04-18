@@ -14,17 +14,19 @@
 	<string>APPL</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
-	<key>CFBundleVersion</key>
-	<string>0.9.5</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.apple.rubycocoa.RSpactorApp</string>
+	<string>com.dynamicdudes.RSpactor</string>
 	<key>SUFeedURL</key>
 	<string>http://labs.dynamicdudes.com/appcast/rspactor_edge.xml</string>
 	<key>SUCheckAtStartup</key>
   <true/>  
-</dict>
+ 	<key>NSHumanReadableCopyright</key>
+	<string>© 2007, DynamicDudes</string>
+	<key>CFBundleVersion</key>
+  <string>0.9.5</string>
+  </dict>
 </plist>
