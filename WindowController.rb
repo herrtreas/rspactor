@@ -20,6 +20,7 @@ class WindowController < OSX::NSWindowController
   end
     
   def awakeFromNib
+    initAndSetAutomaticPositionAndSizeStoring
     @failed_spec_table = SpecTable.alloc.init(self)    
     $coreInterop.start_listen(@specPath.stringValue)    
     setCallbacks
@@ -112,5 +113,11 @@ class WindowController < OSX::NSWindowController
   
   def imageFromFileName(file_name, size = 16)
     NSImage.new.initByReferencingFile(File.join(File.dirname(__FILE__), "#{file_name}_#{size}.png"))
+  end
+  
+  def initAndSetAutomaticPositionAndSizeStoring
+    shouldCascadeWindows = false
+    self.window.frameUsingName = 'rspactor_main_window'
+    self.window.setFrameAutosaveName('rspactor_main_window')    
   end
 end
