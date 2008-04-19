@@ -17,7 +17,7 @@ module RSpactor
           @@error = stderr.readlines
         end
       
-        notify_about_error(@@error.map { |e| e.strip }) unless @@error.empty?
+        $coreInterop.notify_about_error(@@error.map { |e| e.strip }) unless @@error.empty?
       end
   
       def self.spec_opts(base_spec_root)
@@ -41,10 +41,6 @@ module RSpactor
       def self.extract_spec_root_from_path(file)
         file[0..file.index("spec") + 4]
       end  
-      
-      def self.notify_about_error(error_message)
-        $coreInterop.command_error.call(error_message) unless $coreInterop.command_error.nil?
-      end
     end    
   end
 end

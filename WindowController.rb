@@ -10,6 +10,7 @@ class WindowController < OSX::NSWindowController
   ib_outlet :specPath, :detailView, :specRunButton, :specRunningIndicator
   ib_action :runSpecs
   ib_action :showPreferences
+  ib_action :interceptPathInput
   
   def init
     @growl = Growl::Notifier.alloc.initWithDelegate(self)
@@ -32,14 +33,21 @@ class WindowController < OSX::NSWindowController
   def updateDetailView(content)
     @detailView.textStorage.mutableString.setString(content)
   end
+  
+  def interceptPathInput(sender)
+    NSLog "tipppppet"
+  end
 
   def runSpecs(sender)
+    path = @specPath.stringValue
+    return unless File.exist? path
+    
     @specRunningIndicator.setIndeterminate(true)    
     @specRunningIndicator.startAnimation(self)      
     @specRunButton.Enabled = false
     $failed_specs.clear
-    $coreInterop.run_specs_in_path(@specPath.stringValue)
-    @failed_spec_table.clearSelection
+    $coreInterop.run_specs_in_path(path)
+    @failed_spec_table.clearSelection    
   end  
   
   def stop_spec_run
@@ -75,6 +83,18 @@ class WindowController < OSX::NSWindowController
   end
   
   
+  # Play the delegate song
+  
+  # Listen for changes in Path-Text-Field and change textcolor to red if the path is invalid
+  def controlTextDidChange(notification)
+    if File.exist? notification.object.stringValue
+      notification.object.textColor = NSColor.blackColor
+    else
+      notification.object.textColor = NSColor.redColor
+    end
+  end
+  
+    
   private
   
   def fileFromType(type = :ok)

@@ -4,6 +4,8 @@ module RSpactor
   
       def self.listen(path)
         self.stop_listening
+        return unless File.exist?(path)
+        
         puts "RSpactor is now watching at '#{path}'"
         @inspector  = Inspection.new
         
@@ -26,6 +28,7 @@ module RSpactor
       end
 
       def self.run_all_specs_in_path(path)
+        return unless File.exist?(path)
         Thread.new { Command.run_spec([Inspection.new.inner_spec_directory(path)]) }
       end
 
@@ -44,5 +47,6 @@ module RSpactor
       end
       
     end
+    
   end
 end

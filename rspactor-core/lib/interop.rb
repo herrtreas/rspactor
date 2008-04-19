@@ -32,6 +32,9 @@ module RSpactor
         Runtime.run_all_specs_in_path(path)
       end
       
+      def notify_about_error(error_message)
+        command_error.call(error_message) unless $coreInterop.command_error.nil?
+      end      
     end
   end
 end
