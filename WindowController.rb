@@ -5,17 +5,16 @@ class WindowController < OSX::NSWindowController
   include OSX
   include Callback
   
-  attr_accessor :failed_spec_table, :preferences_visible
+  attr_accessor :failed_spec_table, :preferences_visible, :defaults
 
   ib_outlet :specPath, :detailView, :specRunButton, :specRunningIndicator
   ib_action :runSpecs
   ib_action :showPreferences
-  ib_action :interceptPathInput
   
   def init
     @growl = Growl::Notifier.alloc.initWithDelegate(self)
-    @growl.start(:RSpactor, [MESSAGE_KIND, CLICKED_KIND])    
-    @pref = false
+    @growl.start(:RSpactor, [MESSAGE_KIND, CLICKED_KIND])
+    @defaults = NSUserDefaults.standardUserDefaults
     super_init    
   end
     
@@ -25,6 +24,7 @@ class WindowController < OSX::NSWindowController
     $coreInterop.start_listen(@specPath.stringValue)    
     setCallbacks
     initStatusBar
+    @specPath.stringValue = @defaults.stringForKey("last_spec_path") || ''
   end
   
   def selectSpecUnlessSelected
@@ -35,10 +35,6 @@ class WindowController < OSX::NSWindowController
     @detailView.textStorage.mutableString.setString(content)
   end
   
-  def interceptPathInput(sender)
-    NSLog "tipppppet"
-  end
-
   def runSpecs(sender)
     path = @specPath.stringValue
     return unless File.exist? path
@@ -89,6 +85,7 @@ class WindowController < OSX::NSWindowController
   # Listen for changes in Path-Text-Field and change textcolor to red if the path is invalid
   def controlTextDidChange(notification)
     if File.exist? notification.object.stringValue
+      @defaults.setObject_forKey(notification.object.stringValue, 'last_spec_path')          
       notification.object.textColor = NSColor.blackColor
     else
       notification.object.textColor = NSColor.redColor
