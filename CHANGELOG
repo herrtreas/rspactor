@@ -1,0 +1,16 @@
+-- RSpactor pre-0.9.7
+
+* Added saving of window size and position and latest spec run location
+* Added visual feedback if entered path is valid or not
+
+
+18.04.08 -- RSpactor pre-0.9.6
+
+* So much optical stuff and user feedback things
+
+
+18.04.08 -- RSpactor pre-0.9.5
+
+* Added detailed spec information to Growl notify 
+* Added preferences dialog 
+* Some minor tweeking
