@@ -7,7 +7,7 @@ class WindowController < OSX::NSWindowController
   
   attr_accessor :failed_spec_table, :preferences_visible, :defaults
 
-  ib_outlet :specPath, :detailView, :specRunButton, :specRunningIndicator
+  ib_outlet :specPath, :detailView, :specRunButton, :specRunningIndicator, :viewDivider
   ib_action :runSpecs
   ib_action :showPreferences
   
@@ -115,6 +115,7 @@ class WindowController < OSX::NSWindowController
   def initAndSetAutomaticPositionAndSizeStoring
     shouldCascadeWindows = false
     self.window.frameUsingName = 'rspactor_main_window'
-    self.window.setFrameAutosaveName('rspactor_main_window')    
+    self.window.setFrameAutosaveName('rspactor_main_window')
+    @viewDivider.setAutosaveName('last_divider_position')
   end
 end
