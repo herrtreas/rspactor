@@ -23,8 +23,8 @@ class WindowController < OSX::NSWindowController
     @failed_spec_table = SpecTable.alloc.init(self)    
     $coreInterop.start_listen(@specPath.stringValue)    
     setCallbacks
-    initStatusBar
     @specPath.stringValue = @defaults.stringForKey("last_spec_path") || ''
+    #    initStatusBar
   end
   
   def selectSpecUnlessSelected
@@ -70,6 +70,7 @@ class WindowController < OSX::NSWindowController
   end
   
   def setSystemMenuIcon(type = :ok)
+    return  # cause system icon is currently disabled
     file = fileFromType(type)
     @system_icon.setImage(imageFromFileName(file))
   end
