@@ -381,9 +381,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>E1425ABA0DBB5F0000E75D05</string>
+				<string>E1A8B6B30DBB786100AF0B8F</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>E1425ABB0DBB5F0000E75D05</string>
+				<string>E1A8B6B40DBB786100AF0B8F</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -517,10 +517,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>1CD10A99069EF8BA00B06720</string>
-		<string>E11C54D50DA97E3300F67EB4</string>
 		<string>/Users/andreas/ruby/rspactor/RSpactor.xcodeproj</string>
-		<string>1C78EAAD065D492600B07095</string>
 	</array>
 	<key>WindowString</key>
 	<string>215 221 1016 556 0 0 1440 878 </string>

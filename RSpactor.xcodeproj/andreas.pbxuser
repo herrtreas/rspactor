@@ -111,8 +111,8 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 230383348;
-			PBXWorkspaceStateSaveDate = 230383348;
+			PBXPerProjectTemplateStateSaveDate = 230389850;
+			PBXWorkspaceStateSaveDate = 230389850;
 		};
 		sourceControlManager = E109BF4F0DB55ABE0098A6F3 /* Source Control */;
 		userBuildSettings = {
@@ -142,14 +142,6 @@
 	E109BF500DB55ABE0098A6F3 /* Code sense */ = {
 		isa = PBXCodeSenseManager;
 		indexTemplatePath = "";
-	};
-	E1C19B790DB8016200075B08 /* PrefController.rb */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {691, 430}}";
-			sepNavSelRange = "{230, 0}";
-			sepNavVisRange = "{0, 297}";
-			sepNavWindowFrame = "{{38, 294}, {750, 558}}";
-		};
 	};
 	E1F692580DB55B3800874F15 /* RSpactor */ = {
 		isa = PBXExecutable;
