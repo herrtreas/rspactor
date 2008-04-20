@@ -3,7 +3,7 @@ require 'osx/cocoa'
 class SpecTable < OSX::NSObject
   include OSX
   
-  ib_outlet :failedSpecsTable
+  ib_outlet :failedSpecsTable, :allSpecsTable, :pendingSpecsTable
   ib_action :receiveAction
     
   def init(controller)
