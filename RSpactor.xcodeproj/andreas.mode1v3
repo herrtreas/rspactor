@@ -231,8 +231,6 @@
 			<key>Layout</key>
 			<array>
 				<dict>
-					<key>BecomeActive</key>
-					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -268,6 +266,7 @@
 						<dict>
 							<key>PBXSmartGroupTreeModuleOutlineStateExpansionKey</key>
 							<array>
+								<string>29B97314FDCFA39411CA2CEA</string>
 								<string>1C37FBAC04509CD000000102</string>
 								<string>1C37FABC05509CD000000102</string>
 								<string>1CC0EA4004350EF90041110B</string>
@@ -276,8 +275,8 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>11</integer>
-									<integer>10</integer>
+									<integer>2</integer>
+									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
@@ -345,6 +344,8 @@
 							<string>0pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -517,6 +518,9 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>1C78EAAD065D492600B07095</string>
+		<string>1CD10A99069EF8BA00B06720</string>
+		<string>E11C54D50DA97E3300F67EB4</string>
 		<string>/Users/andreas/ruby/rspactor/RSpactor.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -597,7 +601,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>E11C54D50DA97E3300F67EB4</string>
-				<string>E1425ABC0DBB5F0000E75D05</string>
+				<string>E1A8B6E70DBB7B1800AF0B8F</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -717,13 +721,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>E1425ABD0DBB5F0000E75D05</string>
+				<string>E1A8B6E80DBB7B1800AF0B8F</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>E1425ABE0DBB5F0000E75D05</string>
-				<string>E1425ABF0DBB5F0000E75D05</string>
-				<string>E1425AC00DBB5F0000E75D05</string>
-				<string>E1425AC10DBB5F0000E75D05</string>
-				<string>E1425AC20DBB5F0000E75D05</string>
+				<string>E1A8B6E90DBB7B1800AF0B8F</string>
+				<string>E1A8B6EA0DBB7B1800AF0B8F</string>
+				<string>E1A8B6EB0DBB7B1800AF0B8F</string>
+				<string>E1A8B6EC0DBB7B1800AF0B8F</string>
+				<string>E1A8B6ED0DBB7B1800AF0B8F</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
@@ -850,8 +854,6 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -887,7 +889,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C78EAAD065D492600B07095</string>
-				<string>E1425AC30DBB5F0000E75D05</string>
+				<string>E1A8B6EE0DBB7B1800AF0B8F</string>
 				<string>1C78EAAC065D492600B07095</string>
 			</array>
 			<key>ToolbarConfiguration</key>
@@ -897,7 +899,7 @@
 			<key>WindowToolGUID</key>
 			<string>1C78EAAD065D492600B07095</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>Identifier</key>

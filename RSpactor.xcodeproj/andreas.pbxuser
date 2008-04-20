@@ -2,7 +2,7 @@
 {
 	29B97313FDCFA39411CA2CEA /* Project object */ = {
 		activeArchitecture = i386;
-		activeBuildConfigurationName = Release;
+		activeBuildConfigurationName = Debug;
 		activeExecutable = E1F692580DB55B3800874F15 /* RSpactor */;
 		activeTarget = 4DDCA7030ACC9A6100E082CE /* RSpactor */;
 		addToTargets = (

@@ -32,6 +32,7 @@ class Inspection
   
   def inner_spec_directory(path)
     spec_base_root = find_base_spec_root_by_file(path + "/.")
+    return nil unless spec_base_root
     inner_location = extract_inner_project_location(path, spec_base_root)
     File.join(spec_base_root, inner_location)
   end

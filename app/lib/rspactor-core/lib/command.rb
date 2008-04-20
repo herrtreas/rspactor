@@ -3,6 +3,11 @@ module RSpactor
     class Command
       
       def self.run_spec(locations)
+        if locations.first.nil? # no specs found
+          $coreInterop.notify_about_error(["No specs found."]) 
+          return
+        end
+        
         base_spec_root  = extract_spec_root_from_path(locations.first)
         spec_runner_bin = script_runner(locations.first)
         locations = locations.join(" ")
