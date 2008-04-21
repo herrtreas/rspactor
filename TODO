@@ -1,6 +1,9 @@
 * BUGS
   * Spec run in non spec directories
   * app/mailer doesn't work
+
+* Preferences: Add symlink /usr/bin/rspactor checkbox
+* Source-Snippet-extractor  
   
 * release
-  * update description for gitorious
+  * move to github

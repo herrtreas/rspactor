@@ -11,6 +11,6 @@ end
 
 if $0 == __FILE__ then
   rb_main_init
-  $failed_specs = []
+  $all_specs, $failed_specs, $pending_specs = [], [], []
   OSX.NSApplicationMain(0, nil)
 end

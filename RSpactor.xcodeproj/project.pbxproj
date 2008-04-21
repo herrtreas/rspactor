@@ -34,10 +34,12 @@
 		E1A8B6E00DBB7A2600AF0B8F /* runtime.rb in Resources */ = {isa = PBXBuildFile; fileRef = E1A8B6D00DBB7A2600AF0B8F /* runtime.rb */; };
 		E1A8B6E10DBB7A2600AF0B8F /* spec.rb in Resources */ = {isa = PBXBuildFile; fileRef = E1A8B6D10DBB7A2600AF0B8F /* spec.rb */; };
 		E1A8B6E20DBB7A2600AF0B8F /* rspactor-core.rb in Resources */ = {isa = PBXBuildFile; fileRef = E1A8B6D20DBB7A2600AF0B8F /* rspactor-core.rb */; };
-		E1A8B6E30DBB7A2600AF0B8F /* SpecTable.rb in Resources */ = {isa = PBXBuildFile; fileRef = E1A8B6D40DBB7A2600AF0B8F /* SpecTable.rb */; };
 		E1C34CFE0DB89EC60044FAAD /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E1EA1E560DB7F13700610423 /* Sparkle.framework */; };
 		E1D9F1160DB189CD009B2E6C /* rspactor_bin.rb in Resources */ = {isa = PBXBuildFile; fileRef = E1D9F1150DB189CD009B2E6C /* rspactor_bin.rb */; };
 		E1EA1E570DB7F13700610423 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1EA1E560DB7F13700610423 /* Sparkle.framework */; };
+		E1EA2C4E0DBBE77B0006447A /* AllSpecTable.rb in Resources */ = {isa = PBXBuildFile; fileRef = E1EA2C4B0DBBE77B0006447A /* AllSpecTable.rb */; };
+		E1EA2C4F0DBBE77B0006447A /* FailedSpecTable.rb in Resources */ = {isa = PBXBuildFile; fileRef = E1EA2C4C0DBBE77B0006447A /* FailedSpecTable.rb */; };
+		E1EA2C500DBBE77B0006447A /* PendingSpecTable.rb in Resources */ = {isa = PBXBuildFile; fileRef = E1EA2C4D0DBBE77B0006447A /* PendingSpecTable.rb */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -82,9 +84,11 @@
 		E1A8B6D00DBB7A2600AF0B8F /* runtime.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = runtime.rb; sourceTree = "<group>"; };
 		E1A8B6D10DBB7A2600AF0B8F /* spec.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = spec.rb; sourceTree = "<group>"; };
 		E1A8B6D20DBB7A2600AF0B8F /* rspactor-core.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = "rspactor-core.rb"; sourceTree = "<group>"; };
-		E1A8B6D40DBB7A2600AF0B8F /* SpecTable.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = SpecTable.rb; sourceTree = "<group>"; };
 		E1D9F1150DB189CD009B2E6C /* rspactor_bin.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = rspactor_bin.rb; sourceTree = "<group>"; };
 		E1EA1E560DB7F13700610423 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = "deps/Sparkle-1.1/Sparkle.framework"; sourceTree = "<group>"; };
+		E1EA2C4B0DBBE77B0006447A /* AllSpecTable.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AllSpecTable.rb; sourceTree = "<group>"; };
+		E1EA2C4C0DBBE77B0006447A /* FailedSpecTable.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = FailedSpecTable.rb; sourceTree = "<group>"; };
+		E1EA2C4D0DBBE77B0006447A /* PendingSpecTable.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = PendingSpecTable.rb; sourceTree = "<group>"; };
 		E1F692570DB55B3800874F15 /* RSpactor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RSpactor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8F5E24E03AEB6EC03A81C6F /* RubyCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RubyCocoa.framework; path = /System/Library/Frameworks/RubyCocoa.framework; sourceTree = "<absolute>"; };
 		E8F5E25803AEB7C803A81C6F /* rb_main.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = rb_main.rb; sourceTree = "<group>"; };
@@ -279,7 +283,9 @@
 		E1A8B6D30DBB7A2600AF0B8F /* objects */ = {
 			isa = PBXGroup;
 			children = (
-				E1A8B6D40DBB7A2600AF0B8F /* SpecTable.rb */,
+				E1EA2C4B0DBBE77B0006447A /* AllSpecTable.rb */,
+				E1EA2C4C0DBBE77B0006447A /* FailedSpecTable.rb */,
+				E1EA2C4D0DBBE77B0006447A /* PendingSpecTable.rb */,
 			);
 			path = objects;
 			sourceTree = "<group>";
@@ -364,7 +370,9 @@
 				E1A8B6E00DBB7A2600AF0B8F /* runtime.rb in Resources */,
 				E1A8B6E10DBB7A2600AF0B8F /* spec.rb in Resources */,
 				E1A8B6E20DBB7A2600AF0B8F /* rspactor-core.rb in Resources */,
-				E1A8B6E30DBB7A2600AF0B8F /* SpecTable.rb in Resources */,
+				E1EA2C4E0DBBE77B0006447A /* AllSpecTable.rb in Resources */,
+				E1EA2C4F0DBBE77B0006447A /* FailedSpecTable.rb in Resources */,
+				E1EA2C500DBBE77B0006447A /* PendingSpecTable.rb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

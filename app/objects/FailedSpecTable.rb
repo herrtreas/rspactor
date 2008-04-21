@@ -1,9 +1,9 @@
 require 'osx/cocoa'
 
-class SpecTable < OSX::NSObject
+class FailedSpecTable < OSX::NSObject
   include OSX
   
-  ib_outlet :failedSpecsTable, :allSpecsTable, :pendingSpecsTable
+  ib_outlet :specsTable
   ib_action :receiveAction
     
   def init(controller)
@@ -12,12 +12,12 @@ class SpecTable < OSX::NSObject
   end
   
   def awakeFromNib
-    $failedSpecsTableView = @failedSpecsTable
+    $failedSpecsTableView = @specsTable
     $failedSpecsTableView.reloadData
     NSNotificationCenter.defaultCenter.objc_send :addObserver, self, 
            :selector, "updateDetailView:",
            :name, :NSTableViewSelectionDidChangeNotification, 
-           :object, @failedSpecsTable
+           :object, @specsTable
     
   end
   

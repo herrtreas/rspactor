@@ -5,9 +5,10 @@ class WindowController < OSX::NSWindowController
   include OSX
   include Callback
   
-  attr_accessor :failed_spec_table, :preferences_visible, :defaults
+  attr_accessor :all_spec_table, :failed_spec_table, :pending_spec_table, :preferences_visible, :defaults
 
   ib_outlet :specPath, :detailView, :specRunButton, :specRunningIndicator, :viewDivider
+  
   ib_action :runSpecs
   ib_action :showPreferences
   
@@ -20,7 +21,9 @@ class WindowController < OSX::NSWindowController
     
   def awakeFromNib
     initAndSetAutomaticPositionAndSizeStoring
-    @failed_spec_table = SpecTable.alloc.init(self)    
+    @all_spec_table = AllSpecTable.alloc.init(self)    
+    @failed_spec_table = FailedSpecTable.alloc.init(self)    
+    @pending_spec_table = PendingSpecTable.alloc.init(self)    
     $coreInterop.start_listen(@specPath.stringValue)    
     setCallbacks
     @specPath.stringValue = @defaults.stringForKey("last_spec_path") || ''

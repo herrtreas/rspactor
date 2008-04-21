@@ -26,9 +26,12 @@ module Callback
     $coreInterop.spec_run_start = lambda do |example_count|
       setSystemMenuIcon # set to ok
       
-      $failed_specs = []
-      updateDetailView('')
+      $all_specs, $failed_specs, $pending_specs = [], [], []
+      @all_spec_table.reload!
+      @pending_spec_table.reload!
       @failed_spec_table.reload!
+      
+      updateDetailView('')
 
       @specRunningIndicator.setIndeterminate(false)
       @specRunningIndicator.startAnimation(self)      
@@ -40,13 +43,19 @@ module Callback
     end
 
     # An example has passed
-    $coreInterop.spec_run_example_passed = lambda do
+    $coreInterop.spec_run_example_passed = lambda do |spec|
       @specRunningIndicator.incrementBy(1.0)
+      $all_specs << spec
+      @all_spec_table.reload!
     end
 
     # An example is pending
-    $coreInterop.spec_run_example_pending = lambda do
+    $coreInterop.spec_run_example_pending = lambda do |spec|
       @specRunningIndicator.incrementBy(1.0)
+      $all_specs << spec
+      @all_spec_table.reload!
+      $pending_specs << spec
+      @pending_spec_table.reload!
     end
 
     # Receive failed specs
@@ -56,11 +65,12 @@ module Callback
       @specRunningIndicator.incrementBy(1.0)      
       $failed_specs << spec
       @failed_spec_table.reload!
+      @all_spec_table.reload!
       
       error_message = [
         spec.error_header,
         "\n#{spec.error_file}:#{spec.error_line}", 
-        spec.error_message
+        spec.message
       ].join("\n")
       
 #      selectSpecUnlessSelected

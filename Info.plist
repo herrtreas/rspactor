@@ -21,12 +21,12 @@
 	<key>CFBundleIdentifier</key>
 	<string>com.dynamicdudes.RSpactor</string>
 	<key>SUFeedURL</key>
-	<string>http://labs.dynamicdudes.com/appcast/rspactor_edge.xml</string>
+	<string>http://appcast.dynamicdudes.com/rspactor_edge.xml</string>
 	<key>SUCheckAtStartup</key>
   <true/>  
  	<key>NSHumanReadableCopyright</key>
-	<string>© 2007, DynamicDudes</string>
+	<string>© 2008, DynamicDudes</string>
 	<key>CFBundleVersion</key>
-  <string>0.9.7</string>
+  <string>0.9.8</string>
   </dict>
 </plist>

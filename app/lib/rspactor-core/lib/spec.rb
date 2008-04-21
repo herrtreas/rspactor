@@ -4,7 +4,8 @@ module RSpactor
   
       attr_accessor :state
       attr_accessor :name, :example_group_name
-      attr_accessor :error_header, :error_message, :error_type, :error_line, :error_file, :backtrace
+      attr_accessor :message
+      attr_accessor :error_header, :error_type, :error_line, :error_file, :backtrace
   
       def initialize(opts = {})
         opts.each { |key, value| self.send("#{key.to_s}=".intern, value) }
@@ -21,7 +22,12 @@ module RSpactor
       end
       
       def description
-        [@error_header, @error_message, '', @backtrace.join("\n")].join("\n")
+        parts =   []
+#        parts <<  @error_header         if @error_header
+        parts <<  @message              if @message
+        parts <<  ''
+        parts <<  @backtrace.join("\n") if @backtrace
+        parts.join("\n")
       end
       
     end

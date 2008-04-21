@@ -24,11 +24,22 @@ module RSpactor
       end
 
       def example_passed(example)
-        @remote_service.remote_call_in(:spec_run_example_passed)
+        spec = RSpactor::Core::Spec.new(
+          :name               => example.description,
+          :example_group_name => @example_group.description,
+          :state              => :passed
+        )
+        @remote_service.remote_call_in(:spec_run_example_passed, spec)
       end
       
       def example_pending(example_group_description, example, message)
-        @remote_service.remote_call_in(:spec_run_example_pending)
+        spec = RSpactor::Core::Spec.new(
+          :name               => example.description,
+          :example_group_name => @example_group.description,
+          :state              => :pending,
+          :message            => message
+        )        
+        @remote_service.remote_call_in(:spec_run_example_pending, spec)
       end
 
       def example_failed(example, counter, failure)
@@ -37,7 +48,7 @@ module RSpactor
           :example_group_name => @example_group.description,
           :state              => :failed,
           :error_header       => failure.header,
-          :error_message      => failure.exception.message,
+          :message            => failure.exception.message,
           :error_type         => failure.expectation_not_met? ? :expectation : :implementation,
           :backtrace          => extract_backspace(failure.exception.backtrace)
         )
@@ -49,7 +60,7 @@ module RSpactor
       end
       
       # Currently unused callbacks
-      def example_started(example); end
+      def example_started(example); end    
       def start_dump; end
       def dump_failure(counter, failure); end
       def dump_pending; end
