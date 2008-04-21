@@ -21,15 +21,6 @@ module RSpactor
         @error_file = trace[0].split("/").last.split(":").first
       end
       
-      def description
-        parts =   []
-#        parts <<  @error_header         if @error_header
-        parts <<  @message              if @message
-        parts <<  ''
-        parts <<  @backtrace.join("\n") if @backtrace
-        parts.join("\n")
-      end
-      
     end
   end
 end

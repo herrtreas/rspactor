@@ -10,7 +10,7 @@ module Callback
     $coreInterop.command_error = lambda do |error_message|
       setSystemMenuIcon(:error)
       stop_spec_run
-      updateDetailView(error_message.join("\n"))
+      $details.setError(error_message.join("\n"))
       title, message = 'Error loading spec environment!', error_message[0...2].join("\n")
       @growl.notify(MESSAGE_KIND, title, message, 'clickcontext', false, 0, growlImage(:error))
     end
@@ -31,7 +31,7 @@ module Callback
       @pending_spec_table.reload!
       @failed_spec_table.reload!
       
-      updateDetailView('')
+      $details.clear
 
       @specRunningIndicator.setIndeterminate(false)
       @specRunningIndicator.startAnimation(self)      

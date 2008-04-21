@@ -35,6 +35,9 @@
 		E1A8B6E10DBB7A2600AF0B8F /* spec.rb in Resources */ = {isa = PBXBuildFile; fileRef = E1A8B6D10DBB7A2600AF0B8F /* spec.rb */; };
 		E1A8B6E20DBB7A2600AF0B8F /* rspactor-core.rb in Resources */ = {isa = PBXBuildFile; fileRef = E1A8B6D20DBB7A2600AF0B8F /* rspactor-core.rb */; };
 		E1C34CFE0DB89EC60044FAAD /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E1EA1E560DB7F13700610423 /* Sparkle.framework */; };
+		E1D87BBA0DBD33FF0063C2E6 /* DetailController.rb in Resources */ = {isa = PBXBuildFile; fileRef = E1D87BB90DBD33FF0063C2E6 /* DetailController.rb */; };
+		E1D87BD20DBD34B40063C2E6 /* detail_view.html in Resources */ = {isa = PBXBuildFile; fileRef = E1D87BD10DBD34B40063C2E6 /* detail_view.html */; };
+		E1D87BE30DBD3A360063C2E6 /* detail_view.css in Resources */ = {isa = PBXBuildFile; fileRef = E1D87BE20DBD3A360063C2E6 /* detail_view.css */; };
 		E1D9F1160DB189CD009B2E6C /* rspactor_bin.rb in Resources */ = {isa = PBXBuildFile; fileRef = E1D9F1150DB189CD009B2E6C /* rspactor_bin.rb */; };
 		E1EA1E570DB7F13700610423 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1EA1E560DB7F13700610423 /* Sparkle.framework */; };
 		E1EA2C4E0DBBE77B0006447A /* AllSpecTable.rb in Resources */ = {isa = PBXBuildFile; fileRef = E1EA2C4B0DBBE77B0006447A /* AllSpecTable.rb */; };
@@ -84,6 +87,9 @@
 		E1A8B6D00DBB7A2600AF0B8F /* runtime.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = runtime.rb; sourceTree = "<group>"; };
 		E1A8B6D10DBB7A2600AF0B8F /* spec.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = spec.rb; sourceTree = "<group>"; };
 		E1A8B6D20DBB7A2600AF0B8F /* rspactor-core.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = "rspactor-core.rb"; sourceTree = "<group>"; };
+		E1D87BB90DBD33FF0063C2E6 /* DetailController.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = DetailController.rb; sourceTree = "<group>"; };
+		E1D87BD10DBD34B40063C2E6 /* detail_view.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = detail_view.html; path = app/detail_view.html; sourceTree = "<group>"; };
+		E1D87BE20DBD3A360063C2E6 /* detail_view.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = detail_view.css; path = app/detail_view.css; sourceTree = "<group>"; };
 		E1D9F1150DB189CD009B2E6C /* rspactor_bin.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = rspactor_bin.rb; sourceTree = "<group>"; };
 		E1EA1E560DB7F13700610423 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = "deps/Sparkle-1.1/Sparkle.framework"; sourceTree = "<group>"; };
 		E1EA2C4B0DBBE77B0006447A /* AllSpecTable.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AllSpecTable.rb; sourceTree = "<group>"; };
@@ -146,6 +152,8 @@
 		29B97314FDCFA39411CA2CEA /* RSpactor */ = {
 			isa = PBXGroup;
 			children = (
+				E1D87BE20DBD3A360063C2E6 /* detail_view.css */,
+				E1D87BD10DBD34B40063C2E6 /* detail_view.html */,
 				E1385BDB0DB91E3E00B13C60 /* APPL.icns */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -241,6 +249,7 @@
 			children = (
 				E1A8B6C20DBB7A2600AF0B8F /* PrefController.rb */,
 				E1A8B6C30DBB7A2600AF0B8F /* WindowController.rb */,
+				E1D87BB90DBD33FF0063C2E6 /* DetailController.rb */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -373,6 +382,9 @@
 				E1EA2C4E0DBBE77B0006447A /* AllSpecTable.rb in Resources */,
 				E1EA2C4F0DBBE77B0006447A /* FailedSpecTable.rb in Resources */,
 				E1EA2C500DBBE77B0006447A /* PendingSpecTable.rb in Resources */,
+				E1D87BBA0DBD33FF0063C2E6 /* DetailController.rb in Resources */,
+				E1D87BD20DBD34B40063C2E6 /* detail_view.html in Resources */,
+				E1D87BE30DBD3A360063C2E6 /* detail_view.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

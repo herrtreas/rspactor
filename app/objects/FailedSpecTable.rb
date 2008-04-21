@@ -39,7 +39,7 @@ class FailedSpecTable < OSX::NSObject
 
   def updateDetailView(sender)
     spec = $failed_specs[sender.object.selectedRow]
-    @@controller.updateDetailView(spec.description) if spec
+    $details.setContentFromSpec(spec) if spec
   end
   
 end

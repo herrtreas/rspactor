@@ -25,8 +25,13 @@
 	<key>SUCheckAtStartup</key>
   <true/>  
  	<key>NSHumanReadableCopyright</key>
-	<string>© 2008, DynamicDudes</string>
+	<string>
+© 2008, Andreas Wolff
+http://www.dynamicdudes.com
+	</string>
 	<key>CFBundleVersion</key>
   <string>0.9.8</string>
+  <key>CFBundleShortVersionString</key>
+  <string>0.9.8 beta</string>  
   </dict>
 </plist>

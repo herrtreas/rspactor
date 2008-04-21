@@ -24,18 +24,14 @@ class WindowController < OSX::NSWindowController
     @all_spec_table = AllSpecTable.alloc.init(self)    
     @failed_spec_table = FailedSpecTable.alloc.init(self)    
     @pending_spec_table = PendingSpecTable.alloc.init(self)    
-    $coreInterop.start_listen(@specPath.stringValue)    
     setCallbacks
+    $coreInterop.start_listen(@specPath.stringValue)    
     @specPath.stringValue = @defaults.stringForKey("last_spec_path") || ''
-    #    initStatusBar
+    # initStatusBar
   end
   
   def selectSpecUnlessSelected
     puts "Halo: #{failed_spec_table.selectedRow}"
-  end
-  
-  def updateDetailView(content)
-    @detailView.textStorage.mutableString.setString(content)
   end
   
   def runSpecs(sender)
