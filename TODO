@@ -4,6 +4,7 @@
 
 * Preferences: Add symlink /usr/bin/rspactor checkbox
 * Source-Snippet-extractor  
+* Go away from flat file structure (reorganize app/lib etc)  
   
 * release
   * move to github

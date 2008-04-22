@@ -1,4 +1,6 @@
 require 'osx/cocoa'
+require 'syntax'
+require 'html'
 
 def rb_main_init
   path = OSX::NSBundle.mainBundle.resourcePath.fileSystemRepresentation

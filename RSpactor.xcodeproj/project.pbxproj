@@ -36,6 +36,14 @@
 		E1A8B6E20DBB7A2600AF0B8F /* rspactor-core.rb in Resources */ = {isa = PBXBuildFile; fileRef = E1A8B6D20DBB7A2600AF0B8F /* rspactor-core.rb */; };
 		E1C34CFE0DB89EC60044FAAD /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E1EA1E560DB7F13700610423 /* Sparkle.framework */; };
 		E1C49B4B0DBE7C9700F35562 /* INSTALL.txt in Resources */ = {isa = PBXBuildFile; fileRef = E1C49B4A0DBE7C9700F35562 /* INSTALL.txt */; };
+		E1C49B8D0DBE81F900F35562 /* common.rb in Resources */ = {isa = PBXBuildFile; fileRef = E1C49B830DBE81F900F35562 /* common.rb */; };
+		E1C49B8E0DBE81F900F35562 /* abstract.rb in Resources */ = {isa = PBXBuildFile; fileRef = E1C49B850DBE81F900F35562 /* abstract.rb */; };
+		E1C49B8F0DBE81F900F35562 /* html.rb in Resources */ = {isa = PBXBuildFile; fileRef = E1C49B860DBE81F900F35562 /* html.rb */; };
+		E1C49B900DBE81F900F35562 /* ruby.rb in Resources */ = {isa = PBXBuildFile; fileRef = E1C49B880DBE81F900F35562 /* ruby.rb */; };
+		E1C49B910DBE81F900F35562 /* xml.rb in Resources */ = {isa = PBXBuildFile; fileRef = E1C49B890DBE81F900F35562 /* xml.rb */; };
+		E1C49B920DBE81F900F35562 /* yaml.rb in Resources */ = {isa = PBXBuildFile; fileRef = E1C49B8A0DBE81F900F35562 /* yaml.rb */; };
+		E1C49B930DBE81F900F35562 /* version.rb in Resources */ = {isa = PBXBuildFile; fileRef = E1C49B8B0DBE81F900F35562 /* version.rb */; };
+		E1C49B940DBE81F900F35562 /* syntax.rb in Resources */ = {isa = PBXBuildFile; fileRef = E1C49B8C0DBE81F900F35562 /* syntax.rb */; };
 		E1D87BBA0DBD33FF0063C2E6 /* DetailController.rb in Resources */ = {isa = PBXBuildFile; fileRef = E1D87BB90DBD33FF0063C2E6 /* DetailController.rb */; };
 		E1D87BD20DBD34B40063C2E6 /* detail_view.html in Resources */ = {isa = PBXBuildFile; fileRef = E1D87BD10DBD34B40063C2E6 /* detail_view.html */; };
 		E1D87BE30DBD3A360063C2E6 /* detail_view.css in Resources */ = {isa = PBXBuildFile; fileRef = E1D87BE20DBD3A360063C2E6 /* detail_view.css */; };
@@ -89,6 +97,14 @@
 		E1A8B6D10DBB7A2600AF0B8F /* spec.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = spec.rb; sourceTree = "<group>"; };
 		E1A8B6D20DBB7A2600AF0B8F /* rspactor-core.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = "rspactor-core.rb"; sourceTree = "<group>"; };
 		E1C49B4A0DBE7C9700F35562 /* INSTALL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = INSTALL.txt; sourceTree = "<group>"; };
+		E1C49B830DBE81F900F35562 /* common.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = common.rb; sourceTree = "<group>"; };
+		E1C49B850DBE81F900F35562 /* abstract.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = abstract.rb; sourceTree = "<group>"; };
+		E1C49B860DBE81F900F35562 /* html.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = html.rb; sourceTree = "<group>"; };
+		E1C49B880DBE81F900F35562 /* ruby.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ruby.rb; sourceTree = "<group>"; };
+		E1C49B890DBE81F900F35562 /* xml.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = xml.rb; sourceTree = "<group>"; };
+		E1C49B8A0DBE81F900F35562 /* yaml.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = yaml.rb; sourceTree = "<group>"; };
+		E1C49B8B0DBE81F900F35562 /* version.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = version.rb; sourceTree = "<group>"; };
+		E1C49B8C0DBE81F900F35562 /* syntax.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = syntax.rb; sourceTree = "<group>"; };
 		E1D87BB90DBD33FF0063C2E6 /* DetailController.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = DetailController.rb; sourceTree = "<group>"; };
 		E1D87BD10DBD34B40063C2E6 /* detail_view.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = detail_view.html; path = app/detail_view.html; sourceTree = "<group>"; };
 		E1D87BE20DBD3A360063C2E6 /* detail_view.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = detail_view.css; path = app/detail_view.css; sourceTree = "<group>"; };
@@ -154,6 +170,7 @@
 		29B97314FDCFA39411CA2CEA /* RSpactor */ = {
 			isa = PBXGroup;
 			children = (
+				E1C49B810DBE81F900F35562 /* syntax */,
 				E1C49B4A0DBE7C9700F35562 /* INSTALL.txt */,
 				E1D87BE20DBD3A360063C2E6 /* detail_view.css */,
 				E1D87BD10DBD34B40063C2E6 /* detail_view.html */,
@@ -302,6 +319,46 @@
 			path = objects;
 			sourceTree = "<group>";
 		};
+		E1C49B810DBE81F900F35562 /* syntax */ = {
+			isa = PBXGroup;
+			children = (
+				E1C49B820DBE81F900F35562 /* syntax */,
+				E1C49B8C0DBE81F900F35562 /* syntax.rb */,
+			);
+			name = syntax;
+			path = app/lib/syntax;
+			sourceTree = "<group>";
+		};
+		E1C49B820DBE81F900F35562 /* syntax */ = {
+			isa = PBXGroup;
+			children = (
+				E1C49B830DBE81F900F35562 /* common.rb */,
+				E1C49B840DBE81F900F35562 /* convertors */,
+				E1C49B870DBE81F900F35562 /* lang */,
+				E1C49B8B0DBE81F900F35562 /* version.rb */,
+			);
+			path = syntax;
+			sourceTree = "<group>";
+		};
+		E1C49B840DBE81F900F35562 /* convertors */ = {
+			isa = PBXGroup;
+			children = (
+				E1C49B850DBE81F900F35562 /* abstract.rb */,
+				E1C49B860DBE81F900F35562 /* html.rb */,
+			);
+			path = convertors;
+			sourceTree = "<group>";
+		};
+		E1C49B870DBE81F900F35562 /* lang */ = {
+			isa = PBXGroup;
+			children = (
+				E1C49B880DBE81F900F35562 /* ruby.rb */,
+				E1C49B890DBE81F900F35562 /* xml.rb */,
+				E1C49B8A0DBE81F900F35562 /* yaml.rb */,
+			);
+			path = lang;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -389,6 +446,14 @@
 				E1D87BD20DBD34B40063C2E6 /* detail_view.html in Resources */,
 				E1D87BE30DBD3A360063C2E6 /* detail_view.css in Resources */,
 				E1C49B4B0DBE7C9700F35562 /* INSTALL.txt in Resources */,
+				E1C49B8D0DBE81F900F35562 /* common.rb in Resources */,
+				E1C49B8E0DBE81F900F35562 /* abstract.rb in Resources */,
+				E1C49B8F0DBE81F900F35562 /* html.rb in Resources */,
+				E1C49B900DBE81F900F35562 /* ruby.rb in Resources */,
+				E1C49B910DBE81F900F35562 /* xml.rb in Resources */,
+				E1C49B920DBE81F900F35562 /* yaml.rb in Resources */,
+				E1C49B930DBE81F900F35562 /* version.rb in Resources */,
+				E1C49B940DBE81F900F35562 /* syntax.rb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

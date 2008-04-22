@@ -8,3 +8,17 @@ body {
   font: normal 12px Helvetica, Arial, sans-serif;
   color: #333;
 }
+
+.code { line-height: 18px;}
+
+.code .linenumber { margin-left: 5px; padding-right: 15px; font-weight: bold;}
+.code .pointer    { background-color: #EDFFBA;}
+
+.code .ident      { color:#0000FF;}
+.code .punct      { color:#C5060B;}
+.code .string     { color:#036A07;}
+.code .keyword    { color:#000000; font-weight:bold;}
+.code .symbol     { color:#C5060B;}
+.code .number     { color:#0000CD;}
+.code .attribute  { color:#318495; font-weight:bold;}
+.code .constant   { color:#C5060B;}

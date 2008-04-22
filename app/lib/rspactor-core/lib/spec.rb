@@ -38,8 +38,9 @@ module RSpactor
       def source_from_file(file, line)
         return [] unless File.exist?(file)
         File.open(file, 'r') { |f| @lines = f.readlines }
+        @lines = @lines.map { |l| l.chomp }
         first_line = [0, line - 3].max
-        last_line = [line + 3, @lines.length - 1].min
+        last_line = [line + 6, @lines.length - 1].min
         @lines[first_line..last_line]
       end
       

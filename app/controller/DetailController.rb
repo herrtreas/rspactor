@@ -48,16 +48,30 @@ class DetailController < OSX::NSWindowController
   private
   
   def html_content_for_failed(spec)
-    html = [spec.message, "<pre>#{spec.source.join("\n")}</pre>", "#{spec.file}:#{spec.line}", spec.backtrace].join("<br />")
-    html
+    [spec.message, source_to_html(spec.source, spec.line.to_i), "#{spec.file}:#{spec.line}", spec.backtrace].join("<br />")
   end
   
   def html_content_for_pending(spec)
-    html = [spec.message, "<pre>#{spec.source.join("\n")}</pre>"].join("<br />")
+    [spec.message, source_to_html(spec.source, spec.line.to_i)].join("<br />")
   end
   
   def html_content_for_passed(spec)
-    html = "<pre>#{spec.source.join("\n")}</pre>"
+    source_to_html(spec.source, spec.line.to_i)
+  end
+  
+  def source_to_html(source, line)
+    @converter ||= Syntax::Convertors::HTML.for_syntax "ruby"
+    add_lineml(@converter.convert(source.join("\n"), false), line)
+  end
+  
+  def add_lineml(source, line)
+    lines = []
+    source.split("\n").each_with_index do |l, i|
+      html = "<span class=\"linenumber\">#{line+i-2}</span>#{l}"
+      html = "<span class=\"pointer\">#{html}</span>" if i + line - 2 == line
+      lines << html
+    end
+    "<div class='code'><pre>#{lines.join("\n")}</pre></div>"
   end
   
 end
