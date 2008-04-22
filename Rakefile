@@ -36,6 +36,7 @@ task :package => ["xcode:build:#{DEFAULT_TARGET}:#{RELEASE_CONFIGURATION}", "pkg
   name = "#{APPNAME}_#{APPVERSION}"
   mkdir "image"
   sh %{cp -R build/Release/RSpactor.app image/}
+  sh %{cp INSTALL.txt image/}
   puts 'Creating Image...'
   sh %{
   hdiutil create -volname '#{name}' -srcfolder image '#{name}'.dmg

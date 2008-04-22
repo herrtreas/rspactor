@@ -35,6 +35,7 @@
 		E1A8B6E10DBB7A2600AF0B8F /* spec.rb in Resources */ = {isa = PBXBuildFile; fileRef = E1A8B6D10DBB7A2600AF0B8F /* spec.rb */; };
 		E1A8B6E20DBB7A2600AF0B8F /* rspactor-core.rb in Resources */ = {isa = PBXBuildFile; fileRef = E1A8B6D20DBB7A2600AF0B8F /* rspactor-core.rb */; };
 		E1C34CFE0DB89EC60044FAAD /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E1EA1E560DB7F13700610423 /* Sparkle.framework */; };
+		E1C49B4B0DBE7C9700F35562 /* INSTALL.txt in Resources */ = {isa = PBXBuildFile; fileRef = E1C49B4A0DBE7C9700F35562 /* INSTALL.txt */; };
 		E1D87BBA0DBD33FF0063C2E6 /* DetailController.rb in Resources */ = {isa = PBXBuildFile; fileRef = E1D87BB90DBD33FF0063C2E6 /* DetailController.rb */; };
 		E1D87BD20DBD34B40063C2E6 /* detail_view.html in Resources */ = {isa = PBXBuildFile; fileRef = E1D87BD10DBD34B40063C2E6 /* detail_view.html */; };
 		E1D87BE30DBD3A360063C2E6 /* detail_view.css in Resources */ = {isa = PBXBuildFile; fileRef = E1D87BE20DBD3A360063C2E6 /* detail_view.css */; };
@@ -87,6 +88,7 @@
 		E1A8B6D00DBB7A2600AF0B8F /* runtime.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = runtime.rb; sourceTree = "<group>"; };
 		E1A8B6D10DBB7A2600AF0B8F /* spec.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = spec.rb; sourceTree = "<group>"; };
 		E1A8B6D20DBB7A2600AF0B8F /* rspactor-core.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = "rspactor-core.rb"; sourceTree = "<group>"; };
+		E1C49B4A0DBE7C9700F35562 /* INSTALL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = INSTALL.txt; sourceTree = "<group>"; };
 		E1D87BB90DBD33FF0063C2E6 /* DetailController.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = DetailController.rb; sourceTree = "<group>"; };
 		E1D87BD10DBD34B40063C2E6 /* detail_view.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = detail_view.html; path = app/detail_view.html; sourceTree = "<group>"; };
 		E1D87BE20DBD3A360063C2E6 /* detail_view.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = detail_view.css; path = app/detail_view.css; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 		29B97314FDCFA39411CA2CEA /* RSpactor */ = {
 			isa = PBXGroup;
 			children = (
+				E1C49B4A0DBE7C9700F35562 /* INSTALL.txt */,
 				E1D87BE20DBD3A360063C2E6 /* detail_view.css */,
 				E1D87BD10DBD34B40063C2E6 /* detail_view.html */,
 				E1385BDB0DB91E3E00B13C60 /* APPL.icns */,
@@ -385,6 +388,7 @@
 				E1D87BBA0DBD33FF0063C2E6 /* DetailController.rb in Resources */,
 				E1D87BD20DBD34B40063C2E6 /* detail_view.html in Resources */,
 				E1D87BE30DBD3A360063C2E6 /* detail_view.css in Resources */,
+				E1C49B4B0DBE7C9700F35562 /* INSTALL.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
