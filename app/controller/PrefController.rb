@@ -7,10 +7,17 @@
 #
 
 require 'osx/cocoa'
+require 'osx/foundation'
 
 class PrefController < OSX::NSWindowController
+  include OSX
 
   ib_outlet :panel
+  ib_action :symlinkCheckBoxChanged
+
+  def init
+    super_init
+  end
   
   def awakeFromNib
     $pref_controller = self
@@ -19,6 +26,12 @@ class PrefController < OSX::NSWindowController
   def showWindow(sender)  
     @panel.center unless @panel.isVisible
     @panel.makeKeyAndOrderFront(self)    
+  end
+  
+  def symlinkCheckBoxChanged(sender)
+    file = NSFileManager.defaultManager
+    error = NSError.new
+    file.createSymbolicLinkAtPath_withDestinationPath_error('/usr/bin/rspactor', File.dirname(__FILE__) + "/rspactor_bin.rb", error)
   end
   
 end

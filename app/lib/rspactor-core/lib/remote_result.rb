@@ -27,7 +27,8 @@ module RSpactor
         spec = RSpactor::Core::Spec.new(
           :name               => example.description,
           :example_group_name => @example_group.description,
-          :state              => :passed
+          :state              => :passed,
+          :backtrace          => example.implementation_backtrace
         )
         @remote_service.remote_call_in(:spec_run_example_passed, spec)
       end
@@ -37,18 +38,19 @@ module RSpactor
           :name               => example.description,
           :example_group_name => @example_group.description,
           :state              => :pending,
-          :message            => message
+          :message            => message,
+          :backtrace          => example.implementation_backtrace
         )        
         @remote_service.remote_call_in(:spec_run_example_pending, spec)
       end
 
       def example_failed(example, counter, failure)
-        spec = RSpactor::Core::Spec.new(
+        spec = RSpactor::Core::Spec.new(        
           :name               => example.description,
           :example_group_name => @example_group.description,
           :state              => :failed,
-          :error_header       => failure.header,
           :message            => failure.exception.message,
+          :error_header       => failure.header,
           :error_type         => failure.expectation_not_met? ? :expectation : :implementation,
           :backtrace          => extract_backspace(failure.exception.backtrace)
         )

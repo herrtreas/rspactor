@@ -48,16 +48,16 @@ class DetailController < OSX::NSWindowController
   private
   
   def html_content_for_failed(spec)
-    html = [spec.message, "#{spec.error_file}:#{spec.error_line}", spec.backtrace].join("<br />")
+    html = [spec.message, "<pre>#{spec.source.join("\n")}</pre>", "#{spec.file}:#{spec.line}", spec.backtrace].join("<br />")
     html
   end
   
   def html_content_for_pending(spec)
-    html = [spec.message].join("<br />")
+    html = [spec.message, "<pre>#{spec.source.join("\n")}</pre>"].join("<br />")
   end
   
   def html_content_for_passed(spec)
-    ''
+    html = "<pre>#{spec.source.join("\n")}</pre>"
   end
   
 end

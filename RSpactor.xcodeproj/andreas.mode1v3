@@ -268,14 +268,19 @@
 							<array>
 								<string>29B97314FDCFA39411CA2CEA</string>
 								<string>080E96DDFE201D6D7F000001</string>
+								<string>29B97323FDCFA39411CA2CEA</string>
+								<string>1058C7A0FEA54F0111CA2CBB</string>
+								<string>1058C7A2FEA54F0111CA2CBB</string>
 								<string>1C37FBAC04509CD000000102</string>
 								<string>1C37FABC05509CD000000102</string>
 								<string>1CC0EA4004350EF90041110B</string>
-								<string>29B97318FDCFA39411CA2CEA</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
+									<integer>14</integer>
+									<integer>13</integer>
+									<integer>8</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -327,10 +332,10 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>E1B9C7F40DBD4F8C00EB965F</string>
+										<string>E1EF98F40DBDD98100CFF251</string>
 										<key>history</key>
 										<array>
-											<string>E1D87C190DBD47020063C2E6</string>
+											<string>E1B36CDB0DBD54EA000A15E6</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -390,9 +395,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>E1B9C7BD0DBD499100EB965F</string>
+				<string>E1EF98B70DBDC5F900CFF251</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>E1B9C7BE0DBD499100EB965F</string>
+				<string>E1EF98B80DBDC5F900CFF251</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -526,9 +531,9 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>E1B9C7EB0DBD4E8100EB965F</string>
-		<string>E1B9C7EC0DBD4E8100EB965F</string>
-		<string>E1B9C7ED0DBD4E8100EB965F</string>
+		<string>E1EF98E90DBDD80700CFF251</string>
+		<string>E1EF98EA0DBDD80700CFF251</string>
+		<string>E1EF98EB0DBDD80700CFF251</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>E11C54D50DA97E3300F67EB4</string>
 		<string>/Users/andreas/ruby/rspactor/RSpactor.xcodeproj</string>
@@ -612,7 +617,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>E11C54D50DA97E3300F67EB4</string>
-				<string>E1B9C7C20DBD49B100EB965F</string>
+				<string>E1EF98BC0DBDCB5600CFF251</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -732,13 +737,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>E1B9C7C30DBD49B100EB965F</string>
+				<string>E1EF98BD0DBDCB5600CFF251</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>E1B9C7C40DBD49B100EB965F</string>
-				<string>E1B9C7C50DBD49B100EB965F</string>
-				<string>E1B9C7C60DBD49B100EB965F</string>
-				<string>E1B9C7C70DBD49B100EB965F</string>
-				<string>E1B9C7C80DBD49B100EB965F</string>
+				<string>E1EF98BE0DBDCB5600CFF251</string>
+				<string>E1EF98BF0DBDCB5600CFF251</string>
+				<string>E1EF98C00DBDCB5600CFF251</string>
+				<string>E1EF98C10DBDCB5600CFF251</string>
+				<string>E1EF98C20DBDCB5600CFF251</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
@@ -902,7 +907,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C78EAAD065D492600B07095</string>
-				<string>E1B9C7C90DBD49B100EB965F</string>
+				<string>E1EF98C30DBDCB5600CFF251</string>
 				<string>1C78EAAC065D492600B07095</string>
 			</array>
 			<key>ToolbarConfiguration</key>

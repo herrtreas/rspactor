@@ -69,7 +69,7 @@ module Callback
       
       error_message = [
         spec.error_header,
-        "\n#{spec.error_file}:#{spec.error_line}", 
+        "\n#{spec.file}:#{spec.line}", 
         spec.message
       ].join("\n")
       

@@ -20,7 +20,7 @@ task :default => [:run]
 
 desc "Build the default and run it."
 task :run => [:build] do
-  sh %{open "build/Release/#{APPNAME}.app"}
+  sh %{open "build/#{DEFAULT_CONFIGURATION}/#{APPNAME}.app"}
 end
 
 desc 'Build the default target using the default configuration'
