@@ -1,3 +1,8 @@
+0.9.8 / 2008-04-22
+
+* Added source code visualisation in detail view
+* Interface cleanup
+
 0.9.7 / 2008-04-20
 
 * Added saving of window size/position and latest spec-run-location
