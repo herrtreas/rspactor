@@ -111,20 +111,13 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 230540778;
-			PBXWorkspaceStateSaveDate = 230540778;
+			PBXPerProjectTemplateStateSaveDate = 230583861;
+			PBXWorkspaceStateSaveDate = 230583861;
 		};
 		perUserProjectItems = {
 			E1B36CDB0DBD54EA000A15E6 = E1B36CDB0DBD54EA000A15E6 /* PBXTextBookmark */;
-			E1B9C88E0DBD53A300EB965F = E1B9C88E0DBD53A300EB965F /* PBXTextBookmark */;
-			E1EF98B60DBDC5F900CFF251 /* PBXTextBookmark */ = E1EF98B60DBDC5F900CFF251 /* PBXTextBookmark */;
-			E1EF98BB0DBDCB5600CFF251 /* PBXTextBookmark */ = E1EF98BB0DBDCB5600CFF251 /* PBXTextBookmark */;
-			E1EF98C90DBDD17200CFF251 /* PBXTextBookmark */ = E1EF98C90DBDD17200CFF251 /* PBXTextBookmark */;
-			E1EF98E80DBDD80700CFF251 /* PBXTextBookmark */ = E1EF98E80DBDD80700CFF251 /* PBXTextBookmark */;
-			E1EF98ED0DBDD8D600CFF251 /* PBXTextBookmark */ = E1EF98ED0DBDD8D600CFF251 /* PBXTextBookmark */;
-			E1EF98EF0DBDD8DC00CFF251 /* PBXTextBookmark */ = E1EF98EF0DBDD8DC00CFF251 /* PBXTextBookmark */;
-			E1EF98F20DBDD93E00CFF251 /* PBXTextBookmark */ = E1EF98F20DBDD93E00CFF251 /* PBXTextBookmark */;
-			E1EF98F40DBDD98100CFF251 /* PBXTextBookmark */ = E1EF98F40DBDD98100CFF251 /* PBXTextBookmark */;
+			E1C49B310DBE7B2200F35562 /* PBXTextBookmark */ = E1C49B310DBE7B2200F35562 /* PBXTextBookmark */;
+			E1EF99000DBE1A5800CFF251 = E1EF99000DBE1A5800CFF251 /* PBXTextBookmark */;
 		};
 		sourceControlManager = E109BF4F0DB55ABE0098A6F3 /* Source Control */;
 		userBuildSettings = {
@@ -165,94 +158,24 @@
 		vrLen = 0;
 		vrLoc = 0;
 	};
-	E1B9C88E0DBD53A300EB965F /* PBXTextBookmark */ = {
+	E1C49B310DBE7B2200F35562 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = E1D87BB90DBD33FF0063C2E6 /* DetailController.rb */;
 		name = "DetailController.rb: 64";
 		rLen = 0;
-		rLoc = 1252;
+		rLoc = 1363;
 		rType = 0;
 		vrLen = 0;
 		vrLoc = 0;
 	};
 	E1D87BB90DBD33FF0063C2E6 /* DetailController.rb */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {644, 980}}";
+			sepNavIntBoundsRect = "{{0, 0}, {644, 924}}";
 			sepNavSelRange = "{1363, 0}";
 			sepNavVisRange = "{0, 0}";
 		};
 	};
-	E1EF98B60DBDC5F900CFF251 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = E1D87BB90DBD33FF0063C2E6 /* DetailController.rb */;
-		name = "DetailController.rb: 64";
-		rLen = 0;
-		rLoc = 1252;
-		rType = 0;
-		vrLen = 0;
-		vrLoc = 0;
-	};
-	E1EF98BB0DBDCB5600CFF251 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = E1D87BB90DBD33FF0063C2E6 /* DetailController.rb */;
-		name = "DetailController.rb: 64";
-		rLen = 0;
-		rLoc = 1375;
-		rType = 0;
-		vrLen = 0;
-		vrLoc = 0;
-	};
-	E1EF98C90DBDD17200CFF251 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = E1D87BB90DBD33FF0063C2E6 /* DetailController.rb */;
-		name = "DetailController.rb: 64";
-		rLen = 0;
-		rLoc = 1369;
-		rType = 0;
-		vrLen = 0;
-		vrLoc = 0;
-	};
-	E1EF98E80DBDD80700CFF251 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = E1D87BB90DBD33FF0063C2E6 /* DetailController.rb */;
-		name = "DetailController.rb: 65";
-		rLen = 0;
-		rLoc = 1415;
-		rType = 0;
-		vrLen = 0;
-		vrLoc = 0;
-	};
-	E1EF98ED0DBDD8D600CFF251 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = E1D87BB90DBD33FF0063C2E6 /* DetailController.rb */;
-		name = "DetailController.rb: 65";
-		rLen = 0;
-		rLoc = 1443;
-		rType = 0;
-		vrLen = 0;
-		vrLoc = 0;
-	};
-	E1EF98EF0DBDD8DC00CFF251 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = E1D87BB90DBD33FF0063C2E6 /* DetailController.rb */;
-		name = "DetailController.rb: 65";
-		rLen = 0;
-		rLoc = 1447;
-		rType = 0;
-		vrLen = 0;
-		vrLoc = 0;
-	};
-	E1EF98F20DBDD93E00CFF251 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = E1D87BB90DBD33FF0063C2E6 /* DetailController.rb */;
-		name = "DetailController.rb: 65";
-		rLen = 0;
-		rLoc = 1448;
-		rType = 0;
-		vrLen = 0;
-		vrLoc = 0;
-	};
-	E1EF98F40DBDD98100CFF251 /* PBXTextBookmark */ = {
+	E1EF99000DBE1A5800CFF251 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = E1D87BB90DBD33FF0063C2E6 /* DetailController.rb */;
 		name = "DetailController.rb: 64";

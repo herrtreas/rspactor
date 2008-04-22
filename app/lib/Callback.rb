@@ -39,7 +39,7 @@ module Callback
       @specRunningIndicator.setDoubleValue(1.0)      
       @specRunningIndicator.setMaxValue(example_count)
 
-      @growl.notify(MESSAGE_KIND, "Running #{example_count} specs", '', 'clickcontext', false, 0, growlImage(:ok))      
+#      @growl.notify(MESSAGE_KIND, "Running #{example_count} specs", '', 'clickcontext', false, 0, growlImage(:ok))      
     end
 
     # An example has passed
@@ -67,14 +67,14 @@ module Callback
       @failed_spec_table.reload!
       @all_spec_table.reload!
       
-      error_message = [
-        spec.error_header,
-        "\n#{spec.file}:#{spec.line}", 
-        spec.message
-      ].join("\n")
+      # error_message = [
+      #   spec.error_header,
+      #   "\n#{spec.file}:#{spec.line}", 
+      #   spec.message
+      # ].join("\n")
       
 #      selectSpecUnlessSelected
-      @growl.notify(MESSAGE_KIND, "#{spec.name}", error_message, 'clickcontext', false, 0, growlImage(:failure))      
+      @growl.notify(MESSAGE_KIND, "#{spec.name}", spec.message, 'clickcontext', false, 0, growlImage(:failure))      
     end    
     
     # Receive summary dump

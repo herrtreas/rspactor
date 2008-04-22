@@ -28,10 +28,11 @@ class PrefController < OSX::NSWindowController
     @panel.makeKeyAndOrderFront(self)    
   end
   
-  def symlinkCheckBoxChanged(sender)
-    file = NSFileManager.defaultManager
-    error = NSError.new
-    file.createSymbolicLinkAtPath_withDestinationPath_error('/usr/bin/rspactor', File.dirname(__FILE__) + "/rspactor_bin.rb", error)
-  end
+#   def symlinkCheckBoxChanged(sender)
+#     file = NSFileManager.defaultManager
+#     error = NSError.new
+#     NSTask.launchedTaskWithLaunchPath_arguments('sudo ls', '-la')
+# #    file.createSymbolicLinkAtPath_withDestinationPath_error('/usr/bin/rspactor', File.dirname(__FILE__) + "/rspactor_bin.rb", error)
+#   end
   
 end
