@@ -17,6 +17,7 @@ class DetailController < OSX::NSWindowController
   
   def awakeFromNib
     @webView.mainFrameURL = File.join(File.dirname(__FILE__), "detail_view.html")
+    @webView.shouldCloseWithWindow = true
   end
   
   def setContentFromSpec(spec)

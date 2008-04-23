@@ -20,6 +20,7 @@ class WindowController < OSX::NSWindowController
   end
     
   def awakeFromNib
+    NSApp.delegate = self
     initAndSetAutomaticPositionAndSizeStoring
     @all_spec_table = AllSpecTable.alloc.init(self)    
     @failed_spec_table = FailedSpecTable.alloc.init(self)    
@@ -92,6 +93,9 @@ class WindowController < OSX::NSWindowController
     end
   end
   
+  def applicationWillTerminate(notification)
+    $coreInterop.stop_listen
+  end
     
   private
   
