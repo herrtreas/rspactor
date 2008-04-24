@@ -38,8 +38,6 @@ module Callback
       @specRunningIndicator.setMinValue(1.0)      
       @specRunningIndicator.setDoubleValue(1.0)      
       @specRunningIndicator.setMaxValue(example_count)
-
-#      @growl.notify(MESSAGE_KIND, "Running #{example_count} specs", '', 'clickcontext', false, 0, growlImage(:ok))      
     end
 
     # An example has passed
@@ -67,21 +65,16 @@ module Callback
       @failed_spec_table.reload!
       @all_spec_table.reload!
       
-      # error_message = [
-      #   spec.error_header,
-      #   "\n#{spec.file}:#{spec.line}", 
-      #   spec.message
-      # ].join("\n")
-      
-#      selectSpecUnlessSelected
-      @growl.notify(MESSAGE_KIND, "#{spec.name}", spec.message, 'clickcontext', false, 0, growlImage(:failure))      
+      # selectSpecUnlessSelected
+      click_context = External.file_link(spec.full_file_path, spec.line)
+      @growl.notify(MESSAGE_KIND, "#{spec.name}", spec.message, click_context, false, 0, growlImage(:failure))      
     end    
     
     # Receive summary dump
     $coreInterop.spec_run_dump_summary = lambda do |duration, example_count, failure_count, pending_count|
       msg = "#{example_count} examples, #{failure_count} failed, #{pending_count} pending\nTook: #{duration} seconds"
       status_image = growlImage((failure_count == 0) ? :pass : :failure)
-      @growl.notify(MESSAGE_KIND, 'RSpactor results', msg, 'clickcontext', false, 0, status_image)
+      @growl.notify(MESSAGE_KIND, 'RSpactor results', msg, nil, false, 0, status_image)
     end
 
     # Stop Spec Runner Progress

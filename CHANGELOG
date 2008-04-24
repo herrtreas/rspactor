@@ -1,3 +1,7 @@
+0.9.9 / 
+
+* Added external linking to TextMate for DetailView and Growl messages
+
 0.9.8 / 2008-04-22
 
 * Added source code visualisation in detail view
@@ -9,11 +13,9 @@
 * Added visual feedback if entered path is valid or not
 * Added resizeable split view for speclist and details
 
-
 0.9.6 / 2008-04-18
 
 * So much optical stuff and user feedback things
-
 
 0.9.5 / 2008-04-18
 

@@ -3,9 +3,11 @@
   * Spec run in non spec directories
   * app/mailer doesn't work
 
-* Remove the 'reload' from webView
+* Create Specs  (run through rspactor bin)
+* Create doc    (create through rake file)
 * Preferences: Add symlink /usr/bin/rspactor checkbox
 * Go away from flat file structure (reorganize app/lib etc)  
-  
+
+
 * release
   * move to github

@@ -20,6 +20,7 @@
 		E138660F0DB94A5E00B13C60 /* accept_128.png in Resources */ = {isa = PBXBuildFile; fileRef = E138660C0DB94A5E00B13C60 /* accept_128.png */; };
 		E13866100DB94A5E00B13C60 /* remove_128.png in Resources */ = {isa = PBXBuildFile; fileRef = E138660D0DB94A5E00B13C60 /* remove_128.png */; };
 		E13866110DB94A5E00B13C60 /* warning_128.png in Resources */ = {isa = PBXBuildFile; fileRef = E138660E0DB94A5E00B13C60 /* warning_128.png */; };
+		E18E3D420DC0C057008CED94 /* External.rb in Resources */ = {isa = PBXBuildFile; fileRef = E18E3D410DC0C057008CED94 /* External.rb */; };
 		E1A8B6D50DBB7A2600AF0B8F /* PrefController.rb in Resources */ = {isa = PBXBuildFile; fileRef = E1A8B6C20DBB7A2600AF0B8F /* PrefController.rb */; };
 		E1A8B6D60DBB7A2600AF0B8F /* WindowController.rb in Resources */ = {isa = PBXBuildFile; fileRef = E1A8B6C30DBB7A2600AF0B8F /* WindowController.rb */; };
 		E1A8B6D70DBB7A2600AF0B8F /* Callback.rb in Resources */ = {isa = PBXBuildFile; fileRef = E1A8B6C50DBB7A2600AF0B8F /* Callback.rb */; };
@@ -82,6 +83,7 @@
 		E138660C0DB94A5E00B13C60 /* accept_128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = accept_128.png; sourceTree = "<group>"; };
 		E138660D0DB94A5E00B13C60 /* remove_128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = remove_128.png; sourceTree = "<group>"; };
 		E138660E0DB94A5E00B13C60 /* warning_128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = warning_128.png; sourceTree = "<group>"; };
+		E18E3D410DC0C057008CED94 /* External.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = External.rb; sourceTree = "<group>"; };
 		E1A8B6C20DBB7A2600AF0B8F /* PrefController.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = PrefController.rb; sourceTree = "<group>"; };
 		E1A8B6C30DBB7A2600AF0B8F /* WindowController.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = WindowController.rb; sourceTree = "<group>"; };
 		E1A8B6C50DBB7A2600AF0B8F /* Callback.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = Callback.rb; sourceTree = "<group>"; };
@@ -280,6 +282,7 @@
 				E1A8B6C50DBB7A2600AF0B8F /* Callback.rb */,
 				E1A8B6C60DBB7A2600AF0B8F /* Growl.rb */,
 				E1A8B6C70DBB7A2600AF0B8F /* rspactor-core */,
+				E18E3D410DC0C057008CED94 /* External.rb */,
 			);
 			path = lib;
 			sourceTree = "<group>";
@@ -454,6 +457,7 @@
 				E1C49B920DBE81F900F35562 /* yaml.rb in Resources */,
 				E1C49B930DBE81F900F35562 /* version.rb in Resources */,
 				E1C49B940DBE81F900F35562 /* syntax.rb in Resources */,
+				E18E3D420DC0C057008CED94 /* External.rb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

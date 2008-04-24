@@ -96,6 +96,11 @@ class WindowController < OSX::NSWindowController
   def applicationWillTerminate(notification)
     $coreInterop.stop_listen
   end
+  
+  def growl_onClicked(sender, context)
+    puts "OPEN IN CONTEXT: #{context}"
+    External.open_editor_with_file_from_ext_link context
+  end
     
   private
   
