@@ -16,6 +16,11 @@ module RSpactor
         "#{@example_group_name} #{@name}"
       end
       
+      def message=(msg)
+        msg[0...1] = msg[0...1].upcase  # Make the first word upper case..
+        @message = msg
+      end
+      
       # Implement this using regexp and $1, $2 etc..
       def backtrace=(trace)
         @backtrace = trace

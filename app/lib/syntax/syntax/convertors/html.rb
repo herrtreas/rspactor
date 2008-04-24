@@ -42,7 +42,8 @@ module Syntax
           string.gsub( /&/, "&amp;" ).
                  gsub( /</, "&lt;" ).
                  gsub( />/, "&gt;" ).
-                 gsub( /"/, "&quot;" )
+                 gsub( /"/, "&quot;" ).
+                 gsub( ' ', "&nbsp;")
         end
 
     end

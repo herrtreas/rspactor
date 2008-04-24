@@ -2,6 +2,7 @@
   * Update doesn't work..
   * Spec run in non spec directories
   * app/mailer doesn't work
+  * wait for webview and rspactor core deps on startup
 
 * Create Specs  (run through rspactor bin)
 * Create doc    (create through rake file)
