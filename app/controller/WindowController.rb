@@ -31,10 +31,6 @@ class WindowController < OSX::NSWindowController
     # initStatusBar
   end
   
-  def selectSpecUnlessSelected
-    puts "Halo: #{failed_spec_table.selectedRow}"
-  end
-  
   def runSpecs(sender)
     path = @specPath.stringValue
     return unless File.exist? path
@@ -98,7 +94,6 @@ class WindowController < OSX::NSWindowController
   end
   
   def growl_onClicked(sender, context)
-    puts "OPEN IN CONTEXT: #{context}"
     External.open_editor_with_file_from_ext_link context
   end
     

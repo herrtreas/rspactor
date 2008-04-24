@@ -21,6 +21,10 @@ class FailedSpecTable < OSX::NSObject
     
   end
   
+  def selectFirstEntry
+    $failedSpecsTableView.selectRowIndexes_byExtendingSelection(NSIndexSet.new.initWithIndex(0), false)
+  end
+  
   def reload!
     $failedSpecsTableView.reloadData
   end

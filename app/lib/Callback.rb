@@ -65,7 +65,7 @@ module Callback
       @failed_spec_table.reload!
       @all_spec_table.reload!
       
-      # selectSpecUnlessSelected
+      @failed_spec_table.selectFirstEntry
       click_context = External.file_link(spec.full_file_path, spec.line)
       @growl.notify(MESSAGE_KIND, "#{spec.name}", spec.message, click_context, false, 0, growlImage(:failure))      
     end    

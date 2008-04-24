@@ -1,6 +1,4 @@
 * BUGS
-  * Update doesn't work..
-  * Spec run in non spec directories
   * app/mailer doesn't work
   * wait for webview and rspactor core deps on startup
 
@@ -8,7 +6,3 @@
 * Create doc    (create through rake file)
 * Preferences: Add symlink /usr/bin/rspactor checkbox
 * Go away from flat file structure (reorganize app/lib etc)  
-
-
-* release
-  * move to github
