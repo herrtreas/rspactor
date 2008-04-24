@@ -38,6 +38,7 @@ module Callback
       @specRunningIndicator.setMinValue(1.0)      
       @specRunningIndicator.setDoubleValue(1.0)      
       @specRunningIndicator.setMaxValue(example_count)
+      
     end
 
     # An example has passed

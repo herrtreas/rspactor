@@ -2,7 +2,7 @@
 {
 	29B97313FDCFA39411CA2CEA /* Project object */ = {
 		activeArchitecture = i386;
-		activeBuildConfigurationName = Debug;
+		activeBuildConfigurationName = Release;
 		activeExecutable = E1F692580DB55B3800874F15 /* RSpactor */;
 		activeTarget = 4DDCA7030ACC9A6100E082CE /* RSpactor */;
 		addToTargets = (
@@ -116,6 +116,7 @@
 		};
 		perUserProjectItems = {
 			E178510C0DC117A6002E7ABC /* PBXTextBookmark */ = E178510C0DC117A6002E7ABC /* PBXTextBookmark */;
+			E178512A0DC1254E002E7ABC /* PBXTextBookmark */ = E178512A0DC1254E002E7ABC /* PBXTextBookmark */;
 			E18E3CFB0DC0AA9B008CED94 = E18E3CFB0DC0AA9B008CED94 /* PBXTextBookmark */;
 			E18E3DE80DC0DD34008CED94 = E18E3DE80DC0DD34008CED94 /* PBXTextBookmark */;
 			E1D40C090DC0F75100856F34 = E1D40C090DC0F75100856F34 /* PBXTextBookmark */;
@@ -150,6 +151,16 @@
 		indexTemplatePath = "";
 	};
 	E178510C0DC117A6002E7ABC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = E1D87BB90DBD33FF0063C2E6 /* DetailController.rb */;
+		name = "DetailController.rb: 121";
+		rLen = 0;
+		rLoc = 3163;
+		rType = 0;
+		vrLen = 0;
+		vrLoc = 0;
+	};
+	E178512A0DC1254E002E7ABC /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = E1D87BB90DBD33FF0063C2E6 /* DetailController.rb */;
 		name = "DetailController.rb: 121";
@@ -199,7 +210,7 @@
 	};
 	E1D87BB90DBD33FF0063C2E6 /* DetailController.rb */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {644, 1750}}";
+			sepNavIntBoundsRect = "{{0, 0}, {644, 1722}}";
 			sepNavSelRange = "{3163, 0}";
 			sepNavVisRange = "{0, 0}";
 		};
