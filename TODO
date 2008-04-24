@@ -1,4 +1,5 @@
 * BUGS
+  * Backtrace-Ext-Link-Click for no-spec-file errors doesn't work (because its not ending with line number 'rb:10 in create')
   * app/mailer doesn't work
   * wait for webview and rspactor core deps on startup
 
