@@ -47,11 +47,11 @@ ul.code_view li {
 
 .code .linenumber { margin-left: 5px; padding-right: 10px; font-weight: bold;}
 
-.code .ident      { color:#0000FF;}
-.code .punct      { color:#C5060B;}
-.code .string     { color:#036A07;}
+.code .ident      { color:#000000;}
+.code .punct      { color:#C5060B; font-weight:bold;}
+.code .string     { color:#C5060B;}
 .code .keyword    { color:#000000; font-weight:bold;}
-.code .symbol     { color:#C5060B;}
+.code .symbol     { color:#060; font-weight:bold;}
 .code .number     { color:#0000CD;}
 .code .attribute  { color:#318495; font-weight:bold;}
 .code .constant   { color:#C5060B;}

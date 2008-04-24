@@ -1,7 +1,8 @@
-0.9.9 / 
+0.9.9 / 2008-04-24
 
 * Added external linking to TextMate for DetailView and Growl messages
 * Improved style and output in DetailView
+* Feature freeze 1.0
 
 0.9.8 / 2008-04-22
 
