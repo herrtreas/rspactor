@@ -6,7 +6,7 @@ module RSpactor
         self.stop_listening
         return unless File.exist?(path)
         
-        puts "RSpactor is now watching at '#{path}'"
+        puts "RSpactor is listening to '#{path}'"
         @inspector  = Inspection.new
         
         @@listener = Listener.new(path) do |files|
