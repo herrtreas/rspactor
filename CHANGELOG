@@ -1,8 +1,8 @@
-0.9.10 /
+0.9.10 / 2008-04-27
 
-* Added dsa signature for package files
+* Added DSA signature test for package files
 * Improvments on the internal listener-init cycle
-
+* Bug fixes
 
 0.9.9 / 2008-04-24
 
