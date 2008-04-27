@@ -1,3 +1,9 @@
+0.9.10 /
+
+* Added dsa signature for package files
+* Improvments on the internal listener-init cycle
+
+
 0.9.9 / 2008-04-24
 
 * Added external linking to TextMate for DetailView and Growl messages

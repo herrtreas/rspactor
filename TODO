@@ -1,9 +1,0 @@
-* BUGS
-  * Backtrace-Ext-Link-Click for no-spec-file errors doesn't work (because its not ending with line number 'rb:10 in create')
-  * app/mailer doesn't work
-  * wait for webview and rspactor core deps on startup
-
-* Create Specs  (run through rspactor bin)
-* Create doc    (create through rake file)
-* Preferences: Add symlink /usr/bin/rspactor checkbox
-* Go away from flat file structure (reorganize app/lib etc)  
