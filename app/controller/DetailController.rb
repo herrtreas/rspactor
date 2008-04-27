@@ -112,7 +112,7 @@ class DetailController < OSX::NSWindowController
   def formatted_backtrace(spec)
     html =  ''
     spec.backtrace.each do |trace_line|
-      ext_alert = ext_file_alert(trace_line.split(':').first, trace_line.split(':').last) 
+      ext_alert = ext_file_alert(trace_line.split(':')[0], trace_line.split(':')[1]) 
       html << "<li><a href='javascript:#{ext_alert}'>#{trace_line}</a></li>"
     end    
     "<ul class='trace'>#{html}</ul>"
