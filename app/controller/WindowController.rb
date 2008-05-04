@@ -1,6 +1,3 @@
-require 'osx/cocoa'
-require 'Growl'
-
 class WindowController < OSX::NSWindowController
   include OSX
   include Callback

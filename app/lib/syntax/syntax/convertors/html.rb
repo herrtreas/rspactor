@@ -1,5 +1,3 @@
-require 'abstract'
-
 module Syntax
   module Convertors
 

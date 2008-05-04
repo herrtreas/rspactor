@@ -1,5 +1,3 @@
-require 'syntax'
-
 module Syntax
 
   # A simple implementation of an XML lexer. It handles most cases. It is

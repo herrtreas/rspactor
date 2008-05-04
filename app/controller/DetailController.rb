@@ -1,12 +1,3 @@
-#
-#  DetailController.rb
-#  RSpactor
-#
-#  Created by Andreas Wolff on 21.04.08.
-#
-
-require 'osx/cocoa'
-
 class DetailController < OSX::NSWindowController
   ib_outlet :webView
   
@@ -16,7 +7,7 @@ class DetailController < OSX::NSWindowController
   end
   
   def awakeFromNib
-    @webView.mainFrameURL = File.join(File.dirname(__FILE__), "detail_view.html")
+    @webView.mainFrameURL = File.join(File.dirname(__FILE__), '../view','detail_view.html')
     @webView.shouldCloseWithWindow = true
   end
   

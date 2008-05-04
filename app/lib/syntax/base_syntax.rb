@@ -1,5 +1,3 @@
-require 'syntax/common'
-
 module Syntax
 
   # A default tokenizer for handling syntaxes that are not explicitly handled
@@ -21,7 +19,7 @@ module Syntax
   # handler will be returned.
   def load( syntax )
     begin
-      require "syntax/lang/#{syntax}"
+      require "#{syntax}"
     rescue LoadError
     end
     SYNTAX[ syntax ].new

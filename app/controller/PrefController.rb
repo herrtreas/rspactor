@@ -1,6 +1,3 @@
-require 'osx/cocoa'
-require 'osx/foundation'
-
 class PrefController < OSX::NSWindowController
   include OSX
 

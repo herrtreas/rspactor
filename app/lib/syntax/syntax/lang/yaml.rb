@@ -1,5 +1,3 @@
-require 'syntax'
-
 module Syntax
 
   # A simple implementation of an YAML lexer. It handles most cases. It is

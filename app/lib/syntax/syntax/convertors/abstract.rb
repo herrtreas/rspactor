@@ -1,5 +1,3 @@
-require 'syntax'
-
 module Syntax
   module Convertors
 

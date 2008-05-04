@@ -1,5 +1,3 @@
-require 'syntax'
-
 module Syntax
 
   # A tokenizer for the Ruby language. It recognizes all common syntax
