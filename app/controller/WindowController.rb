@@ -110,7 +110,7 @@ class WindowController < OSX::NSWindowController
   end
   
   def imageFromFileName(file_name, size = 16)
-    NSImage.new.initByReferencingFile(File.join(File.dirname(__FILE__), "#{file_name}_#{size}.png"))
+    NSImage.new.initByReferencingFile(File.join(File.dirname(__FILE__), '', "#{file_name}_#{size}.png"))
   end
   
   def initAndSetAutomaticPositionAndSizeStoring
