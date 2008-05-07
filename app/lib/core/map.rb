@@ -9,25 +9,43 @@ module RSpactor
       end
       
       def create
-        found_files = Dir.glob(File.join(@root, "**", "*.{rb,haml,erb}"))
-        found_files.each do |f|
-          next if f.match(/_spec.rb/)
-          spec_file = spec_for_file(found_files, f)
+        @found_files = []
+        glob_files_in_path(@root, %w(vendor .git))
+        @found_files.each do |f|
+          next if p =~ /_spec.rb$/          
+          spec_file = spec_for_file(@found_files, f)
           @files[f] = spec_file if spec_file
         end      
       end
       
+      def [](file)
+        @files[file]
+      end
 
+      
       private
+    
+      def glob_files_in_path(path, exclude)
+        Dir.entries(path).each do |p|
+          next if p == '.' || p == '..'
+          p = File.join(path, p)          
+          if File.directory?(p)
+            next if p =~ Regexp.new(exclude.join('|'))
+            glob_files_in_path(p, exclude)
+          else
+            next unless p =~ /\.rb$|\.erb$|\.haml$/
+            @found_files << p
+          end
+        end
+      end
       
       def spec_for_file(found_files, file)
         file_name = File.basename(file)
         spec_file_name = spec_name_from_file(file)
-        puts spec_file_name
         grep_res = found_files.grep(Regexp.new(spec_file_name))
         if grep_res.size == 1
           return grep_res.first
-        else
+        elsif grep_res.size > 1
           return match_spec_files_by_path(file, spec_file_name, grep_res)
         end
       end
@@ -49,6 +67,9 @@ module RSpactor
         end        
       end
       
+      def run_to_top_and_try_finding_spec_for_file(file)
+        spec_to_find = spec_name_from_file(file)
+      end
     end
   end
 end
