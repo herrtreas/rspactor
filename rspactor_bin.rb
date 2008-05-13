@@ -23,4 +23,4 @@ rescue Timeout::Error
 end
 
 # Send current location
-drb.remote_call_in(:change_location, Dir.pwd)
+drb.remote_call_in(:rebuild_map, Dir.pwd)

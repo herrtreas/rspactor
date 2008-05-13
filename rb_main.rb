@@ -6,8 +6,12 @@ def require_rb_files(directories)
   end
 end
 
-if $0 == __FILE__ then
+def require_rspactor_libs
   require_rb_files %w(lib object view controller)
+end
+
+if $0 == __FILE__ then
+  require_rspactor_libs
   $all_specs, $failed_specs, $pending_specs = [], [], []
 
   $coreInterop = RSpactor::Core::Interop.new

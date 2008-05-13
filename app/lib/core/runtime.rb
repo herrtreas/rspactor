@@ -12,7 +12,7 @@ module RSpactor
         @@listener = Listener.new(path) do |files|
           @files_to_spec = []
           files.each do |file|
-            spec_file = @inspector.find_spec_file(file)
+            spec_file = $map[file]
             if spec_file
               puts spec_file
               @files_to_spec << spec_file 

@@ -23,22 +23,25 @@ class WindowController < OSX::NSWindowController
     @failed_spec_table = FailedSpecTable.alloc.init(self)    
     @pending_spec_table = PendingSpecTable.alloc.init(self)    
     setCallbacks
-    $coreInterop.start_listen(@specPath.stringValue)    
     @specPath.stringValue = @defaults.stringForKey("last_spec_path") || ''
+    $coreInterop.start_listen(@specPath.stringValue)    
     # initStatusBar
   end
   
   def runSpecs(sender)
     path = @specPath.stringValue
     return unless File.exist? path
-    
+    start_spec_run(path)
+  end  
+  
+  def start_spec_run(path)
     @specRunningIndicator.setIndeterminate(true)    
     @specRunningIndicator.startAnimation(self)      
     @specRunButton.Enabled = false
     $failed_specs.clear
     $coreInterop.run_specs_in_path(path)
     @failed_spec_table.clearSelection    
-  end  
+  end
   
   def stop_spec_run
     @specRunButton.Enabled = true
@@ -93,6 +96,7 @@ class WindowController < OSX::NSWindowController
   def growl_onClicked(sender, context)
     External.open_editor_with_file_from_ext_link context
   end
+    
     
   private
   

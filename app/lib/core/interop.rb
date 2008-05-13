@@ -2,7 +2,7 @@ module RSpactor
   module Core
     class Interop
   
-      attr_accessor :change_location
+      attr_accessor :rebuild_map
       attr_accessor :command_error              # error_message
       attr_accessor :ping
     
@@ -19,7 +19,10 @@ module RSpactor
       end
       
       def start_listen(path)
-        Runtime.listen(path)
+        stop_listen
+        Map.init(path) do
+          Runtime.listen(path)
+        end
       end
       
       def stop_listen
@@ -28,8 +31,10 @@ module RSpactor
       
       def run_specs_in_path(path)
         stop_listen # Make sure, that the listener is disabled (otherwise we will get seg faults)
-        puts "Running specs in #{path}"
-        Runtime.run_all_specs_in_path(path)
+        Map.init(path) do
+          puts "Running specs in #{path}"
+          Runtime.run_all_specs_in_path(path)
+        end
       end
       
       def notify_about_error(error_message)

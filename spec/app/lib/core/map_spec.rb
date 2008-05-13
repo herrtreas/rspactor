@@ -12,6 +12,13 @@ describe RSpactor::Core::Map, 'mapping without doubles' do
     @map.files.should_not be_empty
     @map.files[$fpath_simple + '/app/test.rb'].should eql($fpath_simple + '/spec/test_spec.rb')
   end
+  
+  it 'should tell if a map has already been created' do
+    @map.created?.should be_false
+    @map.create
+    @map.created?.should be_true    
+  end
+  
 end
 
 
@@ -43,5 +50,31 @@ describe RSpactor::Core::Map do
   
   it 'should return nil if a file has no spec' do
     @map['foo'].should be_nil
+  end
+  
+  it 'should return <the-spec-file> if a file is a spec' do
+    @map['foo_spec.rb'].should eql('foo_spec.rb')
+  end  
+end
+
+describe RSpactor::Core::Map, 'klass' do
+  before(:each) do
+    RSpactor::Core::Map.init($fpath_simple)
+  end
+  
+  it 'should create an global instance of itself' do
+    $map.should_not be_nil
+  end
+  
+  it 'should not create map if $map is already assigned' do
+    RSpactor::Core::Map.should_not_receive(:new)
+    RSpactor::Core::Map.init($fpath_simple)
+  end
+  
+  it 'should accept a block that is invoked after creating the map' do
+    $map = nil
+    RSpactor::Core::Map.init($fpath_simple) { $test = 'fu' }
+    sleep 0.2 #wtf.. but I'm currently not sure how to test threads
+    $test.should eql('fu')
   end
 end

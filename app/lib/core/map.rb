@@ -4,24 +4,59 @@ module RSpactor
       attr_accessor :root
       attr_reader   :files
       
+      def self.init(path, &block)
+        Thread.new do 
+          puts 'Ensuring map..' # TODO: Replace with logging mechanism
+          wait_if_map_is_currently_building
+          unless $map && $map.created?
+            puts "Rebuild map in #{path}.." # TODO: Replace with logging mechanism
+            $map = Map.new
+            $map.root = path
+            $map.create
+          end
+          yield if block_given?
+        end
+      end
+      
+      def self.wait_if_map_is_currently_building
+        return unless defined?(@@creating_map) || (defined?(@@creating_map) && @@creating_map == true)
+        while @@creating_map == true
+          sleep 0.1
+        end
+      end
+      
       def initialize
         @files = {}
       end
       
       def create
-        @found_files = []
-        glob_files_in_path(@root, %w(vendor .git))
-        @found_files.each do |f|
-          next if p =~ /_spec.rb$/          
-          spec_file = spec_for_file(@found_files, f)
-          @files[f] = spec_file if spec_file
-        end      
+        lock_during_map_creation do
+          @files = {}
+          @found_files = []
+          glob_files_in_path(@root, %w(vendor .git))
+          @found_files.each do |f|
+            next if p =~ /_spec.rb$/          
+            spec_file = spec_for_file(@found_files, f)
+            @files[f] = spec_file if spec_file
+          end
+          @created = true
+        end
+      end
+      
+      def lock_during_map_creation(&block)
+        @@creating_map = true
+        yield
+        @@creating_map = false
       end
       
       def [](file)
+        return file if is_spec?(file)
         @files[file]
       end
-
+      
+      def created?
+        !@created.nil?
+      end
       
       private
     
@@ -69,6 +104,10 @@ module RSpactor
       
       def run_to_top_and_try_finding_spec_for_file(file)
         spec_to_find = spec_name_from_file(file)
+      end
+      
+      def is_spec?(file)
+        file =~ /_spec\.rb$/ ? true : false
       end
     end
   end

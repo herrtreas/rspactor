@@ -15,8 +15,8 @@ module Callback
       @growl.notify(MESSAGE_KIND, title, message, 'clickcontext', false, 0, growlImage(:error))
     end
     
-    # Change location (invoke from command line)
-    $coreInterop.change_location = lambda do |location|
+    # Rebuild map (invoke from command line)
+    $coreInterop.rebuild_map = lambda do |location|
       @defaults.setObject_forKey(location, 'last_spec_path')                
       @specPath.stringValue = location
       runSpecs(nil)
