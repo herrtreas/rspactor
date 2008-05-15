@@ -8,12 +8,11 @@ module RSpactor
           return
         end
         
-        base_spec_root  = extract_spec_root_from_path(locations.first)
-        spec_runner_bin = script_runner(locations.first)
+        spec_runner_bin = script_runner
         locations = locations.join(" ")
         cmd =   "RAILS_ENV=test; "
         cmd <<  "#{spec_runner_bin} "
-        cmd <<  "#{locations} #{spec_opts(base_spec_root)} "
+        cmd <<  "#{locations} --reverse --loadby mtime "
         cmd <<  "-r #{File.dirname(__FILE__)}/remote_result.rb -f RSpactor::Core::RemoteResult:STDOUT"
         $LOG.debug cmd
 
@@ -24,28 +23,16 @@ module RSpactor
       
         $coreInterop.notify_about_error(@@error.map { |e| e.strip }) unless @@error.empty?
       end
-  
-      def self.spec_opts(base_spec_root)
-        if File.exist?("#{base_spec_root}spec.opts")
-          return "-O #{base_spec_root}spec.opts"
-        else
-          return "-c -f progress"
-        end
-      end
-  
-      def self.script_runner(file)
-        root = file[0..file.index("spec") - 1]
-        if File.exist?(root + "script/spec")
-          return root + "script/spec"
-        else
+    
+      def self.script_runner
+        # root = file[0..file.index("spec") - 1]
+        # if File.exist?(root + "script/spec")
+        #   return root + "script/spec"
+        # else
           "spec"
-        end
+        # end
       end  
-      
-      # Move this method into inspection
-      def self.extract_spec_root_from_path(file)
-        file[0..file.index("spec") + 4]
-      end  
+  
     end    
   end
 end

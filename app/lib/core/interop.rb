@@ -38,6 +38,7 @@ module RSpactor
       end
       
       def notify_about_error(error_message)
+        $LOG.debug "Notify about error: #{error_message}"
         command_error.call(error_message) unless $coreInterop.command_error.nil?
       end      
     end

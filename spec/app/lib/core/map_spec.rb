@@ -34,6 +34,13 @@ describe RSpactor::Core::Map, 'mapping with doubles' do
     @map.files[$fpath_doubles + '/app/views/white/index.html.haml'].should eql($fpath_doubles + '/spec/white/index.html.haml_spec.rb')
     @map.files[$fpath_doubles + '/app/views/black/index.html.haml'].should eql($fpath_doubles + '/spec/black/index.html.haml_spec.rb')
   end
+  
+  it 'should return all mapped spec files' do
+    @map.create
+    res = @map.spec_files
+    res.should include($fpath_doubles + '/spec/white/index.html.haml_spec.rb')
+    res.should include($fpath_doubles + '/spec/black/index.html.haml_spec.rb')
+  end
 end
 
 
@@ -60,6 +67,7 @@ end
 describe RSpactor::Core::Map, 'klass' do
   before(:each) do
     RSpactor::Core::Map.init($fpath_simple)
+    sleep 0.2 #wtf.. but I'm currently not sure how to test threads
   end
   
   it 'should create an global instance of itself' do
@@ -74,7 +82,7 @@ describe RSpactor::Core::Map, 'klass' do
   it 'should accept a block that is invoked after creating the map' do
     $map = nil
     RSpactor::Core::Map.init($fpath_simple) { $test = 'fu' }
-    sleep 0.2 #wtf.. but I'm currently not sure how to test threads
+    sleep 0.2 #wtf.. but I'm currently not sure how to test threads 
     $test.should eql('fu')
   end
 end

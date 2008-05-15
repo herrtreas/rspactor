@@ -58,6 +58,10 @@ module RSpactor
         !@created.nil?
       end
       
+      def spec_files
+        @files.values
+      end
+      
       private
     
       def glob_files_in_path(path, exclude)

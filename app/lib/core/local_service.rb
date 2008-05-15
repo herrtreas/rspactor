@@ -29,7 +29,7 @@ module RSpactor
       
       def remote_call_in(name, *args)
         begin
-          return unless @interop.respond_to?(name) #&& !@interop.send("#{name}").nil?
+          return unless @interop.respond_to?(name) && !@interop.send("#{name}").nil?
           @interop.send("#{name}".intern).call(*args)
         rescue => e
           $LOG.error "#{e.message}: #{e.backtrace.first}"
