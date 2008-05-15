@@ -19,6 +19,13 @@ describe RSpactor::Core::Map, 'mapping without doubles' do
     @map.created?.should be_true    
   end
   
+  it 'should tell if a file is valid' do
+    @map.file_is_valid?('fo.exe').should be_false
+    @map.file_is_valid?('vendor/fo.exe').should be_false
+    @map.file_is_valid?('test.rb').should be_true
+    @map.file_is_valid?('vendor/test.rb').should be_false    
+  end
+  
 end
 
 

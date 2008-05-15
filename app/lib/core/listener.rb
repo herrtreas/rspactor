@@ -51,7 +51,7 @@ class Listener
       changed_files = []
       paths.each do |path|
         Dir.glob(path + "*").each do |file|
-          next if Inspection.file_is_invalid?(file)
+          next unless $map.file_is_valid?(file)
           file_time = File.stat(file).mtime
           changed_files << file if file_time > @spec_run_time
         end

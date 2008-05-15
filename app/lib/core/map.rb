@@ -1,15 +1,18 @@
 module RSpactor
   module Core
     class Map
+      attr_accessor :exclude_directories
       attr_accessor :root
-      attr_reader   :files
+      attr_accessor :valid_file_extensions
+      attr_reader   :files      
       
-      def self.init(path, &block)
+      
+      def self.init(path, &block)        
         Thread.new do 
-          $LOG.debug 'Ensuring map..' # TODO: Replace with logging mechanism
+          $LOG.debug 'Ensuring map..'
           wait_if_map_is_currently_building
-          unless $map && $map.created?
-            $LOG.debug "Rebuild map in #{path}.." # TODO: Replace with logging mechanism
+          unless $map && $map.created? && $map.root == $path
+            $LOG.debug "Rebuild map in #{path}.."
             $map = Map.new
             $map.root = path
             $map.create
@@ -27,13 +30,15 @@ module RSpactor
       
       def initialize
         @files = {}
+        self.exclude_directories = /vendor|\.git/
+        self.valid_file_extensions = /\.rb$|\.erb$|\.haml$/
       end
       
       def create
         lock_during_map_creation do
           @files = {}
           @found_files = []
-          glob_files_in_path(@root, %w(vendor .git))
+          glob_files_in_path(@root)
           @found_files.each do |f|
             next if p =~ /_spec.rb$/          
             spec_file = spec_for_file(@found_files, f)
@@ -62,17 +67,23 @@ module RSpactor
         @files.values
       end
       
+      def file_is_valid?(file)
+        return false if File.dirname(file) =~ self.exclude_directories
+        file =~ self.valid_file_extensions ? true : false
+      end
+      
+
       private
     
-      def glob_files_in_path(path, exclude)
+      def glob_files_in_path(path)
         Dir.entries(path).each do |p|
           next if p == '.' || p == '..'
           p = File.join(path, p)          
           if File.directory?(p)
-            next if p =~ Regexp.new(exclude.join('|'))
-            glob_files_in_path(p, exclude)
+            next if p =~ Regexp.new(self.exclude_directories)
+            glob_files_in_path(p)
           else
-            next unless p =~ /\.rb$|\.erb$|\.haml$/
+            next unless p =~ @valid_file_extensions
             @found_files << p
           end
         end
