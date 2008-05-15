@@ -15,7 +15,7 @@ module RSpactor
         cmd <<  "#{spec_runner_bin} "
         cmd <<  "#{locations} #{spec_opts(base_spec_root)} "
         cmd <<  "-r #{File.dirname(__FILE__)}/remote_result.rb -f RSpactor::Core::RemoteResult:STDOUT"
-        puts cmd
+        $LOG.debug cmd
 
         Open4.popen4("#{cmd}; echo $?") do |pid, stdin, stdout, stderr|
           @@result = stdout.readlines

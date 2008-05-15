@@ -6,10 +6,10 @@ module RSpactor
       
       def self.init(path, &block)
         Thread.new do 
-          puts 'Ensuring map..' # TODO: Replace with logging mechanism
+          $LOG.debug 'Ensuring map..' # TODO: Replace with logging mechanism
           wait_if_map_is_currently_building
           unless $map && $map.created?
-            puts "Rebuild map in #{path}.." # TODO: Replace with logging mechanism
+            $LOG.debug "Rebuild map in #{path}.." # TODO: Replace with logging mechanism
             $map = Map.new
             $map.root = path
             $map.create

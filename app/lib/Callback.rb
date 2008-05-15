@@ -23,7 +23,7 @@ module Callback
     end
 
     # Spec running has started
-    $coreInterop.spec_run_start = lambda do |example_count|
+    $coreInterop.spec_run_start = lambda do |example_count|      
       setSystemMenuIcon # set to ok
       
       $all_specs, $failed_specs, $pending_specs = [], [], []

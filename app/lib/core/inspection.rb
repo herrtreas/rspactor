@@ -25,8 +25,8 @@ class Inspection
       end
       nil      
     rescue => e
-      puts "Error while parsing a file: '#{file}'"
-      puts e
+      $LOG.debug "Error while parsing a file: '#{file}'"
+      $LOG.debug e
     end
   end
   

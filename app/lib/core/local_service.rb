@@ -12,10 +12,15 @@ module RSpactor
       
       # TODO: Implement searching for a free port
       def init_drb_service
-        service_url = "%s:%s" % ['127.0.0.1', '28128']
-        puts "Loading RSpactor-core service at druby://#{service_url}"
-        DRb.install_acl(ACL.new(%w(deny all allow 127.0.0.1)))
-        DRb.start_service("druby://#{service_url}", self)
+        begin
+          service_url = "%s:%s" % ['127.0.0.1', '28128']
+          $LOG.debug "Loading RSpactor-core service at druby://#{service_url}"
+          DRb.install_acl(ACL.new(%w(deny all allow 127.0.0.1)))
+          DRb.start_service("druby://#{service_url}", self)
+        rescue => e
+          $LOG.error "#{e.message}: #{e.backtrace.first}"
+          exit  # TODO: Alert
+        end
       end
       
       def ping
@@ -23,8 +28,12 @@ module RSpactor
       end
       
       def remote_call_in(name, *args)
-        return unless @interop.respond_to?(name) && !@interop.send("#{name}").nil?
-        @interop.send("#{name}".intern).call(*args)
+        begin
+          return unless @interop.respond_to?(name) #&& !@interop.send("#{name}").nil?
+          @interop.send("#{name}".intern).call(*args)
+        rescue => e
+          $LOG.error "#{e.message}: #{e.backtrace.first}"
+        end
       end
 
     end

@@ -1,4 +1,5 @@
 require File.dirname(__FILE__) + '/spec'
+require File.dirname(__FILE__) + '/log'
 
 module RSpactor
   module Core
@@ -9,6 +10,7 @@ module RSpactor
         @options = options
         @where = where
         @remote_service = DRbObject.new(nil, "druby://127.0.0.1:28128")
+        $LOG.debug 'Remote: Initialized'
       end
   
       def dump_summary(duration, example_count, failure_count, pending_count)
@@ -16,6 +18,7 @@ module RSpactor
       end
 
       def start(example_count)
+        $LOG.debug "Remote: Started spec run for #{example_count} specs"
         @remote_service.remote_call_in(:spec_run_start, example_count)
       end
 
@@ -59,6 +62,7 @@ module RSpactor
 
       def close
         @remote_service.remote_call_in(:spec_run_close)
+        $LOG.debug "Remote: Closed"        
       end
       
       # Currently unused callbacks

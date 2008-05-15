@@ -30,9 +30,9 @@ module RSpactor
       end
       
       def run_specs_in_path(path)
-        stop_listen # Make sure, that the listener is disabled (otherwise we will get seg faults)
         Map.init(path) do
-          puts "Running specs in #{path}"
+          stop_listen # Make sure, that the listener is disabled (otherwise we will get seg faults)
+          $LOG.debug "Running specs in #{path}"
           Runtime.run_all_specs_in_path(path)
         end
       end

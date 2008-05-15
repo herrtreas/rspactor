@@ -19,7 +19,7 @@ begin
     end
   end
 rescue Timeout::Error
-  puts "RSpactor service is not responding in time. Please make sure that RSpactor.app is running properly."
+  $LOG.debug "RSpactor service is not responding in time. Please make sure that RSpactor.app is running properly."
 end
 
 # Send current location

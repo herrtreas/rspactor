@@ -40,11 +40,11 @@
 #     end
 #  
 #     def growl_onClicked(context)
-#       puts 'clicked'
+#       $LOG.debug 'clicked'
 #     end
 #  
 #     def growl_onTimeout(context)
-#       puts 'timeout'
+#       $LOG.debug 'timeout'
 #     end
 #   end
 #

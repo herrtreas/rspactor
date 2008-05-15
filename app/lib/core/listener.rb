@@ -3,24 +3,27 @@ class Listener
   attr_accessor :stream
   
   def initialize(path, &block)    
-    require 'osx/foundation'
     begin
       
       @spec_run_time = Time.now
       callback = lambda do |stream, ctx, num_events, paths, marks, event_ids|
-        changed_files = extract_changed_files_from_paths(split_paths(paths, num_events))        
-        @spec_run_time = Time.now
-        yield changed_files
+        begin
+          changed_files = extract_changed_files_from_paths(split_paths(paths, num_events))        
+          @spec_run_time = Time.now
+          yield changed_files
+        rescue => e
+          $LOG.error "#{e.message}: #{e.backtrace.first}"
+        end
       end
 
       OSX.require_framework '/System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework'
-      @stream = OSX::FSEventStreamCreate(OSX::KCFAllocatorDefault, callback, nil, [path], OSX::KFSEventStreamEventIdSinceNow, 0.0, 0)
+      @stream = OSX::FSEventStreamCreate(OSX::KCFAllocatorDefault, callback, nil, [path], OSX::KFSEventStreamEventIdSinceNow, 0.1, 0)
 
       OSX::FSEventStreamScheduleWithRunLoop(@stream, OSX::CFRunLoopGetMain(), OSX::KCFRunLoopDefaultMode)
       OSX::FSEventStreamStart(@stream)
 
     rescue => e
-      puts e.to_s
+      $LOG.error "#{e.message}: #{e.backtrace.first}"
       OSX::FSEventStreamStop(@stream)
       OSX::FSEventStreamInvalidate(@stream)
       OSX::FSEventStreamRelease(@stream)
@@ -30,8 +33,8 @@ class Listener
   def stop
     if @stream
       OSX::FSEventStreamStop(@stream)
-      OSX::FSEventStreamInvalidate(@stream)
       OSX::FSEventStreamRelease(@stream)
+      OSX::FSEventStreamInvalidate(@stream)
       @stream = nil
     end
   end
@@ -44,15 +47,20 @@ class Listener
   end
   
   def extract_changed_files_from_paths(paths)
-    changed_files = []
-    paths.each do |path|
-      Dir.glob(path + "*").each do |file|
-        next if Inspection.file_is_invalid?(file)
-        file_time = File.stat(file).mtime
-        changed_files << file if file_time > @spec_run_time
+    begin
+      changed_files = []
+      paths.each do |path|
+        Dir.glob(path + "*").each do |file|
+          next if Inspection.file_is_invalid?(file)
+          file_time = File.stat(file).mtime
+          changed_files << file if file_time > @spec_run_time
+        end
       end
+      changed_files
+    rescue => e
+      $LOG.error "#{e.message}: #{e.backtrace.first}"
+      []
     end
-    changed_files
   end
   
 end
