@@ -33,8 +33,8 @@ class Listener
   def stop
     if @stream
       OSX::FSEventStreamStop(@stream)
-      OSX::FSEventStreamRelease(@stream)
       OSX::FSEventStreamInvalidate(@stream)
+      OSX::FSEventStreamRelease(@stream)
       @stream = nil
     end
   end
