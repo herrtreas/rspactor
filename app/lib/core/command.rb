@@ -12,7 +12,7 @@ module RSpactor
         locations = locations.join(" ")
         cmd =   "RAILS_ENV=test; "
         cmd <<  "#{spec_runner_bin} "
-        cmd <<  "#{locations} --reverse --loadby mtime "
+        cmd <<  "#{locations} --loadby mtime " # --reverse 
         cmd <<  "-r #{File.dirname(__FILE__)}/remote_result.rb -f RSpactor::Core::RemoteResult:STDOUT"
         $LOG.debug cmd
 

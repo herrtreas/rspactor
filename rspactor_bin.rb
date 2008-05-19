@@ -7,4 +7,4 @@ rspactor_bin_path += "/RSpactor.app"
 
 
 # Load application
-system("RSPACTOR_RUN_PATH=#{Dir.pwd}; open #{rspactor_bin_path}")
+system("export RSPACTOR_RUN_PATH=#{Dir.pwd}; open #{rspactor_bin_path}")
