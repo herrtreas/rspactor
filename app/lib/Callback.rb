@@ -4,9 +4,6 @@ module Callback
   
   def setCallbacks
     
-    # Return with true to signal availability
-    $coreInterop.ping = lambda { true }
-    
     $coreInterop.command_error = lambda do |error_message|
       setSystemMenuIcon(:error)
       stop_spec_run
@@ -15,13 +12,6 @@ module Callback
       @growl.notify(MESSAGE_KIND, title, message, 'clickcontext', false, 0, growlImage(:error))
     end
     
-    # Rebuild map (invoke from command line)
-    $coreInterop.rebuild_map = lambda do |location|
-      @defaults.setObject_forKey(location, 'last_spec_path')                
-      @specPath.stringValue = location
-      runSpecs(nil)
-    end
-
     # Spec running has started
     $coreInterop.spec_run_start = lambda do |example_count|      
       setSystemMenuIcon # set to ok

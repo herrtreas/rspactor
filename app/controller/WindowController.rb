@@ -10,6 +10,7 @@ class WindowController < OSX::NSWindowController
   ib_action :showPreferences
   
   def init
+    $LOG.debug "RUN: #{ENV['RSPACTOR_RUN_PATH']}"
     @growl = Growl::Notifier.alloc.initWithDelegate(self)
     @growl.start(:RSpactor, [MESSAGE_KIND, CLICKED_KIND])
     @defaults = NSUserDefaults.standardUserDefaults
@@ -23,8 +24,14 @@ class WindowController < OSX::NSWindowController
     @failed_spec_table = FailedSpecTable.alloc.init(self)    
     @pending_spec_table = PendingSpecTable.alloc.init(self)    
     setCallbacks
-    @specPath.stringValue = @defaults.stringForKey("last_spec_path") || ''
-    $coreInterop.start_listen(@specPath.stringValue)    
+
+    if !ENV['RSPACTOR_RUN_PATH'].nil?
+      @specPath.stringValue = ENV['RSPACTOR_RUN_PATH']
+      runSpecs(nil)
+    else
+      @specPath.stringValue = @defaults.stringForKey("last_spec_path") || ''
+      $coreInterop.start_listen(@specPath.stringValue)    
+    end
     # initStatusBar
   end
   

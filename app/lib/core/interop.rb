@@ -2,10 +2,7 @@ module RSpactor
   module Core
     class Interop
   
-      attr_accessor :rebuild_map
       attr_accessor :command_error              # error_message
-      attr_accessor :ping
-    
       attr_accessor :spec_run_start             # example_count
       attr_accessor :spec_run_example_passed    # spec (RSpactor::Core::Spec)
       attr_accessor :spec_run_example_pending   # spec (RSpactor::Core::Spec)

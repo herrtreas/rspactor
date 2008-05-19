@@ -7,20 +7,4 @@ rspactor_bin_path += "/RSpactor.app"
 
 
 # Load application
-system("open #{rspactor_bin_path}")
-
-drb = DRbObject.new(nil, "druby://127.0.0.1:28128")
-
-# Wait until RSpactor has registered callbacks
-begin
-  Timeout::timeout(5) do
-    while drb.remote_call_in(:ping) != true
-      sleep 0.1
-    end
-  end
-rescue Timeout::Error
-  $LOG.debug "RSpactor service is not responding in time. Please make sure that RSpactor.app is running properly."
-end
-
-# Send current location
-drb.remote_call_in(:rebuild_map, Dir.pwd)
+system("RSPACTOR_RUN_PATH=#{Dir.pwd}; open #{rspactor_bin_path}")
