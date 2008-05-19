@@ -9,7 +9,7 @@ module RSpactor
       attr_accessor :error_header, :error_type, :backtrace
   
       def initialize(opts = {})
-        opts.each { |key, value| self.send("#{key.to_s}=".intern, value) }
+        opts.each { |key, value| self.send("#{key.to_s}=".intern, value) } rescue true
       end
   
       def to_s

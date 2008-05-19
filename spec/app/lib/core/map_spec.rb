@@ -1,3 +1,5 @@
+require 'fileutils'
+
 require File.join(File.dirname(__FILE__), '/../../../spec_helper')
 require File.join(File.dirname(__FILE__), '/../../../../app/lib/core/map')
 
@@ -26,6 +28,10 @@ describe RSpactor::Core::Map, 'mapping without doubles' do
     @map.file_is_valid?('vendor/test.rb').should be_false    
   end
   
+  it 'should keep files without specs (value is empty)' do
+    @map.create
+    @map.files[$fpath_simple + '/app/foo.rb'].should eql('')    
+  end
 end
 
 
@@ -53,9 +59,10 @@ end
 
 describe RSpactor::Core::Map do
   before(:each) do
+    FileUtils.rm($fpath_simple + '/spec/foo_spec.rb') if File.exist?($fpath_simple + '/spec/foo_spec.rb')
     @map = RSpactor::Core::Map.new
     @map.root = $fpath_simple
-    @map.create    
+    @map.create
   end
   
   it 'should return the spec for a file' do
@@ -69,12 +76,33 @@ describe RSpactor::Core::Map do
   it 'should return <the-spec-file> if a file is a spec' do
     @map['foo_spec.rb'].should eql('foo_spec.rb')
   end  
+  
+  it 'should map a _new_ spec to an existing, empty file' do
+    @map.files[$fpath_simple + '/app/foo.rb'].should eql('')
+    spec_file = $fpath_simple + '/spec/foo_spec.rb'
+    FileUtils.touch(spec_file)
+    @map[spec_file].should eql(spec_file)
+    @map.files[$fpath_simple + '/app/foo.rb'].should eql($fpath_simple + '/spec/foo_spec.rb')
+  end
+  
+  it 'should find the file name matching a spec name' do
+    @map.file_name_from_spec('test_spec.rb').should eql('test.rb')
+    @map.file_name_from_spec('test.html.haml_spec.rb').should eql('test.html.haml')
+  end
+  
+  it 'should find a matching file' do
+    @map.file_by_spec($fpath_simple + '/spec/test_spec.rb').should eql($fpath_simple + '/app/test.rb')
+    @map = RSpactor::Core::Map.new
+    @map.root = $fpath_doubles
+    @map.create
+    @map.file_by_spec($fpath_doubles + '/spec/white/index.html.haml_spec.rb').should eql($fpath_doubles + '/app/views/white/index.html.haml')    
+  end
 end
 
 describe RSpactor::Core::Map, 'klass' do
   before(:each) do
     RSpactor::Core::Map.init($fpath_simple)
-    sleep 0.2 #wtf.. but I'm currently not sure how to test threads
+    sleep 0.5 #wtf.. but I'm currently not sure how to test threads
   end
   
   it 'should create an global instance of itself' do
@@ -89,7 +117,7 @@ describe RSpactor::Core::Map, 'klass' do
   it 'should accept a block that is invoked after creating the map' do
     $map = nil
     RSpactor::Core::Map.init($fpath_simple) { $test = 'fu' }
-    sleep 0.2 #wtf.. but I'm currently not sure how to test threads 
+    sleep 0.5 #wtf.. but I'm currently not sure how to test threads 
     $test.should eql('fu')
   end
 end

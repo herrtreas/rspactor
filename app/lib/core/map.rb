@@ -3,7 +3,7 @@ module RSpactor
     class Map
       attr_accessor :exclude_directories
       attr_accessor :root
-      attr_accessor :valid_file_extensions
+      attr_accessor :file_extensions
       attr_reader   :files      
       
       
@@ -30,19 +30,21 @@ module RSpactor
       
       def initialize
         @files = {}
-        self.exclude_directories = /vendor|\.git/
-        self.valid_file_extensions = /\.rb$|\.erb$|\.haml$/
+        self.exclude_directories = /vendor|\.git|build/
+        self.file_extensions = %w(.rb .erb .haml .rhtml)
       end
       
       def create
         lock_during_map_creation do
           @files = {}
           @found_files = []
-          glob_files_in_path(@root)
+          glob_files_in_path(@root, self.file_extensions)
           @found_files.each do |f|
-            next if p =~ /_spec.rb$/          
-            spec_file = spec_for_file(@found_files, f)
-            @files[f] = spec_file if spec_file
+            next unless file_is_valid?(f)
+            next if f =~ /_spec.rb$/
+            spec_file_name = spec_name_from_file(f)
+            spec_file = match_file_pairs(@found_files, f, spec_file_name)
+            @files[f] = (spec_file) ? spec_file.strip.chomp : ''
           end
           @created = true
         end
@@ -55,8 +57,26 @@ module RSpactor
       end
       
       def [](file)
-        return file if is_spec?(file)
-        @files[file]
+        return nil unless file_is_valid?(file)
+        if is_spec?(file) # TODO: Check if mapping file is in list but empty
+          matching_file = file_by_spec(file)
+          if matching_file && @files[matching_file] == ''
+            @files[matching_file] = file.strip.chomp if matching_file
+          end
+          return file
+        end
+        
+        if @files[file].nil? || @files[file] == ''
+          return nil               
+        else                          
+          return @files[file]
+        end
+      end
+      
+      def file_by_spec(spec)
+        file_name = file_name_from_spec(spec)
+        files = glob_files_in_path(self.root, [file_name])        
+        match_file_pairs(files, spec, file_name)
       end
       
       def created?
@@ -69,35 +89,26 @@ module RSpactor
       
       def file_is_valid?(file)
         return false if File.dirname(file) =~ self.exclude_directories
-        file =~ self.valid_file_extensions ? true : false
+        file =~ Regexp.new(self.file_extensions.collect{|e| "\\#{e}$"}.join('|')) ? true : false
       end
       
-
-      private
-    
-      def glob_files_in_path(path)
-        Dir.entries(path).each do |p|
-          next if p == '.' || p == '..'
-          p = File.join(path, p)          
-          if File.directory?(p)
-            next if p =~ Regexp.new(self.exclude_directories)
-            glob_files_in_path(p)
-          else
-            next unless p =~ @valid_file_extensions
-            @found_files << p
-          end
-        end
+      def glob_files_in_path(path, globs = [])
+        globs = globs.collect {|g| "-name '*#{g}'"}.join(' -o ')
+        @found_files = `find "#{path}" -type f \\( #{globs} \\)`.chomp.split("\n")
       end
       
-      def spec_for_file(found_files, file)
+      def match_file_pairs(found_files, file, match_file_name)
         file_name = File.basename(file)
-        spec_file_name = spec_name_from_file(file)
-        grep_res = found_files.grep(Regexp.new(spec_file_name))
+        grep_res = found_files.grep(Regexp.new(match_file_name))
+        
+        result_file = nil
         if grep_res.size == 1
-          return grep_res.first
+          result_file = grep_res.first
         elsif grep_res.size > 1
-          return match_spec_files_by_path(file, spec_file_name, grep_res)
+          result_file = match_files_by_path(file, match_file_name, grep_res)
         end
+        
+        return (result_file && file_is_valid?(result_file)) ? result_file : nil
       end
       
       def spec_name_from_file(file)
@@ -108,17 +119,19 @@ module RSpactor
         end
       end
       
-      def match_spec_files_by_path(file, spec_file_name, grep_res)
+      def file_name_from_spec(spec)
+        file_name = File.basename(spec).gsub('_spec', '')
+        file_name = File.basename(file_name, '.rb') if File.basename(file_name, '.rb').include?('.')
+        file_name
+      end
+      
+      def match_files_by_path(file, spec_file_name, grep_res)
         file_parts = File.dirname(file).split('/')
         path_prefix = ''
         while !file_parts.empty?
           path_prefix = File.join(file_parts.pop, path_prefix)
           grep_res.each { |spec_file| return spec_file if spec_file.match(path_prefix + spec_file_name) }
         end        
-      end
-      
-      def run_to_top_and_try_finding_spec_for_file(file)
-        spec_to_find = spec_name_from_file(file)
       end
       
       def is_spec?(file)
