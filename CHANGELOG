@@ -1,7 +1,15 @@
+0.9.11 / 2008-05-20
+
+* Added pre-file-mapping:
+  Files and their matching specs are now mapped on startup. The map will stay up to date if you add new files/specs during runtime.
+  Along with 'pre-file-mapping' comes a new mechanism of how specs are linked to corresponding files. Deeper look: http://rubyphunk.com 
+* Improved stability
+* Bug fixes
+
 0.9.10 / 2008-04-27
 
 * Added DSA signature test for package files
-* Improvments on the internal listener-init cycle
+* Improvements on the internal listener-init cycle
 * Bug fixes
 
 0.9.9 / 2008-04-24
@@ -19,7 +27,7 @@
 
 * Added saving of window size/position and latest spec-run-location
 * Added visual feedback if entered path is valid or not
-* Added resizeable split view for speclist and details
+* Added resizable split view for speclist and details
 
 0.9.6 / 2008-04-18
 
