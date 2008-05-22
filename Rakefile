@@ -28,7 +28,7 @@ task :build => "xcode:build:#{DEFAULT_TARGET}:#{DEFAULT_CONFIGURATION}"
 
 desc 'Deep clean of everything'
 task :clean do
-  $LOG.debug %x{ xcodebuild -alltargets clean }
+  puts %x{ xcodebuild -alltargets clean }
 end
 
 desc "Package the application"
@@ -37,7 +37,7 @@ task :package => ["xcode:build:#{DEFAULT_TARGET}:#{RELEASE_CONFIGURATION}", "pkg
   mkdir "image"
   sh %{cp -R build/Release/RSpactor.app image/}
   sh %{cp INSTALL.txt image/}
-  $LOG.debug 'Creating Image...'
+  puts 'Creating Image...'
   sh %{
   hdiutil create -volname '#{name}' -srcfolder image '#{name}'.dmg
   rm -rf image
@@ -95,7 +95,7 @@ namespace :xcode do
      targets.each do |target|
        desc "#{action} #{target}"
        task "#{target}" do |t|
-         $LOG.debug %x{ xcodebuild -target '#{target}' #{action} }
+         puts %x{ xcodebuild -target '#{target}' #{action} }
        end
 
        # alias the task above using a massaged name
@@ -107,7 +107,7 @@ namespace :xcode do
          configs.each do |config|
            desc "#{action} #{target} #{config}"
            task "#{config}" do |t|
-             $LOG.debug %x{ xcodebuild -target '#{target}' -configuration '#{config}' #{action} }
+             puts %x{ xcodebuild -target '#{target}' -configuration '#{config}' #{action} }
            end
          end
        end

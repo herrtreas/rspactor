@@ -13,10 +13,15 @@ module Callback
     end
     
     # Spec running has started
-    $coreInterop.spec_run_start = lambda do |example_count|      
+    $coreInterop.spec_run_start = lambda do |example_count|
+      return if @locked
+      
+      @locked = true  
       setSystemMenuIcon # set to ok
       
       $all_specs, $failed_specs, $pending_specs = [], [], []
+      @failed_spec_table.clearSelection          
+      
       @all_spec_table.reload!
       @pending_spec_table.reload!
       @failed_spec_table.reload!
@@ -70,6 +75,9 @@ module Callback
 
     # Stop Spec Runner Progress
     $coreInterop.spec_run_close = lambda do
+      return until @locked
+      
+      @locked = false
       stop_spec_run
     end
   end

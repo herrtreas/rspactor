@@ -47,7 +47,6 @@ class WindowController < OSX::NSWindowController
     @specRunButton.Enabled = false
     $failed_specs.clear
     $coreInterop.run_specs_in_path(path)
-    @failed_spec_table.clearSelection    
   end
   
   def stop_spec_run
