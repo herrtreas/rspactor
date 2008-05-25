@@ -9,6 +9,7 @@ class WindowController < OSX::NSWindowController
   ib_action :runSpecs
   ib_action :showPreferences
   
+  
   def init
     $LOG.debug "RUN: #{ENV['RSPACTOR_RUN_PATH']}"
     @growl = Growl::Notifier.alloc.initWithDelegate(self)
@@ -20,9 +21,10 @@ class WindowController < OSX::NSWindowController
   def awakeFromNib
     NSApp.delegate = self
     initAndSetAutomaticPositionAndSizeStoring
+    
     @all_spec_table = AllSpecTable.alloc.init(self)    
     @failed_spec_table = FailedSpecTable.alloc.init(self)    
-    @pending_spec_table = PendingSpecTable.alloc.init(self)    
+    @pending_spec_table = PendingSpecTable.alloc.init(self)
     setCallbacks
 
     if !ENV['RSPACTOR_RUN_PATH'].nil?
@@ -102,7 +104,7 @@ class WindowController < OSX::NSWindowController
   def growl_onClicked(sender, context)
     External.open_editor_with_file_from_ext_link context
   end
-    
+  
     
   private
   
@@ -127,6 +129,6 @@ class WindowController < OSX::NSWindowController
     shouldCascadeWindows = false
     self.window.frameUsingName = 'rspactor_main_window'
     self.window.setFrameAutosaveName('rspactor_main_window')
-    @viewDivider.setAutosaveName('last_divider_position')
+    @viewDivider.setAutosaveName('last_divider_position')    
   end
 end
