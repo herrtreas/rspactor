@@ -1,0 +1,23 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+ 
+body {
+  margin: 2px 5px 2px 5px;
+  font: normal 12px Helvetica, Arial, sans-serif;
+  color: #333;
+}
+
+h1 {
+	font-size: 16px;
+	color: #888;
+	font-style: italic;	
+	margin: 5px 0px 5px 0px;
+}
+
+h2 {
+	font-size: 10px;
+	color: #333;
+	margin: 0px;
+}

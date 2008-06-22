@@ -1,0 +1,4 @@
+* Simply drop RSpactor.app into your Application directory
+
+* Symlink rspactor 's command-line tool: 
+* sudo ln -s /Applications/RSpactor.app/Contents/Resources/rspactor_bin.rb /usr/bin/rspactor
