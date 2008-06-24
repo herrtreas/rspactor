@@ -11,6 +11,7 @@ class SpecTable < OSX::NSObject
     receive :spec_run_example_pending,                  :specRunFinishedSingleSpec
     receive :spec_run_example_failed,                   :specRunFinishedSingleSpec
     receive :first_failed_spec,                         :markFileContainingFirstFailedSpec
+    receive :file_table_reload_required,                :reload_required
   end
   
   def specRunFinishedSingleSpec(notification)
@@ -19,6 +20,10 @@ class SpecTable < OSX::NSObject
   
   def markFileContainingFirstFailedSpec(notification)
     @byFirstFailingSpecSelectedRowIndex = $spec_list.index_by_spec(notification.userInfo.first)
+  end
+  
+  def reload_required(notification)
+    reload!
   end
   
   def reload!

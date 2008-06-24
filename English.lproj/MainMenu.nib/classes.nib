@@ -5,6 +5,11 @@
 	<key>IBClasses</key>
 	<array>
 		<dict>
+			<key>ACTIONS</key>
+			<dict>
+				<key>hideBoxClicked</key>
+				<string>id</string>
+			</dict>
 			<key>CLASS</key>
 			<string>DrawerController</string>
 			<key>LANGUAGE</key>
@@ -12,6 +17,8 @@
 			<key>OUTLETS</key>
 			<dict>
 				<key>drawer</key>
+				<string>id</string>
+				<key>hideBox</key>
 				<string>id</string>
 				<key>table</key>
 				<string>id</string>

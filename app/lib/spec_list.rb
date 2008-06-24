@@ -1,8 +1,10 @@
 class SpecList
   attr_accessor :total_spec_count
   attr_accessor :processed_spec_count
+  attr_accessor :filter
   
   def initialize
+    @filter = :all
     @list = []
     @files = []
     @processed_spec_count = 0
@@ -29,23 +31,19 @@ class SpecList
     @total_spec_count = 0
     @processed_spec_count = 0
     @list = []
-    @files = []
   end
 
-  def size(filter = :all)
-    case filter
-    when :all; @list.size
-    when :pending; filter_list_by(:pending).size
-    when :failed; filter_list_by(:failed).size
-    end
-  end
-
-  def filter_by(type)
-    filter_list_by(type)
+  def size
+    files.size
   end
 
   def files
-    @files
+    filter_by(@filter)
+  end
+
+  def filter_by(type = :all)
+    return @files if type == :all
+    filter_list_by(type)
   end
   
   def file_by_index(index)
@@ -57,7 +55,7 @@ class SpecList
   end  
     
   def file_by_path(path)
-    files.select { |f| f.full_path == path}.first
+    @files.select { |f| f.full_path == path}.first
   end
   
   def file_by_spec(spec)  
@@ -79,7 +77,9 @@ class SpecList
   private
 
     def filter_list_by(type)
-      @list.select {|spec| spec.state == type}
+      @files.select do |file|
+        !file.specs.select {|spec| spec.state == type }.empty?
+      end
     end
     
     def add_or_update_file(spec)
@@ -88,7 +88,7 @@ class SpecList
         spec_file = SpecFile.new(:full_path => spec.full_file_path)
         @files << spec_file
       end
-      spec_file.specs << spec
+      spec_file << spec
     end
     
     def add_or_replace(spec)

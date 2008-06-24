@@ -84,7 +84,7 @@ describe AppController do
   end
   
   it 'should set a default value' do
-    @app.defaults.should_not_receive(:setObject_forKey).with('FOOKuchen', 'test')
+    @app.defaults.should_receive(:setObject_forKey).with('FOOKuchen', 'test')
     @app.default_for_key(:test, 'FOOKuchen')
   end
   

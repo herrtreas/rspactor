@@ -30,17 +30,11 @@ describe SpecList do
   end
   
   it 'should add a spec to the list' do
-    @spec_list.size.should eql(4)
+    @spec_list.size.should eql(3)
   end
-  
-  it 'should show size by filter' do
-    @spec_list.size(:all).should eql(4)
-    @spec_list.size(:failed).should eql(1)
-    @spec_list.size(:pending).should eql(2)
-  end
-  
+    
   it 'should filter the list by state' do
-    @spec_list.filter_by(:failed).should include(@failed_spec)
+    @spec_list.filter_by(:failed).first.specs.should include(@failed_spec)
   end
   
   it 'should replace existing specs' do
@@ -103,5 +97,10 @@ describe SpecList do
   
   it 'should find the (file)index by spec' do
     @spec_list.index_by_spec(@pending2_spec).should eql(2)
+  end
+  
+  it 'should have a filter property' do
+    @spec_list.filter.should eql(:all)
+    @spec_list.filter = :failed
   end
 end
