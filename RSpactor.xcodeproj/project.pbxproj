@@ -31,7 +31,6 @@
 		E193ED830DFAAADE00D17070 /* app_controller.rb in Resources */ = {isa = PBXBuildFile; fileRef = E193ED770DFAAADE00D17070 /* app_controller.rb */; };
 		E193ED840DFAAADE00D17070 /* drawer_controller.rb in Resources */ = {isa = PBXBuildFile; fileRef = E193ED780DFAAADE00D17070 /* drawer_controller.rb */; };
 		E193ED850DFAAADE00D17070 /* window_controller.rb in Resources */ = {isa = PBXBuildFile; fileRef = E193ED790DFAAADE00D17070 /* window_controller.rb */; };
-		E193ED860DFAAADE00D17070 /* open4.rb in Resources */ = {isa = PBXBuildFile; fileRef = E193ED7C0DFAAADE00D17070 /* open4.rb */; };
 		E193ED870DFAAADE00D17070 /* log.rb in Resources */ = {isa = PBXBuildFile; fileRef = E193ED7D0DFAAADE00D17070 /* log.rb */; };
 		E193ED880DFAAADE00D17070 /* map.rb in Resources */ = {isa = PBXBuildFile; fileRef = E193ED7E0DFAAADE00D17070 /* map.rb */; };
 		E193ED890DFAAADE00D17070 /* rspactor_formatter.rb in Resources */ = {isa = PBXBuildFile; fileRef = E193ED7F0DFAAADE00D17070 /* rspactor_formatter.rb */; };
@@ -77,7 +76,6 @@
 		E193ED770DFAAADE00D17070 /* app_controller.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = app_controller.rb; sourceTree = "<group>"; };
 		E193ED780DFAAADE00D17070 /* drawer_controller.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = drawer_controller.rb; sourceTree = "<group>"; };
 		E193ED790DFAAADE00D17070 /* window_controller.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = window_controller.rb; sourceTree = "<group>"; };
-		E193ED7C0DFAAADE00D17070 /* open4.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = open4.rb; sourceTree = "<group>"; };
 		E193ED7D0DFAAADE00D17070 /* log.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = log.rb; sourceTree = "<group>"; };
 		E193ED7E0DFAAADE00D17070 /* map.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = map.rb; sourceTree = "<group>"; };
 		E193ED7F0DFAAADE00D17070 /* rspactor_formatter.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = rspactor_formatter.rb; sourceTree = "<group>"; };
@@ -278,7 +276,6 @@
 			isa = PBXGroup;
 			children = (
 				E12E4CBC0DFF246100355B0E /* growl.rb */,
-				E193ED7C0DFAAADE00D17070 /* open4.rb */,
 			);
 			path = ext;
 			sourceTree = "<group>";
@@ -343,7 +340,6 @@
 				E193ED830DFAAADE00D17070 /* app_controller.rb in Resources */,
 				E193ED840DFAAADE00D17070 /* drawer_controller.rb in Resources */,
 				E193ED850DFAAADE00D17070 /* window_controller.rb in Resources */,
-				E193ED860DFAAADE00D17070 /* open4.rb in Resources */,
 				E193ED870DFAAADE00D17070 /* log.rb in Resources */,
 				E193ED880DFAAADE00D17070 /* map.rb in Resources */,
 				E193ED890DFAAADE00D17070 /* rspactor_formatter.rb in Resources */,

@@ -2,7 +2,6 @@ require File.dirname(__FILE__) + '/../spec_helper'
 require 'spec_runner'
 require 'map'
 require 'listener'
-require 'ext/open4'
 
 describe SpecRunner do
   before(:each) do

@@ -6,10 +6,11 @@ class SpecTable < OSX::NSObject
   ib_outlet :specsTable
   
   def awakeFromNib
-    receive :spec_run_example_passed,   :specRunFinishedSingleSpec
-    receive :spec_run_example_pending,  :specRunFinishedSingleSpec
-    receive :spec_run_example_failed,   :specRunFinishedSingleSpec
-    receive :first_failed_spec,         :markFileContainingFirstFailedSpec
+    receive :NSTableViewSelectionDidChangeNotification, :disableTableRowMarking
+    receive :spec_run_example_passed,                   :specRunFinishedSingleSpec
+    receive :spec_run_example_pending,                  :specRunFinishedSingleSpec
+    receive :spec_run_example_failed,                   :specRunFinishedSingleSpec
+    receive :first_failed_spec,                         :markFileContainingFirstFailedSpec
   end
   
   def specRunFinishedSingleSpec(notification)
@@ -17,13 +18,18 @@ class SpecTable < OSX::NSObject
   end
   
   def markFileContainingFirstFailedSpec(notification)
-    index = $spec_list.index_by_spec(notification.userInfo.first)
-    $LOG.debug "Marking: #{index}"
-    @specsTable.selectRowIndexes_byExtendingSelection(NSIndexSet.new.initWithIndex(index), true)
+    @byFirstFailingSpecSelectedRowIndex = $spec_list.index_by_spec(notification.userInfo.first)
   end
   
   def reload!
     @specsTable.reloadData
+    if @byFirstFailingSpecSelectedRowIndex
+      @specsTable.selectRowIndexes_byExtendingSelection(NSIndexSet.new.initWithIndex(@byFirstFailingSpecSelectedRowIndex), false)
+    end
+  end
+  
+  def disableTableRowMarking(notification)
+    @byFirstFailingSpecSelectedRowIndex = nil
   end
   
   # def clearSelection
