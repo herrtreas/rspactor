@@ -13,7 +13,7 @@ class WindowController < OSX::NSWindowController
     receive :spec_run_example_passed,   :specRunFinishedSingleSpec
     receive :spec_run_example_pending,  :specRunFinishedSingleSpec
     receive :spec_run_example_failed,   :specRunFinishedSingleSpec
-    receive :error,                     :specRunFinished
+    receive :error,                     :specRunFinished    
   end
   
   def runSpecs(sender)

@@ -24,6 +24,7 @@ class SpecTable < OSX::NSObject
   def reload!
     @specsTable.reloadData
     if @byFirstFailingSpecSelectedRowIndex
+      $app.post_notification :retain_focus_on_drawer
       @specsTable.selectRowIndexes_byExtendingSelection(NSIndexSet.new.initWithIndex(@byFirstFailingSpecSelectedRowIndex), false)
     end
   end

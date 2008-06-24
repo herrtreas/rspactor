@@ -13,6 +13,8 @@
 			<dict>
 				<key>drawer</key>
 				<string>id</string>
+				<key>table</key>
+				<string>id</string>
 			</dict>
 			<key>SUPERCLASS</key>
 			<string>NSWindowController</string>
