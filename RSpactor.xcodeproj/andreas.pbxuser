@@ -1,5 +1,13 @@
 // !$*UTF8*$!
 {
+	089C165DFE840E0CC02AAC07 /* English */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {691, 430}}";
+			sepNavSelRange = "{199, 0}";
+			sepNavVisRange = "{0, 236}";
+			sepNavWindowFrame = "{{68, 315}, {750, 558}}";
+		};
+	};
 	29B97313FDCFA39411CA2CEA /* Project object */ = {
 		activeArchitecture = i386;
 		activeBuildConfigurationName = Release;
@@ -63,8 +71,8 @@
 					PBXFileDataSource_Target_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 236730296;
-			PBXWorkspaceStateSaveDate = 236730296;
+			PBXPerProjectTemplateStateSaveDate = 236731084;
+			PBXWorkspaceStateSaveDate = 236731084;
 		};
 		sourceControlManager = E1A615CA0DF82908007DEAC7 /* Source Control */;
 		userBuildSettings = {

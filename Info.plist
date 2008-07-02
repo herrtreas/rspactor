@@ -29,12 +29,12 @@
  	<key>NSHumanReadableCopyright</key>
 	<string>
 © 2008, Andreas Wolff
-http://www.dynamicdudes.com
+http://www.rubyphunk.com
 	</string>
 	<key>CFBundleVersion</key>
-  <string>0.9.13</string>
+  <string>0.9.14</string>
   <key>CFBundleShortVersionString</key>
-  <string>0.9.13</string>  
+  <string>0.9.14</string>  
   <key>SUExpectsDSASignature</key>
   <true />
   <key>SUPublicDSAKey</key>

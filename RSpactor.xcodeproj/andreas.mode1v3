@@ -269,11 +269,6 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateExpansionKey</key>
 							<array>
 								<string>29B97314FDCFA39411CA2CEA</string>
-								<string>080E96DDFE201D6D7F000001</string>
-								<string>E193ED750DFAAADE00D17070</string>
-								<string>E151EBEE0E09A17600E11BB3</string>
-								<string>E193ED7A0DFAAADE00D17070</string>
-								<string>E193ED7B0DFAAADE00D17070</string>
 								<string>29B97317FDCFA39411CA2CEA</string>
 								<string>1C37FAAC04509CD000000102</string>
 								<string>1C37FABC05509CD000000102</string>
@@ -282,8 +277,9 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>46</integer>
-									<integer>45</integer>
+									<integer>10</integer>
+									<integer>3</integer>
+									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
@@ -387,9 +383,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>E133D1130E1C37B900ACFE07</string>
+				<string>E1FC85700E1C3AD600EC156A</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>E133D1140E1C37B900ACFE07</string>
+				<string>E1FC85710E1C3AD600EC156A</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -526,6 +522,7 @@
 		<string>1C78EAAD065D492600B07095</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>E1A615C10DF82908007DEAC7</string>
+		<string>E1FC857A0E1C3AD600EC156A</string>
 		<string>/Users/andreas/ruby/rspactor/RSpactor.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -606,7 +603,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>E1A615C10DF82908007DEAC7</string>
-				<string>E133D1160E1C37CB00ACFE07</string>
+				<string>E1FC85720E1C3AD600EC156A</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -726,13 +723,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>E133D1170E1C37CB00ACFE07</string>
+				<string>E1FC85730E1C3AD600EC156A</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>E133D1180E1C37CB00ACFE07</string>
-				<string>E133D1190E1C37CB00ACFE07</string>
-				<string>E133D11A0E1C37CB00ACFE07</string>
-				<string>E133D11B0E1C37CB00ACFE07</string>
-				<string>E133D11C0E1C37CB00ACFE07</string>
+				<string>E1FC85740E1C3AD600EC156A</string>
+				<string>E1FC85750E1C3AD600EC156A</string>
+				<string>E1FC85760E1C3AD600EC156A</string>
+				<string>E1FC85770E1C3AD600EC156A</string>
+				<string>E1FC85780E1C3AD600EC156A</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
@@ -894,7 +891,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C78EAAD065D492600B07095</string>
-				<string>E133D11D0E1C37CB00ACFE07</string>
+				<string>E1FC85790E1C3AD600EC156A</string>
 				<string>1C78EAAC065D492600B07095</string>
 			</array>
 			<key>ToolbarConfiguration</key>
