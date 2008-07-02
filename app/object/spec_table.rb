@@ -47,8 +47,16 @@ class SpecTable < OSX::NSObject
   end
 
   def tableView_objectValueForTableColumn_row(specTable, specTableColumn, rowIndex)
-    return unless $spec_list && file = $spec_list.file_by_index(rowIndex)
-    file.name
+    return unless $spec_list && file = $spec_list.file_by_index(rowIndex)    
+    attributes = NSDictionary.dictionaryWithObjects_forKeys([color_by_state(file)], [OSX::NSForegroundColorAttributeName])
+    NSAttributedString.alloc.initWithString_attributes(file.name, attributes)
   end
 
+  def color_by_state(spec_file)
+    if spec_file.failed?
+      color = NSColor.colorWithCalibratedRed_green_blue_alpha(0.8,0.1,0.1,1)
+    else
+      color = NSColor.colorWithCalibratedRed_green_blue_alpha(0.2,0.2,0.2,1)
+    end
+  end
 end

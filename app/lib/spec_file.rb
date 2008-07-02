@@ -11,7 +11,7 @@ class SpecFile
     File.basename(@full_path) if @full_path
   end
   
-  def <<(spec)    
+  def <<(spec)
     @specs << spec unless contains_spec?(spec)
   end
   
@@ -21,5 +21,9 @@ class SpecFile
   
   def contains_spec?(spec)
     !@specs.select { |s| s.to_s == spec.to_s }.empty?
+  end
+  
+  def failed?
+    !@specs.select { |s| s.state == :failed }.empty?
   end
 end

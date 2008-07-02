@@ -26,8 +26,15 @@ describe SpecTable do
   end
   
   it 'should send out the base file name for a single column on app request' do
-    $spec_list.stub!(:file_by_index).and_return(SpecFile.new(:full_path => 'hello.rb'))
+    mock_spec_file = mock('SpecFile', :failed? => false, :name => 'hello.rb')
+    $spec_list.stub!(:file_by_index).and_return(mock_spec_file)
     res = @table.tableView_objectValueForTableColumn_row(nil, nil, 0)
-    res.should eql('hello.rb')
+    res.string.should include('hello.rb')
+  end
+  
+  it 'should return a color by file state' do
+    mock_spec_file = mock('SpecFile', :failed? => true)
+    color = @table.color_by_state(mock_spec_file)
+    color.to_s.should include('0.8 0.1 0.1')
   end
 end

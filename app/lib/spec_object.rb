@@ -7,7 +7,9 @@ class SpecObject
   attr_accessor :error_header, :error_type, :backtrace
 
   def initialize(opts = {})
-    opts.each { |key, value| self.send("#{key.to_s}=".intern, value) } rescue true
+    opts.each do |key, value| 
+      self.send("#{key.to_s}=".intern, value) rescue next
+    end
   end
 
   def to_s
