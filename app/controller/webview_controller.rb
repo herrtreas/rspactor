@@ -6,13 +6,14 @@ class WebviewController < OSX::NSWindowController
   def awakeFromNib
     receive :NSTableViewSelectionDidChangeNotification, :showSpecFileViewFromTable
     receive :first_failed_spec,                         :showSpecFileViewFromSpec
+    receive :spec_run_processed,                        :reloadWebView
     @view.shouldCloseWithWindow = true
     @view.frameLoadDelegate = self    
     loadHtml('welcome.html')
   end  
   
   def webView_didFinishLoadForFrame(view, frame)
-    @@afterLoadBlock.call if @@afterLoadBlock
+    @@afterLoadBlock.call if defined?(@@afterLoadBlock)
   end
   
   def loadHtml(file_name, &block)
@@ -29,9 +30,17 @@ class WebviewController < OSX::NSWindowController
   end
   
   def showSpecFileView(row_index)
+    @@currently_displayed_row_index = row_index
     loadHtml('spec_file.html') do
       view = SpecFileView.new(@view, row_index)
       view.update
+    end
+  end
+  
+  def reloadWebView(notification)
+    return unless defined?(@@currently_displayed_row_index)
+    if @@currently_displayed_row_index == $spec_list.index_by_spec(notification.userInfo.first)
+      showSpecFileView(@@currently_displayed_row_index)
     end
   end
 end

@@ -91,8 +91,17 @@ describe AppController do
   it 'should send a notification on the first failing spec' do
     mock_notification = mock('Notification')
     mock_notification.stub!(:userInfo).and_return([@mock_spec])
+    @app.stub!(:post_notification)
     @app.should_receive(:post_notification).once.with(:first_failed_spec, @mock_spec)
     @app.spec_run_processed(mock_notification)
+    @app.spec_run_processed(mock_notification)
+  end
+  
+  it 'should send a notification about processed specs' do
+    mock_notification = mock('Notification')
+    mock_notification.stub!(:userInfo).and_return([@mock_spec])
+    @app.stub!(:post_notification)
+    @app.should_receive(:post_notification).once.with(:spec_run_processed, @mock_spec)
     @app.spec_run_processed(mock_notification)
   end
 end

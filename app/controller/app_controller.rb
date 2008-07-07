@@ -28,6 +28,7 @@ class AppController < OSX::NSObject
     spec = notification.userInfo.first
     $spec_list << spec
     $spec_list.processed_spec_count += 1
+    post_notification :spec_run_processed, spec
     if spec.state == :failed && @first_failed_notification_posted.nil?
       @first_failed_notification_posted = true
       post_notification :first_failed_spec, spec
