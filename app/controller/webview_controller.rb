@@ -13,7 +13,7 @@ class WebviewController < OSX::NSWindowController
   end  
   
   def webView_didFinishLoadForFrame(view, frame)
-    @@afterLoadBlock.call if defined?(@@afterLoadBlock)
+    @@afterLoadBlock.call if @@afterLoadBlock
   end
   
   def loadHtml(file_name, &block)

@@ -21,7 +21,7 @@ module SpecRunner
     def create_runner_arguments(locations)
       args = locations
       args << '-Lmtime'
-      args << "-r#{File.dirname(__FILE__)}/rspactor_formatter.rb"
+      args << "--require=#{File.dirname(__FILE__)}/rspactor_formatter.rb"
       args << "-fRSpactorFormatter:STDOUT"
       args
     end
