@@ -16,15 +16,19 @@ describe SpecFile do
   
   it 'should have a << method to add specs' do
     file = SpecFile.new(:full_path => '/home/test.rb')
-    file << SpecObject.new
+    lambda do
+      file << SpecObject.new
+    end.should change(file, :spec_count)
   end
   
-  it 'should not add a spec file if it already exists in the collection' do
-    so = SpecObject.new
-    file = SpecFile.new(:full_path => '/home/test.rb', :specs => [so])
+  it 'should replace a spec file if it already exists in the collection' do
+    so1 = SpecObject.new(:name => 'test', :state => :passed)
+    so2 = SpecObject.new(:name => 'test', :state => :failed)
+    file = SpecFile.new(:full_path => '/home/test.rb', :specs => [so1])
     lambda do
-      file << so
+      file << so2
     end.should_not change(file, :spec_count)
+    file.specs.first.state.should eql(:failed)
   end
   
   it 'should have a spec_count' do

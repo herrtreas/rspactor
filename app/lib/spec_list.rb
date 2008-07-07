@@ -30,7 +30,7 @@ class SpecList
   def clear_run_stats
     @total_spec_count = 0
     @processed_spec_count = 0
-    @list = []
+#    @list = []
   end
 
   def size

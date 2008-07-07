@@ -41,7 +41,9 @@ class Listener
     begin     
       @@block_to_execute = block
       @@spec_run_time = Time.now
+      
       OSX.require_framework '/System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework'
+      @stream = OSX::FSEventStreamCreate(OSX::KCFAllocatorDefault, @@callback, nil, [path], OSX::KFSEventStreamEventIdSinceNow, 0.0, 0)
       
       $LOG.debug "Listening to '#{path}'.."
       OSX::FSEventStreamScheduleWithRunLoop(@stream, OSX::CFRunLoopGetMain(), OSX::KCFRunLoopDefaultMode)

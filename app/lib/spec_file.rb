@@ -12,13 +12,19 @@ class SpecFile
   end
   
   def <<(spec)
-    @specs << spec unless contains_spec?(spec)
+    old_spec = @specs.select {|s| s.to_s == spec.to_s}.first
+    if old_spec
+      @specs[@specs.index(old_spec)] = spec
+    else
+      @specs << spec
+    end
   end
   
   def spec_count
     @specs.count
   end
   
+  # TODO: Obsolete?
   def contains_spec?(spec)
     !@specs.select { |s| s.to_s == spec.to_s }.empty?
   end
