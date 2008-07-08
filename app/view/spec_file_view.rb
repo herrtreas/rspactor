@@ -15,9 +15,8 @@ class SpecFileView < HtmlView
     
     spec_html = '<ul>'
     file.specs.each do |spec|
-      next unless spec.state == :failed
       spec_html << '<li>'
-      spec_html << "<p class='spec_title'>#{spec.to_s}</p>"
+      spec_html << "<p class='spec_title #{spec.state}'>#{spec.to_s}</p>"
       spec_html << "<p class='spec_message'>#{h(spec.message)}</p>"
       spec_html << "<p class='spec_code'></p>"
       spec_html << "<p class='spec_trace'></p>"

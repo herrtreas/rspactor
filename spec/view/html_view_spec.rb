@@ -32,4 +32,8 @@ describe HtmlView do
     @html.h("<").should eql('&lt;')
     @html.h(">").should eql('&gt;')
   end
+  
+  it 'should return an empty string if raw_text is blank' do
+    @html.h(nil).should eql('')
+  end
 end

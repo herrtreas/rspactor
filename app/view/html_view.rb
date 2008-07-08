@@ -10,6 +10,7 @@ class HtmlView
   end
   
   def h(raw_text)
+    return '' unless raw_text
     raw_text.gsub!('<', '&lt;')
     raw_text.gsub!('>', '&gt;')
     raw_text

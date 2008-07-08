@@ -13,8 +13,9 @@ describe SpecFileView do
     @mock_document.stub!(:getElementById).and_return(@mock_element)
     @mock_frame.stub!(:DOMDocument).and_return(@mock_document)
     @mock_view.stub!(:mainFrame).and_return(@mock_frame)
+    @mock_spec_object = mock('SpecObject', :state => :passed, :message => 'test')
     @spec_file_view = SpecFileView.new(@mock_view, 1)
-    @spec_file = SpecFile.new(:full_path => '/path/to/test.rb', :specs => [SpecObject.new])
+    @spec_file = SpecFile.new(:full_path => '/path/to/test.rb', :specs => [@mock_spec_object])
     $spec_list = mock('SpecList')
     $spec_list.stub!(:files).and_return(['test'])
   end
