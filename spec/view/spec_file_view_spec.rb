@@ -2,6 +2,7 @@ require File.dirname(__FILE__) + '/../spec_helper'
 require 'html_view'
 require 'spec_file_view'
 require 'spec_file'
+require 'converter'
 
 describe SpecFileView do
   before(:each) do
@@ -18,6 +19,7 @@ describe SpecFileView do
     @spec_file = SpecFile.new(:full_path => '/path/to/test.rb', :specs => [@mock_spec_object])
     $spec_list = mock('SpecList')
     $spec_list.stub!(:files).and_return(['test'])
+    Converter.stub!(:source_to_html)
   end
   
   it 'should initialize with webview and file index' do

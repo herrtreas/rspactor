@@ -18,7 +18,7 @@ class SpecFileView < HtmlView
       spec_html << '<li>'
       spec_html << "<p class='spec_title #{spec.state}'>#{spec.to_s}</p>"
       spec_html << "<p class='spec_message'>#{h(spec.message)}</p>"
-      spec_html << "<p class='spec_code'></p>"
+      spec_html << "<p class='spec_code'>#{Converter.source_to_html(spec)}</p>"
       spec_html << "<p class='spec_trace'></p>"
       spec_html << '</li>'
     end
