@@ -9,15 +9,111 @@ body {
   color: #333;
 }
 
+.head {
+	border-bottom: 1px solid #eee;
+	margin: 0 10px 20px 0;
+	padding-bottom: 2px;
+}
+
 h1 {
-	font-size: 16px;
+	font-size: 22px;
+	font-weight: normal;
 	color: #888;
-	font-style: italic;	
 	margin: 5px 0px 5px 0px;
 }
 
 h2 {
 	font-size: 10px;
-	color: #333;
+	font-style: italic;	
+	color: #aaa;
 	margin: 0px;
 }
+
+
+/* #### CODE #### */
+
+.code { 
+  border: 1px solid #AAA;
+  cursor: pointer;
+  font-family: "Andale Mono";
+	min-width: 250px;
+}
+
+pre {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+ul.spec {
+	list-style-type: none;
+	margin-right: 10px;
+	padding: 0px;
+}
+
+ul.spec li.spec {
+	margin: 0px;
+	margin-bottom: 30px;
+}
+
+ul.spec p.spec_title_passed, ul.spec p.spec_title_failed, ul.spec p.spec_title_pending {
+	font-size: 13px;
+	color: white;
+	padding: 3px;
+	margin: 0px;
+}
+
+
+ul.spec p.spec_title_passed {
+	background-color: #62C304;
+	border: 1px solid #499603;
+}
+
+ul.spec p.spec_title_failed {
+	background-color: #DA0A06;
+	border: 1px solid #C30A05;
+}
+
+ul.spec p.spec_title_pending {
+	background-color: #CD9F09;
+	border: 1px solid #B38A08;
+}
+
+ul.spec p.spec_message {
+	color: #666;
+	font-size: 16px;
+	font-style: italic;
+	margin: 0px;
+	padding: 8px 0 8px;
+}
+
+ul.spec p.spec_code {
+	margin: 0px;
+}
+
+ul.spec p.spec_trace {
+	margin: 0px;	
+}
+
+ul.code_view {
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+ul.code_view li {
+  padding: 2px 0 2px;
+}
+
+ul.code_view .even     { background-color: #FFF;}
+ul.code_view .odd      { background-color: #EEF2FD;}
+ul.code_view .current  { background-color: #EDFFBA;}
+
+.code .linenumber { margin-left: 5px; padding-right: 10px; font-weight: bold;}
+.code .ident      { color:#000000;}
+.code .punct      { color:#C5060B; font-weight:bold;}
+.code .string     { color:#C5060B;}
+.code .keyword    { color:#000000; font-weight:bold;}
+.code .symbol     { color:#060; font-weight:bold;}
+.code .number     { color:#0000CD;}
+.code .attribute  { color:#318495; font-weight:bold;}
+.code .constant   { color:#C5060B;}

@@ -30,6 +30,7 @@ module Converter
 #      "<div class='code' onclick='#{ext_file_alert(spec.full_file_path, spec.line)}'>#{lines.join("\n")}</div>"
       "<div class='code'>#{lines.join("\n")}</div>"
     end
+    
     # 
     # def ext_file_alert(full_file_path, line)
     #    "alert(\"#{External.file_link(full_file_path, line)}\")"
