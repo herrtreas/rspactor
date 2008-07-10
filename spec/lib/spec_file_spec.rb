@@ -4,9 +4,9 @@ require 'spec_object'
 
 describe SpecFile do
   it 'should initialize with an arbitrary number of params' do
-    file = SpecFile.new(:full_path => '/home/test.rb', :specs => ['huhu'])
+    file = SpecFile.new(:full_path => '/home/test.rb', :specs => [SpecObject.new(:name => 'huhu')])
     file.full_path.should eql('/home/test.rb')
-    file.specs.should eql(['huhu'])
+    file.specs.first.name.should eql('huhu')
   end
   
   it 'should split the full file path into the file_name' do
@@ -46,5 +46,15 @@ describe SpecFile do
     so = SpecObject.new(:state => :failed)
     file = SpecFile.new(:full_path => '/home/test.rb', :specs => [so])
     file.failed?.should be_true
+  end
+  
+  it 'should return specs with order (failed, pending, passed)' do
+    so_passed = SpecObject.new(:name => 'test', :state => :passed)
+    so_failed = SpecObject.new(:name => 'test2', :state => :failed)
+    so_pending = SpecObject.new(:name => 'test3', :state => :pending)
+    file = SpecFile.new(:full_path => '/home/test.rb', :specs => [so_passed, so_failed, so_pending])
+    file.specs[0].name.should eql('test2')
+    file.specs[1].name.should eql('test3')
+    file.specs[2].name.should eql('test')
   end
 end

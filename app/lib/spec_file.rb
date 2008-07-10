@@ -20,6 +20,14 @@ class SpecFile
     end
   end
   
+  def specs
+    sorted_specs = []
+    sorted_specs += @specs.select { |s| s.state && s.state == :failed }
+    sorted_specs += @specs.select { |s| s.state && s.state == :pending }
+    sorted_specs += @specs.select { |s| !s.state || s.state == :passed }
+    sorted_specs
+  end
+  
   def spec_count
     @specs.count
   end
