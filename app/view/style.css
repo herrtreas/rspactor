@@ -52,6 +52,7 @@ ul.spec {
 ul.spec li.spec {
 	margin: 0px;
 	margin-bottom: 30px;
+	cursor: pointer;
 }
 
 ul.spec p.spec_title_passed, ul.spec p.spec_title_failed, ul.spec p.spec_title_pending {
@@ -63,12 +64,12 @@ ul.spec p.spec_title_passed, ul.spec p.spec_title_failed, ul.spec p.spec_title_p
 
 
 ul.spec p.spec_title_passed {
-	background-color: #62C304;
+	background-color: #5BB803;
 	border: 1px solid #499603;
 }
 
 ul.spec p.spec_title_failed {
-	background-color: #DA0A06;
+	background-color: #C90805;
 	border: 1px solid #C30A05;
 }
 

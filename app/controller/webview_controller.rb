@@ -43,4 +43,8 @@ class WebviewController < OSX::NSWindowController
       showSpecFileView(@@currently_displayed_row_index)
     end
   end
+  
+  def webView_runJavaScriptAlertPanelWithMessage(webview, message)
+    $LOG.debug "JS: #{message}"
+  end  
 end

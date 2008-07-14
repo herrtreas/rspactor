@@ -20,6 +20,7 @@
 		E12E4CEF0DFF2E0500355B0E /* failure_128.png in Resources */ = {isa = PBXBuildFile; fileRef = E12E4CEC0DFF2E0500355B0E /* failure_128.png */; };
 		E12E4CF00DFF2E0500355B0E /* warning_128.png in Resources */ = {isa = PBXBuildFile; fileRef = E12E4CED0DFF2E0500355B0E /* warning_128.png */; };
 		E12E4CF90DFF308300355B0E /* pass_128.png in Resources */ = {isa = PBXBuildFile; fileRef = E12E4CF80DFF308300355B0E /* pass_128.png */; };
+		E134FBE40E2C0733008AD9BE /* application.js in Resources */ = {isa = PBXBuildFile; fileRef = E134FBE30E2C0733008AD9BE /* application.js */; };
 		E13AF6050E0128670042D8BE /* rspactor_bin.rb in Resources */ = {isa = PBXBuildFile; fileRef = E13AF6040E0128670042D8BE /* rspactor_bin.rb */; };
 		E14951780DFED46A006E0F89 /* spec_table.rb in Resources */ = {isa = PBXBuildFile; fileRef = E14951770DFED46A006E0F89 /* spec_table.rb */; };
 		E151EBEC0E09A04500E11BB3 /* webview_controller.rb in Resources */ = {isa = PBXBuildFile; fileRef = E151EBEB0E09A04500E11BB3 /* webview_controller.rb */; };
@@ -37,6 +38,15 @@
 		E16141C10E2371A6006BC96E /* xml.rb in Resources */ = {isa = PBXBuildFile; fileRef = E16141B90E2371A6006BC96E /* xml.rb */; };
 		E16141C20E2371A6006BC96E /* yaml.rb in Resources */ = {isa = PBXBuildFile; fileRef = E16141BA0E2371A6006BC96E /* yaml.rb */; };
 		E16141C30E2371A6006BC96E /* version.rb in Resources */ = {isa = PBXBuildFile; fileRef = E16141BB0E2371A6006BC96E /* version.rb */; };
+		E168369B0E2BB47F004ABB0C /* scriptaculous.js in Resources */ = {isa = PBXBuildFile; fileRef = E16836980E2BB47F004ABB0C /* scriptaculous.js */; };
+		E16836B00E2BB6ED004ABB0C /* builder.js in Resources */ = {isa = PBXBuildFile; fileRef = E16836A90E2BB6ED004ABB0C /* builder.js */; };
+		E16836B10E2BB6ED004ABB0C /* controls.js in Resources */ = {isa = PBXBuildFile; fileRef = E16836AA0E2BB6ED004ABB0C /* controls.js */; };
+		E16836B20E2BB6ED004ABB0C /* dragdrop.js in Resources */ = {isa = PBXBuildFile; fileRef = E16836AB0E2BB6ED004ABB0C /* dragdrop.js */; };
+		E16836B30E2BB6ED004ABB0C /* effects.js in Resources */ = {isa = PBXBuildFile; fileRef = E16836AC0E2BB6ED004ABB0C /* effects.js */; };
+		E16836B40E2BB6ED004ABB0C /* slider.js in Resources */ = {isa = PBXBuildFile; fileRef = E16836AD0E2BB6ED004ABB0C /* slider.js */; };
+		E16836B50E2BB6ED004ABB0C /* sound.js in Resources */ = {isa = PBXBuildFile; fileRef = E16836AE0E2BB6ED004ABB0C /* sound.js */; };
+		E16836B60E2BB6ED004ABB0C /* unittest.js in Resources */ = {isa = PBXBuildFile; fileRef = E16836AF0E2BB6ED004ABB0C /* unittest.js */; };
+		E16836C60E2BB926004ABB0C /* prototype.js in Resources */ = {isa = PBXBuildFile; fileRef = E16836C50E2BB926004ABB0C /* prototype.js */; };
 		E193ED830DFAAADE00D17070 /* app_controller.rb in Resources */ = {isa = PBXBuildFile; fileRef = E193ED770DFAAADE00D17070 /* app_controller.rb */; };
 		E193ED840DFAAADE00D17070 /* drawer_controller.rb in Resources */ = {isa = PBXBuildFile; fileRef = E193ED780DFAAADE00D17070 /* drawer_controller.rb */; };
 		E193ED850DFAAADE00D17070 /* window_controller.rb in Resources */ = {isa = PBXBuildFile; fileRef = E193ED790DFAAADE00D17070 /* window_controller.rb */; };
@@ -74,6 +84,7 @@
 		E12E4CEC0DFF2E0500355B0E /* failure_128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = failure_128.png; sourceTree = "<group>"; };
 		E12E4CED0DFF2E0500355B0E /* warning_128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = warning_128.png; sourceTree = "<group>"; };
 		E12E4CF80DFF308300355B0E /* pass_128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pass_128.png; sourceTree = "<group>"; };
+		E134FBE30E2C0733008AD9BE /* application.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = application.js; sourceTree = "<group>"; };
 		E13AF6040E0128670042D8BE /* rspactor_bin.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = rspactor_bin.rb; sourceTree = "<group>"; };
 		E14951770DFED46A006E0F89 /* spec_table.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = spec_table.rb; sourceTree = "<group>"; };
 		E151EBEB0E09A04500E11BB3 /* webview_controller.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = webview_controller.rb; sourceTree = "<group>"; };
@@ -91,6 +102,15 @@
 		E16141B90E2371A6006BC96E /* xml.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = xml.rb; sourceTree = "<group>"; };
 		E16141BA0E2371A6006BC96E /* yaml.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = yaml.rb; sourceTree = "<group>"; };
 		E16141BB0E2371A6006BC96E /* version.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = version.rb; sourceTree = "<group>"; };
+		E16836980E2BB47F004ABB0C /* scriptaculous.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = scriptaculous.js; sourceTree = "<group>"; };
+		E16836A90E2BB6ED004ABB0C /* builder.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = builder.js; sourceTree = "<group>"; };
+		E16836AA0E2BB6ED004ABB0C /* controls.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = controls.js; sourceTree = "<group>"; };
+		E16836AB0E2BB6ED004ABB0C /* dragdrop.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = dragdrop.js; sourceTree = "<group>"; };
+		E16836AC0E2BB6ED004ABB0C /* effects.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = effects.js; sourceTree = "<group>"; };
+		E16836AD0E2BB6ED004ABB0C /* slider.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = slider.js; sourceTree = "<group>"; };
+		E16836AE0E2BB6ED004ABB0C /* sound.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = sound.js; sourceTree = "<group>"; };
+		E16836AF0E2BB6ED004ABB0C /* unittest.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = unittest.js; sourceTree = "<group>"; };
+		E16836C50E2BB926004ABB0C /* prototype.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = prototype.js; sourceTree = "<group>"; };
 		E193ED770DFAAADE00D17070 /* app_controller.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = app_controller.rb; sourceTree = "<group>"; };
 		E193ED780DFAAADE00D17070 /* drawer_controller.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = drawer_controller.rb; sourceTree = "<group>"; };
 		E193ED790DFAAADE00D17070 /* window_controller.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = window_controller.rb; sourceTree = "<group>"; };
@@ -239,6 +259,16 @@
 		E151EBEE0E09A17600E11BB3 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				E134FBE30E2C0733008AD9BE /* application.js */,
+				E16836C50E2BB926004ABB0C /* prototype.js */,
+				E16836A90E2BB6ED004ABB0C /* builder.js */,
+				E16836AA0E2BB6ED004ABB0C /* controls.js */,
+				E16836AB0E2BB6ED004ABB0C /* dragdrop.js */,
+				E16836AC0E2BB6ED004ABB0C /* effects.js */,
+				E16836AD0E2BB6ED004ABB0C /* slider.js */,
+				E16836AE0E2BB6ED004ABB0C /* sound.js */,
+				E16836AF0E2BB6ED004ABB0C /* unittest.js */,
+				E16836980E2BB47F004ABB0C /* scriptaculous.js */,
 				E151EC0E0E09B0F100E11BB3 /* html_view.rb */,
 				E151EC0B0E09AD5000E11BB3 /* spec_file_view.rb */,
 				E151EC040E09A5A500E11BB3 /* spec_file.html */,
@@ -435,6 +465,16 @@
 				E16141C10E2371A6006BC96E /* xml.rb in Resources */,
 				E16141C20E2371A6006BC96E /* yaml.rb in Resources */,
 				E16141C30E2371A6006BC96E /* version.rb in Resources */,
+				E168369B0E2BB47F004ABB0C /* scriptaculous.js in Resources */,
+				E16836B00E2BB6ED004ABB0C /* builder.js in Resources */,
+				E16836B10E2BB6ED004ABB0C /* controls.js in Resources */,
+				E16836B20E2BB6ED004ABB0C /* dragdrop.js in Resources */,
+				E16836B30E2BB6ED004ABB0C /* effects.js in Resources */,
+				E16836B40E2BB6ED004ABB0C /* slider.js in Resources */,
+				E16836B50E2BB6ED004ABB0C /* sound.js in Resources */,
+				E16836B60E2BB6ED004ABB0C /* unittest.js in Resources */,
+				E16836C60E2BB926004ABB0C /* prototype.js in Resources */,
+				E134FBE40E2C0733008AD9BE /* application.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
