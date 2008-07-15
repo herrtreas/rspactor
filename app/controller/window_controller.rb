@@ -24,14 +24,14 @@ class WindowController < OSX::NSWindowController
   end
   
   def showStatusPanel
-    @runButton.title = 'Stop'
+    @runButton.enabled = false
     @pathTextField.hidden = true
     @statusBar.hidden = false
     @statusLabel.hidden = false
   end
   
   def showInputPanel
-    @runButton.title = 'Run'
+    @runButton.enabled = true
     @pathTextField.hidden = false
     @statusBar.hidden = true
     @statusLabel.hidden = true

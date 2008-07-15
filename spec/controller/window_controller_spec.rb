@@ -8,7 +8,7 @@ require 'spec_list'
 describe WindowController do
   before(:each) do
     @mock_runButton = mock('runButton', :title => 'Run')
-    @mock_runButton.stub!(:title=)
+    @mock_runButton.stub!(:enabled=)
     
     @mock_pathTextField = mock('pathTextField', :stringValue => File.dirname(__FILE__))
     @mock_pathTextField.stub!(:hidden=)
@@ -59,7 +59,7 @@ describe WindowController do
   end
   
   it 'should show the status panel (and hide the input)' do
-    @mock_runButton.should_receive(:title=).with('Stop')
+    @mock_runButton.should_receive(:enabled=).with(false)
     @mock_pathTextField.should_receive(:hidden=).with(true)
     @mock_statusBar.should_receive(:hidden=).with(false)
     @mock_statusLabel.should_receive(:hidden=).with(false)
@@ -67,7 +67,7 @@ describe WindowController do
   end
   
   it 'should show the input panel (and hide the status)' do
-    @mock_runButton.should_receive(:title=).with('Run')
+    @mock_runButton.should_receive(:enabled=).with(true)
     @mock_pathTextField.should_receive(:hidden=).with(false)
     @mock_statusBar.should_receive(:hidden=).with(true)
     @mock_statusLabel.should_receive(:hidden=).with(true)
