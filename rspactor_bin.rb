@@ -1,7 +1,24 @@
 #!/usr/bin/env ruby
-rspactor_bin_path = ARGV[0] == "--dev" ? "/Users/andreas/ruby/rspactor/build/Debug" : "/Applications/"
-rspactor_bin_path += "/RSpactor.app"
+require 'timeout'
+require 'drb'
 
 # Load application
-system("export RSPACTOR_RUN_PATH=#{Dir.pwd}; open #{rspactor_bin_path}")
-sleep 1
+if ARGV[0] == '--dev'
+  system("open /Users/andreas/ruby/rspactor/build/Release/RSpactor.app")
+else
+  system('open -b com.dynamicdudes.RSpactor')
+end
+
+# Ping and Pong
+Timeout::timeout(10) do
+  @service = DRbObject.new(nil, "druby://127.0.0.1:28127")    
+  while true
+    begin
+      if @service.ping
+        @service.incoming(:relocate_and_run, Dir.pwd)
+        exit
+      end
+    rescue; end
+    sleep 1
+  end
+end

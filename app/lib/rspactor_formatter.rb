@@ -1,3 +1,5 @@
+require 'drb'
+
 require File.dirname(__FILE__) + '/spec_object'
 require File.dirname(__FILE__) + '/log'
 

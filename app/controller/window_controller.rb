@@ -5,6 +5,7 @@ class WindowController < OSX::NSWindowController
   ib_action :runSpecs
   
   def awakeFromNib
+    $LOG.debug "DA!"
     @growlController = GrowlController.new
     @pathTextField.stringValue = $app.default_from_key(:spec_run_path)
     receive :spec_run_invoked,          :specRunPreparation    
@@ -13,10 +14,12 @@ class WindowController < OSX::NSWindowController
     receive :spec_run_example_passed,   :specRunFinishedSingleSpec
     receive :spec_run_example_pending,  :specRunFinishedSingleSpec
     receive :spec_run_example_failed,   :specRunFinishedSingleSpec
-    receive :error,                     :specRunFinished    
+    receive :error,                     :specRunFinished
+    receive :relocate_and_run,          :relocateDirectoryAndRunSpecs
   end
   
   def runSpecs(sender)
+    return if SpecRunner.command_running?
     path = @pathTextField.stringValue
     return false if path.empty? || !File.exist?(path)
     specRunPreparation(nil)
@@ -39,7 +42,7 @@ class WindowController < OSX::NSWindowController
   
   def specRunPreparation(notification)
     showStatusPanel
-    @statusLabel.stringValue = 'Loading environment..'
+    @statusLabel.stringValue = "Loading environment.. ( #{@pathTextField.stringValue} )"
     @statusBar.indeterminate = true
     @statusBar.startAnimation(self)    
   end
@@ -62,5 +65,11 @@ class WindowController < OSX::NSWindowController
   
   def controlTextDidChange(notification)
     $app.default_for_key(:spec_run_path, notification.object.stringValue)
+  end
+  
+  def relocateDirectoryAndRunSpecs(notification)
+    $LOG.debug "relocating and running in.. #{notification.userInfo.first}"
+    @pathTextField.stringValue = notification.userInfo.first
+    runSpecs(nil)
   end
 end

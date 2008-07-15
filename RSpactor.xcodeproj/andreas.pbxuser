@@ -105,16 +105,8 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 237823925;
-			PBXWorkspaceStateSaveDate = 237823925;
-		};
-		perUserProjectItems = {
-			E1B27CF60E2CE8740005DBFF /* PBXTextBookmark */ = E1B27CF60E2CE8740005DBFF /* PBXTextBookmark */;
-			E1B27CF70E2CE8740005DBFF /* PBXTextBookmark */ = E1B27CF70E2CE8740005DBFF /* PBXTextBookmark */;
-			E1B27EB10E2CE9C00005DBFF /* PBXTextBookmark */ = E1B27EB10E2CE9C00005DBFF /* PBXTextBookmark */;
-			E1B27EB20E2CE9C00005DBFF /* PBXTextBookmark */ = E1B27EB20E2CE9C00005DBFF /* PBXTextBookmark */;
-			E1B27EC90E2CEA800005DBFF /* PBXTextBookmark */ = E1B27EC90E2CEA800005DBFF /* PBXTextBookmark */;
-			E1B27ECA0E2CEA800005DBFF /* PBXTextBookmark */ = E1B27ECA0E2CEA800005DBFF /* PBXTextBookmark */;
+			PBXPerProjectTemplateStateSaveDate = 237856828;
+			PBXWorkspaceStateSaveDate = 237856828;
 		};
 		sourceControlManager = E1A615CA0DF82908007DEAC7 /* Source Control */;
 		userBuildSettings = {
@@ -210,59 +202,5 @@
 	E1A615CB0DF82908007DEAC7 /* Code sense */ = {
 		isa = PBXCodeSenseManager;
 		indexTemplatePath = "";
-	};
-	E1B27CF60E2CE8740005DBFF /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		comments = "error: RubyCocoa/RBRuntime.h: No such file or directory";
-		fRef = 29B97316FDCFA39411CA2CEA /* main.m */;
-		rLen = 1;
-		rLoc = 9;
-		rType = 1;
-	};
-	E1B27CF70E2CE8740005DBFF /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 29B97316FDCFA39411CA2CEA /* main.m */;
-		name = "main.m: 10";
-		rLen = 32;
-		rLoc = 163;
-		rType = 0;
-		vrLen = 235;
-		vrLoc = 0;
-	};
-	E1B27EB10E2CE9C00005DBFF /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		comments = "error: RubyCocoa/RBRuntime.h: No such file or directory";
-		fRef = 29B97316FDCFA39411CA2CEA /* main.m */;
-		rLen = 1;
-		rLoc = 9;
-		rType = 1;
-	};
-	E1B27EB20E2CE9C00005DBFF /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 29B97316FDCFA39411CA2CEA /* main.m */;
-		name = "main.m: 10";
-		rLen = 32;
-		rLoc = 163;
-		rType = 0;
-		vrLen = 235;
-		vrLoc = 0;
-	};
-	E1B27EC90E2CEA800005DBFF /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		comments = "error: RubyCocoa/RBRuntime.h: No such file or directory";
-		fRef = 29B97316FDCFA39411CA2CEA /* main.m */;
-		rLen = 1;
-		rLoc = 9;
-		rType = 1;
-	};
-	E1B27ECA0E2CEA800005DBFF /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 29B97316FDCFA39411CA2CEA /* main.m */;
-		name = "main.m: 10";
-		rLen = 32;
-		rLoc = 163;
-		rType = 0;
-		vrLen = 293;
-		vrLoc = 0;
 	};
 }
