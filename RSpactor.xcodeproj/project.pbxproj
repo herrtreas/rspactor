@@ -63,11 +63,26 @@
 		E1B27EDD0E2CEED40005DBFF /* Ruby.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B27EDC0E2CEED40005DBFF /* Ruby.framework */; };
 		E1B27F140E2D44190005DBFF /* arrow-down.png in Resources */ = {isa = PBXBuildFile; fileRef = E1B27F120E2D44190005DBFF /* arrow-down.png */; };
 		E1B27F150E2D44190005DBFF /* arrow-right.png in Resources */ = {isa = PBXBuildFile; fileRef = E1B27F130E2D44190005DBFF /* arrow-right.png */; };
+		E1B27F570E2D58AB0005DBFF /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B27F560E2D58AB0005DBFF /* Sparkle.framework */; };
+		E1B27F850E2D58E70005DBFF /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E1B27F560E2D58AB0005DBFF /* Sparkle.framework */; };
 		E1B7D00B0E0124DF007D96B9 /* APPL.icns in Resources */ = {isa = PBXBuildFile; fileRef = E1B7D00A0E0124DF007D96B9 /* APPL.icns */; };
 		E1BBE45E0E002E45004724B8 /* listener.rb in Resources */ = {isa = PBXBuildFile; fileRef = E1BBE45D0E002E45004724B8 /* listener.rb */; };
 		E1BBE4700E003140004724B8 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1BBE46F0E003140004724B8 /* Carbon.framework */; };
 		E1C7449C0E086A1B006DB94E /* preferences_controller.rb in Resources */ = {isa = PBXBuildFile; fileRef = E1C7449B0E086A1B006DB94E /* preferences_controller.rb */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E1B27F840E2D58D10005DBFF /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				E1B27F850E2D58E70005DBFF /* Sparkle.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -129,6 +144,7 @@
 		E1B27EDC0E2CEED40005DBFF /* Ruby.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Ruby.framework; path = /System/Library/Frameworks/Ruby.framework; sourceTree = "<absolute>"; };
 		E1B27F120E2D44190005DBFF /* arrow-down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow-down.png"; sourceTree = "<group>"; };
 		E1B27F130E2D44190005DBFF /* arrow-right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow-right.png"; sourceTree = "<group>"; };
+		E1B27F560E2D58AB0005DBFF /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		E1B7D00A0E0124DF007D96B9 /* APPL.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = APPL.icns; sourceTree = "<group>"; };
 		E1BBE45D0E002E45004724B8 /* listener.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = listener.rb; sourceTree = "<group>"; };
 		E1BBE46F0E003140004724B8 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
@@ -146,6 +162,7 @@
 				E1BBE4700E003140004724B8 /* Carbon.framework in Frameworks */,
 				E1B27ED50E2CEE230005DBFF /* RubyCocoa.framework in Frameworks */,
 				E1B27EDD0E2CEED40005DBFF /* Ruby.framework in Frameworks */,
+				E1B27F570E2D58AB0005DBFF /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,6 +180,7 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E1B27F560E2D58AB0005DBFF /* Sparkle.framework */,
 				E1BBE46F0E003140004724B8 /* Carbon.framework */,
 				E107C5610DF84D1A00A62C3A /* WebKit.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
@@ -396,6 +414,7 @@
 				4DDCA7050ACC9A6100E082CE /* Resources */,
 				4DDCA7090ACC9A6100E082CE /* Sources */,
 				4DDCA70B0ACC9A6100E082CE /* Frameworks */,
+				E1B27F840E2D58D10005DBFF /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -543,6 +562,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+				);
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)\"";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
@@ -558,6 +582,11 @@
 		4DDCA7100ACC9A6100E082CE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+				);
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)\"";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G5;
 				INFOPLIST_FILE = Info.plist;
