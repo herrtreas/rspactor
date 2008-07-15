@@ -55,10 +55,17 @@ ul.spec li.spec {
 	cursor: pointer;
 }
 
+ul.spec .fold_button {
+	color: #f6f6f6;
+	font-size: 18px;
+	font-weight: bold;
+	padding-right: 5px;
+}
+
 ul.spec p.spec_title_passed, ul.spec p.spec_title_failed, ul.spec p.spec_title_pending {
 	font-size: 13px;
 	color: white;
-	padding: 3px;
+	padding: 1px 3px 3px 3px;
 	margin: 0px;
 }
 
@@ -83,7 +90,7 @@ ul.spec p.spec_message {
 	font-size: 16px;
 	font-style: italic;
 	margin: 0px;
-	padding: 8px 0 8px;
+	padding: 6px 0 6px;
 }
 
 ul.spec p.spec_code {

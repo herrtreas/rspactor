@@ -45,6 +45,8 @@
 				<key>specBinPath</key>
 				<string>id</string>
 			</dict>
+			<key>SUPERCLASS</key>
+			<string>NSWindowController</string>
 		</dict>
 		<dict>
 			<key>CLASS</key>
@@ -64,6 +66,8 @@
 				<key>view</key>
 				<string>id</string>
 			</dict>
+			<key>SUPERCLASS</key>
+			<string>NSWindowController</string>
 		</dict>
 		<dict>
 			<key>CLASS</key>
@@ -75,6 +79,8 @@
 				<key>specsTable</key>
 				<string>id</string>
 			</dict>
+			<key>SUPERCLASS</key>
+			<string>NSObject</string>
 		</dict>
 		<dict>
 			<key>ACTIONS</key>

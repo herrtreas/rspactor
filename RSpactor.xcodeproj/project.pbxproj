@@ -61,6 +61,8 @@
 		E19769C50E01265A003A0331 /* VERSION in Resources */ = {isa = PBXBuildFile; fileRef = E19769C20E01265A003A0331 /* VERSION */; };
 		E1B27ED50E2CEE230005DBFF /* RubyCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B27ED40E2CEE230005DBFF /* RubyCocoa.framework */; };
 		E1B27EDD0E2CEED40005DBFF /* Ruby.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B27EDC0E2CEED40005DBFF /* Ruby.framework */; };
+		E1B27F140E2D44190005DBFF /* arrow-down.png in Resources */ = {isa = PBXBuildFile; fileRef = E1B27F120E2D44190005DBFF /* arrow-down.png */; };
+		E1B27F150E2D44190005DBFF /* arrow-right.png in Resources */ = {isa = PBXBuildFile; fileRef = E1B27F130E2D44190005DBFF /* arrow-right.png */; };
 		E1B7D00B0E0124DF007D96B9 /* APPL.icns in Resources */ = {isa = PBXBuildFile; fileRef = E1B7D00A0E0124DF007D96B9 /* APPL.icns */; };
 		E1BBE45E0E002E45004724B8 /* listener.rb in Resources */ = {isa = PBXBuildFile; fileRef = E1BBE45D0E002E45004724B8 /* listener.rb */; };
 		E1BBE4700E003140004724B8 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1BBE46F0E003140004724B8 /* Carbon.framework */; };
@@ -125,6 +127,8 @@
 		E19769C20E01265A003A0331 /* VERSION */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = VERSION; sourceTree = "<group>"; };
 		E1B27ED40E2CEE230005DBFF /* RubyCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RubyCocoa.framework; path = /System/Library/Frameworks/RubyCocoa.framework; sourceTree = "<absolute>"; };
 		E1B27EDC0E2CEED40005DBFF /* Ruby.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Ruby.framework; path = /System/Library/Frameworks/Ruby.framework; sourceTree = "<absolute>"; };
+		E1B27F120E2D44190005DBFF /* arrow-down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow-down.png"; sourceTree = "<group>"; };
+		E1B27F130E2D44190005DBFF /* arrow-right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow-right.png"; sourceTree = "<group>"; };
 		E1B7D00A0E0124DF007D96B9 /* APPL.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = APPL.icns; sourceTree = "<group>"; };
 		E1BBE45D0E002E45004724B8 /* listener.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = listener.rb; sourceTree = "<group>"; };
 		E1BBE46F0E003140004724B8 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
@@ -241,6 +245,8 @@
 		E12E4CDF0DFF2D5700355B0E /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				E1B27F120E2D44190005DBFF /* arrow-down.png */,
+				E1B27F130E2D44190005DBFF /* arrow-right.png */,
 				E12E4CF80DFF308300355B0E /* pass_128.png */,
 				E12E4CEC0DFF2E0500355B0E /* failure_128.png */,
 				E12E4CED0DFF2E0500355B0E /* warning_128.png */,
@@ -475,6 +481,8 @@
 				E16836B60E2BB6ED004ABB0C /* unittest.js in Resources */,
 				E16836C60E2BB926004ABB0C /* prototype.js in Resources */,
 				E134FBE40E2C0733008AD9BE /* application.js in Resources */,
+				E1B27F140E2D44190005DBFF /* arrow-down.png in Resources */,
+				E1B27F150E2D44190005DBFF /* arrow-right.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

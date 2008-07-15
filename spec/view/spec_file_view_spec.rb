@@ -29,9 +29,17 @@ describe SpecFileView do
   
   it 'should set the view' do
     $spec_list.should_receive(:file_by_index).and_return(@spec_file)
+    @spec_file_view.should_receive(:fold_button).and_return('<img />')
     @spec_file_view.should_receive(:setInnerHTML).with('title', /test.rb/)
     @spec_file_view.should_receive(:setInnerHTML).with('subtitle', /path\/to/)
     @spec_file_view.should_receive(:setInnerHTML)
     @spec_file_view.update
+  end
+  
+  it 'should set the folding button by state' do
+    @mock_spec_object.stub!(:state).and_return(:passed)
+    @spec_file_view.fold_button(@mock_spec_object).should include('+')
+    @mock_spec_object.stub!(:state).and_return(:pending)
+    @spec_file_view.fold_button(@mock_spec_object).should include('-')
   end
 end
