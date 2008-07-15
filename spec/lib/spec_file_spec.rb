@@ -47,6 +47,15 @@ describe SpecFile do
     file = SpecFile.new(:full_path => '/home/test.rb', :specs => [so])
     file.failed?.should be_true
   end
+
+  it 'should return if it contains pending specs but no failed' do
+    so = SpecObject.new(:state => :pending)
+    so2 = SpecObject.new(:state => :failed)
+    file = SpecFile.new(:full_path => '/home/test.rb', :specs => [so])
+    file.pending?.should be_true
+    file = SpecFile.new(:full_path => '/home/test.rb', :specs => [so, so2])
+    file.pending?.should be_false
+  end
   
   it 'should return specs with order (failed, pending, passed)' do
     so_passed = SpecObject.new(:name => 'test', :state => :passed)

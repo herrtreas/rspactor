@@ -55,6 +55,8 @@ class SpecTable < OSX::NSObject
   def color_by_state(spec_file)
     if spec_file.failed?
       color = NSColor.colorWithCalibratedRed_green_blue_alpha(0.8,0.1,0.1,1)
+    elsif spec_file.pending?
+      color = NSColor.colorWithCalibratedRed_green_blue_alpha(0.9,0.6,0.0,1)
     else
       color = NSColor.colorWithCalibratedRed_green_blue_alpha(0.2,0.2,0.2,1)
     end

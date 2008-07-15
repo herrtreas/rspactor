@@ -46,7 +46,6 @@ class WindowController < OSX::NSWindowController
   
   def specRunStarted(notification)
     @statusBar.indeterminate = false
-    notification.userInfo.first
     @statusBar.minValue = 1.0    
     @statusBar.doubleValue = 1.0
     @statusBar.maxValue = notification.userInfo.first

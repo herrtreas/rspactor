@@ -29,7 +29,7 @@ class SpecFile
   end
   
   def spec_count
-    @specs.count
+    @specs.size
   end
   
   # TODO: Obsolete?
@@ -39,5 +39,10 @@ class SpecFile
   
   def failed?
     !@specs.select { |s| s.state == :failed }.empty?
+  end
+  
+  def pending?
+    return false if failed?
+    !@specs.select { |s| s.state == :pending }.empty?
   end
 end
