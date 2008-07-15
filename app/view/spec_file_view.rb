@@ -23,7 +23,7 @@ class SpecFileView < HtmlView
       spec_html << "<div #{spec.state == :passed ? "style='display: none'" : ""}>"
       spec_html << "<p class='spec_message'>#{h(spec.message)}</p>" if spec.message
       spec_html << "<p class='spec_code'>#{Converter.source_to_html(spec)}</p>"
-      spec_html << "<p class='spec_trace'></p>"
+      spec_html << "<ul class='spec_trace'>#{formatted_backtrace(spec)}</ul>" if spec.state == :failed
       spec_html << '</div>'
       spec_html << '</li>'
     end
@@ -35,4 +35,11 @@ class SpecFileView < HtmlView
     button = spec.state == :passed ? "+" : "-"
     "<span class='fold_button'>#{button}</span>"
   end
+  
+  def formatted_backtrace(spec)
+    spec.backtrace.collect do |trace_line|
+      "<li>#{trace_line}</li>"
+    end.join('')
+  end
+  
 end

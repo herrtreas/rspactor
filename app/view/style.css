@@ -97,8 +97,16 @@ ul.spec p.spec_code {
 	margin: 0px;
 }
 
-ul.spec p.spec_trace {
-	margin: 0px;	
+ul.spec ul.spec_trace {
+  list-style-type: none;
+	margin: 0px 0 0 1px;
+	padding: 0px;
+}
+
+ul.spec ul.spec_trace li {
+	color: #666;
+	font-size: 12px;
+	padding: 1px;
 }
 
 ul.code_view {
