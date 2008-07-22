@@ -5,6 +5,9 @@ describe DrawerController do
   before(:each) do
     $app = mock('App')
     $app.stub!(:post_notification)
+    $app.stub!(:default_for_key)
+    $app.stub!(:default_from_key)
+    
     $spec_list = mock('SpecList')
     $spec_list.stub!(:filter=)
     @mock_window = mock('Window')
@@ -28,9 +31,10 @@ describe DrawerController do
     @controller.awakeFromNib
   end
   
-  it 'should set the hideBox state on startup to not-checked' do
+  it 'should set the hideBox state on startup by defaults' do
+    $app.should_receive(:default_from_key).and_return(1)    
     @controller.stub!(:restoreSizeFromLastSession)    
-    @mock_hide_box.should_receive(:state=).with(0)
+    @mock_hide_box.should_receive(:state=).with(1)
     @controller.awakeFromNib
   end
   
