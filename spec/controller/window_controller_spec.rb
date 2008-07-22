@@ -12,6 +12,7 @@ describe WindowController do
     
     @mock_pathTextField = mock('pathTextField', :stringValue => File.dirname(__FILE__))
     @mock_pathTextField.stub!(:hidden=)
+    @mock_pathTextField.stub!(:stringValue=)
     
     @mock_statusBar = mock('statusBar')
     @mock_statusBar.stub!(:hidden=)
@@ -25,11 +26,16 @@ describe WindowController do
     @mock_statusLabel.stub!(:hidden=)
     @mock_statusLabel.stub!(:stringValue=)
     
+    @mock_window = mock('Window')
+    @mock_window.stub!(:frameUsingName=)
+    @mock_window.stub!(:frameAutosaveName=)
+    
     @controller = WindowController.new
     @controller.runButton = @mock_runButton
     @controller.pathTextField = @mock_pathTextField
     @controller.statusBar = @mock_statusBar
     @controller.statusLabel = @mock_statusLabel
+    @controller.stub!(:window).and_return(@mock_window)
     
     $app = mock('App')
     $app.stub!(:default_for_key)
@@ -120,4 +126,17 @@ describe WindowController do
     @mock_pathTextField.should_receive(:stringValue=).with('test')
     @controller.awakeFromNib
   end
+  
+  it 'should init windowstate autosave on wake up' do
+    $app.stub!(:default_from_key)
+    @controller.should_receive(:initAndSetAutomaticPositionAndSizeStoring)
+    @controller.awakeFromNib
+  end
+  
+  it 'should setup the windowstate from defaults' do
+    @mock_window.should_receive(:frameUsingName=)
+    @mock_window.should_receive(:frameAutosaveName=)
+    @controller.initAndSetAutomaticPositionAndSizeStoring
+  end
+  
 end

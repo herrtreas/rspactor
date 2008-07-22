@@ -5,6 +5,7 @@ class WindowController < OSX::NSWindowController
   ib_action :runSpecs
   
   def awakeFromNib
+    initAndSetAutomaticPositionAndSizeStoring
     @growlController = GrowlController.new
     @pathTextField.stringValue = $app.default_from_key(:spec_run_path)
     receive :spec_run_invoked,          :specRunPreparation    
@@ -71,4 +72,11 @@ class WindowController < OSX::NSWindowController
     @pathTextField.stringValue = notification.userInfo.first
     runSpecs(nil)
   end
+  
+  def initAndSetAutomaticPositionAndSizeStoring
+    shouldCascadeWindows = false
+    self.window.frameUsingName = 'rspactor_main_window'
+    self.window.frameAutosaveName = 'rspactor_main_window'
+  end
+  
 end
