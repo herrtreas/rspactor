@@ -48,7 +48,7 @@ class RSpactorFormatter
   end
 
   def example_failed(example, counter, failure)
-    
+    backtrace = (failure.exception.backtrace.empty?) ? example.implementation_backtrace : failure.exception.backtrace
     spec = SpecObject.new(        
       :name               => example.description,
       :example_group_name => @example_group.description,
@@ -56,7 +56,7 @@ class RSpactorFormatter
       :message            => failure.exception.message,
       :error_header       => failure.header,
       :error_type         => failure.expectation_not_met? ? :expectation : :implementation,
-      :backtrace          => extract_backspace(failure.exception.backtrace)
+      :backtrace          => extract_backspace(backtrace)
     )
     
     @remote_service.incoming(:spec_run_example_failed, spec)

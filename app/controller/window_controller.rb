@@ -5,7 +5,6 @@ class WindowController < OSX::NSWindowController
   ib_action :runSpecs
   
   def awakeFromNib
-    $LOG.debug "DA!"
     @growlController = GrowlController.new
     @pathTextField.stringValue = $app.default_from_key(:spec_run_path)
     receive :spec_run_invoked,          :specRunPreparation    

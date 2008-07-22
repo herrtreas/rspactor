@@ -385,9 +385,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>E10771980E2D6846007822EC</string>
+				<string>E195B9430E367A1A003DC446</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>E10771990E2D6846007822EC</string>
+				<string>E195B9440E367A1A003DC446</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -521,10 +521,8 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>1C78EAAD065D492600B07095</string>
-		<string>1CD10A99069EF8BA00B06720</string>
-		<string>E1A615C10DF82908007DEAC7</string>
 		<string>/Users/andreas/ruby/rspactor/RSpactor.xcodeproj</string>
+		<string>1C78EAAD065D492600B07095</string>
 	</array>
 	<key>WindowString</key>
 	<string>53 55 1387 823 0 0 1440 878 </string>
@@ -557,7 +555,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {1037, 215}}</string>
 								<key>RubberWindowFrame</key>
-								<string>230 229 1037 497 0 0 1440 878 </string>
+								<string>504 389 1037 497 0 0 1920 1178 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -581,7 +579,7 @@
 								<key>Frame</key>
 								<string>{{0, 220}, {1037, 236}}</string>
 								<key>RubberWindowFrame</key>
-								<string>230 229 1037 497 0 0 1440 878 </string>
+								<string>504 389 1037 497 0 0 1920 1178 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXBuildResultsModule</string>
@@ -604,14 +602,14 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>E1A615C10DF82908007DEAC7</string>
-				<string>E107719A0E2D6846007822EC</string>
+				<string>E139C1B00E2DFAC5005D47B6</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.buildV3</string>
 			<key>WindowString</key>
-			<string>230 229 1037 497 0 0 1440 878 </string>
+			<string>504 389 1037 497 0 0 1920 1178 </string>
 			<key>WindowToolGUID</key>
 			<string>E1A615C10DF82908007DEAC7</string>
 			<key>WindowToolIsVisible</key>
@@ -857,6 +855,8 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -892,7 +892,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C78EAAD065D492600B07095</string>
-				<string>E10771A10E2D6846007822EC</string>
+				<string>E195B9450E367A1A003DC446</string>
 				<string>1C78EAAC065D492600B07095</string>
 			</array>
 			<key>ToolbarConfiguration</key>
@@ -902,7 +902,7 @@
 			<key>WindowToolGUID</key>
 			<string>1C78EAAD065D492600B07095</string>
 			<key>WindowToolIsVisible</key>
-			<false/>
+			<true/>
 		</dict>
 		<dict>
 			<key>Identifier</key>

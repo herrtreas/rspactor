@@ -23,10 +23,12 @@ class SpecObject
   
   # Implement this using regexp and $1, $2 etc..
   def backtrace=(trace)
+    $LOG.debug "TEST: #{trace.inspect}" if trace.include?('spec_object')
     @backtrace = trace
-    @file = trace[0].split("/").last.split(":").first
-    @full_file_path = trace[0].split(":").first
-    @line = trace[0].split(":")[1].to_i
+    line_containing_spec = trace.select { |l| l.include?('_spec.rb') }.first || trace.first
+    @file = line_containing_spec.split("/").last.split(":").first
+    @full_file_path = line_containing_spec.split(":").first
+    @line = line_containing_spec.split(":")[1].to_i
   end
   
   def source

@@ -19,11 +19,19 @@ describe SpecObject do
   end
   
   it 'should parse the backtrace' do
-    bt = ['/test/home/path/spec.rb:10']
+    bt = ['/path/finder.rb:25', '/test/home/path/test_spec.rb:10', '/path/runner.rb:56']
     s = SpecObject.new(:backtrace => bt)
-    s.file.should eql('spec.rb')
+    s.file.should eql('test_spec.rb')
     s.line.should eql(10)
-    s.full_file_path.should eql('/test/home/path/spec.rb')
+    s.full_file_path.should eql('/test/home/path/test_spec.rb')
+  end
+  
+  it 'should use the first line from backtrace if no spec files was involed' do
+    bt = ['/test/home/path/noexampleincluded.rb:10']
+    s = SpecObject.new(:backtrace => bt)
+    s.file.should eql('noexampleincluded.rb')
+    s.line.should eql(10)
+    s.full_file_path.should eql('/test/home/path/noexampleincluded.rb')
   end
   
   it 'should parse the source' do
