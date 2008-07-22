@@ -23,11 +23,13 @@ describe DrawerController do
   end
   
   it 'should open the drawer on startup' do
+    @controller.stub!(:restoreSizeFromLastSession)
     @mock_drawer.should_receive(:openOnEdge).with(0)
     @controller.awakeFromNib
   end
   
   it 'should set the hideBox state on startup to not-checked' do
+    @controller.stub!(:restoreSizeFromLastSession)    
     @mock_hide_box.should_receive(:state=).with(0)
     @controller.awakeFromNib
   end
@@ -51,5 +53,16 @@ describe DrawerController do
     $app.should_receive(:post_notification).with(:file_table_reload_required)
     mock_sender = mock('Sender', :state => 1)
     @controller.hideBoxClicked(mock_sender)
+  end
+  
+  it 'should restore its last size on wakeup' do
+    @controller.should_receive(:restoreSizeFromLastSession)
+    @controller.awakeFromNib
+  end
+  
+  it 'should use defaults or store the current size on restoreSize' do
+    $app.should_receive(:default_from_key).with(:files_drawer_width).and_return('10')
+    @mock_drawer.should_receive(:setContentSize)
+    @controller.restoreSizeFromLastSession
   end
 end
