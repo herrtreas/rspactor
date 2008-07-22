@@ -40,15 +40,17 @@ class AppController < OSX::NSObject
   end
   
   def taskHasFinished(notification)
-    if notification.object.terminationStatus != 0
-      data = notification.object.standardError.fileHandleForReading.availableData
-      text = NSString.alloc.initWithData_encoding(data, NSASCIIStringEncoding)
-      unless text.empty?
-        $LOG.debug "Task failed!: #{text}"
-        post_error(text)
-      end
-    end    
-    Listener.init($map.root)    
+    begin
+      if notification.object.terminationStatus != 0
+        data = notification.object.standardError.fileHandleForReading.availableData
+        text = NSString.alloc.initWithData_encoding(data, NSASCIIStringEncoding)
+        unless text.empty?
+          $LOG.debug "Task failed!: #{text}"
+          post_error(text)
+        end
+      end    
+      Listener.init($map.root) if $map
+    rescue; end
   end
   
   def center
