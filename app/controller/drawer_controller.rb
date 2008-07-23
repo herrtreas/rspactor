@@ -27,12 +27,13 @@ class DrawerController < OSX::NSWindowController
   end
   
   def restoreSizeFromLastSession
-    if drawer_size = $app.default_from_key(:files_drawer_width)
+    drawer_size = $app.default_from_key(:files_drawer_width)
+    if !drawer_size.empty?
       size = OSX::NSSize.new
       size.width = drawer_size
       drawer_size = size
     else
-       drawer_size = @filesDrawer.contentSize
+       drawer_size = @drawer.contentSize
     end    
     @drawer.setContentSize(drawer_size)    
   end
