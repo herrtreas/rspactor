@@ -11,7 +11,7 @@ describe DrawerController do
     $spec_list = mock('SpecList')
     $spec_list.stub!(:filter=)
     @mock_window = mock('Window')
-    @mock_hide_box = mock('HideBox')
+    @mock_hide_box = mock('HideBox', :state => 1)
     @mock_hide_box.stub!(:state=)
     @mock_drawer = mock('Drawer')
     @mock_drawer.stub!(:openOnEdge)

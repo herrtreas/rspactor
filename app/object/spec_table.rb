@@ -38,10 +38,6 @@ class SpecTable < OSX::NSObject
     @byFirstFailingSpecSelectedRowIndex = nil
   end
   
-  # def clearSelection
-  #   $allSpecsTableView.deselectAll(self)
-  # end
-  
   def numberOfRowsInTableView(specTable)
     $spec_list.files.size
   end
