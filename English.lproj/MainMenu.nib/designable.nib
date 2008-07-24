@@ -8,8 +8,8 @@
 		<string key="IBDocument.HIToolboxVersion">352.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="57"/>
-			<integer value="494"/>
+			<integer value="305"/>
+			<integer value="111"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -798,7 +798,7 @@
 								<bool key="EncodedWithXMLCoder">YES</bool>
 								<object class="NSMenuItem" id="397931801">
 									<reference key="NSMenu" ref="867133416"/>
-									<string key="NSTitle">NewApplication Help</string>
+									<string key="NSTitle">RSpactor Help</string>
 									<string key="NSKeyEquiv">?</string>
 									<int key="NSKeyEquivModMask">1048576</int>
 									<int key="NSMnemonicLoc">2147483647</int>
@@ -1501,6 +1501,30 @@
 					<int key="connectionID">482</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">delegate</string>
+						<reference key="source" ref="368311320"/>
+						<reference key="destination" ref="387968720"/>
+					</object>
+					<int key="connectionID">524</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: values.SUEnableAutomaticChecks</string>
+						<reference key="source" ref="807188726"/>
+						<reference key="destination" ref="946279164"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="807188726"/>
+							<reference key="NSDestination" ref="946279164"/>
+							<string key="NSLabel">value: values.SUEnableAutomaticChecks</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">values.SUEnableAutomaticChecks</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">541</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: values.SUCheckAtStartup</string>
 						<reference key="source" ref="467260078"/>
@@ -1511,38 +1535,14 @@
 							<string key="NSLabel">value: values.SUCheckAtStartup</string>
 							<string key="NSBinding">value</string>
 							<string key="NSKeyPath">values.SUCheckAtStartup</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">498</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">delegate</string>
-						<reference key="source" ref="368311320"/>
-						<reference key="destination" ref="387968720"/>
-					</object>
-					<int key="connectionID">524</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: values.SUCheckAtStartup</string>
-						<reference key="source" ref="807188726"/>
-						<reference key="destination" ref="946279164"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="807188726"/>
-							<reference key="NSDestination" ref="946279164"/>
-							<string key="NSLabel">value: values.SUCheckAtStartup</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">values.SUCheckAtStartup</string>
 							<object class="NSDictionary" key="NSOptions">
 								<string key="NS.key.0">NSValidatesImmediately</string>
-								<integer value="1" key="NS.object.0"/>
+								<reference key="NS.object.0" ref="9"/>
 							</object>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">539</int>
+					<int key="connectionID">544</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -2306,6 +2306,7 @@
 					<string>-3.ImportedFromIB2</string>
 					<string>103.IBPluginDependency</string>
 					<string>103.ImportedFromIB2</string>
+					<string>106.IBEditorWindowLastContentRect</string>
 					<string>106.IBPluginDependency</string>
 					<string>106.ImportedFromIB2</string>
 					<string>111.IBPluginDependency</string>
@@ -2506,6 +2507,7 @@
 					<reference ref="9"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
+					<string>{{314, 802}, {169, 23}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -2719,7 +2721,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">539</int>
+			<int key="maxID">544</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

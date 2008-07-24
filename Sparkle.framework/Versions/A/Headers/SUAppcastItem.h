@@ -6,8 +6,7 @@
 //  Copyright 2006 Andy Matuschak. All rights reserved.
 //
 
-#ifndef SUAPPCASTITEM_H
-#define SUAPPCASTITEM_H
+#import <Cocoa/Cocoa.h>
 
 
 @interface SUAppcastItem : NSObject {
@@ -17,32 +16,42 @@
 	
 	NSURL *releaseNotesURL;
 	
-	NSString *DSASignature;	
-	NSString *minimumSystemVersion;
+	NSString *DSASignature;
+	NSString *MD5Sum;
 	
 	NSURL *fileURL;
+	NSString *fileVersion;
 	NSString *versionString;
-	NSString *displayVersionString;
-	
-	NSDictionary *propertiesDictionary;
 }
 
 // Initializes with data from a dictionary provided by the RSS class.
 - initWithDictionary:(NSDictionary *)dict;
 
 - (NSString *)title;
-- (NSString *)versionString;
-- (NSString *)displayVersionString;
-- (NSDate *)date;
-- (NSString *)description;
-- (NSURL *)releaseNotesURL;
-- (NSURL *)fileURL;
-- (NSString *)DSASignature;
-- (NSString *)minimumSystemVersion;
+- (void)setTitle:(NSString *)aTitle;
 
-// Returns the dictionary provided in initWithDictionary; this might be useful later for extensions.
-- (NSDictionary *)propertiesDictionary;
+- (NSDate *)date;
+- (void)setDate:(NSDate *)aDate;
+
+- (NSString *)description;
+- (void)setDescription:(NSString *)aDescription;
+
+- (NSURL *)releaseNotesURL;
+- (void)setReleaseNotesURL:(NSURL *)aReleaseNotesURL;
+
+- (NSString *)DSASignature;
+- (void)setDSASignature:(NSString *)aDSASignature;
+
+- (NSString *)MD5Sum;
+- (void)setMD5Sum:(NSString *)aMd5Sum;
+
+- (NSURL *)fileURL;
+- (void)setFileURL:(NSURL *)aFileURL;
+
+- (NSString *)fileVersion;
+- (void)setFileVersion:(NSString *)aFileVersion;
+
+- (NSString *)versionString;
+- (void)setVersionString:(NSString *)versionString;
 
 @end
-
-#endif

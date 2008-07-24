@@ -6,11 +6,6 @@
 //  Copyright 2006 Andy Matuschak. All rights reserved.
 //
 
-#ifndef NSFILEMANAGER_PLUS_AUTHENTICATION_H
-#define NSFILEMANAGER_PLUS_AUTHENTICATION_H
-
 @interface NSFileManager (SUAuthenticationAdditions)
-- (BOOL)copyPathWithAuthentication:(NSString *)src overPath:(NSString *)dst error:(NSError **)error;
+- (BOOL)movePathWithAuthentication:(NSString *)src toPath:(NSString *)dst;
 @end
-
-#endif

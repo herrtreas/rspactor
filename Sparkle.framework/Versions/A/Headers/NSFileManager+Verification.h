@@ -6,12 +6,10 @@
 //  Copyright 2006 Andy Matuschak. All rights reserved.
 //
 
-#ifndef NSFILEMANAGER_PLUS_VERIFICATION_H
-#define NSFILEMANAGER_PLUS_VERIFICATION_H
+#import <Cocoa/Cocoa.h>
 
 // For the paranoid folks!
 @interface NSFileManager (SUVerification)
-- (BOOL)validatePath:(NSString *)path withEncodedDSASignature:(NSString *)encodedSignature withPublicDSAKey:(NSString *)pkeyString;
+- (BOOL)validatePath:(NSString *)path withMD5Hash:(NSString *)hash;
+- (BOOL)validatePath:(NSString *)path withEncodedDSASignature:(NSString *)encodedSignature;
 @end
-
-#endif

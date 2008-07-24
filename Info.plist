@@ -23,7 +23,7 @@
 	<key>CFBundleIdentifier</key>
 	<string>com.dynamicdudes.RSpactor</string>
 	<key>SUFeedURL</key>
-	<string>http://labs.rubyphunk.com/rspactor_edge.xml</string>
+	<string>http://labs.rubyphunk.com/rspactor.xml</string>
 	<key>SUCheckAtStartup</key>
   <true/>  
  	<key>NSHumanReadableCopyright</key>
@@ -32,8 +32,8 @@
 http://www.rubyphunk.com
 	</string>
 	<key>CFBundleVersion</key>
-  <string>0.9.14</string>
+  <string>0.9.15</string>
   <key>CFBundleShortVersionString</key>
-  <string>0.9.14</string>  
+  <string>0.9.15</string>  
 </dict>
 </plist>
