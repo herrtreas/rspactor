@@ -49,6 +49,7 @@
 		E16836B50E2BB6ED004ABB0C /* sound.js in Resources */ = {isa = PBXBuildFile; fileRef = E16836AE0E2BB6ED004ABB0C /* sound.js */; };
 		E16836B60E2BB6ED004ABB0C /* unittest.js in Resources */ = {isa = PBXBuildFile; fileRef = E16836AF0E2BB6ED004ABB0C /* unittest.js */; };
 		E16836C60E2BB926004ABB0C /* prototype.js in Resources */ = {isa = PBXBuildFile; fileRef = E16836C50E2BB926004ABB0C /* prototype.js */; };
+		E18500EE0E4260E0003D4E1E /* textmate.rb in Resources */ = {isa = PBXBuildFile; fileRef = E18500ED0E4260E0003D4E1E /* textmate.rb */; };
 		E193ED830DFAAADE00D17070 /* app_controller.rb in Resources */ = {isa = PBXBuildFile; fileRef = E193ED770DFAAADE00D17070 /* app_controller.rb */; };
 		E193ED840DFAAADE00D17070 /* drawer_controller.rb in Resources */ = {isa = PBXBuildFile; fileRef = E193ED780DFAAADE00D17070 /* drawer_controller.rb */; };
 		E193ED850DFAAADE00D17070 /* window_controller.rb in Resources */ = {isa = PBXBuildFile; fileRef = E193ED790DFAAADE00D17070 /* window_controller.rb */; };
@@ -129,6 +130,7 @@
 		E16836AE0E2BB6ED004ABB0C /* sound.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = sound.js; sourceTree = "<group>"; };
 		E16836AF0E2BB6ED004ABB0C /* unittest.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = unittest.js; sourceTree = "<group>"; };
 		E16836C50E2BB926004ABB0C /* prototype.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = prototype.js; sourceTree = "<group>"; };
+		E18500ED0E4260E0003D4E1E /* textmate.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = textmate.rb; sourceTree = "<group>"; };
 		E193ED770DFAAADE00D17070 /* app_controller.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = app_controller.rb; sourceTree = "<group>"; };
 		E193ED780DFAAADE00D17070 /* drawer_controller.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = drawer_controller.rb; sourceTree = "<group>"; };
 		E193ED790DFAAADE00D17070 /* window_controller.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = window_controller.rb; sourceTree = "<group>"; };
@@ -369,6 +371,7 @@
 		E193ED7A0DFAAADE00D17070 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				E18500ED0E4260E0003D4E1E /* textmate.rb */,
 				E16141AE0E23719E006BC96E /* converter.rb */,
 				E11E361D0E0C0DAE00534748 /* spec_file.rb */,
 				E1BBE45D0E002E45004724B8 /* listener.rb */,
@@ -502,6 +505,7 @@
 				E134FBE40E2C0733008AD9BE /* application.js in Resources */,
 				E1B27F140E2D44190005DBFF /* arrow-down.png in Resources */,
 				E1B27F150E2D44190005DBFF /* arrow-right.png in Resources */,
+				E18500EE0E4260E0003D4E1E /* textmate.rb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

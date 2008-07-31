@@ -45,6 +45,6 @@ class WebviewController < OSX::NSWindowController
   end
   
   def webView_runJavaScriptAlertPanelWithMessage(webview, message)
-    $LOG.debug "JS: #{message}"
+    TextMate.open_file_with_line(message)
   end  
 end

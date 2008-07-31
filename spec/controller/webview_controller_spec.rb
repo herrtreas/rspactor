@@ -2,6 +2,7 @@ require File.dirname(__FILE__) + '/../spec_helper'
 require 'webview_controller'
 require 'html_view'
 require 'spec_file_view'
+require 'textmate'
 
 describe WebviewController do
   before(:each) do
@@ -39,5 +40,10 @@ describe WebviewController do
     mock_notification.stub!(:object).and_return(mock_table)
     @controller.should_receive(:loadHtml).with('spec_file.html')
     @controller.showSpecFileView(mock_notification)
+  end
+  
+  it 'should open TextMate on JS alert' do
+    TextMate.should_receive(:open_file_with_line)
+    @controller.webView_runJavaScriptAlertPanelWithMessage(nil, 'test.rb:5')
   end
 end

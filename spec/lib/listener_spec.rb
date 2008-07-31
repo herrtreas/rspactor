@@ -9,7 +9,6 @@ describe Listener do
   
   it 'should ensure the map before starting the listener' do
     Map.should_receive(:ensure)
-#    Map.should_not_receive(:ensure)
     Listener.init('path')
   end
   
