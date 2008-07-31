@@ -10,6 +10,7 @@ class SpecFileView < HtmlView
   
   def update
     file = $spec_list.file_by_index(@file_index)
+    return unless file
     setInnerHTML('title', file.name)
     setInnerHTML('subtitle', file.full_path)
     

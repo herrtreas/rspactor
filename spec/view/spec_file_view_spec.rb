@@ -50,4 +50,10 @@ describe SpecFileView do
     @mock_spec_object.should_not_receive(:backtrace).and_return('')
     @spec_file_view.update
   end
+  
+  it 'should return if spec file is nil' do
+    $spec_list.stub!(:file_by_index).and_return(nil)
+    @spec_file_view.should_not_receive(:setInnerHTML)
+    @spec_file_view.update
+  end
 end
