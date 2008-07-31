@@ -43,12 +43,7 @@ describe SpecFileView do
     @spec_file_view.fold_button(@mock_spec_object).should include('+')
     @mock_spec_object.stub!(:state).and_return(:pending)
     @spec_file_view.fold_button(@mock_spec_object).should include('-')
-  end
-  
-  it 'should format a specs backtrace' do
-    @mock_spec_object.should_receive(:backtrace).and_return(['/path/to/file.rb'])
-    @spec_file_view.formatted_backtrace(@mock_spec_object).should eql('<li>/path/to/file.rb</li>')
-  end
+  end  
   
   it 'should not show backtraces for passing specs' do
     $spec_list.stub!(:file_by_index).and_return(@spec_file)

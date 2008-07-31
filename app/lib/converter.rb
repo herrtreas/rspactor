@@ -27,22 +27,21 @@ module Converter
         lines << "</li>"
       end
       lines << "</ul>"
-#      "<div class='code' onclick='#{ext_file_alert(spec.full_file_path, spec.line)}'>#{lines.join("\n")}</div>"
-      "<div class='code'>#{lines.join("\n")}</div>"
+      
+      alert_line = spec.full_file_path + ':' + spec.line.to_s
+      "<div class='code' onclick='alert(\"#{alert_line}\")'>#{lines.join("\n")}</div>"
     end
     
-    # 
-    # def ext_file_alert(full_file_path, line)
-    #    "alert(\"#{External.file_link(full_file_path, line)}\")"
-    # end
-    # 
-    # def formatted_backtrace(spec)
-    #   html =  ''
-    #   spec.backtrace.each do |trace_line|
-    #     ext_alert = ext_file_alert(trace_line.split(':')[0], trace_line.split(':')[1]) 
-    #     html << "<li><a href='javascript:#{ext_alert}'>#{trace_line}</a></li>"
-    #   end    
-    #   "<ul class='trace'>#{html}</ul>"
-    # end    
+    def formatted_backtrace(spec)
+      spec.backtrace.collect do |trace_line|
+        alert_line = trim_line_for_alert(trace_line)
+        "<li><a href='#' onclick='alert(\"#{alert_line}\")'>#{trace_line}</a></li>"
+      end.join('')
+    end
+
+    def trim_line_for_alert(line)
+      line.split(':')[0...2].join(':')
+    end
+    
   end
 end

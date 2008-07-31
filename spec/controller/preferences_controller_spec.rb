@@ -12,9 +12,11 @@ describe PreferencesController do
     @mock_spec_field.stub!(:stringValue=)
     @mock_ruby_field = mock('RubyField')
     @mock_ruby_field.stub!(:stringValue=)
+    @mock_tm_field.stub!(:stringValue=)
     @controller.panel = @mock_panel
     @controller.specBinPath = @mock_spec_field
     @controller.rubyBinPath = @mock_ruby_field
+    @controller.tmBinPath = @mock_tm_field
   end
   
   it 'should be an OSX::NSObject' do
@@ -35,6 +37,11 @@ describe PreferencesController do
     @controller.should_receive(:set_default_ruby_bin_path)
     @controller.awakeFromNib
   end
+
+  it 'should read the default_tm_bin on wakeup' do
+    @controller.should_receive(:set_default_tm_bin_path)
+    @controller.awakeFromNib
+  end
   
   it 'should read the default spec_bin_path from defaults and assign it to spec_bin textfield' do
     $app.should_receive(:default_from_key).with(:spec_bin_path, '/usr/bin/spec').and_return('/usr/bin/spec')
@@ -47,12 +54,20 @@ describe PreferencesController do
     @mock_ruby_field.should_receive(:stringValue=).with('/usr/bin/ruby')
     @controller.set_default_ruby_bin_path
   end
+
+  it 'should read the default tm_bin_path from defaults and assign it to tm_bin textfield' do
+    $app.should_receive(:default_from_key).with(:tm_bin_path, '/usr/bin/mate').and_return('/usr/bin/mate')
+    @mock_tm_field.should_receive(:stringValue=).with('/usr/bin/mate')
+    @controller.set_default_tm_bin_path
+  end
   
-  it 'should set both bin path on text change' do
+  it 'should set all bin path on text change' do
     @mock_spec_field.stub!(:stringValue).and_return('spec_bin')    
     @mock_ruby_field.stub!(:stringValue).and_return('ruby_bin')    
+    @mock_tm_field.stub!(:stringValue).and_return('tm_bin')    
     $app.should_receive(:default_for_key).with(:spec_bin_path, 'spec_bin').once
     $app.should_receive(:default_for_key).with(:ruby_bin_path, 'ruby_bin').once
+    $app.should_receive(:default_for_key).with(:tm_bin_path, 'tm_bin').once
     @controller.controlTextDidChange(nil)    
   end
   

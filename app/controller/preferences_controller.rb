@@ -1,7 +1,7 @@
 require 'osx/cocoa'
 
 class PreferencesController < OSX::NSWindowController
-  ib_outlet :panel, :specBinPath, :rubyBinPath
+  ib_outlet :panel, :specBinPath, :rubyBinPath, :tmBinPath
   
   def initialize
     unless $app.default_from_key(:spec_bin_path, nil)
@@ -12,11 +12,16 @@ class PreferencesController < OSX::NSWindowController
       ruby_bin_path = `/usr/bin/which ruby`
       $app.default_for_key(:ruby_bin_path, ruby_bin_path) unless ruby_bin_path.empty?
     end
+    unless $app.default_from_key(:tm_bin_path, nil)
+      tm_bin_path = `/usr/bin/which mate`
+      $app.default_for_key(:tm_bin_path, tm_bin_path) unless tm_bin_path.empty?
+    end
   end
   
   def awakeFromNib
     set_default_spec_bin_path
     set_default_ruby_bin_path
+    set_default_tm_bin_path
   end
   
   def showWindow(sender)
@@ -30,10 +35,15 @@ class PreferencesController < OSX::NSWindowController
   def set_default_ruby_bin_path
     @rubyBinPath.stringValue = $app.default_from_key(:ruby_bin_path, '/usr/bin/ruby')
   end
+
+  def set_default_tm_bin_path
+    @tmBinPath.stringValue = $app.default_from_key(:tm_bin_path, '/usr/bin/mate')
+  end
   
   def controlTextDidChange(notification)
     $app.default_for_key(:spec_bin_path, @specBinPath.stringValue)
     $app.default_for_key(:ruby_bin_path, @rubyBinPath.stringValue)
+    $app.default_for_key(:tm_bin_path, @tmBinPath.stringValue)
   end
   
 end
