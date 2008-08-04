@@ -104,4 +104,9 @@ describe AppController do
     @app.should_receive(:post_notification).once.with(:spec_run_processed, @mock_spec)
     @app.spec_run_processed(mock_notification)
   end
+  
+  it 'should post a notification if the application gets resurrected' do
+    @app.should_receive(:post_notification).once.with(:application_resurrected)
+    @app.applicationShouldHandleReopen_hasVisibleWindows(nil, nil)    
+  end
 end

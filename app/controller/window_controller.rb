@@ -16,6 +16,7 @@ class WindowController < OSX::NSWindowController
     receive :spec_run_example_failed,   :specRunFinishedSingleSpec
     receive :error,                     :specRunFinished
     receive :relocate_and_run,          :relocateDirectoryAndRunSpecs
+    receive :application_resurrected,   :resurrectWindow
   end
   
   def runSpecs(sender)
@@ -79,4 +80,7 @@ class WindowController < OSX::NSWindowController
     self.window.frameAutosaveName = 'rspactor_main_window'
   end
   
+  def resurrectWindow(notification)
+    self.window.makeKeyAndOrderFront(self)
+  end
 end

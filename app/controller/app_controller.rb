@@ -17,6 +17,10 @@ class AppController < OSX::NSObject
     receive :NSTaskDidTerminateNotification,  :taskHasFinished   
   end
   
+  def applicationShouldHandleReopen_hasVisibleWindows(application, has_open_windows)
+    post_notification :application_resurrected
+  end
+  
   def spec_run_has_started(notification)
     $LOG.debug "Spec run started.."
     $spec_list.clear_run_stats

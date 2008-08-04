@@ -139,4 +139,8 @@ describe WindowController do
     @controller.initAndSetAutomaticPositionAndSizeStoring
   end
   
+  it 'should show window again after resurrection' do
+    @mock_window.should_receive(:makeKeyAndOrderFront)
+    @controller.resurrectWindow(nil)
+  end
 end
