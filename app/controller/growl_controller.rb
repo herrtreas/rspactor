@@ -21,14 +21,14 @@ class GrowlController < OSX::NSObject
   end
   
   def specRunFinishedWithSummaryDump(notification)
-    duration, example_count, failure_count, pending_count = notification.userInfo    
-    message = "#{example_count} examples, #{failure_count} failed, #{pending_count} pending\nTook: #{duration} seconds"
+    duration, example_count, failure_count, pending_count = notification.userInfo
+    message = "#{example_count} examples, #{failure_count} failed, #{pending_count} pending\nTook: #{duration.to_f.round} seconds"
     status_image = imageForGrowl((failure_count == 0) ? :pass : :failure)    
     @growl.notify(MESSAGE_KIND, 'RSpactor Results', message, nil, false, 0, status_image)    
   end
 
   def errorPosted(notification)
-    title = 'Error loading spec environment!'
+    title = 'Error loading spec environment:'
     if notification.userInfo.first.kind_of?(OSX::NSArray)
       message = notification.userInfo.first[0...2].join("\n")
     else
