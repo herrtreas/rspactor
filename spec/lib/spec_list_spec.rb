@@ -103,4 +103,10 @@ describe SpecList do
     @spec_list.filter.should eql(:all)
     @spec_list.filter = :failed
   end
+  
+  it 'should clear files, specs, and runstats' do
+    @spec_list.should_receive(:clear_run_stats)
+    @spec_list.clear!
+    @spec_list.files.should be_empty
+  end
 end

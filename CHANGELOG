@@ -1,3 +1,7 @@
 == 0.9.17 / August 10, 2008
 
+=== Changes
+* Clear all lists and states if the spec-run location has changed
+
+=== Fixes
 * Made the main application window appear again after close

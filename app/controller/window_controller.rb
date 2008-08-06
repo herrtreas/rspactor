@@ -8,15 +8,7 @@ class WindowController < OSX::NSWindowController
     initAndSetAutomaticPositionAndSizeStoring
     @growlController = GrowlController.new
     @pathTextField.stringValue = $app.default_from_key(:spec_run_path)
-    receive :spec_run_invoked,          :specRunPreparation    
-    receive :spec_run_start,            :specRunStarted
-    receive :spec_run_close,            :specRunFinished
-    receive :spec_run_example_passed,   :specRunFinishedSingleSpec
-    receive :spec_run_example_pending,  :specRunFinishedSingleSpec
-    receive :spec_run_example_failed,   :specRunFinishedSingleSpec
-    receive :error,                     :specRunFinished
-    receive :relocate_and_run,          :relocateDirectoryAndRunSpecs
-    receive :application_resurrected,   :resurrectWindow
+    hook_events
   end
   
   def runSpecs(sender)
@@ -82,5 +74,17 @@ class WindowController < OSX::NSWindowController
   
   def resurrectWindow(notification)
     self.window.makeKeyAndOrderFront(self)
+  end
+  
+  def hook_events
+    receive :spec_run_invoked,          :specRunPreparation    
+    receive :spec_run_start,            :specRunStarted
+    receive :spec_run_close,            :specRunFinished
+    receive :spec_run_example_passed,   :specRunFinishedSingleSpec
+    receive :spec_run_example_pending,  :specRunFinishedSingleSpec
+    receive :spec_run_example_failed,   :specRunFinishedSingleSpec
+    receive :error,                     :specRunFinished
+    receive :relocate_and_run,          :relocateDirectoryAndRunSpecs
+    receive :application_resurrected,   :resurrectWindow    
   end
 end

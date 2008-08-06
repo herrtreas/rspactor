@@ -26,11 +26,16 @@ class SpecList
   def at(obj)
     @list.at(obj)
   end
-    
+  
+  def clear!
+    @list = []
+    @files = []
+    clear_run_stats
+  end  
+  
   def clear_run_stats
     @total_spec_count = 0
     @processed_spec_count = 0
-#    @list = []
   end
 
   def size

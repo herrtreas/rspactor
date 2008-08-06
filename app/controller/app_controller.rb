@@ -14,7 +14,7 @@ class AppController < OSX::NSObject
     receive :spec_run_example_pending,        :spec_run_processed
     receive :spec_run_example_failed,         :spec_run_processed
     receive :spec_run_close,                  :specRunFinished
-    receive :NSTaskDidTerminateNotification,  :taskHasFinished   
+    receive :NSTaskDidTerminateNotification,  :taskHasFinished
   end
   
   def applicationShouldHandleReopen_hasVisibleWindows(application, has_open_windows)
@@ -82,5 +82,4 @@ class AppController < OSX::NSObject
     post_notification(:error, message)
     SpecRunner.commandHasFinished!    
   end
-  
 end

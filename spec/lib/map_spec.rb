@@ -100,11 +100,14 @@ end
 
 describe Map, 'klass' do
   before(:each) do
-    Map.ensure($fpath_simple)
-    sleep 0.5 #wtf.. but I'm currently not sure how to test threads
+    $app = mock('App')
+    $spec_list = mock('SpecList')
+    $spec_list.stub!(:clear!)
   end
   
   it 'should create an global instance of itself' do
+    Map.ensure($fpath_simple)
+    sleep 0.5 #wtf.. but I'm currently not sure how to test threads
     $map.should_not be_nil
   end
   
@@ -118,5 +121,17 @@ describe Map, 'klass' do
     Map.ensure($fpath_simple) { $test = 'fu' }
     sleep 0.5 #wtf.. but I'm currently not sure how to test threads 
     $test.should eql('fu')
+  end
+  
+  it 'should post a notification if the map location has changed' do
+    $app.should_receive(:post_notification).once.with(:map_location_changed)
+    Map.ensure($fpath_doubles)
+    sleep 0.5 #wtf.. but I'm currently not sure how to test threads 
+  end
+  
+  it 'should clear spec list if location has changed' do
+    $spec_list.should_receive(:clear!)
+    Map.ensure($fpath_doubles)
+    sleep 0.5 #wtf.. but I'm currently not sure how to test threads 
   end
 end

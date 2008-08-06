@@ -9,6 +9,7 @@ class Map
     Thread.start do 
       $LOG.debug 'Ensuring map..'
       wait_if_map_is_currently_building
+      location_has_changed(path)
       unless $map && $map.created? && $map.root == $path
         $LOG.debug "Rebuilding map in #{path}.."
         $map = Map.new
@@ -26,6 +27,11 @@ class Map
       sleep 0.1
     end
   end
+  
+  def self.location_has_changed(new_path)
+    $spec_list.clear!
+    $app.post_notification(:map_location_changed) if $map && $map.root != new_path
+  end  
   
   def initialize
     @files = {}

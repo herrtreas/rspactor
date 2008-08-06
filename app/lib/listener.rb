@@ -12,7 +12,15 @@ class Listener
   end  
   
   def self.init(path)
-    return false if already_running?
+    
+    if already_running?
+      if class_variable_defined?(:@@listen_to_path) && @@listen_to_path != path
+        @@listener.stop
+      else
+        return false 
+      end
+    end
+    
     Map.ensure(path) do
       @@listener = Listener.new(path) do |files|        
         begin
@@ -41,6 +49,7 @@ class Listener
     begin     
       @@block_to_execute = block
       @@spec_run_time = Time.now
+      @@listen_to_path = path
       
       OSX.require_framework '/System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework'
       @stream = OSX::FSEventStreamCreate(OSX::KCFAllocatorDefault, @@callback, nil, [path], OSX::KFSEventStreamEventIdSinceNow, 0.0, 0)
