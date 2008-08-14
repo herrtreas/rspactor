@@ -66,4 +66,22 @@ describe SpecFile do
     file.specs[1].name.should eql('test3')
     file.specs[2].name.should eql('test')
   end
+  
+  it 'should remove tainted specs' do
+    spec1 = SpecObject.new(:name => 'test')
+    spec2 = SpecObject.new(:name => 'test2'); spec2.taint
+    spec3 = SpecObject.new(:name => 'test3')
+    file = SpecFile.new(:full_path => '/home/test.rb', :specs => [spec1, spec2, spec3])
+    removed_specs = file.remove_tainted_specs
+    removed_specs.first.should eql(spec2)
+    file.specs.size.should eql(2)
+  end
+  
+  it 'should be able to taint all its containing specs' do
+    spec1 = SpecObject.new(:name => 'test')
+    file = SpecFile.new(:full_path => '/home/test.rb', :specs => [spec1])
+    file.taint_all_specs
+    file.specs.first.should be_tainted
+  end
+  
 end

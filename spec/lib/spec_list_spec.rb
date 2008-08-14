@@ -109,4 +109,22 @@ describe SpecList do
     @spec_list.clear!
     @spec_list.files.should be_empty
   end
+
+  it 'should untaint specs on add' do
+    @spec.should_receive(:untaint)
+    @spec_list << @spec
+  end
+  
+  it 'should remove a bulk of specs' do
+    @spec_list.specs_size.should eql(4)
+    @spec_list.bulk_remove_specs([@spec, @pending_spec])
+    @spec_list.specs_size.should eql(2)
+  end
+  
+  it 'should remove tainted specs on access to file_by_index' do
+    @spec.taint
+    @spec_list.should_receive(:bulk_remove_specs).with([@spec])
+    @spec_list.file_by_index(0)
+  end
+  
 end

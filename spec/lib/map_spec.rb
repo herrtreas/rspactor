@@ -130,6 +130,8 @@ describe Map, 'klass' do
   end
   
   it 'should clear spec list if location has changed' do
+    $map = Map.new
+    $map.root = $fpath_simple    
     $spec_list.should_receive(:clear!)
     Map.ensure($fpath_doubles)
     sleep 0.5 #wtf.. but I'm currently not sure how to test threads 

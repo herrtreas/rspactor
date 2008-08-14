@@ -2,6 +2,7 @@
 
 === Changes
 * Clear all lists and states if the spec-run location has changed
+* Follow spec renaming and deletion
 
 === Fixes
 * Made the main application window appear again after close

@@ -11,6 +11,7 @@ class SpecList
   end
   
   def << (spec)
+    spec.untaint
     add_or_replace(spec)
     add_or_update_file(spec)
   end
@@ -36,10 +37,15 @@ class SpecList
   def clear_run_stats
     @total_spec_count = 0
     @processed_spec_count = 0
+    files.each { |f| f.prepare_next_run }
   end
 
   def size
     files.size
+  end
+
+  def specs_size
+    @list.size
   end
 
   def files
@@ -52,7 +58,12 @@ class SpecList
   end
   
   def file_by_index(index)
-    files[index]
+    file = files[index]
+    if file
+      removed_specs = file.remove_tainted_specs
+      bulk_remove_specs(removed_specs)
+    end
+    file
   end
   
   def contains_file?(file)
@@ -77,6 +88,10 @@ class SpecList
   
   def index_by_spec(spec)
     index_by_file(file_by_spec(spec))
+  end
+  
+  def bulk_remove_specs(specs)
+    specs.each { |s| @list.delete(s) }
   end
   
   private
