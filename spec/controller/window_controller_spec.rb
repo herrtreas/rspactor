@@ -25,6 +25,7 @@ describe WindowController do
     @mock_statusLabel = mock('statusLabel')
     @mock_statusLabel.stub!(:hidden=)
     @mock_statusLabel.stub!(:stringValue=)
+    @mock_statusLabel.stub!(:textColor=)
     
     @mock_window = mock('Window')
     @mock_window.stub!(:frameUsingName=)
@@ -114,11 +115,11 @@ describe WindowController do
     @controller.specRunFinishedSingleSpec(nil)        
   end 
   
-  it 'should receive changeText notifications from path text field and save its current value to defaults' do
+  it 'should receive texteditingend notifications from path text field and save its current value to defaults' do
     mock_notification = mock('Notification')
     mock_notification.stub!(:object).and_return(@mock_pathTextField)
     $app.should_receive(:default_for_key).with(:spec_run_path, File.dirname(__FILE__))
-    @controller.controlTextDidChange(mock_notification)
+    @controller.controlTextDidEndEditing(mock_notification)
   end
   
   it 'should restore the last run path on awake' do
@@ -142,5 +143,24 @@ describe WindowController do
   it 'should show window again after resurrection' do
     @mock_window.should_receive(:makeKeyAndOrderFront)
     @controller.resurrectWindow(nil)
+  end
+  
+  it 'should test if the entered path exist before running specs' do
+    mock_notification = mock('Notification')
+    mock_notification.stub!(:object).and_return(@mock_pathTextField)
+    @controller.should_receive(:path_is_valid?)
+    @controller.controlTextDidEndEditing(mock_notification)    
+  end
+  
+  it 'should update the statusLabel if a given path doesnt exist' do
+    @mock_statusLabel.should_receive(:hidden=).with(false)
+    @mock_statusLabel.should_receive(:stringValue=)
+    @controller.path_is_valid?('/tmp/funochnichdaoderso').should be_false
+  end
+  
+  it 'should clear the statusLabel if a given path exists' do
+    @mock_statusLabel.should_receive(:hidden=).with(true)
+    @mock_statusLabel.should_receive(:stringValue=).with('')
+    @controller.path_is_valid?('/tmp').should be_true
   end
 end

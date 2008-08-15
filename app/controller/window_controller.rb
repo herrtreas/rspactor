@@ -56,8 +56,10 @@ class WindowController < OSX::NSWindowController
     @statusLabel.stringValue = "Running #{$spec_list.processed_spec_count}...#{$spec_list.total_spec_count}"
   end
   
-  def controlTextDidChange(notification)
-    $app.default_for_key(:spec_run_path, notification.object.stringValue)
+  def controlTextDidEndEditing(notification)
+    if path_is_valid?(notification.object.stringValue)
+      $app.default_for_key(:spec_run_path, notification.object.stringValue)
+    end
   end
   
   def relocateDirectoryAndRunSpecs(notification)
@@ -76,6 +78,20 @@ class WindowController < OSX::NSWindowController
     self.window.makeKeyAndOrderFront(self)
   end
   
+  def path_is_valid?(path)
+    if File.exist?(path)
+      @statusLabel.stringValue = ''
+      @statusLabel.textColor = OSX::NSColor.colorWithCalibratedRed_green_blue_alpha(0.423077, 0.423077, 0.423077, 1)
+      @statusLabel.hidden = true     
+      return true
+    else
+      @statusLabel.stringValue = "- The given path doesn't exist. -"
+      @statusLabel.textColor = OSX::NSColor.colorWithCalibratedRed_green_blue_alpha(1.0, 0, 0, 1)
+      @statusLabel.hidden = false
+      return false
+    end    
+  end
+  
   def hook_events
     receive :spec_run_invoked,          :specRunPreparation    
     receive :spec_run_start,            :specRunStarted
@@ -86,5 +102,5 @@ class WindowController < OSX::NSWindowController
     receive :error,                     :specRunFinished
     receive :relocate_and_run,          :relocateDirectoryAndRunSpecs
     receive :application_resurrected,   :resurrectWindow    
-  end
+  end  
 end

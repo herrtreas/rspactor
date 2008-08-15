@@ -35,12 +35,12 @@ describe SpecTable do
   it 'should return a color by file state' do
     mock_spec_file = mock('SpecFile', :failed? => true, :pending? => false)
     color = @table.color_by_state(mock_spec_file)
-    color.to_s.should include('0.8 0.1 0.1')
+    color.should == { :red => 0.8, :green => 0.1, :blue => 0.1 }
   end
   
   it 'should return orange color for a pending spec' do
     mock_spec_file = mock('SpecFile', :pending? => true, :failed? => false)
     color = @table.color_by_state(mock_spec_file)
-    color.to_s.should include('0.9 0.6 0 1')
+    color.should == { :red => 0.9, :green => 0.6, :blue => 0}
   end
 end

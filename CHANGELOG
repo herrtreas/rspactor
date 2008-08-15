@@ -1,8 +1,9 @@
 == 0.9.17 / August 10, 2008
 
 === Changes
-* Clear all lists and states if the spec-run location has changed
-* Follow spec renaming and deletion
+* Clear all lists and states if the spec-run location has changed.
+* Follow spec renaming and deletion.
+* Small warning if a spec-run location doesn't exist.
 
 === Fixes
-* Made the main application window appear again after close
+* Made the main application window appear again after close.

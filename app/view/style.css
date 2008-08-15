@@ -113,6 +113,8 @@ ul.code_view {
   list-style-type: none;
   margin: 0px;
   padding: 0px;
+	width: 100%;
+	overflow: auto;	
 }
 
 ul.code_view li {

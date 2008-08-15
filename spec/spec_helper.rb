@@ -9,6 +9,7 @@ $fpath_doubles  = File.join(File.dirname(__FILE__), 'fixtures/maps/doubles')
 $fpath_rails    = File.join(File.dirname(__FILE__), 'fixtures/maps/rails')
 
 require 'osx/cocoa'
+require 'string'
 require 'ns_object'
 require 'log'
 
