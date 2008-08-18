@@ -4,6 +4,7 @@
 * Clear all lists and states if the spec-run location has changed.
 * Follow spec renaming and deletion.
 * Small warning if a spec-run location doesn't exist.
+* Checks for valid bin_paths in the preferences pane
 
 === Fixes
 * Made the main application window appear again after close.

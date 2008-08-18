@@ -6,12 +6,14 @@ describe PreferencesController do
     $app = mock('App')
     $app.stub!(:default_from_key)
     $app.stub!(:default_for_key)
+    $app.stub!(:file_exist?)
     @controller = PreferencesController.new
     @mock_panel = mock('Panel')
-    @mock_spec_field = mock('SpecField')
+    @mock_spec_field = mock('SpecField', :stringValue => '')
     @mock_spec_field.stub!(:stringValue=)
-    @mock_ruby_field = mock('RubyField')
+    @mock_ruby_field = mock('RubyField', :stringValue => '')
     @mock_ruby_field.stub!(:stringValue=)
+    @mock_tm_field = mock('TMField', :stringValue => '')
     @mock_tm_field.stub!(:stringValue=)
     @controller.panel = @mock_panel
     @controller.specBinPath = @mock_spec_field
@@ -62,14 +64,22 @@ describe PreferencesController do
   end
   
   it 'should set all bin path on text change' do
-    @mock_spec_field.stub!(:stringValue).and_return('spec_bin')    
-    @mock_ruby_field.stub!(:stringValue).and_return('ruby_bin')    
-    @mock_tm_field.stub!(:stringValue).and_return('tm_bin')    
-    $app.should_receive(:default_for_key).with(:spec_bin_path, 'spec_bin').once
-    $app.should_receive(:default_for_key).with(:ruby_bin_path, 'ruby_bin').once
-    $app.should_receive(:default_for_key).with(:tm_bin_path, 'tm_bin').once
-    @controller.controlTextDidChange(nil)    
+    mock_notification = mock('Object')
+    mock_notification.stub!(:object).and_return(@mock_spec_field)
+    @mock_spec_field.stub!(:stringValue).and_return('bin_path')    
+    @mock_ruby_field.stub!(:stringValue).and_return('bin_path')    
+    @mock_tm_field.stub!(:stringValue).and_return('bin_path')
+    $app.should_receive(:default_for_key).with(:spec_bin_path, 'bin_path').once
+    $app.should_receive(:default_for_key).with(:ruby_bin_path, 'bin_path').once
+    $app.should_receive(:default_for_key).with(:tm_bin_path, 'bin_path').once
+    $app.stub!(:file_exist?).and_return(true)
+    @controller.controlTextDidEndEditing(mock_notification)    
   end
   
-  it 'should alert if bin path is invalid'
+  it 'should check if bin paths are valid' do
+    mock_notification = mock('Object')
+    mock_notification.stub!(:object).and_return(@mock_spec_field)
+    @controller.should_receive(:check_path_and_set_default).exactly(3).times
+    @controller.controlTextDidEndEditing(mock_notification)    
+  end
 end

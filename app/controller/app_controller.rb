@@ -82,4 +82,12 @@ class AppController < OSX::NSObject
     post_notification(:error, message)
     SpecRunner.commandHasFinished!    
   end
+  
+  def file_exist?(path)
+    unless File.exist?(path)
+      post_notification(:file_doesnot_exist, path)
+      return false
+    end
+    true
+  end
 end

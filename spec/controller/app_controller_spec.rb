@@ -109,4 +109,14 @@ describe AppController do
     @app.should_receive(:post_notification).once.with(:application_resurrected)
     @app.applicationShouldHandleReopen_hasVisibleWindows(nil, nil)    
   end
+  
+  it 'should check if a file exists' do
+    @app.stub!(:post_notification)
+    @app.file_exist?('/tmp/nixdahey').should be_false
+  end
+  
+  it 'should post a notification if a file doesnot exist' do
+    @app.should_receive(:post_notification).once.with(:file_doesnot_exist, '/tmp/nixdahey')    
+    @app.file_exist?('/tmp/nixdahey')
+  end
 end

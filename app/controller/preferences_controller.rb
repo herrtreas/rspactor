@@ -16,6 +16,7 @@ class PreferencesController < OSX::NSWindowController
       tm_bin_path = `/usr/bin/which mate`
       $app.default_for_key(:tm_bin_path, tm_bin_path) unless tm_bin_path.empty?
     end
+    receive :file_doesnot_exist,  :showPathErrorAlert
   end
   
   def awakeFromNib
@@ -40,10 +41,23 @@ class PreferencesController < OSX::NSWindowController
     @tmBinPath.stringValue = $app.default_from_key(:tm_bin_path, '/usr/bin/mate')
   end
   
-  def controlTextDidChange(notification)
-    $app.default_for_key(:spec_bin_path, @specBinPath.stringValue)
-    $app.default_for_key(:ruby_bin_path, @rubyBinPath.stringValue)
-    $app.default_for_key(:tm_bin_path, @tmBinPath.stringValue)
+  def controlTextDidEndEditing(notification)
+    check_path_and_set_default(:spec_bin_path, @specBinPath.stringValue)  if notification.object.stringValue == @specBinPath.stringValue
+    check_path_and_set_default(:ruby_bin_path, @rubyBinPath.stringValue)  if notification.object.stringValue == @rubyBinPath.stringValue
+    check_path_and_set_default(:tm_bin_path, @tmBinPath.stringValue)      if notification.object.stringValue == @tmBinPath.stringValue
   end
   
+  def check_path_and_set_default(key, path)
+    $app.default_for_key(key, path) if $app.file_exist?(path)
+  end
+  
+  def showPathErrorAlert(notification)
+    path = notification.userInfo.first
+    return unless path == @specBinPath.stringValue || path == @rubyBinPath.stringValue || path == @tmBinPath.stringValue
+    
+    alert = NSAlert.alloc.init
+    alert.alertStyle = OSX::NSCriticalAlertStyle
+    alert.messageText = "The path '#{path}' doesn't exist.."
+    alert.runModal
+  end
 end
