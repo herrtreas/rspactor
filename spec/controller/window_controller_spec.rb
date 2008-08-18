@@ -40,6 +40,8 @@ describe WindowController do
     
     $app = mock('App')
     $app.stub!(:default_for_key)
+    $app.stub!(:default_from_key)
+    $app.stub!(:file_exist?).and_return(true)
     $spec_list = SpecList.new
     SpecRunner.stub!(:run_in_path).and_return(File.dirname(__FILE__))    
   end
@@ -162,5 +164,15 @@ describe WindowController do
     @mock_statusLabel.should_receive(:hidden=).with(true)
     @mock_statusLabel.should_receive(:stringValue=).with('')
     @controller.path_is_valid?('/tmp').should be_true
+  end
+  
+  it 'should check valid bin paths before running a spec' do
+    @controller.should_receive(:valid_bin_paths?)
+    @controller.runSpecs(nil)
+  end
+  
+  it 'should check all 3 bin paths before spec run' do
+    $app.should_receive(:file_exist?).and_return(false)
+    @controller.valid_bin_paths?.should be_false
   end
 end

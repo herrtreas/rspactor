@@ -57,7 +57,7 @@ class PreferencesController < OSX::NSWindowController
     
     alert = NSAlert.alloc.init
     alert.alertStyle = OSX::NSCriticalAlertStyle
-    alert.messageText = "The path '#{path}' doesn't exist.."
+    alert.messageText = "The executable path '#{path}' doesn't exist.\nPlease check your preferences."
     alert.runModal
   end
 end

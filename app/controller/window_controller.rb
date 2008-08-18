@@ -13,6 +13,7 @@ class WindowController < OSX::NSWindowController
   
   def runSpecs(sender)
     return if SpecRunner.command_running?
+    return unless valid_bin_paths?
     path = @pathTextField.stringValue
     return false if path.empty? || !File.exist?(path)
     specRunPreparation(nil)
@@ -92,6 +93,13 @@ class WindowController < OSX::NSWindowController
     end    
   end
   
+  def valid_bin_paths?
+    return false unless $app.file_exist?($app.default_from_key(:spec_bin_path))
+    return false unless $app.file_exist?($app.default_from_key(:ruby_bin_path))
+    return false unless $app.file_exist?($app.default_from_key(:tm_bin_path))
+    true
+  end
+
   def hook_events
     receive :spec_run_invoked,          :specRunPreparation    
     receive :spec_run_start,            :specRunStarted
