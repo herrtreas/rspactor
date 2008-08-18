@@ -1,4 +1,4 @@
-== 0.9.17 / August 10, 2008
+== 0.9.17 / August 18, 2008
 
 === Changes
 * Clear all lists and states if the spec-run location has changed.
