@@ -30,6 +30,8 @@ class WebviewController < OSX::NSWindowController
   end
   
   def showSpecFileView(row_index)
+    loadHtml('welcome.html') and return if row_index < 0
+    
     @@currently_displayed_row_index = row_index
     loadHtml('spec_file.html') do
       view = SpecFileView.new(@view, row_index)

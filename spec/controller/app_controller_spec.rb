@@ -39,6 +39,7 @@ describe AppController do
   it 'should track the processed spec run count' do
     mock_notification = mock('Notification')
     mock_notification.stub!(:userInfo).and_return([@mock_spec])
+    @app.stub!(:post_notification)
     lambda do 
       @app.spec_run_processed(mock_notification)
     end.should change($spec_list, :processed_spec_count)

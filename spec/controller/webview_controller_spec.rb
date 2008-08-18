@@ -34,12 +34,10 @@ describe WebviewController do
   end
   
   it 'should load the spec_file view' do
-    mock_notification = mock('Notification')
     mock_table = mock('Table')
     mock_table.stub!(:selectedRow).and_return(1)
-    mock_notification.stub!(:object).and_return(mock_table)
     @controller.should_receive(:loadHtml).with('spec_file.html')
-    @controller.showSpecFileView(mock_notification)
+    @controller.showSpecFileView(1)
   end
   
   it 'should open TextMate on JS alert' do
