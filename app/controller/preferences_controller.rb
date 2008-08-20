@@ -24,7 +24,7 @@ class PreferencesController < OSX::NSWindowController
     set_default_ruby_bin_path
     set_default_tm_bin_path
   end
-  
+
   def showWindow(sender)
     @panel.makeKeyAndOrderFront(self)
   end
@@ -45,15 +45,21 @@ class PreferencesController < OSX::NSWindowController
     check_path_and_set_default(:spec_bin_path, @specBinPath.stringValue)  if notification.object.stringValue == @specBinPath.stringValue
     check_path_and_set_default(:ruby_bin_path, @rubyBinPath.stringValue)  if notification.object.stringValue == @rubyBinPath.stringValue
     check_path_and_set_default(:tm_bin_path, @tmBinPath.stringValue)      if notification.object.stringValue == @tmBinPath.stringValue
+    
+    # This is to fill textfields with chmoped, stripped values
+    set_default_spec_bin_path
+    set_default_ruby_bin_path
+    set_default_tm_bin_path
   end
   
   def check_path_and_set_default(key, path)
+    path = path.chomp.strip
     $app.default_for_key(key, path) if $app.file_exist?(path)
   end
   
   def showPathErrorAlert(notification)
     path = notification.userInfo.first
-    return unless path == @specBinPath.stringValue || path == @rubyBinPath.stringValue || path == @tmBinPath.stringValue
+    return unless path == @specBinPath.stringValue.chomp.strip || path == @rubyBinPath.stringValue.chmop.strip || path == @tmBinPath.stringValue.chomp.strip
     
     alert = NSAlert.alloc.init
     alert.alertStyle = OSX::NSCriticalAlertStyle

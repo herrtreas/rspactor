@@ -82,4 +82,10 @@ describe PreferencesController do
     @controller.should_receive(:check_path_and_set_default).exactly(3).times
     @controller.controlTextDidEndEditing(mock_notification)    
   end
+  
+  it 'should trim and chomp bin paths' do
+    $app.stub!(:file_exist?).and_return(true)
+    $app.should_receive(:default_for_key).with(:spec_bin_path, '/usr')
+    @controller.check_path_and_set_default(:spec_bin_path, "  /usr \n\n   ")
+  end
 end
