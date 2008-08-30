@@ -47,6 +47,10 @@ class WebviewController < OSX::NSWindowController
   end
   
   def webView_runJavaScriptAlertPanelWithMessage(webview, message)
-    TextMate.open_file_with_line(message)
+    unless $app.default_from_key(:nb_bin_path).empty?
+      Netbeans.open_file_with_line(message)
+    else
+      TextMate.open_file_with_line(message)
+    end
   end  
 end

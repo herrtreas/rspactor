@@ -3,6 +3,7 @@ require 'webview_controller'
 require 'html_view'
 require 'spec_file_view'
 require 'textmate'
+require 'netbeans'
 
 describe WebviewController do
   before(:each) do
@@ -39,8 +40,15 @@ describe WebviewController do
     @controller.should_receive(:loadHtml).with('spec_file.html')
     @controller.showSpecFileView(1)
   end
+
+  it "should open Netbeans if the nb bin path is set" do
+    $app.stub!(:default_from_key).and_return 'netbeans'
+    Netbeans.should_receive(:open_file_with_line)
+    @controller.webView_runJavaScriptAlertPanelWithMessage(nil, 'test.rb:5')
+  end
   
-  it 'should open TextMate on JS alert' do
+  it 'should open TextMate on JS alert only if the nb bin path is not set' do
+    $app.stub!(:default_from_key).and_return ''
     TextMate.should_receive(:open_file_with_line)
     @controller.webView_runJavaScriptAlertPanelWithMessage(nil, 'test.rb:5')
   end

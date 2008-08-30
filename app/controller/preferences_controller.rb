@@ -1,7 +1,7 @@
 require 'osx/cocoa'
 
 class PreferencesController < OSX::NSWindowController
-  ib_outlet :panel, :specBinPath, :rubyBinPath, :tmBinPath
+  ib_outlet :panel, :specBinPath, :rubyBinPath, :tmBinPath, :nbBinPath
   
   def initialize
     unless $app.default_from_key(:spec_bin_path, nil)
@@ -23,6 +23,7 @@ class PreferencesController < OSX::NSWindowController
     set_default_spec_bin_path
     set_default_ruby_bin_path
     set_default_tm_bin_path
+    set_default_nb_bin_path
   end
 
   def showWindow(sender)
@@ -40,13 +41,18 @@ class PreferencesController < OSX::NSWindowController
   def set_default_tm_bin_path
     @tmBinPath.stringValue = $app.default_from_key(:tm_bin_path, '/usr/bin/mate')
   end
+
+  def set_default_nb_bin_path
+    @nbBinPath.stringValue = $app.default_from_key(:nb_bin_path, '/usr/bin/netbeans')
+  end
   
   def controlTextDidEndEditing(notification)
     check_path_and_set_default(:spec_bin_path, @specBinPath.stringValue)  if notification.object.stringValue == @specBinPath.stringValue
     check_path_and_set_default(:ruby_bin_path, @rubyBinPath.stringValue)  if notification.object.stringValue == @rubyBinPath.stringValue
     check_path_and_set_default(:tm_bin_path, @tmBinPath.stringValue)      if notification.object.stringValue == @tmBinPath.stringValue
+    check_path_and_set_default(:nb_bin_path, @nbBinPath.stringValue)      if notification.object.stringValue == @nbBinPath.stringValue
     
-    # This is to fill textfields with chmoped, stripped values
+    # This is to fill textfields with chomped, stripped values
     set_default_spec_bin_path
     set_default_ruby_bin_path
     set_default_tm_bin_path
@@ -54,12 +60,12 @@ class PreferencesController < OSX::NSWindowController
   
   def check_path_and_set_default(key, path)
     path = path.chomp.strip
-    $app.default_for_key(key, path) if $app.file_exist?(path)
+    $app.default_for_key(key, path) if $app.file_exist?(path) or path.empty?
   end
   
   def showPathErrorAlert(notification)
     path = notification.userInfo.first
-    return unless path == @specBinPath.stringValue.chomp.strip || path == @rubyBinPath.stringValue.chmop.strip || path == @tmBinPath.stringValue.chomp.strip
+    return unless path == @specBinPath.stringValue.chomp.strip || path == @rubyBinPath.stringValue.chomp.strip || path == @tmBinPath.stringValue.chomp.strip
     
     alert = NSAlert.alloc.init
     alert.alertStyle = OSX::NSCriticalAlertStyle

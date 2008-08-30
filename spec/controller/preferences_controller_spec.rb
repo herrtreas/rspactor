@@ -15,10 +15,13 @@ describe PreferencesController do
     @mock_ruby_field.stub!(:stringValue=)
     @mock_tm_field = mock('TMField', :stringValue => '')
     @mock_tm_field.stub!(:stringValue=)
+    @mock_nb_field = mock('NBField', :stringValue => '')
+    @mock_nb_field.stub!(:stringValue=)
     @controller.panel = @mock_panel
     @controller.specBinPath = @mock_spec_field
     @controller.rubyBinPath = @mock_ruby_field
     @controller.tmBinPath = @mock_tm_field
+    @controller.nbBinPath = @mock_nb_field
   end
   
   it 'should be an OSX::NSObject' do
@@ -62,16 +65,24 @@ describe PreferencesController do
     @mock_tm_field.should_receive(:stringValue=).with('/usr/bin/mate')
     @controller.set_default_tm_bin_path
   end
-  
+
+  it 'should read the default tm_bin_path from defaults and assign it to tm_bin textfield' do
+    $app.should_receive(:default_from_key).with(:nb_bin_path, '/usr/bin/netbeans').and_return('/usr/bin/netbeans')
+    @mock_nb_field.should_receive(:stringValue=).with('/usr/bin/netbeans')
+    @controller.set_default_nb_bin_path
+  end
+
   it 'should set all bin path on text change' do
     mock_notification = mock('Object')
     mock_notification.stub!(:object).and_return(@mock_spec_field)
     @mock_spec_field.stub!(:stringValue).and_return('bin_path')    
     @mock_ruby_field.stub!(:stringValue).and_return('bin_path')    
     @mock_tm_field.stub!(:stringValue).and_return('bin_path')
+    @mock_nb_field.stub!(:stringValue).and_return('bin_path')
     $app.should_receive(:default_for_key).with(:spec_bin_path, 'bin_path').once
     $app.should_receive(:default_for_key).with(:ruby_bin_path, 'bin_path').once
     $app.should_receive(:default_for_key).with(:tm_bin_path, 'bin_path').once
+    $app.should_receive(:default_for_key).with(:nb_bin_path, 'bin_path').once
     $app.stub!(:file_exist?).and_return(true)
     @controller.controlTextDidEndEditing(mock_notification)    
   end
@@ -79,7 +90,7 @@ describe PreferencesController do
   it 'should check if bin paths are valid' do
     mock_notification = mock('Object')
     mock_notification.stub!(:object).and_return(@mock_spec_field)
-    @controller.should_receive(:check_path_and_set_default).exactly(3).times
+    @controller.should_receive(:check_path_and_set_default).exactly(4).times
     @controller.controlTextDidEndEditing(mock_notification)    
   end
   

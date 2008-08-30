@@ -12,6 +12,7 @@
 		4DDCA7080ACC9A6100E082CE /* rb_main.rb in Resources */ = {isa = PBXBuildFile; fileRef = E8F5E25803AEB7C803A81C6F /* rb_main.rb */; };
 		4DDCA70A0ACC9A6100E082CE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		4DDCA70C0ACC9A6100E082CE /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		84A168A20E68C78F005FF9F3 /* netbeans.rb in Resources */ = {isa = PBXBuildFile; fileRef = 84A168A10E68C78F005FF9F3 /* netbeans.rb */; };
 		E107C5620DF84D1A00A62C3A /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E107C5610DF84D1A00A62C3A /* WebKit.framework */; };
 		E11B10B70DFDE342006F6CFA /* ns_object.rb in Resources */ = {isa = PBXBuildFile; fileRef = E11B10B60DFDE342006F6CFA /* ns_object.rb */; };
 		E11E361E0E0C0DAE00534748 /* spec_file.rb in Resources */ = {isa = PBXBuildFile; fileRef = E11E361D0E0C0DAE00534748 /* spec_file.rb */; };
@@ -95,6 +96,7 @@
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		4DDCA7110ACC9A6100E082CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4DDCA7120ACC9A6100E082CE /* RSpactor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RSpactor.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		84A168A10E68C78F005FF9F3 /* netbeans.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = netbeans.rb; sourceTree = "<group>"; };
 		E107C5610DF84D1A00A62C3A /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = /System/Library/Frameworks/WebKit.framework; sourceTree = "<absolute>"; };
 		E11B10B60DFDE342006F6CFA /* ns_object.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ns_object.rb; sourceTree = "<group>"; };
 		E11E361D0E0C0DAE00534748 /* spec_file.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = spec_file.rb; sourceTree = "<group>"; };
@@ -374,6 +376,7 @@
 		E193ED7A0DFAAADE00D17070 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				84A168A10E68C78F005FF9F3 /* netbeans.rb */,
 				E18500ED0E4260E0003D4E1E /* textmate.rb */,
 				E16141AE0E23719E006BC96E /* converter.rb */,
 				E11E361D0E0C0DAE00534748 /* spec_file.rb */,
@@ -510,6 +513,7 @@
 				E1B27F150E2D44190005DBFF /* arrow-right.png in Resources */,
 				E18500EE0E4260E0003D4E1E /* textmate.rb in Resources */,
 				E1E958310E55A4F9006C3B9B /* string.rb in Resources */,
+				84A168A20E68C78F005FF9F3 /* netbeans.rb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -559,12 +563,12 @@
 		4D7A7B590ABF745500C2D4C0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
-				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
+				ARCHS = "$(NATIVE_ARCH)";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
 				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+				VALID_ARCHS = "ppc64 ppc7400 ppc970 i386 x86_64 ppc";
 			};
 			name = Release;
 		};
