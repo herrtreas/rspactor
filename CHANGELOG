@@ -1,3 +1,9 @@
+== 0.9.18 / September 1, 2008
+
+=== Fixes
+* Clean whitespaces and linebreaks from all bin paths
+
+
 == 0.9.17 / August 18, 2008
 
 === Changes

@@ -49,14 +49,14 @@ module SpecRunner
     
       true
     end
-    
+
     def prepare_running_environment(args)
       if File.exist?(File.join($map.root, 'script/spec'))
-        runner = "#{$app.default_from_key(:ruby_bin_path).strip}"
+        runner = "#{$app.default_from_key(:ruby_bin_path).chomp.strip}"
         args = args.unshift "#{$map.root}/script/spec"
         [runner, args]
       else
-        [$app.default_from_key(:spec_bin_path).strip, args]
+        [$app.default_from_key(:spec_bin_path).chomp.strip, args]
       end
     end
     
