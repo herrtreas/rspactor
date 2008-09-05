@@ -22,6 +22,7 @@ describe PreferencesController do
     @controller.rubyBinPath = @mock_ruby_field
     @controller.tmBinPath = @mock_tm_field
     @controller.nbBinPath = @mock_nb_field
+    @controller.stub!(:initToolbar)
   end
   
   it 'should be an OSX::NSObject' do
@@ -98,5 +99,10 @@ describe PreferencesController do
     $app.stub!(:file_exist?).and_return(true)
     $app.should_receive(:default_for_key).with(:spec_bin_path, '/usr')
     @controller.check_path_and_set_default(:spec_bin_path, "  /usr \n\n   ")
+  end
+  
+  it 'should init the toolbar on awake' do
+    @controller.should_receive(:initToolbar)
+    @controller.awakeFromNib
   end
 end

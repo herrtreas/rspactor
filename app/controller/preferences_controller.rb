@@ -1,8 +1,10 @@
 require 'osx/cocoa'
 
 class PreferencesController < OSX::NSWindowController
-  ib_outlet :panel, :specBinPath, :rubyBinPath, :tmBinPath, :nbBinPath
+  ib_outlet :panel, :specBinPath, :rubyBinPath, :tmBinPath, :nbBinPath, :toolbar, :binariesPrefsView, :editorPrefsView, :updatePrefsView
+  ib_action :toolbarItemClicked
   
+    
   def initialize
     unless $app.default_from_key(:spec_bin_path, nil)
       spec_bin_path = `/usr/bin/which spec`
@@ -24,6 +26,7 @@ class PreferencesController < OSX::NSWindowController
     set_default_ruby_bin_path
     set_default_tm_bin_path
     set_default_nb_bin_path
+    initToolbar
   end
 
   def showWindow(sender)
@@ -72,4 +75,51 @@ class PreferencesController < OSX::NSWindowController
     alert.messageText = "The executable path '#{path}' doesn't exist.\nPlease check your preferences."
     alert.runModal
   end
+  
+  def initToolbar
+    @toolbar.selectedItemIdentifier = @toolbar.items[0].itemIdentifier
+    window.setContentSize @binariesPrefsView.frame.size 
+    window.contentView.addSubview @binariesPrefsView
+    window.title = "Executables Preferences"
+    @currentViewTag = 0
+    window.contentView.wantsLayer = true    
+  end
+  
+  def toolbarSelectableItemIdentifiers(toolbar)
+    @toolbaridents ||= begin
+      @toolbar.items.collect {|i| i.itemIdentifier }
+    end
+  end
+    
+  def toolbarItemClicked(sender)
+    tag =  sender.tag
+    view, title = self.viewForTag(tag)
+    previousView, prevTitle = self.viewForTag(@currentViewTag)
+    @currentViewTag = tag
+    newFrame = self.newFrameForNewContentView(view)
+    window.title = "#{title} Preferences"
+    NSAnimationContext.beginGrouping
+      window.contentView.animator.replaceSubview_with(previousView, view)
+      window.animator.setFrame_display newFrame, true
+    NSAnimationContext.endGrouping    
+  end
+  
+  def viewForTag(tag)
+    case tag
+      when 0: [@binariesPrefsView,  "Executables"]
+      when 1: [@editorPrefsView, "Editor"]
+      when 2: [@updatePrefsView, "Update"]
+    end
+  end
+  
+  def newFrameForNewContentView(view)
+    newFrameRect = window.frameRectForContentRect(view.frame)
+    oldFrameRect = window.frame
+    newSize = newFrameRect.size
+    oldSize = oldFrameRect.size
+    frame = window.frame
+    frame.size = newSize
+    frame.origin.y = frame.origin.y - (newSize.height - oldSize.height)
+    frame
+  end  
 end
