@@ -1,32 +1,32 @@
 require 'osx/cocoa'
 
 class PreferencesController < OSX::NSWindowController
-  ib_outlet :panel, :specBinPath, :rubyBinPath, :tmBinPath, :nbBinPath, :toolbar, :binariesPrefsView, :editorPrefsView, :updatePrefsView
-  ib_action :toolbarItemClicked
+  ib_outlet :panel, :toolbar, :binariesPrefsView, :editorPrefsView, :updatePrefsView, :editorSelect, :editorCheckBox
+  ib_outlet :specBinPath, :rubyBinPath, :editorBinPath
+  ib_outlet :rubyBinWarning, :specBinWarning, :editorBinWarning
   
-    
+  ib_action :toolbarItemClicked
+  ib_action :editorCheckBoxClicked
+  ib_action :editorSelectChanged
+  
   def initialize
     unless $app.default_from_key(:spec_bin_path, nil)
       spec_bin_path = `/usr/bin/which spec`
-      $app.default_for_key(:spec_bin_path, spec_bin_path) unless spec_bin_path.empty?
+      $app.default_for_key(:spec_bin_path, spec_bin_path.chomp.strip) unless spec_bin_path.empty?
     end
     unless $app.default_from_key(:ruby_bin_path, nil)
       ruby_bin_path = `/usr/bin/which ruby`
-      $app.default_for_key(:ruby_bin_path, ruby_bin_path) unless ruby_bin_path.empty?
+      $app.default_for_key(:ruby_bin_path, ruby_bin_path.chomp.strip) unless ruby_bin_path.empty?
     end
-    unless $app.default_from_key(:tm_bin_path, nil)
-      tm_bin_path = `/usr/bin/which mate`
-      $app.default_for_key(:tm_bin_path, tm_bin_path) unless tm_bin_path.empty?
-    end
-    receive :file_doesnot_exist,  :showPathErrorAlert
   end
   
   def awakeFromNib
     set_default_spec_bin_path
     set_default_ruby_bin_path
-    set_default_tm_bin_path
-    set_default_nb_bin_path
+    set_default_editor_bin_path
     initToolbar
+    initEditorPrefView
+    validatePreferences
   end
 
   def showWindow(sender)
@@ -41,39 +41,26 @@ class PreferencesController < OSX::NSWindowController
     @rubyBinPath.stringValue = $app.default_from_key(:ruby_bin_path, '/usr/bin/ruby')
   end
 
-  def set_default_tm_bin_path
-    @tmBinPath.stringValue = $app.default_from_key(:tm_bin_path, '/usr/bin/mate')
-  end
-
-  def set_default_nb_bin_path
-    @nbBinPath.stringValue = $app.default_from_key(:nb_bin_path, '/usr/bin/netbeans')
+  def set_default_editor_bin_path
+    @editorBinPath.stringValue = $app.default_from_key(:editor_bin_path, '/usr/bin/mate')
   end
   
   def controlTextDidEndEditing(notification)
-    check_path_and_set_default(:spec_bin_path, @specBinPath.stringValue)  if notification.object.stringValue == @specBinPath.stringValue
-    check_path_and_set_default(:ruby_bin_path, @rubyBinPath.stringValue)  if notification.object.stringValue == @rubyBinPath.stringValue
-    check_path_and_set_default(:tm_bin_path, @tmBinPath.stringValue)      if notification.object.stringValue == @tmBinPath.stringValue
-    check_path_and_set_default(:nb_bin_path, @nbBinPath.stringValue)      if notification.object.stringValue == @nbBinPath.stringValue
-    
-    # This is to fill textfields with chomped, stripped values
-    set_default_spec_bin_path
-    set_default_ruby_bin_path
-    set_default_tm_bin_path
+    check_path_and_set_default(:spec_bin_path, @specBinPath, @specBinWarning)  if notification.nil? || notification.object.stringValue == @specBinPath.stringValue
+    check_path_and_set_default(:ruby_bin_path, @rubyBinPath, @rubyBinWarning)  if notification.nil? || notification.object.stringValue == @rubyBinPath.stringValue
+    check_path_and_set_default(:editor_bin_path, @editorBinPath, @editorBinWarning)  if notification.nil? || notification.object.stringValue == @editorBinPath.stringValue
   end
   
-  def check_path_and_set_default(key, path)
-    path = path.chomp.strip
-    $app.default_for_key(key, path) if $app.file_exist?(path) or path.empty?
-  end
-  
-  def showPathErrorAlert(notification)
-    path = notification.userInfo.first
-    return unless path == @specBinPath.stringValue.chomp.strip || path == @rubyBinPath.stringValue.chomp.strip || path == @tmBinPath.stringValue.chomp.strip
-    
-    alert = NSAlert.alloc.init
-    alert.alertStyle = OSX::NSCriticalAlertStyle
-    alert.messageText = "The executable path '#{path}' doesn't exist.\nPlease check your preferences."
-    alert.runModal
+  def check_path_and_set_default(key, path_object, warning_object)
+    path_object.stringValue = path_object.stringValue.chomp.strip
+    path = path_object.stringValue
+    if File.exist?(path)
+      $app.default_for_key(key, path)
+      warning_object.hidden = true
+    else
+      warning_object.hidden = false
+      warning_object.toolTip = "That path doesn't exist."
+    end
   end
   
   def initToolbar
@@ -83,6 +70,14 @@ class PreferencesController < OSX::NSWindowController
     window.title = "Executables Preferences"
     @currentViewTag = 0
     window.contentView.wantsLayer = true    
+  end
+  
+  def initEditorPrefView
+    @editorCheckBox.state = $app.default_from_key(:editor_integration, '0')
+    @editorSelect.removeAllItems
+    @editorSelect.addItemsWithTitles(['TextMate', 'Netbeans'])
+    @editorSelect.selectItemWithTitle($app.default_from_key(:editor, 'TextMate'))
+    editorCheckBoxClicked(nil)
   end
   
   def toolbarSelectableItemIdentifiers(toolbar)
@@ -108,7 +103,7 @@ class PreferencesController < OSX::NSWindowController
     case tag
       when 0: [@binariesPrefsView,  "Executables"]
       when 1: [@editorPrefsView, "Editor"]
-      when 2: [@updatePrefsView, "Update"]
+      when 2: [@updatePrefsView, "Software Update"]
     end
   end
   
@@ -122,4 +117,36 @@ class PreferencesController < OSX::NSWindowController
     frame.origin.y = frame.origin.y - (newSize.height - oldSize.height)
     frame
   end  
+  
+  def editorCheckBoxClicked(sender)
+    $app.default_for_key(:editor_integration, @editorCheckBox.state)
+    enabled = @editorCheckBox.state != 0
+    @editorSelect.enabled = enabled
+    @editorBinPath.enabled = enabled
+  end
+  
+  def editorSelectChanged(sender)
+    $app.default_for_key(:editor, @editorSelect.selectedItem.title)
+  end
+  
+  def windowWillClose(notification)
+    validatePreferences
+  end
+  
+  def validatePreferences
+    controlTextDidEndEditing(nil)
+    alert("Cannot find your RSpec executable.", "Please check 'Preferences > Executables > RSpec'.") unless File.exist?(@specBinPath.stringValue)
+    alert("Cannot find your Ruby executable.", "Please check 'Preferences > Executables > Ruby'.") unless File.exist?(@rubyBinPath.stringValue)        
+    if @editorCheckBox.state != 0 && !File.exist?(@editorBinPath.stringValue)
+      alert("Cannot find your #{@editorSelect.selectedItem.title} executable.", "Please check 'Preferences > Editor > Executable'.")
+    end
+  end
+  
+  def alert(message, information)
+    alert = NSAlert.alloc.init
+    alert.alertStyle = OSX::NSCriticalAlertStyle
+    alert.messageText = message
+    alert.informativeText = information
+    alert.runModal
+  end
 end
