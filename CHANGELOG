@@ -1,3 +1,13 @@
+== 0.9.19 / September 12, 2008
+
+=== Changes
+* Netbeans support by Richard Poirier
+* New, clear preferences window
+
+=== Fixes
+* Repair broken paths after auto recognition
+
+
 == 0.9.18 / September 1, 2008
 
 === Fixes

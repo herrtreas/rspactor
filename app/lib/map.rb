@@ -1,5 +1,5 @@
 class Map
-  attr_accessor :exclude_directories
+  attr_accessor :exclude_directories, :include_directories
   attr_accessor :root
   attr_accessor :file_extensions
   attr_reader   :files      
@@ -37,6 +37,7 @@ class Map
   
   def initialize
     @files = {}
+    self.include_directories = /vendor\/plugins\/jade/
     self.exclude_directories = /vendor|\.git|build/
     self.file_extensions = %w(.rb .erb .haml .rhtml)
   end
@@ -95,7 +96,9 @@ class Map
   end
   
   def file_is_valid?(file)
-    return false if File.dirname(file) =~ self.exclude_directories
+    unless File.dirname(file) =~ self.include_directories
+      return false if File.dirname(file) =~ self.exclude_directories
+    end
     file =~ Regexp.new(self.file_extensions.collect{|e| "\\#{e}$"}.join('|')) ? true : false
   end
   
