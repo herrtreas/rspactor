@@ -96,7 +96,10 @@ class WindowController < OSX::NSWindowController
   def valid_bin_paths?
     return false unless $app.file_exist?($app.default_from_key(:spec_bin_path))
     return false unless $app.file_exist?($app.default_from_key(:ruby_bin_path))
-    return false unless $app.file_exist?($app.default_from_key(:tm_bin_path))
+    
+    # removing this as it currently always returns "" and prevents the app from
+    # running
+    # return false unless $app.file_exist?($app.default_from_key(:tm_bin_path))
     true
   end
 
