@@ -13,7 +13,7 @@ describe TextMate do
   end
   
   it 'should get the TM bin from user defaults' do
-    $app.should_receive(:default_from_key).with(:tm_bin_path).and_return('/bin/mate')
+    $app.should_receive(:default_from_key).with(:editor_bin_path).and_return('/bin/mate')
     Kernel.should_receive(:system).with('/bin/mate --line 3 path.rb')
     TextMate.open_file_with_line('path.rb:3')
   end
