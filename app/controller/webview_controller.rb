@@ -39,6 +39,10 @@ class WebviewController < OSX::NSWindowController
     end
   end
   
+  def editor_integration_enabled?
+    $app.default_from_key(:editor_integration) == '1'
+  end
+  
   def reloadWebView(notification)
     return unless defined?(@@currently_displayed_row_index)
     if @@currently_displayed_row_index == $spec_list.index_by_spec(notification.userInfo.first)
@@ -47,12 +51,12 @@ class WebviewController < OSX::NSWindowController
   end
   
   def webView_runJavaScriptAlertPanelWithMessage(webview, message)
-    return unless $app.default_from_key(:editor_integration) == '1'
+    return unless editor_integration_enabled?
     case $app.default_from_key(:editor)
     when 'TextMate'
       TextMate.open_file_with_line(message)
     when 'Netbeans'
       Netbeans.open_file_with_line(message)
     end
-  end  
+  end
 end
