@@ -22,7 +22,7 @@ class SpecFile
     end
     
     old_spec = @specs.select {|s| s.to_s == spec.to_s}.first
-    if old_spec && @specs && !@specs.empty?
+    if old_spec && @specs && @specs.index(old_spec)
       @specs[@specs.index(old_spec)] = spec
     else
       @specs << spec

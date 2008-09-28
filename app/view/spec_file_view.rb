@@ -17,7 +17,7 @@ class SpecFileView < HtmlView
     spec_html = '<ul class="spec">'
     file.specs.each do |spec|
       spec_html << '<li class="spec">'
-      spec_html << "<p class='spec_title_#{spec.state}' onclick='toggleSpecBox(this);'>"
+      spec_html << "<p class='spec_title spec_title_#{spec.state}' onclick='toggleSpecBox(this);'>"
       spec_html << fold_button(spec)
       spec_html << "#{spec.to_s}"
       spec_html << "</p>"

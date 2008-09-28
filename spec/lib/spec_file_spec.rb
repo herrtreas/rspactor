@@ -39,7 +39,7 @@ describe SpecFile do
   it 'should know if it contains a spec' do
     so = SpecObject.new
     file = SpecFile.new(:full_path => '/home/test.rb', :specs => [so])
-    file.contains_spec?(so).should be_true    
+    file.contains_spec?(so).should be_true
   end
   
   it 'should return if it contains failed specs' do

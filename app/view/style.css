@@ -60,6 +60,9 @@ ul.spec {
 ul.spec li.spec {
 	margin: 0px;
 	margin-bottom: 30px;
+}
+
+ul.spec li.spec p.spec_title {
 	cursor: pointer;
 }
 
