@@ -37,8 +37,10 @@ describe WindowController do
     @controller.statusBar = @mock_statusBar
     @controller.statusLabel = @mock_statusLabel
     @controller.stub!(:window).and_return(@mock_window)
+    @controller.stub!(:valid_bin_paths?).and_return(true)
     
     $app = mock('App')
+    $app.stub!(:alert)
     $app.stub!(:default_for_key)
     $app.stub!(:default_from_key)
     $app.stub!(:file_exist?).and_return(true)
@@ -169,10 +171,5 @@ describe WindowController do
   it 'should check valid bin paths before running a spec' do
     @controller.should_receive(:valid_bin_paths?)
     @controller.runSpecs(nil)
-  end
-  
-  it 'should check all 3 bin paths before spec run' do
-    $app.should_receive(:file_exist?).and_return(false)
-    @controller.valid_bin_paths?.should be_false
   end
 end

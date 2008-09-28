@@ -83,11 +83,11 @@ class AppController < OSX::NSObject
     SpecRunner.commandHasFinished!    
   end
   
-  def file_exist?(path)
-    unless File.exist?(path)
-      post_notification(:file_doesnot_exist, path)
-      return false
-    end
-    true
-  end
+  def alert(message, information)
+    alert = NSAlert.alloc.init
+    alert.alertStyle = OSX::NSCriticalAlertStyle
+    alert.messageText = message
+    alert.informativeText = information
+    alert.runModal
+  end  
 end

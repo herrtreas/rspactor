@@ -94,9 +94,18 @@ class WindowController < OSX::NSWindowController
   end
   
   def valid_bin_paths?
-    return false unless $app.file_exist?($app.default_from_key(:spec_bin_path))
-    return false unless $app.file_exist?($app.default_from_key(:ruby_bin_path))
-    return false unless $app.file_exist?($app.default_from_key(:editor_bin_path))
+    unless File.exist?($app.default_from_key(:spec_bin_path, ''))
+      $app.alert("Cannot find your RSpec executable.", "Please check 'Preferences > Executables > RSpec'.")
+      return false
+    end
+    unless File.exist?($app.default_from_key(:ruby_bin_path, ''))
+      $app.alert("Cannot find your Ruby executable.", "Please check 'Preferences > Executables > Ruby'.")
+      return false
+    end
+    if $app.default_from_key(:editor_integration) == '1' && !File.exist?($app.default_from_key(:editor_bin_path, ''))
+      $app.alert("Cannot find your editor executable.", "Please check 'Preferences > Editor > Executable'.")
+      return false
+    end
     true
   end
 

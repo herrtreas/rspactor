@@ -54,8 +54,8 @@ class PreferencesController < OSX::NSWindowController
   def check_path_and_set_default(key, path_object, warning_object)
     path_object.stringValue = path_object.stringValue.chomp.strip
     path = path_object.stringValue
+    $app.default_for_key(key, path)
     if File.exist?(path)
-      $app.default_for_key(key, path)
       warning_object.hidden = true
     else
       warning_object.hidden = false
@@ -135,18 +135,10 @@ class PreferencesController < OSX::NSWindowController
   
   def validatePreferences
     controlTextDidEndEditing(nil)
-    alert("Cannot find your RSpec executable.", "Please check 'Preferences > Executables > RSpec'.") unless File.exist?(@specBinPath.stringValue)
-    alert("Cannot find your Ruby executable.", "Please check 'Preferences > Executables > Ruby'.") unless File.exist?(@rubyBinPath.stringValue)        
+    $app.alert("Cannot find your RSpec executable.", "Please check 'Preferences > Executables > RSpec'.") unless File.exist?(@specBinPath.stringValue)
+    $app.alert("Cannot find your Ruby executable.", "Please check 'Preferences > Executables > Ruby'.") unless File.exist?(@rubyBinPath.stringValue)        
     if @editorCheckBox.state != 0 && !File.exist?(@editorBinPath.stringValue)
-      alert("Cannot find your #{@editorSelect.selectedItem.title} executable.", "Please check 'Preferences > Editor > Executable'.")
+      $app.alert("Cannot find your #{@editorSelect.selectedItem.title} executable.", "Please check 'Preferences > Editor > Executable'.")
     end
-  end
-  
-  def alert(message, information)
-    alert = NSAlert.alloc.init
-    alert.alertStyle = OSX::NSCriticalAlertStyle
-    alert.messageText = message
-    alert.informativeText = information
-    alert.runModal
-  end
+  end  
 end
