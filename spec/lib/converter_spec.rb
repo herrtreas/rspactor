@@ -7,6 +7,7 @@ require 'ext/syntax/syntax/convertors/html'
 
 describe Converter do
   before(:each) do
+    $app.stub!(:default_from_key)
     @mock_spec = mock('SpecObject', :line => 10, :full_file_path => '/test.rb')
     @mock_spec.stub!(:source).and_return(['def test()', 'puts "bud"', 'end'])
   end

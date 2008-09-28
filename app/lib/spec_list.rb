@@ -113,7 +113,7 @@ class SpecList
     
     def add_or_replace(spec)
       old_spec = @list.select {|s| s.to_s == spec.to_s}.first
-      if old_spec
+      if old_spec && @list && !@list.empty?
         @list[@list.index(old_spec)] = spec
       else
         @list << spec

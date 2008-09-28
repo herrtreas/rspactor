@@ -38,9 +38,13 @@ h2 {
 
 .code { 
   border: 1px solid #AAA;
-  cursor: pointer;
+	cursor: default;
   font-family: "Andale Mono";
 	min-width: 250px;
+}
+
+.editor_integration_enabled {
+	cursor: pointer;	
 }
 
 pre {
