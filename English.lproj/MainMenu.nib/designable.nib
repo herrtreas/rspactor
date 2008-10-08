@@ -2,13 +2,13 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="7.02">
 	<data>
 		<int key="IBDocument.SystemTarget">1050</int>
-		<string key="IBDocument.SystemVersion">9E17</string>
+		<string key="IBDocument.SystemVersion">9F33</string>
 		<string key="IBDocument.InterfaceBuilderVersion">670</string>
-		<string key="IBDocument.AppKitVersion">949.33</string>
+		<string key="IBDocument.AppKitVersion">949.34</string>
 		<string key="IBDocument.HIToolboxVersion">352.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="304"/>
+			<integer value="21"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -40,7 +40,7 @@
 				</object>
 				<string key="NSWindowContentMaxSize">{3.40282e+38, 3.40282e+38}</string>
 				<object class="NSView" key="NSWindowView" id="122296070">
-					<nil key="NSNextResponder"/>
+					<reference key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<object class="NSMutableArray" key="NSSubviews">
 						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -66,7 +66,7 @@
 									<string>public.url-name</string>
 								</object>
 							</object>
-							<string key="NSFrameSize">{711, 645}</string>
+							<string key="NSFrame">{{4, 20}, {702, 603}}</string>
 							<reference key="NSSuperview" ref="122296070"/>
 							<reference key="NSNextKeyView"/>
 							<string key="FrameName"/>
@@ -229,8 +229,44 @@
 							<int key="NSTitlePosition">2</int>
 							<bool key="NSTransparent">NO</bool>
 						</object>
+						<object class="NSSegmentedControl" id="390287732">
+							<reference key="NSNextResponder" ref="122296070"/>
+							<int key="NSvFlags">268</int>
+							<string key="NSFrame">{{4, 621}, {279, 21}}</string>
+							<reference key="NSSuperview" ref="122296070"/>
+							<bool key="NSEnabled">YES</bool>
+							<object class="NSSegmentedCell" key="NSCell" id="208964647">
+								<int key="NSCellFlags">67239424</int>
+								<int key="NSCellFlags2">131072</int>
+								<reference key="NSSupport" ref="26"/>
+								<reference key="NSControlView" ref="390287732"/>
+								<object class="NSMutableArray" key="NSSegmentImages">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<object class="NSSegmentItem">
+										<double key="NSSegmentItemWidth">9.200000e+01</double>
+										<string key="NSSegmentItemLabel">Dashboard</string>
+										<int key="NSSegmentItemImageScaling">0</int>
+									</object>
+									<object class="NSSegmentItem">
+										<double key="NSSegmentItemWidth">9.100000e+01</double>
+										<string key="NSSegmentItemLabel">Output</string>
+										<int key="NSSegmentItemTag">1</int>
+										<bool key="NSSegmentItemSelected">YES</bool>
+										<int key="NSSegmentItemImageScaling">0</int>
+									</object>
+									<object class="NSSegmentItem">
+										<double key="NSSegmentItemWidth">9.200000e+01</double>
+										<string key="NSSegmentItemLabel">users/tracks_controller_spec.rb</string>
+										<int key="NSSegmentItemImageScaling">0</int>
+									</object>
+								</object>
+								<int key="NSSelectedSegment">1</int>
+								<int key="NSSegmentStyle">6</int>
+							</object>
+						</object>
 					</object>
 					<string key="NSFrameSize">{711, 694}</string>
+					<reference key="NSSuperview"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1920, 1178}}</string>
 				<string key="NSMinSize">{0, 22}</string>
@@ -1107,10 +1143,9 @@
 				</object>
 				<string key="NSWindowContentMaxSize">{3.40282e+38, 3.40282e+38}</string>
 				<object class="NSView" key="NSWindowView" id="1066200695">
-					<reference key="NSNextResponder"/>
+					<nil key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<string key="NSFrameSize">{397, 463}</string>
-					<reference key="NSSuperview"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1920, 1178}}</string>
 				<string key="NSMaxSize">{3.40282e+38, 3.40282e+38}</string>
@@ -2043,8 +2078,9 @@
 						<reference key="object" ref="122296070"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="245637581"/>
 							<reference ref="732207383"/>
+							<reference ref="390287732"/>
+							<reference ref="245637581"/>
 						</object>
 						<reference key="parent" ref="886311970"/>
 					</object>
@@ -2937,6 +2973,20 @@
 						<reference key="object" ref="727049456"/>
 						<reference key="parent" ref="770329665"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">666</int>
+						<reference key="object" ref="390287732"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="208964647"/>
+						</object>
+						<reference key="parent" ref="122296070"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">667</int>
+						<reference key="object" ref="208964647"/>
+						<reference key="parent" ref="390287732"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -3042,6 +3092,7 @@
 					<string>207.ImportedFromIB2</string>
 					<string>208.IBPluginDependency</string>
 					<string>208.ImportedFromIB2</string>
+					<string>21.IBEditorWindowLastContentRect</string>
 					<string>21.IBPluginDependency</string>
 					<string>21.IBWindowTemplateEditedContentRect</string>
 					<string>21.ImportedFromIB2</string>
@@ -3153,6 +3204,10 @@
 					<string>648.ImportedFromIB2</string>
 					<string>649.IBPluginDependency</string>
 					<string>650.IBPluginDependency</string>
+					<string>666.IBPluginDependency</string>
+					<string>666.IBSegmentedControlTracker.RoundRobinState</string>
+					<string>666.IBSegmentedControlTracker.WasGrowing</string>
+					<string>667.IBPluginDependency</string>
 					<string>72.IBPluginDependency</string>
 					<string>72.ImportedFromIB2</string>
 					<string>73.IBPluginDependency</string>
@@ -3279,8 +3334,9 @@
 					<reference ref="9"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
+					<string>{{416, 343}, {711, 694}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{706, 153}, {711, 694}}</string>
+					<string>{{416, 343}, {711, 694}}</string>
 					<reference ref="9"/>
 					<reference ref="9"/>
 					<string>{{706, 153}, {711, 694}}</string>
@@ -3399,6 +3455,10 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<integer value="0"/>
+					<reference ref="9"/>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
@@ -3444,7 +3504,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">665</int>
+			<int key="maxID">674</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

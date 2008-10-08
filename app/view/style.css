@@ -2,6 +2,11 @@ html, body {
   margin: 0;
   padding: 0;
 }
+
+html {
+	border: 1px solid #979797;
+	height: 99.8%;	
+}
  
 body {
   margin: 5px 10px 2px 10px;
