@@ -57,8 +57,13 @@ class SpecList
     filter_list_by(type)
   end
   
-  def file_by_index(index)
-    file = @files[index]
+  def file_by_index(index, options = {})
+    if options[:unfiltered]
+      file = @files[index]
+    else
+      file = files[index]
+    end
+    
     if file
       removed_specs = file.remove_tainted_specs
       bulk_remove_specs(removed_specs)
