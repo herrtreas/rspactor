@@ -10,7 +10,7 @@ class SpecFileView < HtmlView
   end
   
   def update
-    file = $spec_list.file_by_index(@file_index, :unfiltered => true)
+    file = $spec_list.file_by_index(@file_index) #, :unfiltered => true)
     return unless file    
     @file_name = file.name
     

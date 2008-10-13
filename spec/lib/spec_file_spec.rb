@@ -25,6 +25,7 @@ describe SpecFile do
     so1 = SpecObject.new(:name => 'test', :state => :passed)
     so2 = SpecObject.new(:name => 'test', :state => :failed)
     file = SpecFile.new(:full_path => '/home/test.rb', :specs => [so1])
+    
     lambda do
       file << so2
     end.should_not change(file, :spec_count)

@@ -32,7 +32,8 @@ class WebviewController < OSX::NSWindowController
   end
   
   def showSpecFileView(row_index)    
-    if row_index < 0 && @@currently_displayed_row_index.nil?
+    if row_index < 0
+      labelForView(:spec_view, '..', :disabled => true)
       activateHtmlView(:dashboard) and return
     end
     

@@ -12,8 +12,7 @@ describe SpecRunner do
   end
   
   it 'should ensure a valid map before running specs' do
-    puts "TESTTESTTEST"
-    Map.should_receive(:ensure)
+    Map.should_not_receive(:ensure)
     SpecRunner.run_in_path($fpath_simple)
   end
   
