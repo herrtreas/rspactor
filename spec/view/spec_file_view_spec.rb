@@ -56,4 +56,10 @@ describe SpecFileView do
     @spec_file_view.should_not_receive(:setInnerHTML)
     @spec_file_view.update
   end
+  
+  it 'should store the spec file name in the file_name accessor' do
+    $spec_list.stub!(:file_by_index).and_return(@spec_file)
+    @spec_file_view.update
+    @spec_file_view.file_name.should eql('test.rb')
+  end
 end

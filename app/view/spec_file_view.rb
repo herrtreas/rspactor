@@ -2,6 +2,7 @@ require 'osx/cocoa'
 
 class SpecFileView < HtmlView
   attr_accessor :file_index
+  attr_accessor :file_name
   
   def initialize(webview, file_index)
     @web_view = webview
@@ -10,7 +11,9 @@ class SpecFileView < HtmlView
   
   def update
     file = $spec_list.file_by_index(@file_index)
-    return unless file
+    return unless file    
+    @file_name = file.name
+    
     setInnerHTML('title', file.name)
     setInnerHTML('subtitle', file.full_path)
     

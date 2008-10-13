@@ -1,15 +1,17 @@
 require 'osx/cocoa'
 
 class WebviewController < OSX::NSWindowController
-  ib_outlet :view
+  ib_outlet :view, :tabBar  
+  ib_action :tabBarClicked
   
   def awakeFromNib
     receive :NSTableViewSelectionDidChangeNotification, :showSpecFileViewFromTable
     receive :first_failed_spec,                         :showSpecFileViewFromSpec
     receive :spec_run_processed,                        :reloadWebView
+    
     @view.shouldCloseWithWindow = true
     @view.frameLoadDelegate = self    
-    loadHtml('welcome.html')
+    setupTabBar :dashboard
   end  
   
   def webView_didFinishLoadForFrame(view, frame)
@@ -29,13 +31,20 @@ class WebviewController < OSX::NSWindowController
     showSpecFileView($spec_list.index_by_spec(notification.userInfo.first))
   end
   
-  def showSpecFileView(row_index)
-    loadHtml('welcome.html') and return if row_index < 0
+  def showSpecFileView(row_index)    
+    if row_index < 0 && @@currently_displayed_row_index.nil?
+      activateHtmlView(:dashboard) and return
+    end
     
-    @@currently_displayed_row_index = row_index
-    loadHtml('spec_file.html') do
-      view = SpecFileView.new(@view, row_index)
+    if row_index >= 0 && (!defined?(@@currently_displayed_row_index) || row_index != @@currently_displayed_row_index)
+      @@currently_displayed_row_index = row_index 
+      labelForView(:spec_view, 'Loading..', :disabled => true)
+    end
+    
+    activateHtmlView(:spec_view) do
+      view = SpecFileView.new(@view, @@currently_displayed_row_index)
       view.update
+      labelForView(:spec_view, view.file_name)
     end
   end
   
@@ -59,4 +68,52 @@ class WebviewController < OSX::NSWindowController
       Netbeans.open_file_with_line(message)
     end
   end
+
+  def tabBarClicked(sender)
+    case @tabBar.selectedSegment
+    when 0, 1:
+      loadHtmlView
+    when 2:
+      if @@currently_displayed_row_index
+        showSpecFileView(@@currently_displayed_row_index)
+      else
+        labelForView(:spec_view, '..', :disabled => true)
+        activateHtmlView(:dashboard)
+      end
+    end
+  end
+  
+  def indexForView(view)
+    case view
+    when :dashboard: 0
+    when :output:    1
+    when :spec_view: 2
+    end
+  end
+  
+  def setupTabBar(view)
+    @tabBar.setWidth_forSegment(100.0, 0)
+    @tabBar.setWidth_forSegment(100.0, 1)    
+    @tabBar.setWidth_forSegment(0, 2)    
+    activateHtmlView(view)
+  end
+  
+  def activateHtmlView(view, &block)    
+    @tabBar.selectedSegment = indexForView(view)
+    loadHtmlView(&block)
+  end
+  
+  def loadHtmlView(&block)
+    case @tabBar.selectedSegment
+    when 0: loadHtml('welcome.html', &block)
+    when 1: loadHtml('raw_output.html', &block)
+    when 2: loadHtml('spec_file.html', &block)
+    end
+  end  
+    
+  def labelForView(view, label, options = {})
+    index = indexForView(view)
+    @tabBar.setEnabled_forSegment(!options[:disabled], index)
+    @tabBar.setLabel_forSegment(label, index)
+  end  
 end

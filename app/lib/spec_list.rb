@@ -58,7 +58,7 @@ class SpecList
   end
   
   def file_by_index(index)
-    file = files[index]
+    file = @files[index]
     if file
       removed_specs = file.remove_tainted_specs
       bulk_remove_specs(removed_specs)
