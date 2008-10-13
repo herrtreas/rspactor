@@ -40,13 +40,22 @@ module SpecRunner
       
       runner, args = prepare_running_environment(args)
       $LOG.debug "Running: #{runner} with #{args.inspect}.."
-      pipe = OSX::NSPipe.alloc.init
       task = OSX::NSTask.alloc.init
-      task.standardError = pipe
+      
+      output_pipe = OSX::NSPipe.alloc.init
+      error_pipe = OSX::NSPipe.alloc.init
+      task.standardOutput = output_pipe
+      task.standardError = error_pipe
+
       task.arguments = args
       task.launchPath = runner
       task.launch
-    
+      
+      $output_pipe_handle = output_pipe.fileHandleForReading
+      $error_pipe_handle = error_pipe.fileHandleForReading
+      $output_pipe_handle.readInBackgroundAndNotify
+      $error_pipe_handle.readInBackgroundAndNotify
+      
       true
     end
 

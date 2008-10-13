@@ -7,12 +7,14 @@ require 'ext/syntax/syntax/convertors/html'
 
 describe Converter do
   before(:each) do
+    puts "RAW OUTPUT in Converter#10"
     $app.stub!(:default_from_key)
     @mock_spec = mock('SpecObject', :line => 10, :full_file_path => '/test.rb')
     @mock_spec.stub!(:source).and_return(['def test()', 'puts "bud"', 'end'])
   end
   
   it 'should convert source to html for webkit view' do
+    "hasdasd"
     Converter.source_to_html(@mock_spec).should =~ /def/
   end
   

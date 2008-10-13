@@ -301,7 +301,7 @@
 							<real>261</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>2 410 1440 768 0 0 1920 1178 </string>
+						<string>0 110 1440 768 0 0 1440 878 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -338,7 +338,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {1157, 0}}</string>
 								<key>RubberWindowFrame</key>
-								<string>2 410 1440 768 0 0 1920 1178 </string>
+								<string>0 110 1440 768 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -360,7 +360,7 @@
 								<key>Frame</key>
 								<string>{{0, 5}, {1157, 722}}</string>
 								<key>RubberWindowFrame</key>
-								<string>2 410 1440 768 0 0 1920 1178 </string>
+								<string>0 110 1440 768 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -384,9 +384,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>E1A313B90EA3BA2B00F2FBA6</string>
+				<string>E10909160EA3ECE300BCB245</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>E1A313BA0EA3BA2B00F2FBA6</string>
+				<string>E10909170EA3ECE300BCB245</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -521,10 +521,9 @@
 	<key>WindowOrderList</key>
 	<array>
 		<string>/Users/andreas/ruby/rspactor/RSpactor.xcodeproj</string>
-		<string>1C78EAAD065D492600B07095</string>
 	</array>
 	<key>WindowString</key>
-	<string>2 410 1440 768 0 0 1920 1178 </string>
+	<string>0 110 1440 768 0 0 1440 878 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>
@@ -601,7 +600,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>E1A615C10DF82908007DEAC7</string>
-				<string>E18CB92E0EA3BA1E006AE8E4</string>
+				<string>E1A313DD0EA3CA5400F2FBA6</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -721,13 +720,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>E18CB92F0EA3BA1E006AE8E4</string>
+				<string>E1A313DE0EA3CA5400F2FBA6</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>E18CB9300EA3BA1E006AE8E4</string>
-				<string>E18CB9310EA3BA1E006AE8E4</string>
-				<string>E18CB9320EA3BA1E006AE8E4</string>
-				<string>E18CB9330EA3BA1E006AE8E4</string>
-				<string>E18CB9340EA3BA1E006AE8E4</string>
+				<string>E1A313DF0EA3CA5400F2FBA6</string>
+				<string>E1A313E00EA3CA5400F2FBA6</string>
+				<string>E1A313E10EA3CA5400F2FBA6</string>
+				<string>E1A313E20EA3CA5400F2FBA6</string>
+				<string>E1A313E30EA3CA5400F2FBA6</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>

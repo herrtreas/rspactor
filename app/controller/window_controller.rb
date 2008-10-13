@@ -9,6 +9,7 @@ class WindowController < OSX::NSWindowController
     @growlController = GrowlController.new
     @pathTextField.stringValue = $app.default_from_key(:spec_run_path)
     hook_events
+    test_the_badge    
   end
   
   def runSpecs(sender)
@@ -120,4 +121,8 @@ class WindowController < OSX::NSWindowController
     receive :relocate_and_run,          :relocateDirectoryAndRunSpecs
     receive :application_resurrected,   :resurrectWindow    
   end  
+  
+  def test_the_badge
+    
+  end
 end

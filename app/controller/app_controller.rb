@@ -5,16 +5,18 @@ class AppController < OSX::NSObject
   def initialize
     $spec_list = SpecList.new
     $app = self
+    $raw_output = []
   end
   
   def applicationDidFinishLaunching(notification)
     Service.init
-    receive :spec_run_start,                  :spec_run_has_started
-    receive :spec_run_example_passed,         :spec_run_processed
-    receive :spec_run_example_pending,        :spec_run_processed
-    receive :spec_run_example_failed,         :spec_run_processed
-    receive :spec_run_close,                  :specRunFinished
-    receive :NSTaskDidTerminateNotification,  :taskHasFinished
+    receive :spec_run_start,                          :spec_run_has_started
+    receive :spec_run_example_passed,                 :spec_run_processed
+    receive :spec_run_example_pending,                :spec_run_processed
+    receive :spec_run_example_failed,                 :spec_run_processed
+    receive :spec_run_close,                          :specRunFinished
+    receive :NSTaskDidTerminateNotification,          :taskHasFinished
+    receive :NSFileHandleReadCompletionNotification,  :pipeContentAvailable
   end
   
   def applicationShouldHandleReopen_hasVisibleWindows(application, has_open_windows)
@@ -44,7 +46,7 @@ class AppController < OSX::NSObject
   end
   
   def taskHasFinished(notification)
-    begin
+   begin
       if notification.object.terminationStatus != 0
         data = notification.object.standardError.fileHandleForReading.availableData
         text = NSString.alloc.initWithData_encoding(data, NSASCIIStringEncoding)
@@ -52,7 +54,11 @@ class AppController < OSX::NSObject
           $LOG.debug "Task failed!: #{text}"
           post_error(text)
         end
-      end    
+      end
+      
+      $output_pipe_handle.closeFile
+      $error_pipe_handle.closeFile
+      
       Listener.init($map.root) if $map
     rescue; end
   end
@@ -90,4 +96,13 @@ class AppController < OSX::NSObject
     alert.informativeText = information
     alert.runModal
   end  
+  
+  def pipeContentAvailable(notification)
+    raw_output = NSString.alloc.initWithData_encoding(notification.userInfo[OSX::NSFileHandleNotificationDataItem], NSASCIIStringEncoding)
+    unless raw_output.empty?
+      $raw_output << [Time.now, raw_output]
+      $output_pipe_handle.readInBackgroundAndNotify
+      $error_pipe_handle.readInBackgroundAndNotify
+    end
+  end
 end
