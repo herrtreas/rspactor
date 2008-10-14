@@ -42,7 +42,7 @@ class AppController < OSX::NSObject
   end
   
   def specRunFinished(notification)    
-    setup_badge_with_failed_spec_count($spec_list.filter_by(:failed).size)    
+    setupBadgeWithFailedSpecCount($spec_list.filter_by(:failed).size)    
     SpecRunner.commandHasFinished!
   end
   
@@ -107,7 +107,7 @@ class AppController < OSX::NSObject
     end
   end
   
-  def setup_badge_with_failed_spec_count(count)
+  def setupBadgeWithFailedSpecCount(count)
     if count == 0
       NSApp.setApplicationIconImage(NSImage.imageNamed('APPL.icns'))      
     else
