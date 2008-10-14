@@ -15,10 +15,11 @@ describe SpecFileView do
     @mock_frame.stub!(:DOMDocument).and_return(@mock_document)
     @mock_view.stub!(:mainFrame).and_return(@mock_frame)
     @mock_spec_object = mock('SpecObject', :state => :passed, :message => 'test')
-    @spec_file_view = SpecFileView.new(@mock_view, 1)
     @spec_file = SpecFile.new(:full_path => '/path/to/test.rb', :specs => [@mock_spec_object])
     $spec_list = mock('SpecList')
     $spec_list.stub!(:files).and_return(['test'])
+    $spec_list.stub!(:file_by_index).and_return(@spec_file)
+    @spec_file_view = SpecFileView.new(@mock_view, 1)
     Converter.stub!(:source_to_html)
   end
   
@@ -28,7 +29,6 @@ describe SpecFileView do
   end
   
   it 'should set the view' do
-    $spec_list.should_receive(:file_by_index).and_return(@spec_file)
     @mock_spec_object.stub!(:state).and_return(:failed)
     @mock_spec_object.should_receive(:backtrace).and_return('')
     @spec_file_view.should_receive(:fold_button).and_return('<img />')
@@ -51,15 +51,9 @@ describe SpecFileView do
     @spec_file_view.update
   end
   
-  it 'should return if spec file is nil' do
-    $spec_list.stub!(:file_by_index).and_return(nil)
-    @spec_file_view.should_not_receive(:setInnerHTML)
-    @spec_file_view.update
-  end
-  
   it 'should store the spec file name in the file_name accessor' do
     $spec_list.stub!(:file_by_index).and_return(@spec_file)
     @spec_file_view.update
-    @spec_file_view.file_name.should eql('test.rb')
+    @spec_file_view.file.name.should eql('test.rb')
   end
 end
