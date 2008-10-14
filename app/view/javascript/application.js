@@ -1,3 +1,15 @@
+Event.observe(window, 'load', resizeOuterWrapper);
+Event.observe(window, 'resize', resizeOuterWrapper);
+
+function resizeOuterWrapper() {
+	var new_width = window.innerWidth - 2;
+	var new_height = window.innerHeight - 2;
+	$('outer_wrapper').setStyle({
+		width: new_width + 'px',
+		height: new_height + 'px'
+	});
+}
+
 function toggleSpecBox(element) {
 	Element.extend(element);
 	element.nextSiblings()[0].toggle();

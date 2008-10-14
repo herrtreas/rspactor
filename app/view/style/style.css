@@ -9,9 +9,18 @@ html {
 }
  
 body {
-  margin: 5px 10px 2px 10px;
   font: normal 12px Helvetica, Arial, sans-serif;
   color: #333;
+}
+
+#outer_wrapper {
+	width: 300px;
+	height: 300px;
+	overflow: auto;
+}
+
+#inner_wrapper {
+  margin: 5px 10px 2px 10px;	
 }
 
 .head {
@@ -46,10 +55,6 @@ hr {
 
 small {
 	font-size: 11px;
-}
-
-.wrapper {
-	overflow: auto;
 }
 
 /* #### CODE #### */
