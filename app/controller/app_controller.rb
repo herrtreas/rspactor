@@ -32,7 +32,7 @@ class AppController < OSX::NSObject
   
   def spec_run_processed(notification)
     spec = notification.userInfo.first
-    $spec_list << spec
+    $spec_list << spec  
     $spec_list.processed_spec_count += 1
     post_notification :spec_run_processed, spec
     if spec.state == :failed && @first_failed_notification_posted.nil?
@@ -41,7 +41,8 @@ class AppController < OSX::NSObject
     end
   end
   
-  def specRunFinished(notification)
+  def specRunFinished(notification)    
+    setup_badge_with_failed_spec_count($spec_list.filter_by(:failed).size)    
     SpecRunner.commandHasFinished!
   end
   
@@ -105,4 +106,48 @@ class AppController < OSX::NSObject
       $error_pipe_handle.readInBackgroundAndNotify
     end
   end
+  
+  def setup_badge_with_failed_spec_count(count)
+    if count == 0
+      NSApp.setApplicationIconImage(NSImage.imageNamed('APPL.icns'))      
+    else
+      
+      # Gladly translated from http://th30z.netsons.org/2008/10/cocoa-notification-badge/ to Ruby
+      # Thanks to Matteo Bertozzi for the article..
+    
+      failed_spec_count = NSString.stringWithFormat('%i', count)    
+      icon = NSImage.imageNamed('APPL.icns')
+      icon_buffer = icon.copy
+      size = icon.size
+  
+      # Create attributes for drawing the count.
+      font = NSFont.fontWithName_size('Helvetica-Bold', 28)
+      color = NSColor.whiteColor
+      attributes = OSX::NSDictionary.alloc.initWithObjectsAndKeys(font, OSX::NSFontAttributeName, color, OSX::NSForegroundColorAttributeName, nil)
+      num_size = failed_spec_count.sizeWithAttributes(attributes)
+  
+      # Create a red circle in the icon large enough to hold the count.
+      icon_buffer.lockFocus
+      icon.drawAtPoint_fromRect_operation_fraction(NSMakePoint(0, 0), NSMakeRect(0, 0, size.width, size.height), OSX::NSCompositeSourceOver, 1.0)    
+      max = (num_size.width > num_size.height) ? num_size.width : num_size.height
+      max += 24
+      circle_rect = NSMakeRect(size.width - max, size.height - max, max, max);
+  
+      # Draw the star image and scale it so the unread count will fit inside.
+      star_image = NSImage.imageNamed('badge.png')
+      star_image.scalesWhenResized = true
+      star_image.setSize(circle_rect.size)
+      star_image.compositeToPoint_operation(circle_rect.origin, OSX::NSCompositeSourceOver)
+  
+      # Draw the count in the red circle
+      point = NSMakePoint(NSMidX(circle_rect) - num_size.width / 2 + 2, NSMidY(circle_rect) - num_size.height / 2 + 2);
+      failed_spec_count.drawAtPoint_withAttributes(point, attributes)
+   
+      # Now set the new app icon and clean up.
+      icon_buffer.unlockFocus
+      NSApp.setApplicationIconImage(icon_buffer)
+      icon_buffer.release
+      attributes.release
+    end
+  end  
 end
