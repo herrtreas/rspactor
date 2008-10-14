@@ -15,7 +15,6 @@ describe SpecFile do
   end
   
   it 'should have a << method to add specs' do
-    puts "Hallo"
     file = SpecFile.new(:full_path => '/home/test.rb')
     lambda do
       file << SpecObject.new
