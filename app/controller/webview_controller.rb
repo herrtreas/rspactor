@@ -21,6 +21,8 @@ class WebviewController < OSX::NSWindowController
   end
   
   def loadHtml(file_name, &block)
+    # $LOG.debug "Test: #{@view.isLoading}"
+    @view.isLoading # dumb
     @@afterLoadBlock = block
     @view.mainFrameURL = File.join(File.dirname(__FILE__), file_name)
   end
@@ -52,6 +54,13 @@ class WebviewController < OSX::NSWindowController
     end
   end
   
+  def showRawOutputView
+    activateHtmlView(:output) do
+      view = RawOutputView.new(@view)
+      view.update
+    end    
+  end
+  
   def editor_integration_enabled?
     $app.default_from_key(:editor_integration) == '1'
   end
@@ -74,9 +83,12 @@ class WebviewController < OSX::NSWindowController
   end
 
   def tabBarClicked(sender)
+    # $LOG.debug @tabBar.selectedSegment
     case @tabBar.selectedSegment
-    when 0, 1:
+    when 0:
       loadHtmlView
+    when 1:
+      showRawOutputView
     when 2:
       if @@currently_displayed_row_index
         showSpecFileView(@@currently_displayed_row_index)

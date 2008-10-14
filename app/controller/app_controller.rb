@@ -100,7 +100,7 @@ class AppController < OSX::NSObject
   def pipeContentAvailable(notification)
     raw_output = NSString.alloc.initWithData_encoding(notification.userInfo[OSX::NSFileHandleNotificationDataItem], NSASCIIStringEncoding)
     unless raw_output.empty?
-      $raw_output << [Time.now, raw_output]
+      $raw_output[0][1] << raw_output
       $output_pipe_handle.readInBackgroundAndNotify
       $error_pipe_handle.readInBackgroundAndNotify
     end

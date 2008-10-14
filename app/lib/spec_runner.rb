@@ -56,6 +56,7 @@ module SpecRunner
       $output_pipe_handle.readInBackgroundAndNotify
       $error_pipe_handle.readInBackgroundAndNotify
       
+      $raw_output.unshift([Time.now, ''])      
       true
     end
 

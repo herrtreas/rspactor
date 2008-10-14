@@ -11,6 +11,7 @@ describe WebviewController do
     @mock_view.stub!(:mainFrameURL=)
     @mock_view.stub!(:shouldCloseWithWindow=)
     @mock_view.stub!(:frameLoadDelegate=)
+    @mock_view.stub!(:isLoading)
     @mock_tab_bar = mock('TabBar')
     @mock_tab_bar.stub!(:setWidth_forSegment)
     @controller = WebviewController.new    
