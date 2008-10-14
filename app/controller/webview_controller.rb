@@ -4,6 +4,8 @@ class WebviewController < OSX::NSWindowController
   ib_outlet :view, :tabBar  
   ib_action :tabBarClicked
   
+  attr_accessor :current_spec_file_view
+  
   def awakeFromNib
     receive :NSTableViewSelectionDidChangeNotification, :showSpecFileViewFromTable
     receive :first_failed_spec,                         :showSpecFileViewFromSpec
@@ -32,20 +34,21 @@ class WebviewController < OSX::NSWindowController
   end
   
   def showSpecFileView(row_index)    
-    if row_index < 0
+    if row_index < 0 && !self.current_spec_file_view
       labelForView(:spec_view, '..', :disabled => true)
       activateHtmlView(:dashboard) and return
     end
     
     if row_index >= 0 && (!defined?(@@currently_displayed_row_index) || row_index != @@currently_displayed_row_index)
-      @@currently_displayed_row_index = row_index 
+      @@currently_displayed_row_index = row_index
+      @current_spec_file_view.load_file_by_index(@@currently_displayed_row_index) if @current_spec_file_view
       labelForView(:spec_view, 'Loading..', :disabled => true)
     end
     
     activateHtmlView(:spec_view) do
-      view = SpecFileView.new(@view, @@currently_displayed_row_index)
-      view.update
-      labelForView(:spec_view, view.file_name)
+      @current_spec_file_view ||= SpecFileView.new(@view, @@currently_displayed_row_index)
+      @current_spec_file_view.update
+      labelForView(:spec_view, @current_spec_file_view.file.name)
     end
   end
   

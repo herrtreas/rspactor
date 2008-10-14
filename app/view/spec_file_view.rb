@@ -2,23 +2,24 @@ require 'osx/cocoa'
 
 class SpecFileView < HtmlView
   attr_accessor :file_index
-  attr_accessor :file_name
+  attr_accessor :file
   
   def initialize(webview, file_index)
     @web_view = webview
-    @file_index = file_index
+    load_file_by_index(file_index)
+  end
+  
+  def load_file_by_index(index)    
+    @file_index = index
+    @file = $spec_list.file_by_index(index) #, :unfiltered => true)
   end
   
   def update
-    file = $spec_list.file_by_index(@file_index) #, :unfiltered => true)
-    return unless file    
-    @file_name = file.name
-    
-    setInnerHTML('title', file.name)
-    setInnerHTML('subtitle', file.full_path)
+    setInnerHTML('title', @file.name)
+    setInnerHTML('subtitle', @file.full_path)
     
     spec_html = '<ul class="spec">'
-    file.specs.each do |spec|
+    @file.specs.each do |spec|
       spec_html << '<li class="spec">'
       spec_html << "<p class='spec_title spec_title_#{spec.state}' onclick='toggleSpecBox(this);'>"
       spec_html << fold_button(spec)
