@@ -23,7 +23,7 @@ describe WebviewController do
     @controller.should be_kind_of(OSX::NSWindowController)
   end
   
-  it 'should setup the tabbar and activate the "welcome" page on awake' do
+  it 'should setup the tabbar and activate the "dashboard" page on awake' do
     @controller.should_receive(:setupTabBar).with(:dashboard)
     @controller.awakeFromNib
   end
@@ -34,8 +34,8 @@ describe WebviewController do
   end
   
   it 'should load a html file into its view' do
-    @mock_view.should_receive(:mainFrameURL=).with(/welcome.html/)    
-    @controller.loadHtml('welcome.html')
+    @mock_view.should_receive(:mainFrameURL=).with(/dashboard.html/)    
+    @controller.loadHtml('dashboard.html')
   end
   
   it 'should load the spec_file view' do

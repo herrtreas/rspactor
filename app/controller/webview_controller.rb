@@ -109,7 +109,7 @@ class WebviewController < OSX::NSWindowController
   
   def loadHtmlView(&block)
     case @tabBar.selectedSegment
-    when 0: loadHtml('welcome.html', &block)
+    when 0: loadHtml('dashboard.html', &block)
     when 1: loadHtml('raw_output.html', &block)
     when 2: loadHtml('spec_file.html', &block)
     end

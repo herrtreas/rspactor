@@ -23,12 +23,21 @@
 		E12E4CF90DFF308300355B0E /* pass_128.png in Resources */ = {isa = PBXBuildFile; fileRef = E12E4CF80DFF308300355B0E /* pass_128.png */; };
 		E12F65900E3884F300C16DC6 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E12F658F0E3884F300C16DC6 /* Sparkle.framework */; };
 		E12F65A90E38852300C16DC6 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E12F658F0E3884F300C16DC6 /* Sparkle.framework */; };
-		E134FBE40E2C0733008AD9BE /* application.js in Resources */ = {isa = PBXBuildFile; fileRef = E134FBE30E2C0733008AD9BE /* application.js */; };
 		E13AF6050E0128670042D8BE /* rspactor_bin.rb in Resources */ = {isa = PBXBuildFile; fileRef = E13AF6040E0128670042D8BE /* rspactor_bin.rb */; };
+		E143B0D40EA4B5AE00055FDB /* dashboard.html in Resources */ = {isa = PBXBuildFile; fileRef = E143B0D30EA4B5AE00055FDB /* dashboard.html */; };
+		E143B0E40EA4B76800055FDB /* application.js in Sources */ = {isa = PBXBuildFile; fileRef = E143B0D80EA4B76800055FDB /* application.js */; };
+		E143B0E50EA4B76800055FDB /* builder.js in Sources */ = {isa = PBXBuildFile; fileRef = E143B0D90EA4B76800055FDB /* builder.js */; };
+		E143B0E60EA4B76800055FDB /* controls.js in Sources */ = {isa = PBXBuildFile; fileRef = E143B0DA0EA4B76800055FDB /* controls.js */; };
+		E143B0E70EA4B76800055FDB /* dragdrop.js in Sources */ = {isa = PBXBuildFile; fileRef = E143B0DB0EA4B76800055FDB /* dragdrop.js */; };
+		E143B0E80EA4B76800055FDB /* effects.js in Sources */ = {isa = PBXBuildFile; fileRef = E143B0DC0EA4B76800055FDB /* effects.js */; };
+		E143B0E90EA4B76800055FDB /* prototype.js in Sources */ = {isa = PBXBuildFile; fileRef = E143B0DD0EA4B76800055FDB /* prototype.js */; };
+		E143B0EA0EA4B76800055FDB /* scriptaculous.js in Sources */ = {isa = PBXBuildFile; fileRef = E143B0DE0EA4B76800055FDB /* scriptaculous.js */; };
+		E143B0EB0EA4B76800055FDB /* slider.js in Sources */ = {isa = PBXBuildFile; fileRef = E143B0DF0EA4B76800055FDB /* slider.js */; };
+		E143B0EC0EA4B76800055FDB /* sound.js in Sources */ = {isa = PBXBuildFile; fileRef = E143B0E00EA4B76800055FDB /* sound.js */; };
+		E143B0ED0EA4B76800055FDB /* unittest.js in Sources */ = {isa = PBXBuildFile; fileRef = E143B0E10EA4B76800055FDB /* unittest.js */; };
+		E143B0EE0EA4B76800055FDB /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = E143B0E30EA4B76800055FDB /* style.css */; };
 		E14951780DFED46A006E0F89 /* spec_table.rb in Resources */ = {isa = PBXBuildFile; fileRef = E14951770DFED46A006E0F89 /* spec_table.rb */; };
 		E151EBEC0E09A04500E11BB3 /* webview_controller.rb in Resources */ = {isa = PBXBuildFile; fileRef = E151EBEB0E09A04500E11BB3 /* webview_controller.rb */; };
-		E151EBF00E09A17700E11BB3 /* welcome.html in Resources */ = {isa = PBXBuildFile; fileRef = E151EBEF0E09A17700E11BB3 /* welcome.html */; };
-		E151EBFE0E09A4D300E11BB3 /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = E151EBFD0E09A4D300E11BB3 /* style.css */; };
 		E151EC050E09A5A500E11BB3 /* spec_file.html in Resources */ = {isa = PBXBuildFile; fileRef = E151EC040E09A5A500E11BB3 /* spec_file.html */; };
 		E151EC0C0E09AD5000E11BB3 /* spec_file_view.rb in Resources */ = {isa = PBXBuildFile; fileRef = E151EC0B0E09AD5000E11BB3 /* spec_file_view.rb */; };
 		E151EC0F0E09B0F100E11BB3 /* html_view.rb in Resources */ = {isa = PBXBuildFile; fileRef = E151EC0E0E09B0F100E11BB3 /* html_view.rb */; };
@@ -41,15 +50,6 @@
 		E16141C10E2371A6006BC96E /* xml.rb in Resources */ = {isa = PBXBuildFile; fileRef = E16141B90E2371A6006BC96E /* xml.rb */; };
 		E16141C20E2371A6006BC96E /* yaml.rb in Resources */ = {isa = PBXBuildFile; fileRef = E16141BA0E2371A6006BC96E /* yaml.rb */; };
 		E16141C30E2371A6006BC96E /* version.rb in Resources */ = {isa = PBXBuildFile; fileRef = E16141BB0E2371A6006BC96E /* version.rb */; };
-		E168369B0E2BB47F004ABB0C /* scriptaculous.js in Resources */ = {isa = PBXBuildFile; fileRef = E16836980E2BB47F004ABB0C /* scriptaculous.js */; };
-		E16836B00E2BB6ED004ABB0C /* builder.js in Resources */ = {isa = PBXBuildFile; fileRef = E16836A90E2BB6ED004ABB0C /* builder.js */; };
-		E16836B10E2BB6ED004ABB0C /* controls.js in Resources */ = {isa = PBXBuildFile; fileRef = E16836AA0E2BB6ED004ABB0C /* controls.js */; };
-		E16836B20E2BB6ED004ABB0C /* dragdrop.js in Resources */ = {isa = PBXBuildFile; fileRef = E16836AB0E2BB6ED004ABB0C /* dragdrop.js */; };
-		E16836B30E2BB6ED004ABB0C /* effects.js in Resources */ = {isa = PBXBuildFile; fileRef = E16836AC0E2BB6ED004ABB0C /* effects.js */; };
-		E16836B40E2BB6ED004ABB0C /* slider.js in Resources */ = {isa = PBXBuildFile; fileRef = E16836AD0E2BB6ED004ABB0C /* slider.js */; };
-		E16836B50E2BB6ED004ABB0C /* sound.js in Resources */ = {isa = PBXBuildFile; fileRef = E16836AE0E2BB6ED004ABB0C /* sound.js */; };
-		E16836B60E2BB6ED004ABB0C /* unittest.js in Resources */ = {isa = PBXBuildFile; fileRef = E16836AF0E2BB6ED004ABB0C /* unittest.js */; };
-		E16836C60E2BB926004ABB0C /* prototype.js in Resources */ = {isa = PBXBuildFile; fileRef = E16836C50E2BB926004ABB0C /* prototype.js */; };
 		E168D7B60E715F140063AEDE /* APPL.icns in Resources */ = {isa = PBXBuildFile; fileRef = E168D7B50E715F140063AEDE /* APPL.icns */; };
 		E18500EE0E4260E0003D4E1E /* textmate.rb in Resources */ = {isa = PBXBuildFile; fileRef = E18500ED0E4260E0003D4E1E /* textmate.rb */; };
 		E193ED830DFAAADE00D17070 /* app_controller.rb in Resources */ = {isa = PBXBuildFile; fileRef = E193ED770DFAAADE00D17070 /* app_controller.rb */; };
@@ -156,12 +156,21 @@
 		E12E4CED0DFF2E0500355B0E /* warning_128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = warning_128.png; sourceTree = "<group>"; };
 		E12E4CF80DFF308300355B0E /* pass_128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pass_128.png; sourceTree = "<group>"; };
 		E12F658F0E3884F300C16DC6 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
-		E134FBE30E2C0733008AD9BE /* application.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = application.js; sourceTree = "<group>"; };
 		E13AF6040E0128670042D8BE /* rspactor_bin.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = rspactor_bin.rb; sourceTree = "<group>"; };
+		E143B0D30EA4B5AE00055FDB /* dashboard.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = dashboard.html; sourceTree = "<group>"; };
+		E143B0D80EA4B76800055FDB /* application.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = application.js; sourceTree = "<group>"; };
+		E143B0D90EA4B76800055FDB /* builder.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = builder.js; sourceTree = "<group>"; };
+		E143B0DA0EA4B76800055FDB /* controls.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = controls.js; sourceTree = "<group>"; };
+		E143B0DB0EA4B76800055FDB /* dragdrop.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = dragdrop.js; sourceTree = "<group>"; };
+		E143B0DC0EA4B76800055FDB /* effects.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = effects.js; sourceTree = "<group>"; };
+		E143B0DD0EA4B76800055FDB /* prototype.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = prototype.js; sourceTree = "<group>"; };
+		E143B0DE0EA4B76800055FDB /* scriptaculous.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = scriptaculous.js; sourceTree = "<group>"; };
+		E143B0DF0EA4B76800055FDB /* slider.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = slider.js; sourceTree = "<group>"; };
+		E143B0E00EA4B76800055FDB /* sound.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = sound.js; sourceTree = "<group>"; };
+		E143B0E10EA4B76800055FDB /* unittest.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = unittest.js; sourceTree = "<group>"; };
+		E143B0E30EA4B76800055FDB /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
 		E14951770DFED46A006E0F89 /* spec_table.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = spec_table.rb; sourceTree = "<group>"; };
 		E151EBEB0E09A04500E11BB3 /* webview_controller.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = webview_controller.rb; sourceTree = "<group>"; };
-		E151EBEF0E09A17700E11BB3 /* welcome.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = welcome.html; sourceTree = "<group>"; };
-		E151EBFD0E09A4D300E11BB3 /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
 		E151EC040E09A5A500E11BB3 /* spec_file.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = spec_file.html; sourceTree = "<group>"; };
 		E151EC0B0E09AD5000E11BB3 /* spec_file_view.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = spec_file_view.rb; sourceTree = "<group>"; };
 		E151EC0E0E09B0F100E11BB3 /* html_view.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = html_view.rb; sourceTree = "<group>"; };
@@ -174,15 +183,6 @@
 		E16141B90E2371A6006BC96E /* xml.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = xml.rb; sourceTree = "<group>"; };
 		E16141BA0E2371A6006BC96E /* yaml.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = yaml.rb; sourceTree = "<group>"; };
 		E16141BB0E2371A6006BC96E /* version.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = version.rb; sourceTree = "<group>"; };
-		E16836980E2BB47F004ABB0C /* scriptaculous.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = scriptaculous.js; sourceTree = "<group>"; };
-		E16836A90E2BB6ED004ABB0C /* builder.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = builder.js; sourceTree = "<group>"; };
-		E16836AA0E2BB6ED004ABB0C /* controls.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = controls.js; sourceTree = "<group>"; };
-		E16836AB0E2BB6ED004ABB0C /* dragdrop.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = dragdrop.js; sourceTree = "<group>"; };
-		E16836AC0E2BB6ED004ABB0C /* effects.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = effects.js; sourceTree = "<group>"; };
-		E16836AD0E2BB6ED004ABB0C /* slider.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = slider.js; sourceTree = "<group>"; };
-		E16836AE0E2BB6ED004ABB0C /* sound.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = sound.js; sourceTree = "<group>"; };
-		E16836AF0E2BB6ED004ABB0C /* unittest.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = unittest.js; sourceTree = "<group>"; };
-		E16836C50E2BB926004ABB0C /* prototype.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = prototype.js; sourceTree = "<group>"; };
 		E168D7B50E715F140063AEDE /* APPL.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = APPL.icns; sourceTree = "<group>"; };
 		E18500ED0E4260E0003D4E1E /* textmate.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = textmate.rb; sourceTree = "<group>"; };
 		E193ED770DFAAADE00D17070 /* app_controller.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = app_controller.rb; sourceTree = "<group>"; };
@@ -380,6 +380,31 @@
 			path = resources;
 			sourceTree = "<group>";
 		};
+		E143B0D70EA4B76800055FDB /* javascript */ = {
+			isa = PBXGroup;
+			children = (
+				E143B0D80EA4B76800055FDB /* application.js */,
+				E143B0D90EA4B76800055FDB /* builder.js */,
+				E143B0DA0EA4B76800055FDB /* controls.js */,
+				E143B0DB0EA4B76800055FDB /* dragdrop.js */,
+				E143B0DC0EA4B76800055FDB /* effects.js */,
+				E143B0DD0EA4B76800055FDB /* prototype.js */,
+				E143B0DE0EA4B76800055FDB /* scriptaculous.js */,
+				E143B0DF0EA4B76800055FDB /* slider.js */,
+				E143B0E00EA4B76800055FDB /* sound.js */,
+				E143B0E10EA4B76800055FDB /* unittest.js */,
+			);
+			path = javascript;
+			sourceTree = "<group>";
+		};
+		E143B0E20EA4B76800055FDB /* style */ = {
+			isa = PBXGroup;
+			children = (
+				E143B0E30EA4B76800055FDB /* style.css */,
+			);
+			path = style;
+			sourceTree = "<group>";
+		};
 		E14951760DFED46A006E0F89 /* object */ = {
 			isa = PBXGroup;
 			children = (
@@ -391,21 +416,12 @@
 		E151EBEE0E09A17600E11BB3 /* view */ = {
 			isa = PBXGroup;
 			children = (
-				E134FBE30E2C0733008AD9BE /* application.js */,
-				E16836C50E2BB926004ABB0C /* prototype.js */,
-				E16836A90E2BB6ED004ABB0C /* builder.js */,
-				E16836AA0E2BB6ED004ABB0C /* controls.js */,
-				E16836AB0E2BB6ED004ABB0C /* dragdrop.js */,
-				E16836AC0E2BB6ED004ABB0C /* effects.js */,
-				E16836AD0E2BB6ED004ABB0C /* slider.js */,
-				E16836AE0E2BB6ED004ABB0C /* sound.js */,
-				E16836AF0E2BB6ED004ABB0C /* unittest.js */,
-				E16836980E2BB47F004ABB0C /* scriptaculous.js */,
+				E143B0D70EA4B76800055FDB /* javascript */,
+				E143B0E20EA4B76800055FDB /* style */,
+				E143B0D30EA4B5AE00055FDB /* dashboard.html */,
 				E151EC0E0E09B0F100E11BB3 /* html_view.rb */,
 				E151EC0B0E09AD5000E11BB3 /* spec_file_view.rb */,
 				E151EC040E09A5A500E11BB3 /* spec_file.html */,
-				E151EBFD0E09A4D300E11BB3 /* style.css */,
-				E151EBEF0E09A17700E11BB3 /* welcome.html */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -642,8 +658,6 @@
 				E13AF6050E0128670042D8BE /* rspactor_bin.rb in Resources */,
 				E1C7449C0E086A1B006DB94E /* preferences_controller.rb in Resources */,
 				E151EBEC0E09A04500E11BB3 /* webview_controller.rb in Resources */,
-				E151EBF00E09A17700E11BB3 /* welcome.html in Resources */,
-				E151EBFE0E09A4D300E11BB3 /* style.css in Resources */,
 				E151EC050E09A5A500E11BB3 /* spec_file.html in Resources */,
 				E151EC0C0E09AD5000E11BB3 /* spec_file_view.rb in Resources */,
 				E151EC0F0E09B0F100E11BB3 /* html_view.rb in Resources */,
@@ -657,16 +671,6 @@
 				E16141C10E2371A6006BC96E /* xml.rb in Resources */,
 				E16141C20E2371A6006BC96E /* yaml.rb in Resources */,
 				E16141C30E2371A6006BC96E /* version.rb in Resources */,
-				E168369B0E2BB47F004ABB0C /* scriptaculous.js in Resources */,
-				E16836B00E2BB6ED004ABB0C /* builder.js in Resources */,
-				E16836B10E2BB6ED004ABB0C /* controls.js in Resources */,
-				E16836B20E2BB6ED004ABB0C /* dragdrop.js in Resources */,
-				E16836B30E2BB6ED004ABB0C /* effects.js in Resources */,
-				E16836B40E2BB6ED004ABB0C /* slider.js in Resources */,
-				E16836B50E2BB6ED004ABB0C /* sound.js in Resources */,
-				E16836B60E2BB6ED004ABB0C /* unittest.js in Resources */,
-				E16836C60E2BB926004ABB0C /* prototype.js in Resources */,
-				E134FBE40E2C0733008AD9BE /* application.js in Resources */,
 				E1B27F140E2D44190005DBFF /* arrow-down.png in Resources */,
 				E1B27F150E2D44190005DBFF /* arrow-right.png in Resources */,
 				E18500EE0E4260E0003D4E1E /* textmate.rb in Resources */,
@@ -723,6 +727,8 @@
 				E1AF662A0E7145B9007DF217 /* users.icns in Resources */,
 				E1AF662B0E7145B9007DF217 /* warning.icns in Resources */,
 				E168D7B60E715F140063AEDE /* APPL.icns in Resources */,
+				E143B0D40EA4B5AE00055FDB /* dashboard.html in Resources */,
+				E143B0EE0EA4B76800055FDB /* style.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -734,6 +740,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				4DDCA70A0ACC9A6100E082CE /* main.m in Sources */,
+				E143B0E40EA4B76800055FDB /* application.js in Sources */,
+				E143B0E50EA4B76800055FDB /* builder.js in Sources */,
+				E143B0E60EA4B76800055FDB /* controls.js in Sources */,
+				E143B0E70EA4B76800055FDB /* dragdrop.js in Sources */,
+				E143B0E80EA4B76800055FDB /* effects.js in Sources */,
+				E143B0E90EA4B76800055FDB /* prototype.js in Sources */,
+				E143B0EA0EA4B76800055FDB /* scriptaculous.js in Sources */,
+				E143B0EB0EA4B76800055FDB /* slider.js in Sources */,
+				E143B0EC0EA4B76800055FDB /* sound.js in Sources */,
+				E143B0ED0EA4B76800055FDB /* unittest.js in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
