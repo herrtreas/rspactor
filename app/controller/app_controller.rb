@@ -42,7 +42,7 @@ class AppController < OSX::NSObject
   end
   
   def specRunFinished(notification)    
-    setupBadgeWithFailedSpecCount($spec_list.filter_by(:failed).size)    
+    setupBadgeWithFailedSpecCount($spec_list.failed_spec_count)    
     SpecRunner.commandHasFinished!
   end
   

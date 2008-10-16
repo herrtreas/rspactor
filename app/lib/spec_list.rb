@@ -71,6 +71,10 @@ class SpecList
     file
   end
   
+  def failed_spec_count
+    @list.select { |s| s.state == :failed }.size
+  end  
+  
   def contains_file?(file)
     !files.select { |f| f.full_path == file.full_path}.empty?
   end  
