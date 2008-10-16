@@ -9,7 +9,6 @@ require 'spec_file'
 
 describe AppController do
   before(:each) do
-    TEST = "Hallo"
     @app = AppController.new
     @mock_spec = mock('SpecObject', :state => :failed, :full_file_path => '/tmp/test')    
   end
