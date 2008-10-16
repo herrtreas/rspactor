@@ -28,12 +28,8 @@ class GrowlController < OSX::NSObject
   end
 
   def errorPosted(notification)
-    title = 'Error loading spec environment:'
-    if notification.userInfo.first.kind_of?(OSX::NSArray)
-      message = notification.userInfo.first[0...2].join("\n")
-    else
-      message = notification.userInfo.first
-    end
+    title = 'SpecRunner aborted.'
+    message = "Please have a look at the 'Output' for more information."
     @growl.notify(MESSAGE_KIND, title, message, nil, false, 0, imageForGrowl(:warning))    
   end
   

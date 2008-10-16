@@ -30,6 +30,10 @@ module SpecRunner
       defined?(@@command_running) && @@command_running == true
     end
     
+    def commandFinished?
+      !command_running?
+    end
+    
     def commandHasFinished!
       @@command_running = false
     end

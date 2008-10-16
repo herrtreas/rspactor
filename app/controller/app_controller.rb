@@ -47,19 +47,15 @@ class AppController < OSX::NSObject
   end
   
   def taskHasFinished(notification)
-   begin
-      if notification.object.terminationStatus != 0
-        data = notification.object.standardError.fileHandleForReading.availableData
-        text = NSString.alloc.initWithData_encoding(data, NSASCIIStringEncoding)
-        unless text.empty?
-          $LOG.debug "Task failed!: #{text}"
-          post_error(text)
-        end
-      end
-      
+    begin     
+      $LOG.debug "Task has finished.."    
+      if notification.object.terminationStatus != 0 && !SpecRunner.commandFinished?
+        $LOG.debug "Task aborted.."
+        postTerminationWithFailure
+      end            
+
       $output_pipe_handle.closeFile
-      $error_pipe_handle.closeFile
-      
+      $error_pipe_handle.closeFile      
       Listener.init($map.root) if $map
     rescue; end
   end
@@ -84,9 +80,8 @@ class AppController < OSX::NSObject
     center.postNotificationName_object_userInfo(name.to_s, self, args)    
   end
   
-  def post_error(message)
-    $LOG.error message
-    post_notification(:error, message)
+  def postTerminationWithFailure
+    post_notification(:error)
     SpecRunner.commandHasFinished!    
   end
   

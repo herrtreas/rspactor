@@ -9,6 +9,7 @@ require 'spec_file'
 
 describe AppController do
   before(:each) do
+    TEST = "Hallo"
     @app = AppController.new
     @mock_spec = mock('SpecObject', :state => :failed, :full_file_path => '/tmp/test')    
   end
@@ -65,9 +66,8 @@ describe AppController do
   end
   
   it 'should post error notifications' do
-    $LOG.should_receive(:error).with('Message')
-    @app.should_receive(:post_notification).with(:error, 'Message')
-    @app.post_error('Message')
+    @app.should_receive(:post_notification).with(:error)
+    @app.postTerminationWithFailure
   end
   
   it 'should have a reference to users defaults object' do
