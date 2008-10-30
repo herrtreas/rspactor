@@ -6,7 +6,7 @@ class WindowController < OSX::NSWindowController
   
   def awakeFromNib
     initAndSetAutomaticPositionAndSizeStoring
-    @growlController = GrowlController.new
+    @growlController = GrowlController.alloc.init
     @pathTextField.stringValue = $app.default_from_key(:spec_run_path)
     hook_events
   end

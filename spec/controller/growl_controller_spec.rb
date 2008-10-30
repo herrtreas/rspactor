@@ -7,7 +7,7 @@ describe GrowlController do
   before(:each) do
     @mock_growl = mock('Growl')
     
-    @controller = GrowlController.new
+    @controller = GrowlController.alloc.init
     @controller.growl = @mock_growl
   end
   
