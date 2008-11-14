@@ -1,3 +1,9 @@
+== 0.9.22 / November 14, 2008
+
+=== Fixes
+* Error output redirection to growl
+* Fixed icon badge count
+
 == 0.9.21 / October 14, 2008
 
 === Changes
