@@ -23,7 +23,7 @@
 	<key>CFBundleIdentifier</key>
 	<string>com.dynamicdudes.RSpactor</string>
 	<key>SUFeedURL</key>
-	<string>http://labs.rubyphunk.com/rspactor.xml</string>
+	<string>http://rspactorapp.com/assets/updates.xml</string>
 	<key>SUCheckAtStartup</key>
   <true/>  
  	<key>NSHumanReadableCopyright</key>

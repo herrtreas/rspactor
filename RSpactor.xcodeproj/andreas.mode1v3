@@ -382,9 +382,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>E15E14BC0EB9BD04003F382A</string>
+				<string>E1C45EE20ECDC23A00CDF130</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>E15E14BD0EB9BD04003F382A</string>
+				<string>E1C45EE30ECDC23A00CDF130</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -518,9 +518,8 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>1CD10A99069EF8BA00B06720</string>
 		<string>E1A615C10DF82908007DEAC7</string>
-		<string>/Users/andreas/ruby/rspactor/RSpactor.xcodeproj</string>
+		<string>/Work/rubyphunk/rspactor_app/RSpactor.xcodeproj</string>
 		<string>1C78EAAD065D492600B07095</string>
 	</array>
 	<key>WindowString</key>
@@ -601,7 +600,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>E1A615C10DF82908007DEAC7</string>
-				<string>E15E14BE0EB9BD04003F382A</string>
+				<string>E1C45EE40ECDC23A00CDF130</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -868,7 +867,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {1440, 726}}</string>
 								<key>RubberWindowFrame</key>
-								<string>480 411 1440 767 0 0 1920 1178 </string>
+								<string>387 411 1440 767 0 0 1920 1178 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXDebugCLIModule</string>
@@ -891,13 +890,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C78EAAD065D492600B07095</string>
-				<string>E15E14C50EB9BD04003F382A</string>
+				<string>E1C45EE50ECDC23A00CDF130</string>
 				<string>1C78EAAC065D492600B07095</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.consoleV3</string>
 			<key>WindowString</key>
-			<string>480 411 1440 767 0 0 1920 1178 </string>
+			<string>387 411 1440 767 0 0 1920 1178 </string>
 			<key>WindowToolGUID</key>
 			<string>1C78EAAD065D492600B07095</string>
 			<key>WindowToolIsVisible</key>
