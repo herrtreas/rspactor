@@ -1,14 +1,12 @@
 module SpecRunner
   class << self
     def run_in_path(path)
-      Map.ensure(path) do
-        run_all_specs_in_path
-      end
+      $app.root = path.to_s
+      run_all_specs_in_path
     end
     
     def run_all_specs_in_path
-      return false if $map.spec_files.empty?  # TODO: Notify user
-      run_command(create_runner_arguments($map.spec_files))
+      run_command(create_runner_arguments([File.join($app.root, 'spec/')]))
     end
     
     def run_specs_for_files(files)
@@ -20,9 +18,9 @@ module SpecRunner
     
     def create_runner_arguments(locations)
       args = locations
-      args << '-Lmtime'
       args << "--require=#{File.dirname(__FILE__)}/rspactor_formatter.rb"
       args << "-fRSpactorFormatter:STDOUT"
+      args << '-Lmtime'
       args
     end
     
@@ -65,9 +63,9 @@ module SpecRunner
     end
 
     def prepare_running_environment(args)
-      if File.exist?(File.join($map.root, 'script/spec'))
+      if File.exist?(File.join($app.root, 'script/spec'))
         runner = "#{$app.default_from_key(:ruby_bin_path).chomp.strip}"
-        args = args.unshift "#{$map.root}/script/spec"
+        args = args.unshift "#{$app.root}/script/spec"
         [runner, args]
       else
         [$app.default_from_key(:spec_bin_path).chomp.strip, args]

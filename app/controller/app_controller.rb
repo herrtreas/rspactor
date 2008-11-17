@@ -2,6 +2,8 @@ require 'osx/cocoa'
 
 class AppController < OSX::NSObject
   
+  attr_accessor :root
+  
   def initialize
     $spec_list = SpecList.new
     $app = self
