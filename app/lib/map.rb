@@ -30,8 +30,6 @@ class Map
   
   def self.location_has_changed(new_path)
     if $map && $map.root != new_path
-      $spec_list.clear!
-      $app.post_notification(:map_location_changed) 
     end
   end  
   

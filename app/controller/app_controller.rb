@@ -58,7 +58,7 @@ class AppController < OSX::NSObject
 
       $output_pipe_handle.closeFile
       $error_pipe_handle.closeFile      
-      Listener.init($map.root) if $map
+      Listener.init($app.root)
     rescue; end
   end
   

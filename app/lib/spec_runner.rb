@@ -1,6 +1,11 @@
 module SpecRunner
   class << self
     def run_in_path(path)
+      if $app.root and $app.root != path
+        $spec_list.clear!
+        $app.post_notification(:map_location_changed)         
+      end
+      
       $app.root = path.to_s
       run_all_specs_in_path
     end
