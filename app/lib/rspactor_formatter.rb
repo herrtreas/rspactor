@@ -31,7 +31,7 @@ class RSpactorFormatter
       :name               => example.description,
       :example_group_name => @example_group.description,
       :state              => :passed,
-      :backtrace          => example.implementation_backtrace
+      :backtrace          => backtrace(example)
     )
     @remote_service.incoming(:spec_run_example_passed, spec)
   end
@@ -42,13 +42,13 @@ class RSpactorFormatter
       :example_group_name => @example_group.description,
       :state              => :pending,
       :message            => message,
-      :backtrace          => example.implementation_backtrace
+      :backtrace          => backtrace(example)
     )        
     @remote_service.incoming(:spec_run_example_pending, spec)
   end
 
   def example_failed(example, counter, failure)
-    backtrace = (failure.exception.backtrace.empty?) ? example.implementation_backtrace : failure.exception.backtrace
+    backtrace = (failure.exception.backtrace.empty?) ? backtrace(example) : failure.exception.backtrace
     spec = SpecObject.new(        
       :name               => example.description,
       :example_group_name => @example_group.description,
@@ -75,6 +75,14 @@ class RSpactorFormatter
 
   
   private
+
+    def backtrace(example)
+      if example.respond_to?(:example_backtrace)
+        example.example_backtrace
+      else
+        example.implementation_backtrace
+      end
+    end
   
     def extract_backspace(backtrace)
       return [] if backtrace.nil?
