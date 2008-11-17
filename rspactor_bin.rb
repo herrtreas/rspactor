@@ -4,7 +4,7 @@ require 'drb'
 
 # Load application
 if ARGV[0] == '--dev'
-  system("open /Users/andreas/ruby/rspactor/build/Release/RSpactor.app")
+  system("open /Work/rubyphunk/rspactor_app/build/Release/RSpactor.app")
 else
   system('open -b com.dynamicdudes.RSpactor')
 end
