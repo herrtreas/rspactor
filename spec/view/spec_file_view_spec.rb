@@ -1,7 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 require 'html_view'
 require 'spec_file_view'
-require 'spec_file'
 require 'converter'
 
 describe SpecFileView do

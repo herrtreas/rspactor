@@ -5,9 +5,11 @@ class AppController < OSX::NSObject
   attr_accessor :root
   
   def initialize
-    $spec_list = SpecList.new
     $app = self
     $raw_output = []
+    $processed_spec_count = 0
+    $total_spec_count = 0
+    ExampleFiles.init
   end
   
   def applicationDidFinishLaunching(notification)
@@ -27,15 +29,16 @@ class AppController < OSX::NSObject
   
   def spec_run_has_started(notification)
     $LOG.debug "Spec run started.."
-    $spec_list.clear_run_stats
-    $spec_list.total_spec_count = notification.userInfo.first
+    $processed_spec_count = 0
+    $total_spec_count = notification.userInfo.first
+    ExampleFiles.tainting_required_on_all_files!
     @first_failed_notification_posted = nil
   end
   
   def spec_run_processed(notification)
     spec = notification.userInfo.first
-    $spec_list << spec  
-    $spec_list.processed_spec_count += 1
+    ExampleFiles.add_spec(spec)
+    $processed_spec_count += 1
     post_notification :spec_run_processed, spec
     if spec.state == :failed && @first_failed_notification_posted.nil?
       @first_failed_notification_posted = true
@@ -44,7 +47,7 @@ class AppController < OSX::NSObject
   end
   
   def specRunFinished(notification)    
-    setupBadgeWithFailedSpecCount($spec_list.failed_spec_count)    
+    setupBadgeWithFailedSpecCount(ExampleFiles.total_failed_spec_count)
     SpecRunner.commandHasFinished!
   end
   

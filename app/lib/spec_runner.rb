@@ -2,7 +2,7 @@ module SpecRunner
   class << self
     def run_in_path(path)
       if $app.root and $app.root != path
-        $spec_list.clear!
+        ExampleFiles.clear!
         $app.post_notification(:map_location_changed)         
       end
       
@@ -26,6 +26,7 @@ module SpecRunner
       args << "--require=#{File.dirname(__FILE__)}/rspactor_formatter.rb"
       args << "-fRSpactorFormatter:STDOUT"
       args << '-Lmtime'
+      args << '--reverse'
       args
     end
     

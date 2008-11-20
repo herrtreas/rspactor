@@ -40,6 +40,6 @@ class DrawerController < OSX::NSWindowController
   end
   
   def set_filter(state)
-    $spec_list.filter = (state == 1) ? :failed : :all    
+    ExampleFiles.filter = (state == 1) ? :failed : :all    
   end
 end

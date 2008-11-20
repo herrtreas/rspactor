@@ -5,6 +5,7 @@ class SpecObject
   attr_accessor :message
   attr_accessor :full_file_path, :file, :line
   attr_accessor :error_header, :error_type, :backtrace
+  attr_accessor :file_object
 
   def initialize(opts = {})
     opts.each do |key, value| 

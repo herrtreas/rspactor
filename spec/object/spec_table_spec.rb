@@ -1,7 +1,5 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 require 'spec_table'
-require 'spec_list'
-require 'spec_file'
 
 describe SpecTable do
   before(:each) do

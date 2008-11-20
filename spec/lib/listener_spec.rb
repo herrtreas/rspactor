@@ -1,6 +1,5 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 require 'listener'
-require 'map'
 
 describe Listener do
   it 'should define a global callback to use with fsevents callbacks' do

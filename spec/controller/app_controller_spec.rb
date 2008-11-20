@@ -2,10 +2,11 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 require 'app_controller'
 require 'service'
-require 'spec_list'
 require 'spec_object'
 require 'spec_runner'
-require 'spec_file'
+require 'example_files'
+require 'example_file'
+require 'example_matcher'
 
 describe AppController do
   before(:each) do

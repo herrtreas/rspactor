@@ -1,6 +1,5 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 require 'spec_runner'
-require 'map'
 require 'listener'
 
 describe SpecRunner do
@@ -36,7 +35,7 @@ describe SpecRunner do
     pending
     $app.should_receive(:default_from_key).with(:ruby_bin_path).twice.and_return('ruby_bin')
     SpecRunner.prepare_running_environment([])[0].should eql("ruby_bin") 
-    SpecRunner.prepare_running_environment([])[1].should eql(["#{$map.root}/script/spec"])
+    SpecRunner.prepare_running_environment([])[1].should eql(["#{$app.root}/script/spec"])
   end
   
   it 'should run specs for specific files' do

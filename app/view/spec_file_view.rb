@@ -4,22 +4,17 @@ class SpecFileView < HtmlView
   attr_accessor :file_index
   attr_accessor :file
   
-  def initialize(webview, file_index)
+  def initialize(webview, file)
     @web_view = webview
-    load_file_by_index(file_index)
-  end
-  
-  def load_file_by_index(index)    
-    @file_index = index
-    @file = $spec_list.file_by_index(index) #, :unfiltered => true)
+    self.file = file
   end
   
   def update
     setInnerHTML('title', @file.name)
-    setInnerHTML('subtitle', @file.full_path)
+    setInnerHTML('subtitle', @file.path)
     
     spec_html = '<ul class="spec">'
-    @file.specs.each do |spec|
+    @file.sorted_specs.each do |spec|
       spec_html << '<li class="spec">'
       spec_html << "<p class='spec_title spec_title_#{spec.state}' onclick='toggleSpecBox(this);'>"
       spec_html << fold_button(spec)

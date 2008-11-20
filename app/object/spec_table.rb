@@ -7,9 +7,7 @@ class SpecTable < OSX::NSObject
   
   def awakeFromNib
     receive :NSTableViewSelectionDidChangeNotification, :disableTableRowMarking
-    receive :spec_run_example_passed,                   :specRunFinishedSingleSpec
-    receive :spec_run_example_pending,                  :specRunFinishedSingleSpec
-    receive :spec_run_example_failed,                   :specRunFinishedSingleSpec
+    receive :spec_run_processed,                        :specRunFinishedSingleSpec
     receive :first_failed_spec,                         :markFileContainingFirstFailedSpec
     receive :file_table_reload_required,                :reload_required
   end
@@ -19,7 +17,7 @@ class SpecTable < OSX::NSObject
   end
   
   def markFileContainingFirstFailedSpec(notification)
-    @byFirstFailingSpecSelectedRowIndex = $spec_list.index_by_spec(notification.userInfo.first)
+    @byFirstFailingSpecSelectedRowIndex = ExampleFiles.index_for_file(notification.userInfo.first.file_object)
   end
   
   def reload_required(notification)
@@ -39,11 +37,12 @@ class SpecTable < OSX::NSObject
   end
   
   def numberOfRowsInTableView(specTable)
-    $spec_list.files.size
+    ExampleFiles.files_count
   end
 
   def tableView_objectValueForTableColumn_row(specTable, specTableColumn, rowIndex)
-    return unless $spec_list && file = $spec_list.file_by_index(rowIndex)    
+    return unless file = ExampleFiles.file_by_index(rowIndex)
+    return unless file.name
     file.name.colored(color_by_state(file))
   end
 
@@ -52,6 +51,8 @@ class SpecTable < OSX::NSObject
       { :red => 0.8, :green => 0.1, :blue => 0.1 }
     elsif spec_file.pending?
       { :red => 0.9, :green => 0.6, :blue => 0.0 }
+    elsif spec_file.passed?
+      { :red => 0.0, :green => 0.3, :blue => 0.0 }
     else
       { :red => 0.2, :green => 0.2, :blue => 0.2 }
     end

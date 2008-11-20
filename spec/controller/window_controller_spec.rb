@@ -3,7 +3,6 @@ require 'window_controller'
 require 'growl_controller'
 require 'ext/growl'
 require 'spec_runner'
-require 'spec_list'
 
 describe WindowController do
   before(:each) do

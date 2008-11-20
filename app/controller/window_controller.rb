@@ -54,7 +54,7 @@ class WindowController < OSX::NSWindowController
   
   def specRunFinishedSingleSpec(notification)
     @statusBar.incrementBy 1.0
-    @statusLabel.stringValue = "Running #{$spec_list.processed_spec_count}...#{$spec_list.total_spec_count}"
+    @statusLabel.stringValue = "Running #{$processed_spec_count}...#{$total_spec_count}"
   end
   
   def controlTextDidEndEditing(notification)

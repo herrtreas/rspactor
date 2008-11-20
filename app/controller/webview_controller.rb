@@ -28,27 +28,31 @@ class WebviewController < OSX::NSWindowController
   end
   
   def showSpecFileViewFromTable(notification)
-    showSpecFileView(notification.object.selectedRow)
+    showSpecFileViewFromIndex(notification.object.selectedRow)
   end
   
   def showSpecFileViewFromSpec(notification)
-    showSpecFileView($spec_list.index_by_spec(notification.userInfo.first))
+    showSpecFileView(notification.userInfo.first.file_object)
   end
   
-  def showSpecFileView(row_index)    
-    if row_index < 0 && !self.current_spec_file_view
+  def showSpecFileViewFromIndex(index)
+    showSpecFileView(ExampleFiles.file_by_index(index))
+  end
+  
+  def showSpecFileView(file)
+    if file.nil? && !self.current_spec_file_view
       labelForView(:spec_view, '..', :disabled => true)
       activateHtmlView(:dashboard) and return
     end
     
-    if row_index >= 0 && (!defined?(@@currently_displayed_row_index) || row_index != @@currently_displayed_row_index)
-      @@currently_displayed_row_index = row_index
-      @current_spec_file_view.load_file_by_index(@@currently_displayed_row_index) if @current_spec_file_view
+    if file && (!defined?(@@currently_displayed_file) || file != @@currently_displayed_file)
+      @@currently_displayed_file = file
+      @current_spec_file_view.file = @@currently_displayed_file if @current_spec_file_view
       labelForView(:spec_view, 'Loading..', :disabled => true)
     end
     
     activateHtmlView(:spec_view) do
-      @current_spec_file_view ||= SpecFileView.new(@view, @@currently_displayed_row_index)
+      @current_spec_file_view ||= SpecFileView.new(@view, @@currently_displayed_file)
       @current_spec_file_view.update
       labelForView(:spec_view, @current_spec_file_view.file.name)
     end
@@ -66,9 +70,9 @@ class WebviewController < OSX::NSWindowController
   end
   
   def reloadWebView(notification)
-    return unless defined?(@@currently_displayed_row_index)
-    if @@currently_displayed_row_index == $spec_list.index_by_spec(notification.userInfo.first)
-      showSpecFileView(@@currently_displayed_row_index)
+    return unless defined?(@@currently_displayed_file)
+    if @@currently_displayed_file == notification.userInfo.first.file_object
+      showSpecFileView(@@currently_displayed_file)
     end
   end
   
@@ -90,8 +94,8 @@ class WebviewController < OSX::NSWindowController
     when 1:
       showRawOutputView
     when 2:
-      if @@currently_displayed_row_index
-        showSpecFileView(@@currently_displayed_row_index)
+      if @@currently_displayed_file
+        showSpecFileView(@@currently_displayed_file)
       else
         labelForView(:spec_view, '..', :disabled => true)
         activateHtmlView(:dashboard)
