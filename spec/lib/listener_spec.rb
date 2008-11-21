@@ -6,11 +6,6 @@ describe Listener do
     Listener.class_variables.should include('@@callback')
   end
   
-  it 'should ensure the map before starting the listener' do
-    Map.should_receive(:ensure)
-    Listener.init('path')
-  end
-  
   it 'should return if a listener was already defined' do
     Listener.stub!(:already_running?).and_return(true)
     Listener.init($fpath_simple).should be_false

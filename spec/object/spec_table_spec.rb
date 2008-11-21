@@ -1,12 +1,12 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 require 'spec_table'
+require 'example_files'
 
 describe SpecTable do
   before(:each) do
     @mock_specsTable = mock('SpecsTable')
     @table = SpecTable.new
     @table.specsTable = @mock_specsTable
-    $spec_list = SpecList.new
   end
   
   it 'should reload after a single spec has been processed' do
@@ -19,13 +19,9 @@ describe SpecTable do
     @table.reload!
   end
   
-  it 'should send out data size on app request' do
-    @table.numberOfRowsInTableView(nil)
-  end
-  
   it 'should send out the base file name for a single column on app request' do
-    mock_spec_file = mock('SpecFile', :failed? => false, :pending? => false, :name => 'hello.rb')
-    $spec_list.stub!(:file_by_index).and_return(mock_spec_file)
+    mock_spec_file = mock('SpecFile', :failed? => false, :pending? => false, :passed? => true, :name => 'hello.rb')
+    ExampleFiles.stub!(:file_by_index).and_return(mock_spec_file)
     res = @table.tableView_objectValueForTableColumn_row(nil, nil, 0)
     res.string.should include('hello.rb')
   end

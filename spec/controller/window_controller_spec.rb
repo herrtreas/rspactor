@@ -43,7 +43,6 @@ describe WindowController do
     $app.stub!(:default_for_key)
     $app.stub!(:default_from_key)
     $app.stub!(:file_exist?).and_return(true)
-    $spec_list = SpecList.new
     SpecRunner.stub!(:run_in_path).and_return(File.dirname(__FILE__))    
   end
   

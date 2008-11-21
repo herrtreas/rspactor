@@ -88,12 +88,6 @@ describe WebviewController do
     @controller.should_receive(:loadHtmlView)
     @controller.tabBarClicked(nil)
   end
-
-  it 'should show the current spec filew in the view if current clicked tab is the :spec_view' do
-    @mock_tab_bar.should_receive(:selectedSegment).and_return(2)
-    @controller.should_receive(:showSpecFileView)
-    @controller.tabBarClicked(nil)    
-  end
   
   it 'should allow setting the tabbar label for a view (including enabling)' do
     @mock_tab_bar.should_receive(:setEnabled_forSegment).with(true, 2)

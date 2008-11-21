@@ -94,7 +94,7 @@ class WebviewController < OSX::NSWindowController
     when 1:
       showRawOutputView
     when 2:
-      if @@currently_displayed_file
+      if defined?(@@currently_displayed_file)
         showSpecFileView(@@currently_displayed_file)
       else
         labelForView(:spec_view, '..', :disabled => true)

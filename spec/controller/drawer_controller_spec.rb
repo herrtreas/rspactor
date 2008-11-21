@@ -1,5 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 require 'drawer_controller'
+require 'example_files'
+require 'example_matcher'
 
 describe DrawerController do
   before(:each) do
@@ -8,8 +10,6 @@ describe DrawerController do
     $app.stub!(:default_for_key)
     $app.stub!(:default_from_key)
     
-    $spec_list = mock('SpecList')
-    $spec_list.stub!(:filter=)
     @mock_window = mock('Window')
     @mock_hide_box = mock('HideBox', :state => 1)
     @mock_hide_box.stub!(:state=)
@@ -19,6 +19,7 @@ describe DrawerController do
     @controller.drawer = @mock_drawer
     @controller.hideBox = @mock_hide_box
     @controller.stub!(:window).and_return(@mock_window)
+    ExampleFiles.init
   end
   
   it 'should be an OSX::NSObject' do
@@ -45,10 +46,10 @@ describe DrawerController do
   end
   
   it 'should set the spec_list filter on change of hideButton' do
-    $spec_list.should_receive(:filter=).with(:failed)
+    ExampleFiles.should_receive(:filter=).with(:failed)
     mock_sender = mock('Sender', :state => 1)
     @controller.hideBoxClicked(mock_sender)    
-    $spec_list.should_receive(:filter=).with(:all)
+    ExampleFiles.should_receive(:filter=).with(:all)
     mock_sender = mock('Sender', :state => 0)
     @controller.hideBoxClicked(mock_sender)    
   end

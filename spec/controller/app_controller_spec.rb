@@ -12,10 +12,12 @@ describe AppController do
   before(:each) do
     @app = AppController.new
     @mock_spec = mock('SpecObject', :state => :failed, :full_file_path => '/tmp/test')    
+    @mock_spec.stub!(:file_object=)
   end
   
-  it 'should init the global spec list on "init"' do
-    $spec_list.should be_kind_of(SpecList)
+  it 'should init the global ExampleFiles manager on "init"' do
+    ExampleFiles.should_receive(:init)
+    AppController.new
   end
   
   it 'should start the drb service on "applicationDidFinishLaunching" notification' do
@@ -27,13 +29,20 @@ describe AppController do
     mock_notification = mock('Notification')
     mock_notification.stub!(:userInfo).and_return([15])
     @app.spec_run_has_started(mock_notification)
-    $spec_list.total_spec_count.should eql(15)
+    $total_spec_count.should eql(15)
   end
   
   it 'should clear spec run count on "spec_run_start"' do
     mock_notification = mock('Notification')
     mock_notification.stub!(:userInfo).and_return([15])
-    $spec_list.should_receive(:clear_run_stats)
+    @app.spec_run_has_started(mock_notification)
+    $processed_spec_count.should eql(0)
+  end
+
+  it 'should taint all files on "spec_run_start"' do
+    mock_notification = mock('Notification')
+    mock_notification.stub!(:userInfo).and_return([15])
+    ExampleFiles.should_receive(:tainting_required_on_all_files!)
     @app.spec_run_has_started(mock_notification)
   end
   
@@ -41,17 +50,17 @@ describe AppController do
     mock_notification = mock('Notification')
     mock_notification.stub!(:userInfo).and_return([@mock_spec])
     @app.stub!(:post_notification)
-    lambda do 
-      @app.spec_run_processed(mock_notification)
-    end.should change($spec_list, :processed_spec_count)
+    old_spec_count = $processed_spec_count
+    @app.spec_run_processed(mock_notification)
+    $processed_spec_count.should_not eql(old_spec_count)
   end
   
   it 'should add passed, pending or failed specs to the list' do
+    spec_object = SpecObject.new
     mock_notification = mock('Notification')
-    mock_notification.stub!(:userInfo).and_return([SpecObject.new])
-    lambda do 
-      @app.spec_run_processed(mock_notification)
-    end.should change($spec_list, :size)    
+    mock_notification.stub!(:userInfo).and_return([spec_object])
+    ExampleFiles.should_receive(:add_spec).with(spec_object)
+    @app.spec_run_processed(mock_notification)
   end
   
   it 'should create a global reference of itself' do
