@@ -4,20 +4,29 @@ class SpecTable < OSX::NSObject
   include OSX
   
   ib_outlet :specsTable
+
   
   def awakeFromNib
-    receive :NSTableViewSelectionDidChangeNotification, :disableTableRowMarking
     receive :spec_run_processed,                        :specRunFinishedSingleSpec
     receive :first_failed_spec,                         :markFileContainingFirstFailedSpec
     receive :file_table_reload_required,                :reload_required
+    
+    @specsTable.setTarget(self)
+    @specsTable.setAction(:selectFileAndLoadView)
+#    @specsTable.setDoubleAction(:my_test)
+  end
+  
+  def markFileContainingFirstFailedSpec(notification)    
+    @selectedSpecFile = notification.userInfo.first.file_object
+  end
+  
+  def selectFileAndLoadView(sender)
+    @selectedSpecFile = ExampleFiles.file_by_index(@specsTable.selectedRow)
+    $app.post_notification :fileToWebViewLoadingRequired, @specsTable
   end
   
   def specRunFinishedSingleSpec(notification)
     reload!
-  end
-  
-  def markFileContainingFirstFailedSpec(notification)
-    @byFirstFailingSpecSelectedRowIndex = ExampleFiles.index_for_file(notification.userInfo.first.file_object)
   end
   
   def reload_required(notification)
@@ -26,14 +35,11 @@ class SpecTable < OSX::NSObject
   
   def reload!
     @specsTable.reloadData
-    if @byFirstFailingSpecSelectedRowIndex
+    if @selectedSpecFile
+      index = ExampleFiles.index_for_file(@selectedSpecFile)
       $app.post_notification :retain_focus_on_drawer
-      @specsTable.selectRowIndexes_byExtendingSelection(NSIndexSet.new.initWithIndex(@byFirstFailingSpecSelectedRowIndex), false)
+      @specsTable.selectRowIndexes_byExtendingSelection(NSIndexSet.new.initWithIndex(index), false)
     end
-  end
-  
-  def disableTableRowMarking(notification)
-    @byFirstFailingSpecSelectedRowIndex = nil
   end
   
   def numberOfRowsInTableView(specTable)
@@ -43,7 +49,7 @@ class SpecTable < OSX::NSObject
   def tableView_objectValueForTableColumn_row(specTable, specTableColumn, rowIndex)
     return unless file = ExampleFiles.file_by_index(rowIndex)
     return unless file.name
-    file.name.colored(color_by_state(file))
+    file.name(:include => :spec_count).colored(color_by_state(file))
   end
 
   def color_by_state(spec_file)

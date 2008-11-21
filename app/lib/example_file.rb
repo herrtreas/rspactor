@@ -62,9 +62,10 @@ class ExampleFile
     !File.exist?(self.path)
   end
   
-  def name
+  def name(opts = {})
     name = File.basename(@path).gsub(/(?:^|_)(.)/) { $1.upcase }
     name.slice!(/Spec\.rb/)
+    name += ((self.failed?) ? " (#{self.spec_count(:failed)})" : '') if opts[:include] and opts[:include] == :spec_count
     name
   end
   

@@ -1,5 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 require 'spec_table'
+require 'example_file'
 require 'example_files'
 
 describe SpecTable do
@@ -19,22 +20,38 @@ describe SpecTable do
     @table.reload!
   end
   
-  it 'should send out the base file name for a single column on app request' do
-    mock_spec_file = mock('SpecFile', :failed? => false, :pending? => false, :passed? => true, :name => 'hello.rb')
-    ExampleFiles.stub!(:file_by_index).and_return(mock_spec_file)
-    res = @table.tableView_objectValueForTableColumn_row(nil, nil, 0)
-    res.string.should include('hello.rb')
-  end
+  describe 'with additional information for files' do
   
-  it 'should return a color by file state' do
-    mock_spec_file = mock('SpecFile', :failed? => true, :pending? => false)
-    color = @table.color_by_state(mock_spec_file)
-    color.should == { :red => 0.8, :green => 0.1, :blue => 0.1 }
-  end
+    before(:each) do
+      @example_file = ExampleFile.new(:path => '/path/to/hello.rb')
+      ExampleFiles.stub!(:file_by_index).and_return(@example_file)
+    end
   
-  it 'should return orange color for a pending spec' do
-    mock_spec_file = mock('SpecFile', :pending? => true, :failed? => false)
-    color = @table.color_by_state(mock_spec_file)
-    color.should == { :red => 0.9, :green => 0.6, :blue => 0}
+    it 'should send out the base file name for a single column on app request' do
+      @example_file.stub!(:passed?).and_return(true) 
+      res = @table.tableView_objectValueForTableColumn_row(nil, nil, 0)
+      res.string.should include('Hello.rb')
+    end
+  
+    describe 'colored by spec state' do
+      it 'should mark a failed file red' do
+        @example_file.stub!(:failed?).and_return(true)
+        color = @table.color_by_state(@example_file)
+        color.should == { :red => 0.8, :green => 0.1, :blue => 0.1 }
+      end
+  
+      it 'should mark a pending file orange' do
+        @example_file.stub!(:pending?).and_return(true)
+        color = @table.color_by_state(@example_file)
+        color.should == { :red => 0.9, :green => 0.6, :blue => 0}
+      end
+  
+      it 'should mark a passed file green' do
+        @example_file.stub!(:passed?).and_return(true)
+        color = @table.color_by_state(@example_file)
+        color.should == { :red => 0.0, :green => 0.3, :blue => 0.0}
+      end  
+    end
+    
   end
 end

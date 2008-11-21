@@ -7,7 +7,7 @@ class WebviewController < OSX::NSWindowController
   attr_accessor :current_spec_file_view
   
   def awakeFromNib
-    receive :NSTableViewSelectionDidChangeNotification, :showSpecFileViewFromTable
+    receive :fileToWebViewLoadingRequired,              :showSpecFileViewFromTable
     receive :first_failed_spec,                         :showSpecFileViewFromSpec
     receive :spec_run_processed,                        :reloadWebView
     
@@ -28,7 +28,7 @@ class WebviewController < OSX::NSWindowController
   end
   
   def showSpecFileViewFromTable(notification)
-    showSpecFileViewFromIndex(notification.object.selectedRow)
+    showSpecFileViewFromIndex(notification.userInfo.first.selectedRow)
   end
   
   def showSpecFileViewFromSpec(notification)
@@ -54,7 +54,7 @@ class WebviewController < OSX::NSWindowController
     activateHtmlView(:spec_view) do
       @current_spec_file_view ||= SpecFileView.new(@view, @@currently_displayed_file)
       @current_spec_file_view.update
-      labelForView(:spec_view, @current_spec_file_view.file.name)
+      labelForView(:spec_view, @current_spec_file_view.file.name(:include => :spec_count))
     end
   end
   
