@@ -36,7 +36,7 @@ class RSpactorFormatter
     @remote_service.incoming(:spec_run_example_passed, spec)
   end
   
-  def example_pending(example, message)
+  def example_pending(example, message, pending_caller = nil)
     spec = SpecObject.new(
       :name               => example.description,
       :example_group_name => @example_group.description,
@@ -58,7 +58,7 @@ class RSpactorFormatter
       :error_type         => failure.expectation_not_met? ? :expectation : :implementation,
       :backtrace          => extract_backspace(backtrace)
     )
-    
+ 
     @remote_service.incoming(:spec_run_example_failed, spec)
   end  
 
@@ -77,11 +77,31 @@ class RSpactorFormatter
   private
 
     def backtrace(example)
-      if example.respond_to?(:example_backtrace)
-        example.example_backtrace
-      else
-        example.implementation_backtrace
+      # Dirty hack zone do
+      begin
+        if example.respond_to?(:backtrace)
+          if example.backtrace.blank?
+            dummy = "#{example.instance_variable_get('@_implementation')}".split('@')[1]
+            dummy = dummy[0...(dummy.length-1)]
+            return [dummy]
+          else
+            return example.backtrace
+          end
+        elsif example.respond_to?(:example_backtrace)
+          if example.example_backtrace.blank?
+            dummy = "#{example.instance_variable_get('@_implementation')}".split('@')[1]
+            dummy = dummy[0...(dummy.length-1)]
+            return [dummy]
+          else
+            return example.example_backtrace
+          end          
+        else
+          return example.implementation_backtrace
+        end
+      rescue => e
+        $LOG.error "Error: #{e}"
       end
+      # end
     end
   
     def extract_backspace(backtrace)

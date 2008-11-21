@@ -520,7 +520,10 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>1CD10A99069EF8BA00B06720</string>
+		<string>E1A615C10DF82908007DEAC7</string>
 		<string>/Work/rubyphunk/rspactor_app/RSpactor.xcodeproj</string>
+		<string>1C78EAAD065D492600B07095</string>
 	</array>
 	<key>WindowString</key>
 	<string>0 110 1440 768 0 0 1440 878 </string>
@@ -553,7 +556,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {1037, 215}}</string>
 								<key>RubberWindowFrame</key>
-								<string>504 389 1037 497 0 0 1920 1178 </string>
+								<string>230 229 1037 497 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -577,7 +580,7 @@
 								<key>Frame</key>
 								<string>{{0, 220}, {1037, 236}}</string>
 								<key>RubberWindowFrame</key>
-								<string>504 389 1037 497 0 0 1920 1178 </string>
+								<string>230 229 1037 497 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXBuildResultsModule</string>
@@ -600,14 +603,14 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>E1A615C10DF82908007DEAC7</string>
-				<string>E18021E30ED47F04002B6EC8</string>
+				<string>E1EEF0A90ED62F7C0028BF5A</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.buildV3</string>
 			<key>WindowString</key>
-			<string>504 389 1037 497 0 0 1920 1178 </string>
+			<string>230 229 1037 497 0 0 1440 878 </string>
 			<key>WindowToolGUID</key>
 			<string>E1A615C10DF82908007DEAC7</string>
 			<key>WindowToolIsVisible</key>
@@ -694,10 +697,10 @@
 									<key>Frame</key>
 									<string>{{316, 0}, {378, 203}}</string>
 									<key>RubberWindowFrame</key>
-									<string>726 488 694 422 0 0 1920 1178 </string>
+									<string>442 303 694 422 0 0 1440 878 </string>
 								</dict>
 								<key>RubberWindowFrame</key>
-								<string>726 488 694 422 0 0 1920 1178 </string>
+								<string>442 303 694 422 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXDebugSessionModule</string>
@@ -720,18 +723,18 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>E18021E40ED47F04002B6EC8</string>
+				<string>E1EEF0AA0ED62F7C0028BF5A</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>E18021E50ED47F04002B6EC8</string>
-				<string>E18021E60ED47F04002B6EC8</string>
-				<string>E18021E70ED47F04002B6EC8</string>
-				<string>E18021E80ED47F04002B6EC8</string>
-				<string>E18021E90ED47F04002B6EC8</string>
+				<string>E1EEF0AB0ED62F7C0028BF5A</string>
+				<string>E1EEF0AC0ED62F7C0028BF5A</string>
+				<string>E1EEF0AD0ED62F7C0028BF5A</string>
+				<string>E1EEF0AE0ED62F7C0028BF5A</string>
+				<string>E1EEF0AF0ED62F7C0028BF5A</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
 			<key>WindowString</key>
-			<string>726 488 694 422 0 0 1920 1178 </string>
+			<string>442 303 694 422 0 0 1440 878 </string>
 			<key>WindowToolGUID</key>
 			<string>1CD10A99069EF8BA00B06720</string>
 			<key>WindowToolIsVisible</key>
@@ -867,7 +870,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {1440, 726}}</string>
 								<key>RubberWindowFrame</key>
-								<string>480 411 1440 767 0 0 1920 1178 </string>
+								<string>0 111 1440 767 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXDebugCLIModule</string>
@@ -890,13 +893,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C78EAAD065D492600B07095</string>
-				<string>E18021EA0ED47F04002B6EC8</string>
+				<string>E1EEF0B00ED62F7C0028BF5A</string>
 				<string>1C78EAAC065D492600B07095</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.consoleV3</string>
 			<key>WindowString</key>
-			<string>480 411 1440 767 0 0 1920 1178 </string>
+			<string>0 111 1440 767 0 0 1440 878 </string>
 			<key>WindowToolGUID</key>
 			<string>1C78EAAD065D492600B07095</string>
 			<key>WindowToolIsVisible</key>
