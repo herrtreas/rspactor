@@ -16,7 +16,6 @@ class WindowController < OSX::NSWindowController
     return unless valid_bin_paths?
     path = @pathTextField.stringValue
     return false if path.empty? || !File.exist?(path)
-    specRunPreparation(nil)
     SpecRunner.run_in_path(path)
   end
   

@@ -10,6 +10,7 @@ class AppController < OSX::NSObject
     $processed_spec_count = 0
     $total_spec_count = 0
     ExampleFiles.init
+    SpecRunner.init
   end
   
   def applicationDidFinishLaunching(notification)
@@ -46,21 +47,27 @@ class AppController < OSX::NSObject
     end
   end
   
-  def specRunFinished(notification)    
-    setupBadgeWithFailedSpecCount(ExampleFiles.total_failed_spec_count)
-    SpecRunner.commandHasFinished!
+  def specRunFinished(notification)
+    @_spec_run_normally_completed = true
   end
   
   def taskHasFinished(notification)
     begin     
       $LOG.debug "Task has finished.."    
-      if notification.object.terminationStatus != 0 && !SpecRunner.commandFinished?
+
+      if !@_spec_run_normally_completed && notification.object.terminationStatus != 0 && !SpecRunner.commandFinished?
         $LOG.debug "Task aborted.."
-        postTerminationWithFailure
-      end            
+        post_notification(:error)        
+      else
+        setupBadgeWithFailedSpecCount(ExampleFiles.total_failed_spec_count)      
+      end
+
+      @_spec_run_normally_completed = nil
 
       $output_pipe_handle.closeFile
-      $error_pipe_handle.closeFile      
+      $error_pipe_handle.closeFile
+
+      SpecRunner.commandHasFinished!
       Listener.init($app.root)
     rescue; end
   end
@@ -83,11 +90,6 @@ class AppController < OSX::NSObject
   
   def post_notification(name, *args)
     center.postNotificationName_object_userInfo(name.to_s, self, args)    
-  end
-  
-  def postTerminationWithFailure
-    post_notification(:error)
-    SpecRunner.commandHasFinished!    
   end
   
   def alert(message, information)

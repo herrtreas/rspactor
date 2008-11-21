@@ -29,10 +29,9 @@ class Listener
           $LOG.debug "File: #{file}"
           spec_file = ExampleFiles.find_example_for_file(file)
           if spec_file
-            $LOG.debug spec_file
             @files_to_spec << spec_file 
           end
-        end 
+        end
         SpecRunner.run_specs_for_files(@files_to_spec) unless @files_to_spec.empty?
       rescue => e
         $LOG.error "#{e.message}: #{e.backtrace.first}"

@@ -13,7 +13,7 @@ class SpecTable < OSX::NSObject
     
     @specsTable.setTarget(self)
     @specsTable.setAction(:selectFileAndLoadView)
-#    @specsTable.setDoubleAction(:my_test)
+    @specsTable.setDoubleAction(:addSelectedFileToRunnerQueue)
   end
   
   def markFileContainingFirstFailedSpec(notification)    
@@ -23,6 +23,12 @@ class SpecTable < OSX::NSObject
   def selectFileAndLoadView(sender)
     @selectedSpecFile = ExampleFiles.file_by_index(@specsTable.selectedRow)
     $app.post_notification :fileToWebViewLoadingRequired, @specsTable
+  end
+  
+  def addSelectedFileToRunnerQueue(sender)
+    @selectedSpecFile = ExampleFiles.file_by_index(@specsTable.selectedRow)
+    SpecRunner.queue << @selectedSpecFile.path    
+    SpecRunner.process_queue 
   end
   
   def specRunFinishedSingleSpec(notification)

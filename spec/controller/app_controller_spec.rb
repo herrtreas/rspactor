@@ -4,6 +4,7 @@ require 'app_controller'
 require 'service'
 require 'spec_object'
 require 'spec_runner'
+require 'runner_queue'
 require 'example_files'
 require 'example_file'
 require 'example_matcher'
@@ -15,8 +16,9 @@ describe AppController do
     @mock_spec.stub!(:file_object=)
   end
   
-  it 'should init the global ExampleFiles manager on "init"' do
+  it 'should init the global managers on "init"' do
     ExampleFiles.should_receive(:init)
+    SpecRunner.should_receive(:init)
     AppController.new
   end
   
@@ -72,11 +74,6 @@ describe AppController do
     mock_center.should_receive(:postNotificationName_object_userInfo)
     @app.stub!(:center).and_return(mock_center)
     @app.post_notification(:test, 'huhu')
-  end
-  
-  it 'should post error notifications' do
-    @app.should_receive(:post_notification).with(:error)
-    @app.postTerminationWithFailure
   end
   
   it 'should have a reference to users defaults object' do

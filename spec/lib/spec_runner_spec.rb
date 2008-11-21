@@ -1,6 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 require 'spec_runner'
 require 'listener'
+require 'runner_queue'
 
 describe SpecRunner do
   before(:each) do
@@ -8,6 +9,7 @@ describe SpecRunner do
     $app.stub!(:post_notification)
     $app.stub!(:default_from_key).and_return('')
     $app.stub!(:root).and_return($fpath_rails)
+    SpecRunner.init
     SpecRunner.stub!(:command_running?).and_return(false)
   end
   
@@ -26,13 +28,12 @@ describe SpecRunner do
   end
   
   it 'should use "spec" binary per default' do
-    pending
+    $app.stub!(:root).and_return($fpath_simple)
     $app.should_receive(:default_from_key).with(:spec_bin_path).and_return('spec_bin')
     SpecRunner.prepare_running_environment([])[0].should eql('spec_bin')
   end
   
   it 'should use "script/spec" if available' do
-    pending
     $app.should_receive(:default_from_key).with(:ruby_bin_path).twice.and_return('ruby_bin')
     SpecRunner.prepare_running_environment([])[0].should eql("ruby_bin") 
     SpecRunner.prepare_running_environment([])[1].should eql(["#{$app.root}/script/spec"])
@@ -57,5 +58,21 @@ describe SpecRunner do
   it 'should skip the command running if another command has not finished yet' do
     SpecRunner.stub!(:command_running?).and_return(true)
     SpecRunner.run_command('ls').should be_false
+  end
+  
+  describe 'with queue management' do
+    it 'should init the queue' do
+      SpecRunner.queue.should be_kind_of(RunnerQueue)
+    end
+    
+    it 'should run the queue after run_specs_for_files' do
+      SpecRunner.should_receive(:process_queue)
+      SpecRunner.run_specs_for_files(['/test'])      
+    end
+    
+    it 'should process the queue after command has finished' do
+      SpecRunner.should_receive(:process_queue)
+      SpecRunner.commandHasFinished!
+    end
   end
 end

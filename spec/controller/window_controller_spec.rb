@@ -83,9 +83,9 @@ describe WindowController do
     @controller.showInputPanel    
   end
   
-  it 'should init the status label with a cooool text on spec_run_start' do
+  it 'should init the status label with a cooool text on spec_run_preparation' do
     @mock_statusLabel.should_receive(:stringValue=)
-    @controller.runSpecs(nil)    
+    @controller.specRunPreparation(nil)    
   end
   
   it 'should hide the status panel on finished spec run' do
@@ -93,10 +93,10 @@ describe WindowController do
     @controller.specRunFinished(nil)
   end
   
-  it 'should set status bar to indeterminate and start its animation on spec run' do
+  it 'should set status bar to indeterminate and start its animation on spec_run_preparation' do
     @mock_statusBar.should_receive(:indeterminate=).with(true)
     @mock_statusBar.should_receive(:startAnimation)
-    @controller.runSpecs(nil)
+    @controller.specRunPreparation(nil)
   end
   
   it 'should display progress info in statusLabel for passed, pending and failed specs' do

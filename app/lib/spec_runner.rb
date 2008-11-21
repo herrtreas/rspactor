@@ -1,5 +1,11 @@
 module SpecRunner
   class << self
+    attr_accessor :queue
+    
+    def init
+      self.queue = RunnerQueue.new
+    end
+    
     def run_in_path(path)
       if $app.root and $app.root != path
         ExampleFiles.clear!
@@ -11,14 +17,22 @@ module SpecRunner
     end
     
     def run_all_specs_in_path
-      run_command(create_runner_arguments([File.join($app.root, 'spec/')]))
+      self.queue << File.join($app.root, 'spec/')
+      process_queue
     end
     
     def run_specs_for_files(files)
       return false if files.empty?            # TODO: Notify user
+      self.queue.add_bulk(files)
+      process_queue
+    end
+    
+    def process_queue
       return false if command_running?      
-      $app.post_notification :spec_run_invoked
-      run_command(create_runner_arguments(files))
+      unless self.queue.empty?
+        $app.post_notification :spec_run_invoked
+        run_command(create_runner_arguments(self.queue.next_files))
+      end
     end
     
     def create_runner_arguments(locations)
@@ -40,6 +54,7 @@ module SpecRunner
     
     def commandHasFinished!
       @@command_running = false
+      process_queue
     end
     
     def run_command(args)
