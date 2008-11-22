@@ -10,4 +10,10 @@ describe ExampleFile do
     @example_file.stub!(:spec_count).with(:failed).and_return(3)
     @example_file.name(:include => :spec_count).should include('3')
   end
+  
+  it 'should reset modification times if a spec is added or replaced' do
+    lambda do
+      @example_file.add_spec(SpecObject.new)
+    end.should change(@example_file, :mtime)
+  end
 end
