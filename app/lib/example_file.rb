@@ -26,8 +26,13 @@ class ExampleFile
     if old_specs.empty?
       @specs << spec
     else
-      @specs[@specs.index(old_specs.first)] = spec
+      merge_specs(old_specs.first, spec)
     end
+  end
+  
+  def merge_specs(old_spec, new_spec)    
+    new_spec.backtrace = old_spec.backtrace if new_spec.backtrace.size < old_spec.backtrace.size
+    @specs[@specs.index(old_spec)] = new_spec
   end
   
   def sorted_specs
@@ -39,7 +44,7 @@ class ExampleFile
   end
   
   def has_spec?(spec)
-    !@specs.select { |s| s.to_s == spec.to_s }.empty?
+    !@specs.select { |s| s.to_s == spec.to_s and (s.backtrace.size != spec.backtrace.size or s.backtrace.first == spec.backtrace.first)}.empty?
   end
   
   def tainting_required!

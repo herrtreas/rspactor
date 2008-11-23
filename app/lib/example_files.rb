@@ -67,13 +67,27 @@ class ExampleFiles
     @@_sorted_files = []
   end
   
+  
   private
   
   def self.find_or_create_example_file_by_spec(spec)
     return @@example_files[spec.full_file_path] if @@example_files[spec.full_file_path]
-    example_file = ExampleFile.new(:path => spec.full_file_path)
-    @@example_files[example_file.path] = example_file
-    example_file
+    if example_file = self.find_example_file_by_spec_name(spec)
+      example_file
+    else
+      example_file = ExampleFile.new(:path => spec.full_file_path)
+      @@example_files[example_file.path] = example_file
+      example_file
+    end
+  end
+  
+  def self.find_example_file_by_spec_name(spec)
+    found_pairs = @@example_files.select { |path, ef| ef.has_spec?(spec) }
+    if found_pairs.empty?
+      return nil
+    else
+      found_pairs.first[1]
+    end
   end
   
   def self.update_sorted_list
