@@ -80,21 +80,21 @@ class RSpactorFormatter
       # Dirty hack zone do
       begin
         if example.respond_to?(:backtrace)
-          if example.backtrace.blank?
+#          if example.backtrace.blank?
             dummy = "#{example.instance_variable_get('@_implementation')}".split('@')[1]
             dummy = dummy[0...(dummy.length-1)]
             return [dummy]
-          else
-            return example.backtrace
-          end
+          # else
+          #   return example.backtrace
+          # end
         elsif example.respond_to?(:example_backtrace)
-          if example.example_backtrace.blank?
+#          if example.example_backtrace.blank?
             dummy = "#{example.instance_variable_get('@_implementation')}".split('@')[1]
             dummy = dummy[0...(dummy.length-1)]
             return [dummy]
-          else
-            return example.example_backtrace
-          end          
+#          else
+#            return example.example_backtrace
+#          end          
         else
           return example.implementation_backtrace
         end
