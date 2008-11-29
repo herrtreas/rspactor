@@ -40,7 +40,6 @@ module SpecRunner
       args << "--require=#{File.dirname(__FILE__)}/rspactor_formatter.rb"
       args << "-fRSpactorFormatter:STDOUT"
       args << '-L=mtime'
-      args << '--reverse'
       args
     end
     
