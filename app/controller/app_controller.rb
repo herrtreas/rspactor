@@ -38,7 +38,6 @@ class AppController < OSX::NSObject
   
   def spec_run_processed(notification)
     spec = notification.userInfo.first
-#    $LOG.debug "Spec: #{spec} / #{spec.backtrace.join("\n")}"
     ExampleFiles.add_spec(spec)
     $processed_spec_count += 1
     post_notification :spec_run_processed, spec

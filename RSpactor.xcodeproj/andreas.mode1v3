@@ -388,9 +388,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>E120390A0ED998BC009B2470</string>
+				<string>E1683C1D0EE0C7EB000814AB</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>E120390B0ED998BC009B2470</string>
+				<string>E1683C1E0EE0C7EB000814AB</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -524,10 +524,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>1CD10A99069EF8BA00B06720</string>
-		<string>E1A615C10DF82908007DEAC7</string>
 		<string>/Work/rubyphunk/rspactor_app/RSpactor.xcodeproj</string>
-		<string>1C78EAAD065D492600B07095</string>
 	</array>
 	<key>WindowString</key>
 	<string>0 110 1440 768 0 0 1440 878 </string>
@@ -607,7 +604,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>E1A615C10DF82908007DEAC7</string>
-				<string>E12039160ED99E24009B2470</string>
+				<string>E1C79DDE0ED9A09C007C7669</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -727,13 +724,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>E12039170ED99E24009B2470</string>
+				<string>E1C79DDF0ED9A09C007C7669</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>E12039180ED99E24009B2470</string>
-				<string>E12039190ED99E24009B2470</string>
-				<string>E120391A0ED99E24009B2470</string>
-				<string>E120391B0ED99E24009B2470</string>
-				<string>E120391C0ED99E24009B2470</string>
+				<string>E1C79DE00ED9A09C007C7669</string>
+				<string>E1C79DE10ED9A09C007C7669</string>
+				<string>E1C79DE20ED9A09C007C7669</string>
+				<string>E1C79DE30ED9A09C007C7669</string>
+				<string>E1C79DE40ED9A09C007C7669</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
@@ -860,8 +857,6 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -897,7 +892,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C78EAAD065D492600B07095</string>
-				<string>E120390C0ED998BC009B2470</string>
+				<string>E1C79DE50ED9A09C007C7669</string>
 				<string>1C78EAAC065D492600B07095</string>
 			</array>
 			<key>ToolbarConfiguration</key>
@@ -907,7 +902,7 @@
 			<key>WindowToolGUID</key>
 			<string>1C78EAAD065D492600B07095</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>Identifier</key>

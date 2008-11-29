@@ -106,7 +106,8 @@ class RSpactorFormatter
   
     def extract_backspace(backtrace)
       return [] if backtrace.nil?
-      backtrace.map { |line| line.sub(/\A([^:]+:\d+)$/, '\\1:') }
+      backtrace = backtrace.collect { |line| line.split("\n") }.flatten
+      backtrace.collect { |line| line.sub(/\A([^:]+:\d+)$/, '\\1:').strip if line =~ /\A([^:]+:\d+)$/ }.compact
     end
   
 end
