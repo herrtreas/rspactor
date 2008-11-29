@@ -10,7 +10,8 @@ class ExampleFile
   end
   
   def add_spec(spec)    
-    @mtime = Time.now
+    @mtime = Time.now    
+    spec = transform_relative_paths_to_absolute(spec)
     spec.untaint
     if @tainting_required
       @tainting_required = false
@@ -84,5 +85,12 @@ class ExampleFile
 
   def passed?
     spec_count(:passed) != 0
+  end
+  
+  def transform_relative_paths_to_absolute(spec)
+    return spec unless $app.root
+    spec.full_file_path = File.join($app.root, spec.full_file_path) unless spec.full_file_path =~ /^\//
+    spec.backtrace = spec.backtrace.collect { |line| line =~ /^\// ? line : File.join($app.root, line) }
+    spec
   end
 end

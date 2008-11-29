@@ -22,6 +22,11 @@ class SpecFileView < HtmlView
       spec_html << "</p>"
       spec_html << "<div #{spec.state == :passed ? "style='display: none'" : ""}>"
       spec_html << "<p class='spec_message'>#{h(spec.message)}</p>" if spec.message
+      if spec.full_file_path != spec.file_of_first_backtrace_line
+        spec_html << "<div class='sub_file_path'>#{spec.file_of_first_backtrace_line}</div>"
+        spec_html << "<p class='spec_code'>#{Converter.source_to_html(spec, :force_file_at_first_backtrace_line => true)}</p>"
+        spec_html << "<div class='sub_file_path'>#{spec.full_file_path}</div>"
+      end
       spec_html << "<p class='spec_code'>#{Converter.source_to_html(spec)}</p>"
       spec_html << "<ul class='spec_trace'>#{Converter.formatted_backtrace(spec)}</ul>" if spec.state == :failed
       spec_html << '</div>'

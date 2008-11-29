@@ -3,6 +3,8 @@ require 'example_file'
 
 describe ExampleFile do
   before(:each) do
+    $app = mock('App')
+    $app.stub!(:root)
     @example_file = ExampleFile.new(:path => '/path/to/hello.rb')
   end
   

@@ -32,12 +32,25 @@ class SpecObject
     @line = line_containing_spec.split(":")[1].to_i
   end
   
-  def source
-    return [] unless @full_file_path && @line
-    unless @source
-      @source = source_from_file(full_file_path, @line.to_i)
+  def source(opts = {})
+    if opts[:force_file_at_first_backtrace_line]
+      file = self.backtrace.first.split(':')[0]
+      source_from_file(file_of_first_backtrace_line, line_number_of_first_backtrace_line)
+    else
+      return [] unless @full_file_path && @line
+      unless @source
+        @source = source_from_file(full_file_path, @line.to_i)
+      end
+      @source
     end
-    @source
+  end
+  
+  def file_of_first_backtrace_line
+    file = self.backtrace.first.split(':')[0]
+  end
+  
+  def line_number_of_first_backtrace_line
+    line = self.backtrace.first.split(':')[1].to_i || 0    
   end
   
   
@@ -46,10 +59,10 @@ class SpecObject
   def source_from_file(file, line)
     return [] unless File.exist?(file)
     File.open(file, 'r') { |f| @lines = f.readlines }
-    @lines = @lines.map { |l| l.chomp }
+    lines = @lines.map { |l| l.chomp }
     first_line = [0, line - 3].max
-    last_line = [line + 6, @lines.length - 1].min
-    @lines[first_line..last_line]
+    last_line = [line + 6, lines.length - 1].min
+    lines[first_line..last_line]
   end
   
 end

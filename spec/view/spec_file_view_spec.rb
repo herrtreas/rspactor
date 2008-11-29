@@ -6,6 +6,8 @@ require 'example_file'
 
 describe SpecFileView do
   before(:each) do
+    $app = mock('App')
+    $app.stub!(:root)
     @mock_view = mock('WebView')    
     @mock_frame = mock('Frame')
     @mock_document = mock('Document')
@@ -16,6 +18,8 @@ describe SpecFileView do
     @mock_view.stub!(:mainFrame).and_return(@mock_frame)
     @mock_spec_object = mock('SpecObject', :state => :passed, :message => 'test')
     @mock_spec_object.stub!(:file_object=)
+    @mock_spec_object.stub!(:full_file_path)
+    @mock_spec_object.stub!(:file_of_first_backtrace_line)
     @example_file = ExampleFile.new(:path => '/path/to/test.rb')
     @example_file.add_spec(@mock_spec_object)
     @spec_file_view = SpecFileView.new(@mock_view, @example_file)

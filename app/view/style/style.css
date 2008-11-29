@@ -57,6 +57,13 @@ small {
 	font-size: 11px;
 }
 
+.sub_file_path {
+  font-size: 10px;
+	color: #afafaf;
+	padding: 1px;
+	margin: 0px;	
+}
+
 /* #### CODE #### */
 
 .code { 
