@@ -34,7 +34,6 @@ class SpecObject
   
   def source(opts = {})
     if opts[:force_file_at_first_backtrace_line]
-      file = self.backtrace.first.split(':')[0]
       source_from_file(file_of_first_backtrace_line, line_number_of_first_backtrace_line)
     else
       return [] unless @full_file_path && @line

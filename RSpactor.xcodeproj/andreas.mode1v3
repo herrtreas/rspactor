@@ -268,8 +268,6 @@
 							<array>
 								<string>29B97314FDCFA39411CA2CEA</string>
 								<string>080E96DDFE201D6D7F000001</string>
-								<string>E193ED750DFAAADE00D17070</string>
-								<string>E193ED7A0DFAAADE00D17070</string>
 								<string>29B97317FDCFA39411CA2CEA</string>
 								<string>1C37FBAC04509CD000000102</string>
 								<string>1C37FABC05509CD000000102</string>
@@ -278,10 +276,6 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>17</integer>
-									<integer>10</integer>
-									<integer>2</integer>
-									<integer>1</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -524,7 +518,12 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>E1683C790EE0E5ED000814AB</string>
+		<string>E1683C7A0EE0E5ED000814AB</string>
+		<string>1CD10A99069EF8BA00B06720</string>
+		<string>E1A615C10DF82908007DEAC7</string>
 		<string>/Work/rubyphunk/rspactor_app/RSpactor.xcodeproj</string>
+		<string>1C78EAAD065D492600B07095</string>
 	</array>
 	<key>WindowString</key>
 	<string>0 110 1440 768 0 0 1440 878 </string>
@@ -604,7 +603,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>E1A615C10DF82908007DEAC7</string>
-				<string>E1C79DDE0ED9A09C007C7669</string>
+				<string>E1683C710EE0E5ED000814AB</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -724,13 +723,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>E1C79DDF0ED9A09C007C7669</string>
+				<string>E1683C720EE0E5ED000814AB</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>E1C79DE00ED9A09C007C7669</string>
-				<string>E1C79DE10ED9A09C007C7669</string>
-				<string>E1C79DE20ED9A09C007C7669</string>
-				<string>E1C79DE30ED9A09C007C7669</string>
-				<string>E1C79DE40ED9A09C007C7669</string>
+				<string>E1683C730EE0E5ED000814AB</string>
+				<string>E1683C740EE0E5ED000814AB</string>
+				<string>E1683C750EE0E5ED000814AB</string>
+				<string>E1683C760EE0E5ED000814AB</string>
+				<string>E1683C770EE0E5ED000814AB</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
@@ -857,6 +856,8 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -892,7 +893,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C78EAAD065D492600B07095</string>
-				<string>E1C79DE50ED9A09C007C7669</string>
+				<string>E1683C780EE0E5ED000814AB</string>
 				<string>1C78EAAC065D492600B07095</string>
 			</array>
 			<key>ToolbarConfiguration</key>
@@ -902,7 +903,7 @@
 			<key>WindowToolGUID</key>
 			<string>1C78EAAD065D492600B07095</string>
 			<key>WindowToolIsVisible</key>
-			<false/>
+			<true/>
 		</dict>
 		<dict>
 			<key>Identifier</key>
