@@ -34,9 +34,11 @@ class ExampleFiles
   end
   
   def self.file_by_index(index)
-    file = @@example_files[@@_sorted_files[index]]
-    file.remove_tainted_specs if file
-    file
+    @@example_files[@@_sorted_files[index]]
+  end
+  
+  def self.clear_tainted_specs_on_all_files!
+    @@example_files.collect { |path, ef| ef.remove_tainted_specs }.compact
   end
   
   def self.clear_suicided_files!
@@ -67,11 +69,14 @@ class ExampleFiles
     @@_sorted_files = []
   end
   
-  
+  def self.failed
+    @@example_files.collect { |path, ef| ef.failed? ? ef : nil }.compact
+  end
+
   private
   
   def self.find_or_create_example_file_by_spec(spec)
-    return @@example_files[spec.full_file_path] if @@example_files[spec.full_file_path]
+    return @@example_files[spec.full_file_path] if @@example_files[spec.full_file_path]    
     if example_file = self.find_example_file_by_spec_name(spec)
       example_file
     else

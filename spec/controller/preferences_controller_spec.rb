@@ -24,6 +24,7 @@ describe PreferencesController do
     @mock_editor_warning = mock('EditorWarning')
     @mock_editor_warning.stub!(:hidden=)
     @mock_editor_warning.stub!(:toolTip=)
+    @mock_generals_rerun_specs.stub!(:state=)
     @controller.panel = @mock_panel
     @controller.specBinPath = @mock_spec_field
     @controller.rubyBinPath = @mock_ruby_field
@@ -31,6 +32,7 @@ describe PreferencesController do
     @controller.specBinWarning = @mock_spec_warning
     @controller.rubyBinWarning = @mock_ruby_warning
     @controller.editorBinWarning = @mock_editor_warning
+    @controller.generalsRerunSpecsCheckBox = @mock_generals_rerun_specs
     @controller.stub!(:initToolbar)
     @controller.stub!(:initEditorPrefView)
     @controller.stub!(:validatePreferences)

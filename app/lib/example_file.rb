@@ -27,6 +27,7 @@ class ExampleFile
     if old_specs.empty?
       @specs << spec
     else
+      spec.previous_state = old_specs.first.state
       merge_specs(old_specs.first, spec)
     end
   end
@@ -57,7 +58,7 @@ class ExampleFile
   end
   
   def remove_tainted_specs
-    @specs.collect { |spec| @specs.delete(spec) if spec.tainted? }.compact
+    @specs.collect { |spec| @specs.delete(spec) if spec.tainted? }
   end
   
   def spec_count(state = :failed)

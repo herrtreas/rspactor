@@ -10,6 +10,7 @@ class WebviewController < OSX::NSWindowController
     receive :fileToWebViewLoadingRequired,              :showSpecFileViewFromTable
     receive :first_failed_spec,                         :showSpecFileViewFromSpec
     receive :spec_run_processed,                        :reloadWebView
+    receive :webview_reload_required_for_specs,         :reloadWebViewForSpecs
     
     @view.shouldCloseWithWindow = true
     @view.frameLoadDelegate = self    
@@ -73,6 +74,16 @@ class WebviewController < OSX::NSWindowController
     return unless defined?(@@currently_displayed_file)
     if @@currently_displayed_file == notification.userInfo.first.file_object
       showSpecFileView(@@currently_displayed_file)
+    end
+  end
+  
+  def reloadWebViewForSpecs(notification)
+    return unless defined?(@@currently_displayed_file)
+    notification.userInfo.first.each do |spec|
+      if spec.file_object && @@currently_displayed_file.path == spec.file_object.path
+        showSpecFileView(@@currently_displayed_file)
+        return true
+      end
     end
   end
   

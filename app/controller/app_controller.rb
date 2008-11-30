@@ -29,17 +29,17 @@ class AppController < OSX::NSObject
   end
   
   def spec_run_has_started(notification)
-    $LOG.debug "Spec run started.."
     $processed_spec_count = 0
     $total_spec_count = notification.userInfo.first
-    ExampleFiles.tainting_required_on_all_files!
+    @run_failed_afterwards = false
     @first_failed_notification_posted = nil
+    ExampleFiles.tainting_required_on_all_files!
   end
   
   def spec_run_processed(notification)
+    $processed_spec_count += 1
     spec = notification.userInfo.first
     ExampleFiles.add_spec(spec)
-    $processed_spec_count += 1
     post_notification :spec_run_processed, spec
     if spec.state == :failed && @first_failed_notification_posted.nil?
       @first_failed_notification_posted = true
@@ -67,6 +67,9 @@ class AppController < OSX::NSObject
       $output_pipe_handle.closeFile
       $error_pipe_handle.closeFile
 
+      specs = ExampleFiles.clear_tainted_specs_on_all_files!.flatten.compact.select { |spec| spec && spec.file_object }
+      post_notification :webview_reload_required_for_specs, specs
+      
       SpecRunner.commandHasFinished!
       Listener.init($app.root)
     rescue; end

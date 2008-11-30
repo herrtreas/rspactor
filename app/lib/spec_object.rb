@@ -1,6 +1,6 @@
 class SpecObject
 
-  attr_accessor :state
+  attr_accessor :state, :previous_state
   attr_accessor :name, :example_group_name
   attr_accessor :message
   attr_accessor :full_file_path, :file, :line
@@ -22,9 +22,8 @@ class SpecObject
     @message = msg
   end
   
-  # Implement this using regexp and $1, $2 etc..
+  # TODO: Implement this using regexp and $1, $2 etc..
   def backtrace=(trace)
-    $LOG.debug "TEST: #{trace.inspect}" if trace.include?('spec_object')
     @backtrace = trace
     line_containing_spec = trace.select { |l| l.include?('_spec.rb') }.first || trace.first
     @file = line_containing_spec.split("/").last.split(":").first

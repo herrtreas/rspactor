@@ -1,21 +1,32 @@
 require 'osx/cocoa'
 
 class PreferencesController < OSX::NSWindowController
-  ib_outlet :panel, :toolbar, :binariesPrefsView, :editorPrefsView, :updatePrefsView, :editorSelect, :editorCheckBox
+  ib_outlet :panel, :toolbar
+  ib_outlet :generalsPrefsView, :binariesPrefsView, :editorPrefsView, :updatePrefsView
   ib_outlet :specBinPath, :rubyBinPath, :editorBinPath
   ib_outlet :rubyBinWarning, :specBinWarning, :editorBinWarning
+  ib_outlet :editorSelect, :editorCheckBox
+  ib_outlet :generalsRerunSpecsCheckBox
   
   ib_action :toolbarItemClicked
   ib_action :editorCheckBoxClicked
   ib_action :editorSelectChanged
   
+  
+  ib_action :checkBoxClickedToSaveState do |sender|
+    case sender.tag
+    when 101:
+      $app.default_for_key(:generals_rerun_failed_specs, sender.state)      
+    end
+  end
+  
   def initialize
     unless $app.default_from_key(:spec_bin_path, nil)
-      spec_bin_path = `/usr/bin/which spec`
+      spec_bin_path = `/usr/bin/which spec`.strip.chomp
       $app.default_for_key(:spec_bin_path, spec_bin_path.chomp.strip) unless spec_bin_path.empty?
     end
     unless $app.default_from_key(:ruby_bin_path, nil)
-      ruby_bin_path = `/usr/bin/which ruby`
+      ruby_bin_path = `/usr/bin/which ruby`.strip.chomp
       $app.default_for_key(:ruby_bin_path, ruby_bin_path.chomp.strip) unless ruby_bin_path.empty?
     end
   end
@@ -25,6 +36,7 @@ class PreferencesController < OSX::NSWindowController
     set_default_ruby_bin_path
     set_default_editor_bin_path
     initToolbar
+    initGeneralPrefView
     initEditorPrefView
     validatePreferences
   end
@@ -63,13 +75,17 @@ class PreferencesController < OSX::NSWindowController
     end
   end
   
+  def initGeneralPrefView
+    @generalsRerunSpecsCheckBox.state = $app.default_from_key(:generals_rerun_failed_specs, '1')
+  end
+  
   def initToolbar
     @toolbar.selectedItemIdentifier = @toolbar.items[0].itemIdentifier
-    window.setContentSize @binariesPrefsView.frame.size 
-    window.contentView.addSubview @binariesPrefsView
-    window.title = "Executables Preferences"
+    @panel.setContentSize @generalsPrefsView.frame.size 
+    @panel.contentView.addSubview @generalsPrefsView
+    @panel.title = "General Preferences"
     @currentViewTag = 0
-    window.contentView.wantsLayer = true    
+    @panel.contentView.wantsLayer = true    
   end
   
   def initEditorPrefView
@@ -92,27 +108,28 @@ class PreferencesController < OSX::NSWindowController
     previousView, prevTitle = self.viewForTag(@currentViewTag)
     @currentViewTag = tag
     newFrame = self.newFrameForNewContentView(view)
-    window.title = "#{title} Preferences"
+    @panel.title = "#{title} Preferences"
     NSAnimationContext.beginGrouping
-      window.contentView.animator.replaceSubview_with(previousView, view)
-      window.animator.setFrame_display newFrame, true
+      @panel.contentView.animator.replaceSubview_with(previousView, view)
+      @panel.animator.setFrame_display newFrame, true
     NSAnimationContext.endGrouping    
   end
   
   def viewForTag(tag)
     case tag
-      when 0: [@binariesPrefsView,  "Executables"]
-      when 1: [@editorPrefsView, "Editor"]
-      when 2: [@updatePrefsView, "Software Update"]
+      when 0: [@generalsPrefsView, "General"]
+      when 1: [@binariesPrefsView,  "Executables"]
+      when 2: [@editorPrefsView, "Editor"]
+      when 3: [@updatePrefsView, "Software Update"]
     end
   end
   
   def newFrameForNewContentView(view)
-    newFrameRect = window.frameRectForContentRect(view.frame)
-    oldFrameRect = window.frame
+    newFrameRect = @panel.frameRectForContentRect(view.frame)
+    oldFrameRect = @panel.frame
     newSize = newFrameRect.size
     oldSize = oldFrameRect.size
-    frame = window.frame
+    frame = @panel.frame
     frame.size = newSize
     frame.origin.y = frame.origin.y - (newSize.height - oldSize.height)
     frame
