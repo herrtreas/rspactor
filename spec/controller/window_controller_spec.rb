@@ -3,6 +3,7 @@ require 'window_controller'
 require 'growl_controller'
 require 'ext/growl'
 require 'spec_runner'
+require 'example_runner_job'
 
 describe WindowController do
   before(:each) do
@@ -43,6 +44,7 @@ describe WindowController do
     $app.stub!(:default_for_key)
     $app.stub!(:default_from_key)
     $app.stub!(:file_exist?).and_return(true)
+    $app.stub!(:post_notification)
     SpecRunner.stub!(:run_in_path).and_return(File.dirname(__FILE__))    
   end
   
@@ -50,21 +52,32 @@ describe WindowController do
     @controller.should be_kind_of(OSX::NSWindowController)
   end
   
-  it 'should not allow to run specs if path textfield is empty' do
-    File.should_not_receive(:exist?)
-    @mock_pathTextField.stub!(:stringValue).and_return('')
-    @controller.runSpecs(nil).should be_false
-  end
+  describe 'running specs' do
+    it 'should not allow to run specs if path textfield is empty' do
+      File.should_not_receive(:exist?)
+      @mock_pathTextField.stub!(:stringValue).and_return('')
+      @controller.runSpecs(nil).should be_false
+    end
   
-  it 'should not allow to run specs if path textfield contains an invalid path' do
-    File.should_receive(:exist?).with('invalid')
-    @mock_pathTextField.stub!(:stringValue).and_return('invalid')
-    @controller.runSpecs(nil).should be_false
-  end
+    it 'should not allow to run specs if path textfield contains an invalid path' do
+      File.should_receive(:exist?).with('invalid')
+      @mock_pathTextField.stub!(:stringValue).and_return('invalid')
+      @controller.runSpecs(nil).should be_false
+    end
   
-  it 'should run specs with in a valid path' do
-    @mock_pathTextField.stub!(:stringValue).and_return(File.dirname(__FILE__))
-    @controller.runSpecs(nil)
+    it 'should run specs with in a valid path' do
+      SpecRunner.should_receive(:run_job)
+      @mock_pathTextField.stub!(:stringValue).and_return(File.dirname(__FILE__))
+      @controller.runSpecs(nil)
+    end
+    
+    it 'should create a ExampleRunJob with the current app.root path and pass it to the spec_runner' do
+      mock_job = mock('Job')
+      ExampleRunnerJob.stub!(:new).and_return(mock_job)
+      SpecRunner.should_receive(:run_job).with(mock_job)
+      @mock_pathTextField.stub!(:stringValue).and_return(File.dirname(__FILE__))
+      @controller.runSpecs(nil)
+    end
   end
   
   it 'should show the status panel (and hide the input)' do

@@ -32,7 +32,7 @@ class Listener
             @files_to_spec << spec_file 
           end
         end
-        SpecRunner.run_specs_for_files(@files_to_spec) unless @files_to_spec.empty?
+        SpecRunner.run_job(ExampleRunnerJob.new(:paths => @files_to_spec)) unless @files_to_spec.empty?
       rescue => e
         $LOG.error "#{e.message}: #{e.backtrace.first}"
       end        

@@ -15,16 +15,20 @@ class GrowlController < OSX::NSObject
     receive :error,                     :errorPosted    
   end
   
-  def specRunFinishedSingleSpec(notification)
+  def specRunFinishedSingleSpec(notification)    
     spec = notification.userInfo.first
-    @growl.notify(MESSAGE_KIND, "#{spec.name}", spec.message, nil, false, 0, imageForGrowl)
+    unless SpecRunner.current_job.hide_growl_messages_for_failed_examples && spec.state == :failed      
+      @growl.notify(MESSAGE_KIND, "#{spec.name}", spec.message, nil, false, 0, imageForGrowl)
+    end
   end
   
-  def specRunFinishedWithSummaryDump(notification)
+  def specRunFinishedWithSummaryDump(notification)    
     duration, example_count, failure_count, pending_count = notification.userInfo
-    message = "#{example_count} examples, #{failure_count} failed, #{pending_count} pending\nTook: #{duration.to_f.round} seconds"
-    status_image = imageForGrowl((failure_count == 0) ? :pass : :failure)    
-    @growl.notify(MESSAGE_KIND, 'RSpactor Results', message, nil, false, 0, status_image)    
+    unless SpecRunner.current_job.hide_growl_messages_for_failed_examples && failure_count != 0
+      message = "#{example_count} examples, #{failure_count} failed, #{pending_count} pending\nTook: #{duration.to_f.round} seconds"
+      status_image = imageForGrowl((failure_count == 0) ? :pass : :failure)    
+      @growl.notify(MESSAGE_KIND, 'RSpactor Results', message, nil, false, 0, status_image)    
+    end
   end
 
   def errorPosted(notification)

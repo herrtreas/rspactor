@@ -2,13 +2,17 @@ require File.dirname(__FILE__) + '/../spec_helper'
 require 'spec_runner'
 require 'listener'
 require 'runner_queue'
+require 'example_files'
+require 'example_runner_job'
 
 describe SpecRunner do
   before(:each) do
-    $app = mock('App')    
+    $app = mock('App')        
     $app.stub!(:post_notification)
     $app.stub!(:default_from_key).and_return('')
+    $app.stub!(:root=)
     $app.stub!(:root).and_return($fpath_rails)
+    @job = ExampleRunnerJob.new()
     SpecRunner.init
     SpecRunner.stub!(:command_running?).and_return(false)
   end
@@ -40,19 +44,21 @@ describe SpecRunner do
   end
   
   it 'should run specs for specific files' do
+    @job.paths = ['test_spec.rb']
     SpecRunner.should_receive(:run_command)
-    SpecRunner.run_specs_for_files(['test_spec.rb'])    
+    SpecRunner.run_job(@job)    
   end
   
   it 'should cancel spec run for specific files if no files where provided' do
     SpecRunner.should_not_receive(:run_command)
-    SpecRunner.run_specs_for_files([]).should be_false
+    SpecRunner.run_job(@job).should be_false
   end
   
   it 'should post a "spec_run_start" notification' do
     SpecRunner.stub!(:run_command)
     $app.should_receive(:post_notification).with(:spec_run_invoked)
-    SpecRunner.run_specs_for_files(['test_spec.rb'])
+    @job.paths = ['test_spec.rb']
+    SpecRunner.run_job(@job)    
   end
   
   it 'should skip the command running if another command has not finished yet' do
@@ -67,12 +73,36 @@ describe SpecRunner do
     
     it 'should run the queue after run_specs_for_files' do
       SpecRunner.should_receive(:process_queue)
-      SpecRunner.run_specs_for_files(['/test'])      
+      @job.paths = ['test_spec.rb']      
+      SpecRunner.run_job(@job)    
     end
     
     it 'should process the queue after command has finished' do
       SpecRunner.should_receive(:process_queue)
       SpecRunner.commandHasFinished!
+    end
+  end
+  
+  describe 'with running a job' do
+    before(:each) do
+      @job = ExampleRunnerJob.new(:paths => ['test1'])
+    end
+    
+    it 'should take a job pass its paths to the runner queue' do
+      SpecRunner.queue.should_receive(:add_bulk).with(['test1'])
+      SpecRunner.should_receive(:process_queue)
+      SpecRunner.run_job(@job)
+    end
+    
+    it 'should simply do nothing if job paths is empty' do
+      SpecRunner.queue.should_not_receive(:add_bulk)
+      SpecRunner.run_job(ExampleRunnerJob.new)
+    end
+    
+    it 'should initiate root-location-change-process' do
+      SpecRunner.stub!(:process_queue)
+      SpecRunner.should_receive(:root_location_has_changed?)
+      SpecRunner.run_job(@job)
     end
   end
 end

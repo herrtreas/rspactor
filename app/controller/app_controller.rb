@@ -3,6 +3,7 @@ require 'osx/cocoa'
 class AppController < OSX::NSObject
   
   attr_accessor :root
+  attr_accessor :run_failed_afterwards
   
   def initialize
     $app = self
@@ -20,6 +21,7 @@ class AppController < OSX::NSObject
     receive :spec_run_example_pending,                :spec_run_processed
     receive :spec_run_example_failed,                 :spec_run_processed
     receive :spec_run_close,                          :specRunFinished
+    receive :spec_attached_to_file,                   :specAttachedToFile
     receive :NSTaskDidTerminateNotification,          :taskHasFinished
     receive :NSFileHandleReadCompletionNotification,  :pipeContentAvailable
   end
@@ -31,7 +33,7 @@ class AppController < OSX::NSObject
   def spec_run_has_started(notification)
     $processed_spec_count = 0
     $total_spec_count = notification.userInfo.first
-    @run_failed_afterwards = false
+    self.run_failed_afterwards = false
     @first_failed_notification_posted = nil
     ExampleFiles.tainting_required_on_all_files!
   end
@@ -39,12 +41,24 @@ class AppController < OSX::NSObject
   def spec_run_processed(notification)
     $processed_spec_count += 1
     spec = notification.userInfo.first
+    return if spec.backtrace.empty?
     ExampleFiles.add_spec(spec)
     post_notification :spec_run_processed, spec
     if spec.state == :failed && @first_failed_notification_posted.nil?
       @first_failed_notification_posted = true
       post_notification :first_failed_spec, spec
     end
+  end
+  
+  def specAttachedToFile(notification)
+    return unless $app.default_from_key(:generals_rerun_failed_specs, '1') == '1'
+    return unless notification.userInfo.first.file_object
+    return unless notification.userInfo.first.previous_state
+    
+    spec = notification.userInfo.first
+    if spec.previous_state == :failed && spec.state == :passed
+      self.run_failed_afterwards = true
+    end      
   end
   
   def specRunFinished(notification)
@@ -70,9 +84,21 @@ class AppController < OSX::NSObject
       specs = ExampleFiles.clear_tainted_specs_on_all_files!.flatten.compact.select { |spec| spec && spec.file_object }
       post_notification :webview_reload_required_for_specs, specs
       
-      SpecRunner.commandHasFinished!
+      SpecRunner.commandHasFinished!      
+      run_failed_files_afterwards_or_listen
+    rescue => e
+      $LOG.error "#{e}"
+    end
+  end
+  
+  def run_failed_files_afterwards_or_listen
+    if self.run_failed_afterwards
+      failed_files_job = ExampleRunnerJob.new(:paths => ExampleFiles.failed.collect { |ef| ef.path })
+      failed_files_job.hide_growl_messages_for_failed_examples = true
+      SpecRunner.run_job(failed_files_job)
+    else
       Listener.init($app.root)
-    rescue; end
+    end
   end
   
   def center

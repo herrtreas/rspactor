@@ -1,32 +1,28 @@
 module SpecRunner
   class << self
     attr_accessor :queue
+    attr_accessor :current_job
     
     def init
       self.queue = RunnerQueue.new
     end
     
-    def run_in_path(path)
-      if $app.root and $app.root != path
+    def run_job(job)
+      return false if job.paths.nil? || job.paths.empty?
+      root_location_has_changed?(job)
+      self.queue.add_bulk(job.paths)
+      self.current_job = job
+      process_queue
+    end
+    
+    def root_location_has_changed?(job)
+      if $app.root and $app.root != job.root
         ExampleFiles.clear!
         $app.post_notification(:map_location_changed)         
       end
-      
-      $app.root = path.to_s
-      run_all_specs_in_path
+      $app.root = job.root      
     end
-    
-    def run_all_specs_in_path
-      self.queue << File.join($app.root, 'spec/')
-      process_queue
-    end
-    
-    def run_specs_for_files(files)
-      return false if files.empty?            # TODO: Notify user
-      self.queue.add_bulk(files)
-      process_queue
-    end
-    
+        
     def process_queue
       return false if command_running?      
       unless self.queue.empty?

@@ -30,6 +30,8 @@ class ExampleFile
       spec.previous_state = old_specs.first.state
       merge_specs(old_specs.first, spec)
     end
+    
+    $app.post_notification :spec_attached_to_file, spec
   end
   
   def merge_specs(old_spec, new_spec)    

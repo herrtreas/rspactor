@@ -58,6 +58,7 @@ class RSpactorFormatter
       :error_type         => failure.expectation_not_met? ? :expectation : :implementation,
       :backtrace          => extract_backspace(backtrace)
     )
+    $LOG.debug "REMOTE: #{spec.backtrace}"
  
     @remote_service.incoming(:spec_run_example_failed, spec)
   end  
@@ -99,7 +100,10 @@ class RSpactorFormatter
     def extract_backspace(backtrace)
       return [] if backtrace.nil?
       backtrace = backtrace.collect { |line| line.split("\n") }.flatten
-      backtrace.collect { |line| line.sub(/\A([^:]+:\d+)$/, '\\1:').strip if line =~ /\A([^:]+:\d+)$/ }.compact
+      backtrace.collect do |line|
+        $LOG.debug "REMOTE LINE: #{line} / Match: #{line =~ /\A([^:]+:\d+)/}"
+        line.sub(/\A([^:]+:\d+)$/, '\\1:').strip if line =~ /\A([^:]+:\d+)/ 
+      end.compact
     end
   
 end

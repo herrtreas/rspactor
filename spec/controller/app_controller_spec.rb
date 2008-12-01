@@ -15,7 +15,7 @@ describe AppController do
     @mock_spec = mock('SpecObject', :state => :failed, :full_file_path => '/tmp/test', :previous_state => :failed)    
     @mock_spec.stub!(:file_object=)
     @mock_spec.stub!(:previous_state=)
-    @mock_spec.stub!(:backtrace).and_return([])
+    @mock_spec.stub!(:backtrace).and_return(['/test.rb:5'])
   end
   
   it 'should init the global managers on "init"' do
@@ -60,7 +60,7 @@ describe AppController do
   end
   
   it 'should add passed, pending or failed specs to the list' do
-    spec_object = SpecObject.new
+    spec_object = SpecObject.new(:backtrace => ['/test.rb:3'])
     mock_notification = mock('Notification')
     mock_notification.stub!(:userInfo).and_return([spec_object])
     ExampleFiles.should_receive(:add_spec).with(spec_object)

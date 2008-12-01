@@ -8,6 +8,7 @@ describe SpecFileView do
   before(:each) do
     $app = mock('App')
     $app.stub!(:root)
+    $app.stub!(:post_notification)
     @mock_view = mock('WebView')    
     @mock_frame = mock('Frame')
     @mock_document = mock('Document')
