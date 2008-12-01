@@ -8,7 +8,6 @@ module SpecRunner
     end
     
     def run_job(job)
-      return false if job.paths.nil? || job.paths.empty?
       root_location_has_changed?(job)
       self.queue.add_bulk(job.paths)
       self.current_job = job

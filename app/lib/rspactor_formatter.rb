@@ -101,7 +101,6 @@ class RSpactorFormatter
       return [] if backtrace.nil?
       backtrace = backtrace.collect { |line| line.split("\n") }.flatten
       backtrace.collect do |line|
-        $LOG.debug "REMOTE LINE: #{line} / Match: #{line =~ /\A([^:]+:\d+)/}"
         line.sub(/\A([^:]+:\d+)$/, '\\1:').strip if line =~ /\A([^:]+:\d+)/ 
       end.compact
     end
