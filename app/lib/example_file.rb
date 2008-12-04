@@ -35,7 +35,9 @@ class ExampleFile
   end
   
   def merge_specs(old_spec, new_spec)    
-    new_spec.backtrace = old_spec.backtrace if new_spec.backtrace.size < old_spec.backtrace.size
+    unless new_spec.backtrace.include?(old_spec.full_file_path)
+      new_spec.full_file_path = old_spec.full_file_path
+    end    
     @specs[@specs.index(old_spec)] = new_spec
   end
   
