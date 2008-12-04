@@ -31,6 +31,7 @@ class ExampleFile
       merge_specs(old_specs.first, spec)
     end
     
+    request_observation_if_needed(spec)
     $app.post_notification :spec_attached_to_file, spec
   end
   
@@ -97,5 +98,11 @@ class ExampleFile
     spec.full_file_path = File.join($app.root, spec.full_file_path) unless spec.full_file_path =~ /^\//
     spec.backtrace = spec.backtrace.collect { |line| line =~ /^\// ? line : File.join($app.root, line) }
     spec
+  end
+  
+  def request_observation_if_needed(spec)    
+    if spec.file_of_first_backtrace_line != spec.full_file_path
+      $app.post_notification :observation_requested, spec.file_of_first_backtrace_line, spec
+    end    
   end
 end

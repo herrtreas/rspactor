@@ -24,6 +24,7 @@ class AppController < OSX::NSObject
     receive :spec_attached_to_file,                   :specAttachedToFile
     receive :NSTaskDidTerminateNotification,          :taskHasFinished
     receive :NSFileHandleReadCompletionNotification,  :pipeContentAvailable
+    receive :observation_requested,                   :add_request_to_listeners_observation_list    
   end
   
   def applicationShouldHandleReopen_hasVisibleWindows(application, has_open_windows)
@@ -87,7 +88,7 @@ class AppController < OSX::NSObject
       SpecRunner.commandHasFinished!      
       run_failed_files_afterwards_or_listen
     rescue => e
-      $LOG.error "#{e}"
+      $LOG.error "taskHasFinished: #{e}"
     end
   end
   
@@ -136,6 +137,10 @@ class AppController < OSX::NSObject
       $output_pipe_handle.readInBackgroundAndNotify
       $error_pipe_handle.readInBackgroundAndNotify
     end
+  end
+  
+  def add_request_to_listeners_observation_list(notification)
+    Listener.add_request_to_observation_list(notification)
   end
   
   def setupBadgeWithFailedSpecCount(count)

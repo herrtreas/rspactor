@@ -12,7 +12,7 @@ require 'example_matcher'
 describe AppController do
   before(:each) do
     @app = AppController.new
-    @mock_spec = mock('SpecObject', :state => :failed, :full_file_path => '/tmp/test', :previous_state => :failed)    
+    @mock_spec = mock('SpecObject', :state => :failed, :full_file_path => '/tmp/test', :previous_state => :failed, :file_of_first_backtrace_line => 'test')    
     @mock_spec.stub!(:file_object=)
     @mock_spec.stub!(:full_file_path=)
     @mock_spec.stub!(:previous_state=)

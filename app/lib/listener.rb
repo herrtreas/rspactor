@@ -1,5 +1,6 @@
 class Listener
   attr_accessor :stream
+  attr_accessor :observation_list
   
   @@callback = Proc.new do |stream, ctx, num_events, paths, marks, event_ids|
     begin
@@ -13,7 +14,6 @@ class Listener
   end  
   
   def self.init(path)
-    
     if already_running?
       if class_variable_defined?(:@@listen_to_path) && @@listen_to_path != path
         @@listener.stop
@@ -26,11 +26,9 @@ class Listener
       begin
         @files_to_spec = []
         files.each do |file|
-          $LOG.debug "File: #{file}"
           spec_file = ExampleFiles.find_example_for_file(file)
-          if spec_file
-            @files_to_spec << spec_file 
-          end
+          @files_to_spec << spec_file if spec_file          
+          @files_to_spec += Listener.specs_for_observed_file(file).collect { |s| s.full_file_path } if Listener.file_covered_by_observation?(file)
         end
         SpecRunner.run_job(ExampleRunnerJob.new(:paths => @files_to_spec)) unless @files_to_spec.empty?
       rescue => e
@@ -98,4 +96,30 @@ class Listener
     end
   end
   
+  
+  def self.add_request_to_observation_list(notification)
+    file, spec = notification.userInfo
+    file = File.expand_path(file)
+    @@observation_list ||= {}
+    @@observation_list[file] ||= []
+    if @@observation_list[file].select { |s| s.full_file_path == spec.full_file_path }.empty?
+      @@observation_list[file] << spec    
+    end
+  end
+  
+  def self.observation_list
+    @@observation_list
+  end
+  
+  def self.file_covered_by_observation?(file)
+    defined?(@@observation_list) && @@observation_list[file] ? true : false
+  end
+  
+  def self.specs_for_observed_file(file)
+    @@observation_list[file]
+  end
+  
+  def self.reset_observation_list
+    @@observation_list.clear if defined?(@@observation_list)
+  end
 end

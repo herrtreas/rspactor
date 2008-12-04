@@ -16,7 +16,7 @@ describe ExampleFile do
   
   it 'should reset modification times if a spec is added or replaced' do
     lambda do
-      @example_file.add_spec(SpecObject.new)
+      @example_file.add_spec(SpecObject.new(:backtrace => ['test.rb']))
     end.should change(@example_file, :mtime)
   end
   
