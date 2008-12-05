@@ -25,7 +25,7 @@ class GrowlController < OSX::NSObject
   def specRunFinishedWithSummaryDump(notification)    
     duration, example_count, failure_count, pending_count = notification.userInfo
     unless SpecRunner.current_job.hide_growl_messages_for_failed_examples && failure_count != 0
-      message = "#{example_count} examples, #{failure_count} failed, #{pending_count} pending\nTook: #{duration.to_f.round} seconds"
+      message = "#{example_count} examples, #{failure_count} failed, #{pending_count} pending\nTook: #{("%0.2f" % duration).to_f} seconds"
       status_image = imageForGrowl((failure_count == 0) ? :pass : :failure)    
       @growl.notify(MESSAGE_KIND, 'RSpactor Results', message, nil, false, 0, status_image)    
     end

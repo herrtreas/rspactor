@@ -1,13 +1,16 @@
 require 'osx/cocoa'
 
 class WindowController < OSX::NSWindowController
-  ib_outlet :pathTextField, :runButton, :statusBar, :statusLabel
+  ib_outlet :pathTextField, :runButton, :statusBar, :statusLabel, :statusBarPassedCount, :statusBarPendingCount, :statusBarFailedCount
+  ib_outlet :toolbar_item_run, :toolbar_item_path
+  ib_outlet :menu_examples_run, :menu_examples_stop
   ib_action :runSpecs
   
   def awakeFromNib
     initAndSetAutomaticPositionAndSizeStoring
     @growlController = GrowlController.alloc.init
     @pathTextField.stringValue = $app.default_from_key(:spec_run_path)
+    self.window.makeFirstResponder(@pathTextField)
     hook_events
   end
   
@@ -16,26 +19,35 @@ class WindowController < OSX::NSWindowController
     return unless valid_bin_paths?
     path = @pathTextField.stringValue
     return false if path.empty? || !File.exist?(path)
+    savePathToUserDefaults(path)
     SpecRunner.run_job(ExampleRunnerJob.new(:root => path.to_s))
   end
   
-  def showStatusPanel
-    @runButton.enabled = false
-    @pathTextField.hidden = true
+  def showExampleRunPanels
     @statusBar.hidden = false
-    @statusLabel.hidden = false
+    @toolbar_item_run.enabled = false
+    @toolbar_item_path.enabled = false
+    @menu_examples_run.enabled = false
+    @menu_examples_stop.enabled = true
+    @statusBarPassedCount.hidden = true
+    @statusBarPendingCount.hidden = true
+    @statusBarFailedCount.hidden = true
   end
   
-  def showInputPanel
-    @runButton.enabled = true
-    @pathTextField.hidden = false
+  def showSilentPanels
     @statusBar.hidden = true
-    @statusLabel.hidden = true
+    @toolbar_item_run.enabled = true
+    @toolbar_item_path.enabled = true
+    @menu_examples_run.enabled = true
+    @menu_examples_stop.enabled = false
+    @statusBarPassedCount.hidden = false    
+    @statusBarPendingCount.hidden = false    
+    @statusBarFailedCount.hidden = false    
   end
   
   def specRunPreparation(notification)
-    showStatusPanel
-    @statusLabel.stringValue = "Loading environment.. ( #{@pathTextField.stringValue} )"
+    showExampleRunPanels
+    @statusLabel.stringValue = "Loading RSpec environment.."
     @statusBar.indeterminate = true
     @statusBar.startAnimation(self)    
   end
@@ -48,24 +60,34 @@ class WindowController < OSX::NSWindowController
   end
   
   def specRunFinished(notification)
-    showInputPanel
+    showSilentPanels
   end
   
   def specRunFinishedSingleSpec(notification)
-    @statusBar.incrementBy 1.0
-    @statusLabel.stringValue = "Running #{$processed_spec_count}...#{$total_spec_count}"
+    begin
+      @statusBar.incrementBy 1.0
+      @statusLabel.stringValue = "#{notification.userInfo.first}"
+    rescue
+    end
   end
   
-  def controlTextDidEndEditing(notification)
-    if path_is_valid?(notification.object.stringValue)
-      $app.default_for_key(:spec_run_path, notification.object.stringValue)
-    end
+  def savePathToUserDefaults(path)
+    $app.default_for_key(:spec_run_path, path)
   end
   
   def relocateDirectoryAndRunSpecs(notification)
     $LOG.debug "relocating and running in.. #{notification.userInfo.first}"
     @pathTextField.stringValue = notification.userInfo.first
     runSpecs(nil)
+  end
+  
+  def updateStatusBarExampleStateCounts(notification)
+    duration, example_count, failure_count, pending_count = notification.userInfo    
+    total_example_count = example_count.to_i - failure_count.to_i - pending_count.to_i
+    @statusLabel.stringValue = "Finished running #{total_example_count} #{total_example_count == 1 ? 'example' : 'examples'} in #{("%0.2f" % duration).to_f} seconds."
+    @statusBarPassedCount.title = total_example_count
+    @statusBarPendingCount.title = pending_count
+    @statusBarFailedCount.title = failure_count
   end
   
   def initAndSetAutomaticPositionAndSizeStoring
@@ -80,14 +102,9 @@ class WindowController < OSX::NSWindowController
   
   def path_is_valid?(path)
     if File.exist?(path)
-      @statusLabel.stringValue = ''
-      @statusLabel.textColor = OSX::NSColor.colorWithCalibratedRed_green_blue_alpha(0.423077, 0.423077, 0.423077, 1)
-      @statusLabel.hidden = true     
       return true
     else
-      @statusLabel.stringValue = "- The given path doesn't exist. -"
-      @statusLabel.textColor = OSX::NSColor.colorWithCalibratedRed_green_blue_alpha(1.0, 0, 0, 1)
-      @statusLabel.hidden = false
+      $app.alert("The path you have entered doesn't exist.", "Please check your input and try again.")
       return false
     end    
   end
@@ -115,6 +132,7 @@ class WindowController < OSX::NSWindowController
     receive :spec_run_example_passed,   :specRunFinishedSingleSpec
     receive :spec_run_example_pending,  :specRunFinishedSingleSpec
     receive :spec_run_example_failed,   :specRunFinishedSingleSpec
+    receive :spec_run_dump_summary,     :updateStatusBarExampleStateCounts    
     receive :error,                     :specRunFinished
     receive :relocate_and_run,          :relocateDirectoryAndRunSpecs
     receive :application_resurrected,   :resurrectWindow    

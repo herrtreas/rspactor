@@ -29,13 +29,39 @@ describe WindowController do
     
     @mock_window = mock('Window')
     @mock_window.stub!(:frameUsingName=)
-    @mock_window.stub!(:frameAutosaveName=)
+    @mock_window.stub!(:frameAutosaveName=)    
+    @mock_window.stub!(:makeFirstResponder)
+    
+    @mock_toolbar_item_run = mock('ToolbarItemRun')
+    @mock_toolbar_item_run.stub!(:enabled=)
+    @mock_toolbar_item_path = mock('ToolbarItemPath')
+    @mock_toolbar_item_path.stub!(:enabled=)
+
+    @mock_menu_examples_run = mock('MenuExamplesRun')
+    @mock_menu_examples_run.stub!(:enabled=)
+    @mock_menu_examples_stop = mock('MenuExamplesStop')
+    @mock_menu_examples_stop.stub!(:enabled=)
+    
+    @mock_statusbar_passed_count = mock('StatusBarPassedCount')
+    @mock_statusbar_passed_count.stub!(:hidden=)
+    @mock_statusbar_pending_count = mock('StatusBarpendingCount')
+    @mock_statusbar_pending_count.stub!(:hidden=)
+    @mock_statusbar_failed_count = mock('StatusBarfailedCount')
+    @mock_statusbar_failed_count.stub!(:hidden=)
     
     @controller = WindowController.new
     @controller.runButton = @mock_runButton
     @controller.pathTextField = @mock_pathTextField
     @controller.statusBar = @mock_statusBar
     @controller.statusLabel = @mock_statusLabel
+    @controller.toolbar_item_run = @mock_toolbar_item_run
+    @controller.toolbar_item_path = @mock_toolbar_item_path
+    @controller.menu_examples_run = @mock_menu_examples_run
+    @controller.menu_examples_stop = @mock_menu_examples_stop
+    @controller.statusBarPassedCount = @mock_statusbar_passed_count
+    @controller.statusBarPendingCount = @mock_statusbar_pending_count
+    @controller.statusBarFailedCount = @mock_statusbar_failed_count
+    
     @controller.stub!(:window).and_return(@mock_window)
     @controller.stub!(:valid_bin_paths?).and_return(true)
     
@@ -80,41 +106,10 @@ describe WindowController do
     end
   end
   
-  it 'should show the status panel (and hide the input)' do
-    @mock_runButton.should_receive(:enabled=).with(false)
-    @mock_pathTextField.should_receive(:hidden=).with(true)
-    @mock_statusBar.should_receive(:hidden=).with(false)
-    @mock_statusLabel.should_receive(:hidden=).with(false)
-    @controller.showStatusPanel
-  end
-  
-  it 'should show the input panel (and hide the status)' do
-    @mock_runButton.should_receive(:enabled=).with(true)
-    @mock_pathTextField.should_receive(:hidden=).with(false)
-    @mock_statusBar.should_receive(:hidden=).with(true)
-    @mock_statusLabel.should_receive(:hidden=).with(true)
-    @controller.showInputPanel    
-  end
-  
-  it 'should init the status label with a cooool text on spec_run_preparation' do
-    @mock_statusLabel.should_receive(:stringValue=)
-    @controller.specRunPreparation(nil)    
-  end
-  
-  it 'should hide the status panel on finished spec run' do
-    @controller.should_receive(:showInputPanel)
-    @controller.specRunFinished(nil)
-  end
-  
   it 'should set status bar to indeterminate and start its animation on spec_run_preparation' do
     @mock_statusBar.should_receive(:indeterminate=).with(true)
     @mock_statusBar.should_receive(:startAnimation)
     @controller.specRunPreparation(nil)
-  end
-  
-  it 'should display progress info in statusLabel for passed, pending and failed specs' do
-    @mock_statusLabel.should_receive(:stringValue=)
-    @controller.specRunFinishedSingleSpec(nil)    
   end
   
   it 'should init the determinated status bar on spec_run_start' do
@@ -129,13 +124,6 @@ describe WindowController do
     @mock_statusBar.should_receive(:incrementBy).with(1.0)
     @controller.specRunFinishedSingleSpec(nil)        
   end 
-  
-  it 'should receive texteditingend notifications from path text field and save its current value to defaults' do
-    mock_notification = mock('Notification')
-    mock_notification.stub!(:object).and_return(@mock_pathTextField)
-    $app.should_receive(:default_for_key).with(:spec_run_path, File.dirname(__FILE__))
-    @controller.controlTextDidEndEditing(mock_notification)
-  end
   
   it 'should restore the last run path on awake' do
     $app.should_receive(:default_from_key).with(:spec_run_path).and_return('test')
@@ -160,23 +148,9 @@ describe WindowController do
     @controller.resurrectWindow(nil)
   end
   
-  it 'should test if the entered path exist before running specs' do
-    mock_notification = mock('Notification')
-    mock_notification.stub!(:object).and_return(@mock_pathTextField)
-    @controller.should_receive(:path_is_valid?)
-    @controller.controlTextDidEndEditing(mock_notification)    
-  end
-  
-  it 'should update the statusLabel if a given path doesnt exist' do
-    @mock_statusLabel.should_receive(:hidden=).with(false)
-    @mock_statusLabel.should_receive(:stringValue=)
+  it 'should alert if a given path doesnt exist' do
+    $app.should_receive(:alert)
     @controller.path_is_valid?('/tmp/funochnichdaoderso').should be_false
-  end
-  
-  it 'should clear the statusLabel if a given path exists' do
-    @mock_statusLabel.should_receive(:hidden=).with(true)
-    @mock_statusLabel.should_receive(:stringValue=).with('')
-    @controller.path_is_valid?('/tmp').should be_true
   end
   
   it 'should check valid bin paths before running a spec' do

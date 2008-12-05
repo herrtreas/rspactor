@@ -1,10 +1,26 @@
 require 'osx/cocoa'
 
 class WebviewController < OSX::NSWindowController
-  ib_outlet :view, :tabBar  
-  ib_action :tabBarClicked
-  
   attr_accessor :current_spec_file_view
+  
+  ib_outlet :view, :tabBar, :toolbar
+  
+  ib_action :toolbarItemClicked do |sender|
+    @toolbar.selectedItemIdentifier = sender.itemIdentifier
+    case sender.tag
+    when 0:
+      loadHtmlView(:dashboard)
+    when 1:
+      showRawOutputView
+    when 2:
+      if defined?(@@currently_displayed_file)
+        showSpecFileView(@@currently_displayed_file)
+      else
+        setSpecFileViewLabel(:disabled => true)
+        activateHtmlView(:dashboard)
+      end
+    end    
+  end
   
   def awakeFromNib
     receive :fileToWebViewLoadingRequired,              :showSpecFileViewFromTable
@@ -14,7 +30,15 @@ class WebviewController < OSX::NSWindowController
     
     @view.shouldCloseWithWindow = true
     @view.frameLoadDelegate = self    
-    setupTabBar :dashboard
+    @toolbar.selectedItemIdentifier = itemForView(:dashboard).itemIdentifier
+    activateHtmlView(:dashboard)    
+    setSpecFileViewLabel(:disabled => true)    
+  end  
+  
+  def toolbarSelectableItemIdentifiers(toolbar)
+    @toolbaridents ||= begin
+      @toolbar.items.collect {|i| i.itemIdentifier }
+    end
   end  
   
   def webView_didFinishLoadForFrame(view, frame)
@@ -22,7 +46,6 @@ class WebviewController < OSX::NSWindowController
   end
   
   def loadHtml(file_name, &block)
-    # $LOG.debug "Test: #{@view.isLoading}"
     @view.isLoading # dumb
     @@afterLoadBlock = block
     @view.mainFrameURL = File.join(File.dirname(__FILE__), file_name)
@@ -42,20 +65,20 @@ class WebviewController < OSX::NSWindowController
   
   def showSpecFileView(file)
     if file.nil? && !self.current_spec_file_view
-      labelForView(:spec_view, '..', :disabled => true)
+      setSpecFileViewLabel(:disabled => true)
       activateHtmlView(:dashboard) and return
     end
     
     if file && (!defined?(@@currently_displayed_file) || file != @@currently_displayed_file)
       @@currently_displayed_file = file
       @current_spec_file_view.file = @@currently_displayed_file if @current_spec_file_view
-      labelForView(:spec_view, 'Loading..', :disabled => true)
+      setSpecFileViewLabel(:disabled => true)
     end
     
     activateHtmlView(:spec_view) do
       @current_spec_file_view ||= SpecFileView.new(@view, @@currently_displayed_file)
       @current_spec_file_view.update
-      labelForView(:spec_view, @current_spec_file_view.file.name(:include => :spec_count))
+      setSpecFileViewLabel(:disabled => false)
     end
   end
   
@@ -97,24 +120,7 @@ class WebviewController < OSX::NSWindowController
     end
   end
 
-  def tabBarClicked(sender)
-    # $LOG.debug @tabBar.selectedSegment
-    case @tabBar.selectedSegment
-    when 0:
-      loadHtmlView
-    when 1:
-      showRawOutputView
-    when 2:
-      if defined?(@@currently_displayed_file)
-        showSpecFileView(@@currently_displayed_file)
-      else
-        labelForView(:spec_view, '..', :disabled => true)
-        activateHtmlView(:dashboard)
-      end
-    end
-  end
-  
-  def indexForView(view)
+  def tagForView(view)
     case view
     when :dashboard: 0
     when :output:    1
@@ -122,29 +128,25 @@ class WebviewController < OSX::NSWindowController
     end
   end
   
-  def setupTabBar(view)
-    @tabBar.setWidth_forSegment(100.0, 0)
-    @tabBar.setWidth_forSegment(100.0, 1)    
-    @tabBar.setWidth_forSegment(0, 2)    
-    activateHtmlView(view)
+  def itemForView(view)
+    tag = tagForView(view)
+    @toolbar.items.select { |i| i.tag == tag }.first
   end
   
   def activateHtmlView(view, &block)    
-    @tabBar.selectedSegment = indexForView(view)
-    loadHtmlView(&block)
+    @toolbar.selectedItemIdentifier = itemForView(view).itemIdentifier
+    loadHtmlView(view, &block)
   end
   
-  def loadHtmlView(&block)
-    case @tabBar.selectedSegment
-    when 0: loadHtml('dashboard.html', &block)
-    when 1: loadHtml('raw_output.html', &block)
-    when 2: loadHtml('spec_file.html', &block)
+  def loadHtmlView(view, &block)
+    case view
+    when :dashboard: loadHtml('dashboard.html', &block)
+    when :output: loadHtml('raw_output.html', &block)
+    when :spec_view: loadHtml('spec_file.html', &block)
     end
   end  
     
-  def labelForView(view, label, options = {})
-    index = indexForView(view)
-    @tabBar.setEnabled_forSegment(!options[:disabled], index)
-    @tabBar.setLabel_forSegment(label, index)
+  def setSpecFileViewLabel(options = {})
+    itemForView(:spec_view).enabled = !options[:disabled] || options[:disabled] == false
   end  
 end

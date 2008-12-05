@@ -12,21 +12,21 @@ describe WebviewController do
     @mock_view.stub!(:shouldCloseWithWindow=)
     @mock_view.stub!(:frameLoadDelegate=)
     @mock_view.stub!(:isLoading)
-    @mock_tab_bar = mock('TabBar')
-    @mock_tab_bar.stub!(:setWidth_forSegment)
+    @mock_tool_bar = mock('Toolbar')
+    @mock_tool_bar.stub!(:items).and_return([@mock_tool_bar_item])
+    @mock_tool_bar.stub!(:selectedItemIdentifier=)
+    @mock_tool_bar_item = mock('ToolbarItem', :tag => 0)
+    @mock_tool_bar_item.stub!(:itemIdentifier).and_return('ident')
+    @mock_tool_bar_item.stub!(:enabled=)
     @controller = WebviewController.new    
     @controller.view = @mock_view
-    @controller.tabBar = @mock_tab_bar
+    @controller.toolbar = @mock_tool_bar
     @controller.stub!(:activateHtmlView)
+    @controller.stub!(:itemForView).and_return(@mock_tool_bar_item)
   end
   
   it 'should be an OSX::NSObject' do
     @controller.should be_kind_of(OSX::NSWindowController)
-  end
-  
-  it 'should setup the tabbar and activate the "dashboard" page on awake' do
-    @controller.should_receive(:setupTabBar).with(:dashboard)
-    @controller.awakeFromNib
   end
   
   it 'should set webview to garbagecollect itself when window is closed' do
@@ -77,28 +77,16 @@ describe WebviewController do
     @controller.webView_runJavaScriptAlertPanelWithMessage(nil, 'test.rb:5')
   end
 
-  it 'should setup the tabbar and load the corresponding view' do
-    @mock_tab_bar.should_receive(:setWidth_forSegment).exactly(3).times
-    @controller.should_receive(:activateHtmlView).with(:dashboard)
-    @controller.setupTabBar(:dashboard)
-  end
-
   it 'should load the corresponding html view on tabbar click' do
     @mock_tab_bar.stub!(:selectedSegment).and_return(0)
     @controller.should_receive(:loadHtmlView)
-    @controller.tabBarClicked(nil)
+    @controller.toolbarItemClicked(@mock_tool_bar_item)
   end
   
-  it 'should allow setting the tabbar label for a view (including enabling)' do
-    @mock_tab_bar.should_receive(:setEnabled_forSegment).with(true, 2)
-    @mock_tab_bar.should_receive(:setLabel_forSegment).with('Test', 2)
-    @controller.labelForView(:spec_view, 'Test')
-  end
-  
-  it 'should return the tabbar index for a view' do
-    @controller.indexForView(:dashboard).should eql(0)
-    @controller.indexForView(:output).should eql(1)
-    @controller.indexForView(:spec_view).should eql(2)
+  it 'should return the item tag for a view' do
+    @controller.tagForView(:dashboard).should eql(0)
+    @controller.tagForView(:output).should eql(1)
+    @controller.tagForView(:spec_view).should eql(2)
   end
   
 end

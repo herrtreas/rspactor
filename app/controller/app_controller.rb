@@ -58,6 +58,8 @@ class AppController < OSX::NSObject
     
     spec = notification.userInfo.first
     if spec.previous_state == :failed && spec.state == :passed
+      @files_with_passed_specs ||= []
+      @files_with_passed_specs << spec.file_object.path if spec.file_object
       self.run_failed_afterwards = true
     end      
   end
@@ -94,7 +96,12 @@ class AppController < OSX::NSObject
   
   def run_failed_files_afterwards_or_listen
     if self.run_failed_afterwards
-      failed_files_job = ExampleRunnerJob.new(:paths => ExampleFiles.failed.collect { |ef| ef.path })
+      failed_files_paths = ExampleFiles.failed.collect { |ef| ef.path }
+      if @files_with_passed_specs && !@files_with_passed_specs.empty?
+        failed_files_paths.delete_if { |path| @files_with_passed_specs.include?(path) }
+        @files_with_passed_specs = nil
+      end
+      failed_files_job = ExampleRunnerJob.new(:paths => failed_files_paths)
       failed_files_job.hide_growl_messages_for_failed_examples = true
       SpecRunner.run_job(failed_files_job)
     else
