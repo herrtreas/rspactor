@@ -117,6 +117,8 @@ class WebviewController < OSX::NSWindowController
       TextMate.open_file_with_line(message)
     when 'Netbeans'
       Netbeans.open_file_with_line(message)
+    else
+      TextMate.open_file_with_line(message)
     end
   end
 

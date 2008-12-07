@@ -77,6 +77,13 @@ describe WebviewController do
     @controller.webView_runJavaScriptAlertPanelWithMessage(nil, 'test.rb:5')
   end
 
+  it 'should open TextMate if no editor has been set yet (#21)' do
+    @controller.stub!(:editor_integration_enabled?).and_return(true)
+    $app.stub!(:default_from_key).and_return ''
+    TextMate.should_receive(:open_file_with_line)
+    @controller.webView_runJavaScriptAlertPanelWithMessage(nil, 'test.rb:5')    
+  end
+
   it 'should load the corresponding html view on tabbar click' do
     @mock_tab_bar.stub!(:selectedSegment).and_return(0)
     @controller.should_receive(:loadHtmlView)

@@ -231,6 +231,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -283,7 +285,7 @@
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 107}, {261, 709}}</string>
+							<string>{{0, 0}, {261, 709}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -347,8 +349,6 @@
 							<string>0pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -385,9 +385,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>E15D2C2D0EE93E3E00D96561</string>
+				<string>E125FD6D0EE983F2008C38DB</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>E15D2C2E0EE93E3E00D96561</string>
+				<string>E125FD6E0EE983F2008C38DB</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -521,10 +521,8 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>1CD10A99069EF8BA00B06720</string>
 		<string>E1A615C10DF82908007DEAC7</string>
 		<string>/Work/rubyphunk/rspactor_app/RSpactor.xcodeproj</string>
-		<string>1C78EAAD065D492600B07095</string>
 	</array>
 	<key>WindowString</key>
 	<string>480 410 1440 768 0 0 1920 1178 </string>
@@ -604,7 +602,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>E1A615C10DF82908007DEAC7</string>
-				<string>E15D2C2F0EE93E3E00D96561</string>
+				<string>E125FD6F0EE983F2008C38DB</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
