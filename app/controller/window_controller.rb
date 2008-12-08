@@ -6,6 +6,10 @@ class WindowController < OSX::NSWindowController
   ib_outlet :menu_examples_run, :menu_examples_stop
   ib_action :runSpecs
 
+  ib_action :goToPathTextField do |sender|
+    focusPathTextField
+  end
+
   ib_action :stopSpecRun do |sender|
     SpecRunner.terminate_current_task
   end
@@ -14,8 +18,12 @@ class WindowController < OSX::NSWindowController
     initAndSetAutomaticPositionAndSizeStoring
     @growlController = GrowlController.alloc.init
     @pathTextField.stringValue = $app.default_from_key(:spec_run_path)
-    self.window.makeFirstResponder(@pathTextField)
+    focusPathTextField    
     hook_events
+  end
+  
+  def focusPathTextField
+    self.window.makeFirstResponder(@pathTextField)    
   end
   
   def runSpecs(sender)
