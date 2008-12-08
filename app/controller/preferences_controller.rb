@@ -6,7 +6,7 @@ class PreferencesController < OSX::NSWindowController
   ib_outlet :specBinPath, :rubyBinPath, :editorBinPath
   ib_outlet :rubyBinWarning, :specBinWarning, :editorBinWarning
   ib_outlet :editorSelect, :editorCheckBox
-  ib_outlet :generalsRerunSpecsCheckBox
+  ib_outlet :generalsRerunSpecsCheckBox, :generalsSummarizeGrowl
   
   ib_action :toolbarItemClicked
   ib_action :editorCheckBoxClicked
@@ -17,6 +17,8 @@ class PreferencesController < OSX::NSWindowController
     case sender.tag
     when 101:
       $app.default_for_key(:generals_rerun_failed_specs, sender.state)      
+    when 102:
+      $app.default_for_key(:generals_summarize_growl_output, sender.state)
     end
   end
   
@@ -77,6 +79,7 @@ class PreferencesController < OSX::NSWindowController
   
   def initGeneralPrefView
     @generalsRerunSpecsCheckBox.state = $app.default_from_key(:generals_rerun_failed_specs, '1')
+    @generalsSummarizeGrowl.state = $app.default_from_key(:generals_summarize_growl_output, '0')
   end
   
   def initToolbar

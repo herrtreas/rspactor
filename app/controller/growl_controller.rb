@@ -16,6 +16,7 @@ class GrowlController < OSX::NSObject
   end
   
   def specRunFinishedSingleSpec(notification)    
+    return if Options.summarize_growl_output?
     spec = notification.userInfo.first
     unless SpecRunner.current_job.hide_growl_messages_for_failed_examples && spec.state == :failed      
       @growl.notify(MESSAGE_KIND, "#{spec.name}", spec.message, nil, false, 0, imageForGrowl)
