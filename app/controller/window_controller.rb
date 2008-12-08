@@ -1,10 +1,14 @@
 require 'osx/cocoa'
 
 class WindowController < OSX::NSWindowController
-  ib_outlet :pathTextField, :runButton, :statusBar, :statusLabel, :statusBarPassedCount, :statusBarPendingCount, :statusBarFailedCount
+  ib_outlet :pathTextField, :statusBar, :statusLabel, :statusBarPassedCount, :statusBarPendingCount, :statusBarFailedCount
   ib_outlet :toolbar_item_run, :toolbar_item_path
   ib_outlet :menu_examples_run, :menu_examples_stop
   ib_action :runSpecs
+
+  ib_action :stopSpecRun do |sender|
+    SpecRunner.terminate_current_task
+  end
   
   def awakeFromNib
     initAndSetAutomaticPositionAndSizeStoring
@@ -25,24 +29,28 @@ class WindowController < OSX::NSWindowController
   
   def showExampleRunPanels
     @statusBar.hidden = false
-    @toolbar_item_run.enabled = false
     @toolbar_item_path.enabled = false
     @menu_examples_run.enabled = false
     @menu_examples_stop.enabled = true
     @statusBarPassedCount.hidden = true
     @statusBarPendingCount.hidden = true
     @statusBarFailedCount.hidden = true
+    @toolbar_item_run.image = OSX::NSImage.imageNamed('block')
+    @toolbar_item_run.label = 'Stop'
+    @toolbar_item_run.action = 'stopSpecRun:'
   end
   
   def showSilentPanels
     @statusBar.hidden = true
-    @toolbar_item_run.enabled = true
     @toolbar_item_path.enabled = true
     @menu_examples_run.enabled = true
     @menu_examples_stop.enabled = false
     @statusBarPassedCount.hidden = false    
     @statusBarPendingCount.hidden = false    
     @statusBarFailedCount.hidden = false    
+    @toolbar_item_run.image = NSImage.imageNamed('promotion')
+    @toolbar_item_run.label = 'Run'    
+    @toolbar_item_run.action = 'runSpecs:'    
   end
   
   def specRunPreparation(notification)

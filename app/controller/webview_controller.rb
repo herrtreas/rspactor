@@ -37,7 +37,7 @@ class WebviewController < OSX::NSWindowController
   
   def toolbarSelectableItemIdentifiers(toolbar)
     @toolbaridents ||= begin
-      @toolbar.items.collect {|i| i.itemIdentifier }
+      @toolbar.items.select { |i| [0,1,2].include?(i.tag) }.collect {|i| i.itemIdentifier }
     end
   end  
   

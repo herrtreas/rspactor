@@ -1,5 +1,6 @@
 module SpecRunner
   class << self
+    attr_accessor :task
     attr_accessor :queue
     attr_accessor :current_job
     
@@ -57,16 +58,16 @@ module SpecRunner
       
       runner, args = prepare_running_environment(args)
       $LOG.debug "Running: #{runner} with #{args.inspect}.."
-      task = OSX::NSTask.alloc.init
+      @task = OSX::NSTask.alloc.init
       
       output_pipe = OSX::NSPipe.alloc.init
       error_pipe = OSX::NSPipe.alloc.init
-      task.standardOutput = output_pipe
-      task.standardError = error_pipe
+      @task.standardOutput = output_pipe
+      @task.standardError = error_pipe
 
-      task.arguments = args
-      task.launchPath = runner
-      task.launch
+      @task.arguments = args
+      @task.launchPath = runner
+      @task.launch
       
       $output_pipe_handle = output_pipe.fileHandleForReading
       $error_pipe_handle = error_pipe.fileHandleForReading
@@ -87,5 +88,9 @@ module SpecRunner
       end
     end
     
+    def terminate_current_task
+      return unless @task
+      @task.terminate
+    end
   end
 end

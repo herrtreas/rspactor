@@ -92,4 +92,13 @@ describe SpecRunner do
       SpecRunner.run_job(@job)
     end
   end
+  
+  describe 'terminating a task' do
+    it 'should send terminate to the current task' do
+      mock_task = mock('Task')
+      mock_task.should_receive(:terminate)
+      SpecRunner.task = mock_task
+      SpecRunner.terminate_current_task
+    end
+  end
 end

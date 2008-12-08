@@ -7,9 +7,6 @@ require 'example_runner_job'
 
 describe WindowController do
   before(:each) do
-    @mock_runButton = mock('runButton', :title => 'Run')
-    @mock_runButton.stub!(:enabled=)
-    
     @mock_pathTextField = mock('pathTextField', :stringValue => File.dirname(__FILE__))
     @mock_pathTextField.stub!(:hidden=)
     @mock_pathTextField.stub!(:stringValue=)
@@ -33,7 +30,9 @@ describe WindowController do
     @mock_window.stub!(:makeFirstResponder)
     
     @mock_toolbar_item_run = mock('ToolbarItemRun')
-    @mock_toolbar_item_run.stub!(:enabled=)
+    @mock_toolbar_item_run.stub!(:image=)
+    @mock_toolbar_item_run.stub!(:label=)
+    @mock_toolbar_item_run.stub!(:action=)
     @mock_toolbar_item_path = mock('ToolbarItemPath')
     @mock_toolbar_item_path.stub!(:enabled=)
 
@@ -50,7 +49,6 @@ describe WindowController do
     @mock_statusbar_failed_count.stub!(:hidden=)
     
     @controller = WindowController.new
-    @controller.runButton = @mock_runButton
     @controller.pathTextField = @mock_pathTextField
     @controller.statusBar = @mock_statusBar
     @controller.statusLabel = @mock_statusLabel
@@ -103,6 +101,13 @@ describe WindowController do
       SpecRunner.should_receive(:run_job).with(mock_job)
       @mock_pathTextField.stub!(:stringValue).and_return(File.dirname(__FILE__))
       @controller.runSpecs(nil)
+    end
+  end
+  
+  describe 'stopping an example run' do
+    it 'should ask the SpecRunner to terminate the current task' do
+      SpecRunner.should_receive(:terminate_current_task)
+      @controller.stopSpecRun(nil)      
     end
   end
   

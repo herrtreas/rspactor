@@ -7,8 +7,6 @@ require 'spec_runner'
 
 describe GrowlController do
   before(:each) do
-    $app = mock('App')
-    $app.stub!(:default_from_key).and_return('0')
     @mock_job = mock('Job')
     @mock_job.stub!(:hide_growl_messages_for_failed_examples).and_return(false)
     @mock_growl = mock('Growl')    
@@ -18,6 +16,7 @@ describe GrowlController do
   end
   
   it 'should growl a processed example' do
+    Options.stub!(:summarize_growl_output?).and_return(false)
     spec = SpecObject.new    
     mock_notification = mock('Notification')    
     mock_notification.stub!(:userInfo).and_return([spec])
@@ -26,7 +25,7 @@ describe GrowlController do
   end
   
   it 'should not growl a processed example if summarization is activated (prefs)' do
-    $app.stub!(:default_from_key).and_return('1')
+    Options.stub!(:summarize_growl_output?).and_return(true)
     @controller.growl.should_not_receive(:notify)
     @controller.specRunFinishedSingleSpec(nil)
   end
