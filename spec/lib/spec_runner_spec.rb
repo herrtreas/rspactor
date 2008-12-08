@@ -96,9 +96,18 @@ describe SpecRunner do
   describe 'terminating a task' do
     it 'should send terminate to the current task' do
       mock_task = mock('Task')
+      mock_task.stub!(:isRunning).and_return(true)
       mock_task.should_receive(:terminate)
       SpecRunner.task = mock_task
       SpecRunner.terminate_current_task
+    end
+    
+    it 'should not try to terminate the current task if its not running?' do
+      mock_task = mock('Task')
+      mock_task.should_receive(:isRunning).and_return(false)
+      mock_task.should_not_receive(:terminate)
+      SpecRunner.task = mock_task
+      SpecRunner.terminate_current_task      
     end
   end
 end

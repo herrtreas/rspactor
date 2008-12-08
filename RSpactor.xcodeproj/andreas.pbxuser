@@ -135,8 +135,8 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 250387558;
-			PBXWorkspaceStateSaveDate = 250387558;
+			PBXPerProjectTemplateStateSaveDate = 250442151;
+			PBXWorkspaceStateSaveDate = 250442151;
 		};
 		sourceControlManager = E1A615CA0DF82908007DEAC7 /* Source Control */;
 		userBuildSettings = {
@@ -203,7 +203,7 @@
 		argumentStrings = (
 		);
 		autoAttachOnCrash = 1;
-		breakpointsEnabled = 0;
+		breakpointsEnabled = 1;
 		configStateDict = {
 		};
 		customDataFormattersEnabled = 1;

@@ -90,6 +90,7 @@ module SpecRunner
     
     def terminate_current_task
       return unless @task
+      return unless @task.isRunning
       @task.terminate
     end
   end
