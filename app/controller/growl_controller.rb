@@ -17,9 +17,15 @@ class GrowlController < OSX::NSObject
   
   def specRunFinishedSingleSpec(notification)    
     return if Options.summarize_growl_output?
+    return if $processed_spec_count >= 21
+
     spec = notification.userInfo.first
     unless SpecRunner.current_job.hide_growl_messages_for_failed_examples && spec.state == :failed      
-      @growl.notify(MESSAGE_KIND, "#{spec.name}", spec.message, nil, false, 0, imageForGrowl)
+      if $processed_spec_count == 20
+        @growl.notify(MESSAGE_KIND, "Too many failed examples", "RSpactor won't show more than 20 failed example reports at once.", nil, false, 999, imageForGrowl(:warning))
+      else
+        @growl.notify(MESSAGE_KIND, "#{spec.name}", spec.message, nil, false, 0, imageForGrowl)
+      end
     end
   end
   
