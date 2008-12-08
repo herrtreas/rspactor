@@ -4,6 +4,7 @@ class AppController < OSX::NSObject
   
   attr_accessor :root
   attr_accessor :run_failed_afterwards
+  attr_accessor :example_start_time
   
   def initialize
     $app = self
@@ -17,6 +18,7 @@ class AppController < OSX::NSObject
   def applicationDidFinishLaunching(notification)
     Service.init
     receive :spec_run_start,                          :spec_run_has_started
+    receive :example_run_example_started,             :exampleRunExampleStarted
     receive :spec_run_example_passed,                 :spec_run_processed
     receive :spec_run_example_pending,                :spec_run_processed
     receive :spec_run_example_failed,                 :spec_run_processed
@@ -40,15 +42,22 @@ class AppController < OSX::NSObject
     ExampleFiles.tainting_required_on_all_files!
   end
   
+  def exampleRunExampleStarted(notification)
+    @example_start_time = Time.now
+  end
+  
   def spec_run_processed(notification)
+    example_end_time = Time.now
     $processed_spec_count += 1
-    spec = notification.userInfo.first
-    return if spec.backtrace.empty?
-    ExampleFiles.add_spec(spec)
-    post_notification :spec_run_processed, spec
-    if spec.state == :failed && @first_failed_notification_posted.nil?
-      @first_failed_notification_posted = true
-      post_notification :first_failed_spec, spec
+    unless notification.userInfo.first.backtrace.empty?
+      spec = notification.userInfo.first
+      spec.run_time = example_end_time - @example_start_time
+      ExampleFiles.add_spec(spec)
+      post_notification :spec_run_processed, spec
+      if spec.state == :failed && @first_failed_notification_posted.nil?
+        @first_failed_notification_posted = true
+        post_notification :first_failed_spec, spec
+      end
     end
   end
   

@@ -25,6 +25,10 @@ class RSpactorFormatter
   def add_example_group(example_group)
     @example_group = example_group
   end
+  
+  def example_started(*attr)
+    @remote_service.incoming(:example_run_example_started)
+  end
 
   def example_passed(example)
     spec = SpecObject.new(
@@ -69,7 +73,6 @@ class RSpactorFormatter
   end
   
   # Currently unused callbacks
-  def example_started(example); end    
   def start_dump; end
   def dump_failure(counter, failure); end
   def dump_pending; end

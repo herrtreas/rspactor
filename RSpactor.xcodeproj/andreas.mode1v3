@@ -275,7 +275,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>4</integer>
+									<integer>16</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -380,9 +380,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>E1BF73370EECA5F3004DD5F2</string>
+				<string>E11645B00EEDA6D600DB1C3E</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>E1BF73380EECA5F3004DD5F2</string>
+				<string>E11645B10EEDA6D600DB1C3E</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -516,11 +516,6 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>E1BF73620EECAD96004DD5F2</string>
-		<string>E1BF73630EECAD96004DD5F2</string>
-		<string>1C0AD2AF069F1E9B00FABCE6</string>
-		<string>1CD10A99069EF8BA00B06720</string>
-		<string>E1A615C10DF82908007DEAC7</string>
 		<string>/Work/rubyphunk/rspactor_app/RSpactor.xcodeproj</string>
 		<string>1C78EAAD065D492600B07095</string>
 	</array>
@@ -555,7 +550,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {1037, 215}}</string>
 								<key>RubberWindowFrame</key>
-								<string>230 229 1037 497 0 0 1440 878 </string>
+								<string>504 389 1037 497 0 0 1920 1178 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -579,7 +574,7 @@
 								<key>Frame</key>
 								<string>{{0, 220}, {1037, 236}}</string>
 								<key>RubberWindowFrame</key>
-								<string>230 229 1037 497 0 0 1440 878 </string>
+								<string>504 389 1037 497 0 0 1920 1178 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXBuildResultsModule</string>
@@ -602,14 +597,14 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>E1A615C10DF82908007DEAC7</string>
-				<string>E1BF732C0EECA5E9004DD5F2</string>
+				<string>E1F957F70EED93E800268E02</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.buildV3</string>
 			<key>WindowString</key>
-			<string>230 229 1037 497 0 0 1440 878 </string>
+			<string>504 389 1037 497 0 0 1920 1178 </string>
 			<key>WindowToolGUID</key>
 			<string>E1A615C10DF82908007DEAC7</string>
 			<key>WindowToolIsVisible</key>
@@ -696,10 +691,10 @@
 									<key>Frame</key>
 									<string>{{316, 0}, {378, 203}}</string>
 									<key>RubberWindowFrame</key>
-									<string>442 303 694 422 0 0 1440 878 </string>
+									<string>726 488 694 422 0 0 1920 1178 </string>
 								</dict>
 								<key>RubberWindowFrame</key>
-								<string>442 303 694 422 0 0 1440 878 </string>
+								<string>726 488 694 422 0 0 1920 1178 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXDebugSessionModule</string>
@@ -722,18 +717,18 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>E1BF732D0EECA5E9004DD5F2</string>
+				<string>E1F957F80EED93E800268E02</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>E1BF732E0EECA5E9004DD5F2</string>
-				<string>E1BF732F0EECA5E9004DD5F2</string>
-				<string>E1BF73300EECA5E9004DD5F2</string>
-				<string>E1BF73310EECA5E9004DD5F2</string>
-				<string>E1BF73320EECA5E9004DD5F2</string>
+				<string>E1F957F90EED93E800268E02</string>
+				<string>E1F957FA0EED93E800268E02</string>
+				<string>E1F957FB0EED93E800268E02</string>
+				<string>E1F957FC0EED93E800268E02</string>
+				<string>E1F957FD0EED93E800268E02</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
 			<key>WindowString</key>
-			<string>442 303 694 422 0 0 1440 878 </string>
+			<string>726 488 694 422 0 0 1920 1178 </string>
 			<key>WindowToolGUID</key>
 			<string>1CD10A99069EF8BA00B06720</string>
 			<key>WindowToolIsVisible</key>
@@ -892,7 +887,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C78EAAD065D492600B07095</string>
-				<string>E1BF73330EECA5E9004DD5F2</string>
+				<string>E11645B20EEDA6D600DB1C3E</string>
 				<string>1C78EAAC065D492600B07095</string>
 			</array>
 			<key>ToolbarConfiguration</key>
