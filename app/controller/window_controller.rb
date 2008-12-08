@@ -29,10 +29,13 @@ class WindowController < OSX::NSWindowController
   def runSpecs(sender)
     return if SpecRunner.command_running?
     return unless valid_bin_paths?
-    path = @pathTextField.stringValue
-    return false if path.empty? || !File.exist?(path)
-    savePathToUserDefaults(path)
-    SpecRunner.run_job(ExampleRunnerJob.new(:root => path.to_s))
+    path = File.expand_path(@pathTextField.stringValue)
+    if !path.empty? && path_is_valid?(path)
+      savePathToUserDefaults(@pathTextField.stringValue)
+      SpecRunner.run_job(ExampleRunnerJob.new(:root => path.to_s))
+    else
+      return false
+    end
   end
   
   def showExampleRunPanels
@@ -106,6 +109,10 @@ class WindowController < OSX::NSWindowController
     @statusBarFailedCount.title = failure_count
   end
   
+  def controlTextDidChange(notification)
+    @pathTextField.stringValue = @pathTextField.stringValue.chomp
+  end  
+  
   def initAndSetAutomaticPositionAndSizeStoring
     shouldCascadeWindows = false
     self.window.frameUsingName = 'rspactor_main_window'
@@ -120,6 +127,7 @@ class WindowController < OSX::NSWindowController
     if File.exist?(path)
       return true
     else
+      $LOG.debug "TEST"
       $app.alert("The path you have entered doesn't exist.", "Please check your input and try again.")
       return false
     end    

@@ -27,8 +27,10 @@ class SpecTable < OSX::NSObject
   
   def addSelectedFileToRunnerQueue(sender)
     @selectedSpecFile = ExampleFiles.file_by_index(@specsTable.selectedRow)
-    SpecRunner.queue << @selectedSpecFile.path    
-    SpecRunner.process_queue 
+    if @selectedSpecFile
+      SpecRunner.queue << @selectedSpecFile.path    
+      SpecRunner.process_queue 
+    end
   end
   
   def specRunFinishedSingleSpec(notification)

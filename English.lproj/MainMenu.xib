@@ -8,8 +8,8 @@
 		<string key="IBDocument.HIToolboxVersion">352.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
+			<integer value="745"/>
 			<integer value="169"/>
-			<integer value="2"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -158,9 +158,10 @@
 								<string key="NSToolbarItemPaletteLabel">Enter the root path to your project, press enter</string>
 								<nil key="NSToolbarItemToolTip"/>
 								<object class="NSTextField" key="NSToolbarItemView" id="1068751443">
-									<nil key="NSNextResponder"/>
+									<reference key="NSNextResponder"/>
 									<int key="NSvFlags">266</int>
 									<string key="NSFrame">{{0, 14}, {266, 22}}</string>
+									<reference key="NSSuperview"/>
 									<bool key="NSEnabled">YES</bool>
 									<object class="NSTextFieldCell" key="NSCell" id="801871102">
 										<int key="NSCellFlags">-1804468671</int>
@@ -2553,6 +2554,14 @@
 					</object>
 					<int key="connectionID">830</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">delegate</string>
+						<reference key="source" ref="1068751443"/>
+						<reference key="destination" ref="835570399"/>
+					</object>
+					<int key="connectionID">832</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -4044,9 +4053,9 @@
 					<reference ref="9"/>
 					<string>com.apple.WebKitIBPlugin</string>
 					<reference ref="9"/>
-					<string>{{326, 251}, {711, 694}}</string>
+					<string>{{653, 243}, {711, 694}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{326, 251}, {711, 694}}</string>
+					<string>{{653, 243}, {711, 694}}</string>
 					<reference ref="9"/>
 					<reference ref="9"/>
 					<string>{{706, 153}, {711, 694}}</string>
@@ -4182,7 +4191,7 @@
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{373, 945}, {617, 0}}</string>
+					<string>{{700, 710}, {617, 227}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
@@ -4296,7 +4305,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">830</int>
+			<int key="maxID">832</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
