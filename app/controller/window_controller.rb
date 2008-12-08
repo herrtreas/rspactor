@@ -29,8 +29,8 @@ class WindowController < OSX::NSWindowController
   def runSpecs(sender)
     return if SpecRunner.command_running?
     return unless valid_bin_paths?
-    path = File.expand_path(@pathTextField.stringValue)
-    if !path.empty? && path_is_valid?(path)
+    if !@pathTextField.stringValue.empty? && path_is_valid?(@pathTextField.stringValue)
+      path = File.expand_path(@pathTextField.stringValue)
       savePathToUserDefaults(@pathTextField.stringValue)
       SpecRunner.run_job(ExampleRunnerJob.new(:root => path.to_s))
     else

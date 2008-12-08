@@ -78,7 +78,7 @@ describe WindowController do
   
   describe 'running specs' do
     it 'should not allow to run specs if path textfield is empty' do
-      File.should_not_receive(:exist?)
+      @controller.should_not_receive(:path_is_valid?)
       @mock_pathTextField.stub!(:stringValue).and_return('')
       @controller.runSpecs(nil).should be_false
     end

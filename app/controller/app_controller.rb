@@ -36,6 +36,7 @@ class AppController < OSX::NSObject
     $total_spec_count = notification.userInfo.first
     self.run_failed_afterwards = false
     @first_failed_notification_posted = nil
+    setupActiveBadge
     ExampleFiles.tainting_required_on_all_files!
   end
   
@@ -87,7 +88,7 @@ class AppController < OSX::NSObject
       $output_pipe_handle.closeFile
       $error_pipe_handle.closeFile
 
-      specs = ExampleFiles.clear_tainted_specs_on_all_files!.flatten.compact.select { |spec| spec && spec.file_object }
+      specs = ExampleFiles.clear_tainted_specs_on_all_files!.flatten.compact.select { |spec| spec && spec.file_object }      
       post_notification :webview_reload_required_for_specs, specs
       
       SpecRunner.commandHasFinished!      
@@ -152,48 +153,59 @@ class AppController < OSX::NSObject
   def add_request_to_listeners_observation_list(notification)
     Listener.add_request_to_observation_list(notification)
   end
+
+  def setupDefaultBadge
+    NSApp.setApplicationIconImage(NSImage.imageNamed('APPL.icns'))
+  end
+  
+  def setupActiveBadge
+    drawDockBadgeWithMessage('download', NSString.stringWithFormat('%s', ''))
+  end
   
   def setupBadgeWithFailedSpecCount(count)
     if count == 0
-      NSApp.setApplicationIconImage(NSImage.imageNamed('APPL.icns'))      
+      setupDefaultBadge
     else
-      
-      # Gladly translated from http://th30z.netsons.org/2008/10/cocoa-notification-badge/ to Ruby
-      # Thanks to Matteo Bertozzi for the article..
-    
-      failed_spec_count = NSString.stringWithFormat('%i', count)    
-      icon = NSImage.imageNamed('APPL.icns')
-      icon_buffer = icon.copy
-      size = icon.size
-  
-      # Create attributes for drawing the count.
-      font = NSFont.fontWithName_size('Helvetica-Bold', 28)
-      color = NSColor.whiteColor
-      attributes = OSX::NSDictionary.alloc.initWithObjectsAndKeys(font, OSX::NSFontAttributeName, color, OSX::NSForegroundColorAttributeName, nil)
-      num_size = failed_spec_count.sizeWithAttributes(attributes)
-  
-      # Create a red circle in the icon large enough to hold the count.
-      icon_buffer.lockFocus
-      icon.drawAtPoint_fromRect_operation_fraction(NSMakePoint(0, 0), NSMakeRect(0, 0, size.width, size.height), OSX::NSCompositeSourceOver, 1.0)    
-      max = (num_size.width > num_size.height) ? num_size.width : num_size.height
-      max += 24
-      circle_rect = NSMakeRect(size.width - max, size.height - max, max, max);
-  
-      # Draw the star image and scale it so the unread count will fit inside.
-      star_image = NSImage.imageNamed('badge.png')
-      star_image.scalesWhenResized = true
-      star_image.setSize(circle_rect.size)
-      star_image.compositeToPoint_operation(circle_rect.origin, OSX::NSCompositeSourceOver)
-  
-      # Draw the count in the red circle
-      point = NSMakePoint(NSMidX(circle_rect) - num_size.width / 2 + 2, NSMidY(circle_rect) - num_size.height / 2 + 2);
-      failed_spec_count.drawAtPoint_withAttributes(point, attributes)
-   
-      # Now set the new app icon and clean up.
-      icon_buffer.unlockFocus
-      NSApp.setApplicationIconImage(icon_buffer)
-      icon_buffer.release
-      attributes.release
+      failed_spec_count = NSString.stringWithFormat('%i', count)
+      drawDockBadgeWithMessage('badge.png', failed_spec_count)
     end
   end  
+  
+  def drawDockBadgeWithMessage(image_name, message)
+    # Gladly translated from http://th30z.netsons.org/2008/10/cocoa-notification-badge/ to Ruby
+    # Thanks to Matteo Bertozzi for the article..
+  
+    icon = NSImage.imageNamed('APPL.icns')
+    icon_buffer = icon.copy
+    size = icon.size
+
+    # Create attributes for drawing the count.
+    font = NSFont.fontWithName_size('Helvetica-Bold', 28)
+    color = NSColor.whiteColor
+    attributes = OSX::NSDictionary.alloc.initWithObjectsAndKeys(font, OSX::NSFontAttributeName, color, OSX::NSForegroundColorAttributeName, nil)
+    num_size = message.sizeWithAttributes(attributes)
+
+    # Create a red circle in the icon large enough to hold the count.
+    icon_buffer.lockFocus
+    icon.drawAtPoint_fromRect_operation_fraction(NSMakePoint(0, 0), NSMakeRect(0, 0, size.width, size.height), OSX::NSCompositeSourceOver, 1.0)    
+    max = (num_size.width > num_size.height) ? num_size.width : num_size.height
+    max += 24
+    circle_rect = NSMakeRect(size.width - max, size.height - max, max, max);
+
+    # Draw the star image and scale it so the unread count will fit inside.
+    star_image = NSImage.imageNamed(image_name)
+    star_image.scalesWhenResized = true
+    star_image.setSize(circle_rect.size)
+    star_image.compositeToPoint_operation(circle_rect.origin, OSX::NSCompositeSourceOver)
+
+    # Draw the count in the red circle
+    point = NSMakePoint(NSMidX(circle_rect) - num_size.width / 2 + 2, NSMidY(circle_rect) - num_size.height / 2 + 2);
+    message.drawAtPoint_withAttributes(point, attributes)
+ 
+    # Now set the new app icon and clean up.
+    icon_buffer.unlockFocus
+    NSApp.setApplicationIconImage(icon_buffer)
+    icon_buffer.release
+    attributes.release
+  end
 end
