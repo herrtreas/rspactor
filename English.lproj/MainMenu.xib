@@ -3946,9 +3946,9 @@
 					<reference ref="9"/>
 					<string>com.apple.WebKitIBPlugin</string>
 					<reference ref="9"/>
-					<string>{{454, 249}, {711, 694}}</string>
+					<string>{{204, 91}, {711, 694}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{454, 249}, {711, 694}}</string>
+					<string>{{204, 91}, {711, 694}}</string>
 					<reference ref="9"/>
 					<reference ref="9"/>
 					<string>{{706, 153}, {711, 694}}</string>
@@ -3979,7 +3979,7 @@
 					<reference ref="9"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
-					<string>{{322, 838}, {395, 20}}</string>
+					<string>{{322, 836}, {395, 20}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
 					<string>{{0, 1114}, {312, 20}}</string>
@@ -4012,7 +4012,7 @@
 					<reference ref="9"/>
 					<string>{{550, 720}, {617, 0}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{334, 635}, {232, 203}}</string>
+					<string>{{334, 633}, {232, 203}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
 					<string>{{12, 911}, {232, 203}}</string>
@@ -4084,7 +4084,7 @@
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{501, 716}, {617, 227}}</string>
+					<string>{{251, 558}, {617, 227}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
@@ -4122,10 +4122,10 @@
 						</object>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<real value="0.000000e+00"/>
+					<reference ref="6"/>
 					<reference ref="728742844"/>
-					<real value="0.000000e+00"/>
-					<real value="0.000000e+00"/>
+					<reference ref="6"/>
+					<reference ref="6"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<object class="NSMutableDictionary">
 						<string key="NS.key.0">ToolTip</string>
@@ -4136,10 +4136,10 @@
 						</object>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<real value="0.000000e+00" id="385408905"/>
+					<reference ref="6"/>
 					<reference ref="728742844"/>
-					<reference ref="385408905"/>
-					<reference ref="385408905"/>
+					<reference ref="6"/>
+					<reference ref="6"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{{416, 635}, {182, 203}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -4153,10 +4153,10 @@
 						</object>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<real value="0.000000e+00" id="79422251"/>
+					<reference ref="6"/>
 					<reference ref="728742844"/>
-					<reference ref="79422251"/>
-					<reference ref="79422251"/>
+					<reference ref="6"/>
+					<reference ref="6"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4DDCA7060ACC9A6100E082CE /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
 		4DDCA7070ACC9A6100E082CE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		4DDCA7080ACC9A6100E082CE /* rb_main.rb in Resources */ = {isa = PBXBuildFile; fileRef = E8F5E25803AEB7C803A81C6F /* rb_main.rb */; };
 		4DDCA70A0ACC9A6100E082CE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
@@ -48,6 +47,7 @@
 		E144DF9D0EA505440003ADE4 /* sound.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = E143B0E00EA4B76800055FDB /* sound.js */; };
 		E144DF9E0EA505440003ADE4 /* unittest.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = E143B0E10EA4B76800055FDB /* unittest.js */; };
 		E144E0030EA532A80003ADE4 /* badge.png in Resources */ = {isa = PBXBuildFile; fileRef = E144E0020EA532A80003ADE4 /* badge.png */; };
+		E145FF480EEC9BD40056D142 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = E145FF460EEC9BD40056D142 /* MainMenu.xib */; };
 		E14951780DFED46A006E0F89 /* spec_table.rb in Resources */ = {isa = PBXBuildFile; fileRef = E14951770DFED46A006E0F89 /* spec_table.rb */; };
 		E151EBEC0E09A04500E11BB3 /* webview_controller.rb in Resources */ = {isa = PBXBuildFile; fileRef = E151EBEB0E09A04500E11BB3 /* webview_controller.rb */; };
 		E151EC050E09A5A500E11BB3 /* spec_file.html in Resources */ = {isa = PBXBuildFile; fileRef = E151EC040E09A5A500E11BB3 /* spec_file.html */; };
@@ -175,7 +175,6 @@
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		29B97319FDCFA39411CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MainMenu.nib; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		4DDCA7110ACC9A6100E082CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -205,6 +204,7 @@
 		E143B0F10EA4B8C900055FDB /* raw_output.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = raw_output.html; sourceTree = "<group>"; };
 		E143B10F0EA4BE3E00055FDB /* raw_output_view.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = raw_output_view.rb; sourceTree = "<group>"; };
 		E144E0020EA532A80003ADE4 /* badge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = badge.png; sourceTree = "<group>"; };
+		E145FF470EEC9BD40056D142 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		E14951770DFED46A006E0F89 /* spec_table.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = spec_table.rb; sourceTree = "<group>"; };
 		E151EBEB0E09A04500E11BB3 /* webview_controller.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = webview_controller.rb; sourceTree = "<group>"; };
 		E151EC040E09A5A500E11BB3 /* spec_file.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = spec_file.html; sourceTree = "<group>"; };
@@ -361,6 +361,7 @@
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				4DDCA7110ACC9A6100E082CE /* Info.plist */,
+				E145FF460EEC9BD40056D142 /* MainMenu.xib */,
 			);
 			name = RSpactor;
 			sourceTree = "<group>";
@@ -384,7 +385,6 @@
 				E19769C00E01265A003A0331 /* INSTALL.txt */,
 				E19769C20E01265A003A0331 /* VERSION */,
 				E12E4CDF0DFF2D5700355B0E /* resources */,
-				29B97318FDCFA39411CA2CEA /* MainMenu.nib */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 			);
 			name = Resources;
@@ -677,7 +677,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4DDCA7060ACC9A6100E082CE /* MainMenu.nib in Resources */,
 				4DDCA7070ACC9A6100E082CE /* InfoPlist.strings in Resources */,
 				4DDCA7080ACC9A6100E082CE /* rb_main.rb in Resources */,
 				E193ED830DFAAADE00D17070 /* app_controller.rb in Resources */,
@@ -779,6 +778,7 @@
 				E18021CB0ED462DE002B6EC8 /* example_matcher.rb in Resources */,
 				E1B87B9C0ED71FCC00B532F2 /* runner_queue.rb in Resources */,
 				E1B605290EE2DF6F00421AEF /* example_runner_job.rb in Resources */,
+				E145FF480EEC9BD40056D142 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -814,12 +814,12 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		29B97318FDCFA39411CA2CEA /* MainMenu.nib */ = {
+		E145FF460EEC9BD40056D142 /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				29B97319FDCFA39411CA2CEA /* English */,
+				E145FF470EEC9BD40056D142 /* English */,
 			);
-			name = MainMenu.nib;
+			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

@@ -269,19 +269,15 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateExpansionKey</key>
 							<array>
 								<string>29B97314FDCFA39411CA2CEA</string>
-								<string>080E96DDFE201D6D7F000001</string>
-								<string>E193ED750DFAAADE00D17070</string>
-								<string>E193ED7A0DFAAADE00D17070</string>
-								<string>29B97317FDCFA39411CA2CEA</string>
-								<string>1C37FBAC04509CD000000102</string>
 								<string>1C37FABC05509CD000000102</string>
 								<string>1CC0EA4004350EF90041110B</string>
+								<string>29B97318FDCFA39411CA2CEA</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>47</integer>
-									<integer>46</integer>
+									<integer>7</integer>
+									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
@@ -304,7 +300,7 @@
 							<real>261</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>480 410 1440 768 0 0 1920 1178 </string>
+						<string>0 110 1440 768 0 0 1440 878 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -341,7 +337,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {1157, 0}}</string>
 								<key>RubberWindowFrame</key>
-								<string>480 410 1440 768 0 0 1920 1178 </string>
+								<string>0 110 1440 768 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -361,7 +357,7 @@
 								<key>Frame</key>
 								<string>{{0, 5}, {1157, 722}}</string>
 								<key>RubberWindowFrame</key>
-								<string>480 410 1440 768 0 0 1920 1178 </string>
+								<string>0 110 1440 768 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -385,9 +381,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>E125FD6D0EE983F2008C38DB</string>
+				<string>E181E0560EEC9C1D00DAB109</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>E125FD6E0EE983F2008C38DB</string>
+				<string>E181E0570EEC9C1D00DAB109</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -521,11 +517,10 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>E1A615C10DF82908007DEAC7</string>
 		<string>/Work/rubyphunk/rspactor_app/RSpactor.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>480 410 1440 768 0 0 1920 1178 </string>
+	<string>0 110 1440 768 0 0 1440 878 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>
@@ -869,7 +864,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {1440, 726}}</string>
 								<key>RubberWindowFrame</key>
-								<string>486 411 1440 767 0 0 1920 1178 </string>
+								<string>6 111 1440 767 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXDebugCLIModule</string>
@@ -892,13 +887,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C78EAAD065D492600B07095</string>
-				<string>E15D2C360EE93E3E00D96561</string>
+				<string>E145FF4C0EEC9C0C0056D142</string>
 				<string>1C78EAAC065D492600B07095</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.consoleV3</string>
 			<key>WindowString</key>
-			<string>486 411 1440 767 0 0 1920 1178 </string>
+			<string>6 111 1440 767 0 0 1440 878 </string>
 			<key>WindowToolGUID</key>
 			<string>1C78EAAD065D492600B07095</string>
 			<key>WindowToolIsVisible</key>
