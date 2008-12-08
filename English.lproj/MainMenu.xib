@@ -8,8 +8,8 @@
 		<string key="IBDocument.HIToolboxVersion">352.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
+			<integer value="2"/>
 			<integer value="29"/>
-			<integer value="718"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -158,10 +158,9 @@
 								<string key="NSToolbarItemPaletteLabel">Enter the root path to your project, press enter</string>
 								<nil key="NSToolbarItemToolTip"/>
 								<object class="NSTextField" key="NSToolbarItemView" id="1068751443">
-									<reference key="NSNextResponder"/>
+									<nil key="NSNextResponder"/>
 									<int key="NSvFlags">266</int>
 									<string key="NSFrame">{{0, 14}, {266, 22}}</string>
-									<reference key="NSSuperview"/>
 									<bool key="NSEnabled">YES</bool>
 									<object class="NSTextFieldCell" key="NSCell" id="801871102">
 										<int key="NSCellFlags">-1804468671</int>
@@ -416,7 +415,7 @@
 							<object class="NSButtonCell" key="NSCell" id="155816899">
 								<int key="NSCellFlags">67239424</int>
 								<int key="NSCellFlags2">163840</int>
-								<string key="NSContents">9999</string>
+								<string key="NSContents">0</string>
 								<object class="NSFont" key="NSSupport" id="26">
 									<string key="NSName">LucidaGrande</string>
 									<double key="NSSize">1.100000e+01</double>
@@ -444,7 +443,7 @@
 							<object class="NSButtonCell" key="NSCell" id="963030182">
 								<int key="NSCellFlags">67239424</int>
 								<int key="NSCellFlags2">163840</int>
-								<string key="NSContents">9999</string>
+								<string key="NSContents">0</string>
 								<reference key="NSSupport" ref="26"/>
 								<reference key="NSControlView" ref="311250988"/>
 								<int key="NSButtonFlags">-2042871553</int>
@@ -468,7 +467,7 @@
 							<object class="NSButtonCell" key="NSCell" id="996596031">
 								<int key="NSCellFlags">67239424</int>
 								<int key="NSCellFlags2">163840</int>
-								<string key="NSContents">9999</string>
+								<string key="NSContents">0</string>
 								<reference key="NSSupport" ref="26"/>
 								<reference key="NSControlView" ref="467392091"/>
 								<int key="NSButtonFlags">-2042871553</int>
@@ -4004,9 +4003,9 @@
 					<reference ref="9"/>
 					<string>com.apple.WebKitIBPlugin</string>
 					<reference ref="9"/>
-					<string>{{104, 91}, {711, 694}}</string>
+					<string>{{326, 251}, {711, 694}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{104, 91}, {711, 694}}</string>
+					<string>{{326, 251}, {711, 694}}</string>
 					<reference ref="9"/>
 					<reference ref="9"/>
 					<string>{{706, 153}, {711, 694}}</string>
@@ -4142,7 +4141,7 @@
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{151, 558}, {617, 227}}</string>
+					<string>{{373, 945}, {617, 0}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>

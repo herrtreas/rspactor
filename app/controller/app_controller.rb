@@ -72,7 +72,10 @@ class AppController < OSX::NSObject
     begin     
       $LOG.debug "Task has finished.."    
 
-      if !@_spec_run_normally_completed && notification.object.terminationStatus != 0 && !SpecRunner.commandFinished?
+      if SpecRunner.commandAbortedByHand?
+        $LOG.debug "Task aborted by hand.."
+        post_notification(:spec_run_close)
+      elsif !@_spec_run_normally_completed && notification.object.terminationStatus != 0 && !SpecRunner.commandFinished?
         $LOG.debug "Task aborted.."
         post_notification(:error)        
       else

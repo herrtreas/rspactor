@@ -47,6 +47,10 @@ module SpecRunner
       !command_running?
     end
     
+    def commandAbortedByHand?
+      defined?(@@command_manually_aborted) && @@command_manually_aborted == true
+    end
+    
     def commandHasFinished!
       @@command_running = false
       process_queue
@@ -55,6 +59,7 @@ module SpecRunner
     def run_command(args)
       return false if command_running?
       @@command_running = true
+      @@command_manually_aborted = false
       
       runner, args = prepare_running_environment(args)
       $LOG.debug "Running: #{runner} with #{args.inspect}.."
@@ -91,7 +96,8 @@ module SpecRunner
     def terminate_current_task
       return unless @task
       return unless @task.isRunning
+      @@command_manually_aborted = true
       @task.terminate
-    end
+    end    
   end
 end

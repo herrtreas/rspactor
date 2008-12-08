@@ -94,20 +94,27 @@ describe SpecRunner do
   end
   
   describe 'terminating a task' do
+    before(:each) do
+      @mock_task = mock('Task')
+      @mock_task.stub!(:isRunning).and_return(true)
+      @mock_task.stub!(:terminate)
+      SpecRunner.task = @mock_task
+    end
+    
     it 'should send terminate to the current task' do
-      mock_task = mock('Task')
-      mock_task.stub!(:isRunning).and_return(true)
-      mock_task.should_receive(:terminate)
-      SpecRunner.task = mock_task
+      @mock_task.should_receive(:terminate)
       SpecRunner.terminate_current_task
     end
     
     it 'should not try to terminate the current task if its not running?' do
-      mock_task = mock('Task')
-      mock_task.should_receive(:isRunning).and_return(false)
-      mock_task.should_not_receive(:terminate)
-      SpecRunner.task = mock_task
+      @mock_task.should_receive(:isRunning).and_return(false)
+      @mock_task.should_not_receive(:terminate)
       SpecRunner.terminate_current_task      
+    end
+    
+    it 'should now if it was invoked by hand' do
+      SpecRunner.terminate_current_task      
+      SpecRunner.commandAbortedByHand?.should be_true
     end
   end
 end
