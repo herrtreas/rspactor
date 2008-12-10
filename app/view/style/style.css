@@ -43,11 +43,6 @@ h2 {
 	margin: 0px;
 }
 
-.info {
-	font-size: 14px;
-	color: #aaa;
-}
-
 hr {
   border: none;
   border-bottom: 1px solid #ddd;
@@ -57,12 +52,81 @@ small {
 	font-size: 11px;
 }
 
+a:link {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 .sub_file_path {
   font-size: 10px;
 	color: #afafaf;
 	padding: 1px;
 	margin: 0px;	
 }
+
+/* #### INFO BOX #### */
+
+.info {
+  background-color: #FFF1A1;
+  border: 2px solid #B8AE74;
+	color: #555;
+	font-size: 12px;
+	padding: 5px;
+}
+
+.info h3 {
+  margin: 0px;
+  padding: 0px;
+  color: #222;
+}
+
+.info ol li {
+  padding: 2px;
+}
+
+
+/* #### DASHBOARD STATISTICS #### */
+
+#statistics h3 {
+  border-bottom: 2px solid #991131;
+}
+
+#statistics dl {
+  color: #999;
+  font-size: 16px;
+}
+
+#statistics .odd {
+  background-color: #f1f1f1;
+}
+
+#statistics dl dt {
+  color: #999;
+  clear: both;
+  float: left;
+  font-size: 16px;
+  padding: 3px;
+  margin-bottom: 5px;
+}
+
+#statistics dl dd {
+  padding: 3px;
+  float: right;
+}
+
+#statistics ol {
+  list-style-type: none;
+  padding: 0px;
+}
+
+#statistics ol li {
+  font-size: 13px;
+  padding: 4px;
+}
+
 
 /* #### CODE #### */
 

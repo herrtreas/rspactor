@@ -14,34 +14,36 @@
     <div id="inner_wrapper">
       <div id="content">    
         
-        <p class='info'>
-          Welcome to RSpactor. You may want to have a look at these first steps if you are new to RSpactor:
+        <div class='info'>
+          <h3>Welcome to RSpactor</h3>
+          <h4>You may want to have a look at these first steps if you are new to RSpactor:</h4>
           <ol>
             <li>Create a symlink to get the nifty command-line tool (see INSTALL included with the Disk Image)</li>
             <li>Check your Preferences (⌘,): Keep up-to-date with the Auto-Update feature</li>
             <li>Kick off: Enter the root path to your ruby project into the box above (⌘+l) and hit 'enter'</li>
           </ol>
-        </p>
+        </div>
         
         <div id='statistics'>
           
           <p class='global_example_stats'>
-            Example Statistics
+            <h3> Example Statistics</h3>
             <dl>
-              <dt>Total Example Count</dt>
-              <dd id='dashboard_total_example_count'></dd>
-              <dt>Passed Examples</dt>
+              <dt class='odd'>Total Count</dt>
+              <dd class='odd' id='dashboard_total_example_count'></dd>
+              <dt>Passed</dt>
               <dd id='dashboard_passed_example_count'></dd>
-              <dt>Pending Examples</dt>
-              <dd id='dashboard_pending_example_count'></dd>
-              <dt>Failed Examples</dt>
+              <dt class='odd'>Pending</dt>
+              <dd class='odd' id='dashboard_pending_example_count'></dd>
+              <dt>Failed</dt>
               <dd id='dashboard_failed_example_count'></dd>
             </dl>
+            <div style="clear: both"></div>
           </p>
 
           <p id='failed_examples'></p>
           <p id='pending_examples'></p>
-          <p id='slowest_examples'></p>
+          <div id='slowest_examples'></div>
           
         </div>
         

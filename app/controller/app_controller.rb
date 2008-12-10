@@ -102,7 +102,7 @@ class AppController < OSX::NSObject
       specs = ExampleFiles.clear_tainted_specs_on_all_files!.flatten.compact.select { |spec| spec && spec.file_object }      
       post_notification :webview_reload_required_for_specs, specs
       
-      SpecRunner.commandHasFinished!      
+      SpecRunner.commandHasFinished!
       run_failed_files_afterwards_or_listen
     rescue => e
       $LOG.error "taskHasFinished: #{e}"
@@ -121,6 +121,7 @@ class AppController < OSX::NSObject
       failed_files_job.hide_growl_messages_for_failed_examples = true
       SpecRunner.run_job(failed_files_job)
     else
+      post_notification :example_run_global_complete
       Listener.init($app.root)
     end
   end
@@ -171,7 +172,7 @@ class AppController < OSX::NSObject
   end
   
   def setupActiveBadge
-    drawDockBadgeWithMessage('download', NSString.stringWithFormat('%s', ''))
+    drawDockBadgeWithMessage('badge', NSString.stringWithFormat('%s', ''))
   end
   
   def setupBadgeWithFailedSpecCount(count)

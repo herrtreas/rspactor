@@ -8,7 +8,7 @@ class DashboardView < HtmlView
   
   def update
     if SpecRunner.command_running?
-      setInnerHTML('statistics', 'Example run in progress..')
+      setInnerHTML('statistics', "<h3>Just a moment. I'm busy running your examples..</h3>")
     else
       setInnerHTML('dashboard_total_example_count', ExampleFiles.specs_count(:all).to_s)
       setInnerHTML('dashboard_passed_example_count', ExampleFiles.specs_count(:passed).to_s)
@@ -26,11 +26,13 @@ class DashboardView < HtmlView
   
   def createExampleList(title, id, examples, opts = {})
     return if examples.empty?
-    html  = title
+    html  = "<h3>#{title}</h3>"
     html << "<ol>"
+    css_class = ''
     examples.each do |item|
+      css_class = css_class == '' ? 'odd' : ''
       item_text = opts[:include_runtime] ? "#{item} (#{('%0.3f' % item.run_time).to_f} sec.)" : "#{item}"
-      html << "<li><a href='#' onclick='alert(\"#{item.id}@spec_view\")'>#{item_text}</a></li>"
+      html << "<li class='#{css_class}'><a href='#' onclick='alert(\"#{item.id}@spec_view\")'>#{item_text}</a></li>"
     end    
     html << "</ol>"
     setInnerHTML(id, html)
