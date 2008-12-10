@@ -58,6 +58,9 @@ module SpecRunner
     
     def run_command(args)
       return false if command_running?
+      
+      $app.post_notification :example_run_global_start
+      
       @@command_running = true
       @@command_manually_aborted = false
       

@@ -277,13 +277,12 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>2</integer>
-									<integer>1</integer>
+									<integer>33</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 0}, {261, 709}}</string>
+							<string>{{0, 5}, {261, 709}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -521,8 +520,8 @@
 	<array>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>E1A615C10DF82908007DEAC7</string>
-		<string>/Work/rubyphunk/rspactor_app/RSpactor.xcodeproj</string>
 		<string>1C78EAAD065D492600B07095</string>
+		<string>/Work/rubyphunk/rspactor_app/RSpactor.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
 	<string>480 410 1440 768 0 0 1920 1178 </string>

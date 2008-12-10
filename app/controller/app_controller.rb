@@ -29,6 +29,7 @@ class AppController < OSX::NSObject
     receive :NSTaskDidTerminateNotification,          :taskHasFinished
     receive :NSFileHandleReadCompletionNotification,  :pipeContentAvailable
     receive :observation_requested,                   :add_request_to_listeners_observation_list    
+    receive :example_run_global_start,                :setupActiveBadge
   end
   
   def applicationShouldHandleReopen_hasVisibleWindows(application, has_open_windows)
@@ -40,7 +41,6 @@ class AppController < OSX::NSObject
     self.total_spec_count = notification.userInfo.first
     self.run_failed_afterwards = false
     @first_failed_notification_posted = nil
-    setupActiveBadge
     ExampleFiles.tainting_required_on_all_files!
   end
   
@@ -171,8 +171,8 @@ class AppController < OSX::NSObject
     NSApp.setApplicationIconImage(NSImage.imageNamed('APPL.icns'))
   end
   
-  def setupActiveBadge
-    drawDockBadgeWithMessage('badge', NSString.stringWithFormat('%s', ''))
+  def setupActiveBadge(notification)
+    drawDockBadgeWithMessage('play', NSString.stringWithFormat('%s', ''))
   end
   
   def setupBadgeWithFailedSpecCount(count)
