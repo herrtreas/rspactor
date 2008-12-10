@@ -6,7 +6,6 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
   <link rel="stylesheet" href="style.css" type="text/css" charset="utf-8" />
   <script src="prototype.js" type="text/javascript"></script>
-  <script src="scriptaculous.js" type="text/javascript"></script>
   <script src="application.js" type="text/javascript"></script>
 </head>
   
@@ -14,8 +13,38 @@
   <div id="outer_wrapper">
     <div id="inner_wrapper">
       <div id="content">    
-        <h1 onclick='Effect.Shake("content")'>Welcome :)</h1>
-        <p class='info'>Getting started: Enter the root-path of your ruby project into the box above and hit 'Run'..</p>
+        
+        <p class='info'>
+          Welcome to RSpactor. You may want to have a look at these first steps if you are new to RSpactor:
+          <ol>
+            <li>Create a symlink to get the nifty command-line tool (see INSTALL included with the Disk Image)</li>
+            <li>Check your Preferences (⌘,): Keep up-to-date with the Auto-Update feature</li>
+            <li>Kick off: Enter the root path to your ruby project into the box above (⌘+l) and hit 'enter'</li>
+          </ol>
+        </p>
+        
+        <div id='statistics'>
+          
+          <p class='global_example_stats'>
+            Example Statistics
+            <dl>
+              <dt>Total Example Count</dt>
+              <dd id='dashboard_total_example_count'></dd>
+              <dt>Passed Examples</dt>
+              <dd id='dashboard_passed_example_count'></dd>
+              <dt>Pending Examples</dt>
+              <dd id='dashboard_pending_example_count'></dd>
+              <dt>Failed Examples</dt>
+              <dd id='dashboard_failed_example_count'></dd>
+            </dl>
+          </p>
+
+          <p id='failed_examples'></p>
+          <p id='pending_examples'></p>
+          <p id='slowest_examples'></p>
+          
+        </div>
+        
       </div> 
     </div>
   </div>

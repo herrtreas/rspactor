@@ -7,6 +7,7 @@ require 'spec_runner'
 
 describe GrowlController do
   before(:each) do
+    $app = mock('App', :processed_spec_count => 10)
     @mock_job = mock('Job')
     @mock_job.stub!(:hide_growl_messages_for_failed_examples).and_return(false)
     @mock_growl = mock('Growl')    

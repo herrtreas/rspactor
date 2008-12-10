@@ -8,6 +8,11 @@ describe SpecObject do
     s.message.should eql('Mu')
   end
   
+  it 'should create an id on initialize' do
+    s = SpecObject.new
+    s.id.should_not be_nil
+  end
+  
   it 'should provide a full name (example_group_name + name) on to_s' do
     s = SpecObject.new(:example_group_name => 'test', :name => 'message')
     s.to_s.should eql('test message')

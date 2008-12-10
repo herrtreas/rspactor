@@ -34,7 +34,7 @@ module Converter
         alert_line = spec.full_file_path + ':' + spec.line.to_s
       end
       css_class = ($app.default_from_key(:editor_integration) == '1') ? 'code editor_integration_enabled' : 'code'
-      "<div class='#{css_class}' onclick='alert(\"#{alert_line}\")'>#{lines.join("\n")}</div>"
+      "<div class='#{css_class}' onclick='alert(\"#{alert_line}@external\")'>#{lines.join("\n")}</div>"
     end
     
     def formatted_backtrace(spec)

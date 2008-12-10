@@ -20,4 +20,14 @@ class HtmlView
     element = getElementById(element_id)
     element.setInnerHTML(html)
   end
+
+  def setInnerText(element_id, text)
+    element = getElementById(element_id)
+    element.setInnerText(text)
+  end
+  
+  def removeElement(element_id)
+    element = getElementById(element_id)
+    element.remove    
+  end
 end

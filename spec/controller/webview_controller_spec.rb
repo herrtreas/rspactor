@@ -60,40 +60,33 @@ describe WebviewController do
   it 'should not try to run an editor if integration is disabled' do
     @controller.stub!(:editor_integration_enabled?).and_return(false)
     $app.should_not_receive(:default_from_key)
-    @controller.webView_runJavaScriptAlertPanelWithMessage(nil, 'test.rb:5')
+    @controller.webView_runJavaScriptAlertPanelWithMessage(nil, 'test.rb:5@external')
   end
 
   it "should open Netbeans if the nb bin path is set" do
     @controller.stub!(:editor_integration_enabled?).and_return(true)
     $app.stub!(:default_from_key).and_return 'Netbeans'
     Netbeans.should_receive(:open_file_with_line)
-    @controller.webView_runJavaScriptAlertPanelWithMessage(nil, 'test.rb:5')
+    @controller.webView_runJavaScriptAlertPanelWithMessage(nil, 'test.rb:5@external')
   end
   
   it 'should open TextMate on JS alert only if the nb bin path is not set' do
     @controller.stub!(:editor_integration_enabled?).and_return(true)
     $app.stub!(:default_from_key).and_return 'TextMate'
     TextMate.should_receive(:open_file_with_line)
-    @controller.webView_runJavaScriptAlertPanelWithMessage(nil, 'test.rb:5')
+    @controller.webView_runJavaScriptAlertPanelWithMessage(nil, 'test.rb:5@external')
   end
 
   it 'should open TextMate if no editor has been set yet (#21)' do
     @controller.stub!(:editor_integration_enabled?).and_return(true)
     $app.stub!(:default_from_key).and_return ''
     TextMate.should_receive(:open_file_with_line)
-    @controller.webView_runJavaScriptAlertPanelWithMessage(nil, 'test.rb:5')    
+    @controller.webView_runJavaScriptAlertPanelWithMessage(nil, 'test.rb:5@external')    
   end
 
   it 'should load the corresponding html view on tabbar click' do
     @mock_tab_bar.stub!(:selectedSegment).and_return(0)
-    @controller.should_receive(:loadHtmlView)
+    @controller.should_receive(:showDashboardView)
     @controller.toolbarItemClicked(@mock_tool_bar_item)
   end
-  
-  it 'should return the item tag for a view' do
-    @controller.tagForView(:dashboard).should eql(0)
-    @controller.tagForView(:output).should eql(1)
-    @controller.tagForView(:spec_view).should eql(2)
-  end
-  
 end

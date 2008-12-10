@@ -54,6 +54,11 @@ class ExampleFile
     !@specs.select { |s| s.to_s == spec.to_s and (s.backtrace.size != spec.backtrace.size or s.backtrace.first == spec.backtrace.first)}.empty?
   end
   
+  def spec_by_id(spec_id)
+    specs = @specs.select { |s| s.id.to_s == spec_id.to_s }
+    specs.empty? ? nil : specs.first
+  end
+  
   def tainting_required!
     @tainting_required = true
   end  

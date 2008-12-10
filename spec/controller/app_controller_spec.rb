@@ -37,14 +37,14 @@ describe AppController do
     mock_notification = mock('Notification')
     mock_notification.stub!(:userInfo).and_return([15])
     @app.spec_run_has_started(mock_notification)
-    $total_spec_count.should eql(15)
+    @app.total_spec_count.should eql(15)
   end
   
   it 'should clear spec run count on "spec_run_start"' do
     mock_notification = mock('Notification')
     mock_notification.stub!(:userInfo).and_return([15])
     @app.spec_run_has_started(mock_notification)
-    $processed_spec_count.should eql(0)
+    @app.processed_spec_count.should eql(0)
   end
 
   it 'should taint all files on "spec_run_start"' do
@@ -60,7 +60,7 @@ describe AppController do
     @app.stub!(:post_notification)
     old_spec_count = $processed_spec_count
     @app.spec_run_processed(mock_notification)
-    $processed_spec_count.should_not eql(old_spec_count)
+    @app.processed_spec_count.should_not eql(old_spec_count)
   end
   
   it 'should add passed, pending or failed specs to the list' do

@@ -84,7 +84,7 @@ describe WindowController do
     end
   
     it 'should not allow to run specs if path textfield contains an invalid path' do
-      File.should_receive(:exist?).with('invalid')
+      File.should_receive(:exist?).with(/invalid/)
       @mock_pathTextField.stub!(:stringValue).and_return('invalid')
       @controller.runSpecs(nil).should be_false
     end

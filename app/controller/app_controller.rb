@@ -2,15 +2,17 @@ require 'osx/cocoa'
 
 class AppController < OSX::NSObject
   
+  attr_accessor :example_start_time
+  attr_accessor :processed_spec_count, :total_spec_count
   attr_accessor :root
   attr_accessor :run_failed_afterwards
-  attr_accessor :example_start_time
+  
   
   def initialize
     $app = self
     $raw_output = []
-    $processed_spec_count = 0
-    $total_spec_count = 0
+    self.processed_spec_count = 0
+    self.total_spec_count = 0
     ExampleFiles.init
     SpecRunner.init
   end
@@ -34,8 +36,8 @@ class AppController < OSX::NSObject
   end
   
   def spec_run_has_started(notification)
-    $processed_spec_count = 0
-    $total_spec_count = notification.userInfo.first
+    self.processed_spec_count = 0
+    self.total_spec_count = notification.userInfo.first
     self.run_failed_afterwards = false
     @first_failed_notification_posted = nil
     setupActiveBadge
@@ -48,7 +50,7 @@ class AppController < OSX::NSObject
   
   def spec_run_processed(notification)
     example_end_time = Time.now
-    $processed_spec_count += 1
+    self.processed_spec_count += 1
     unless notification.userInfo.first.backtrace.empty?
       spec = notification.userInfo.first
       spec.run_time = example_end_time - @example_start_time
@@ -108,8 +110,9 @@ class AppController < OSX::NSObject
   end
   
   def run_failed_files_afterwards_or_listen
-    if self.run_failed_afterwards
+    if self.run_failed_afterwards && self.run_failed_afterwards == true
       failed_files_paths = ExampleFiles.failed.collect { |ef| ef.path }
+      return if failed_files_paths.empty?
       if @files_with_passed_specs && !@files_with_passed_specs.empty?
         failed_files_paths.delete_if { |path| @files_with_passed_specs.include?(path) }
         @files_with_passed_specs = nil

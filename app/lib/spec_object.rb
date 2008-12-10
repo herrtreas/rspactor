@@ -2,6 +2,7 @@ class SpecObject
 
   attr_accessor :state, :previous_state
   attr_accessor :name, :example_group_name
+  attr_accessor :id
   attr_accessor :message
   attr_accessor :full_file_path, :file, :line
   attr_accessor :error_header, :error_type, :backtrace
@@ -12,6 +13,7 @@ class SpecObject
     opts.each do |key, value| 
       self.send("#{key.to_s}=".intern, value) rescue next
     end
+    self.id = self.object_id
   end
 
   def to_s

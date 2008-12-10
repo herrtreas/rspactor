@@ -29,7 +29,8 @@ class WindowController < OSX::NSWindowController
   def runSpecs(sender)
     return if SpecRunner.command_running?
     return unless valid_bin_paths?
-    if !@pathTextField.stringValue.empty? && path_is_valid?(@pathTextField.stringValue)
+    path = File.expand_path(@pathTextField.stringValue)
+    if !@pathTextField.stringValue.empty? && path_is_valid?(path)
       path = File.expand_path(@pathTextField.stringValue)
       savePathToUserDefaults(@pathTextField.stringValue)
       SpecRunner.run_job(ExampleRunnerJob.new(:root => path.to_s))
@@ -46,7 +47,7 @@ class WindowController < OSX::NSWindowController
     @statusBarPassedCount.hidden = true
     @statusBarPendingCount.hidden = true
     @statusBarFailedCount.hidden = true
-    @toolbar_item_run.image = OSX::NSImage.imageNamed('block')
+    @toolbar_item_run.image = OSX::NSImage.imageNamed('stop')
     @toolbar_item_run.label = 'Stop'
     @toolbar_item_run.action = 'stopSpecRun:'
   end
@@ -59,7 +60,7 @@ class WindowController < OSX::NSWindowController
     @statusBarPassedCount.hidden = false    
     @statusBarPendingCount.hidden = false    
     @statusBarFailedCount.hidden = false    
-    @toolbar_item_run.image = NSImage.imageNamed('promotion')
+    @toolbar_item_run.image = NSImage.imageNamed('play')
     @toolbar_item_run.label = 'Run'    
     @toolbar_item_run.action = 'runSpecs:'    
   end
@@ -127,7 +128,6 @@ class WindowController < OSX::NSWindowController
     if File.exist?(path)
       return true
     else
-      $LOG.debug "TEST"
       $app.alert("The path you have entered doesn't exist.", "Please check your input and try again.")
       return false
     end    
