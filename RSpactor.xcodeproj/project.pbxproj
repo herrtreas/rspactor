@@ -84,6 +84,7 @@
 		E1BBE45E0E002E45004724B8 /* listener.rb in Resources */ = {isa = PBXBuildFile; fileRef = E1BBE45D0E002E45004724B8 /* listener.rb */; };
 		E1BBE4700E003140004724B8 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1BBE46F0E003140004724B8 /* Carbon.framework */; };
 		E1BF731A0EEC9FF8004DD5F2 /* options.rb in Resources */ = {isa = PBXBuildFile; fileRef = E1BF73190EEC9FF8004DD5F2 /* options.rb */; };
+		E1C1383E0EF06D370040C8AF /* spec_server.rb in Resources */ = {isa = PBXBuildFile; fileRef = E1C1383D0EF06D370040C8AF /* spec_server.rb */; };
 		E1C7449C0E086A1B006DB94E /* preferences_controller.rb in Resources */ = {isa = PBXBuildFile; fileRef = E1C7449B0E086A1B006DB94E /* preferences_controller.rb */; };
 		E1D246D30EEE814C00620852 /* accept.icns in Resources */ = {isa = PBXBuildFile; fileRef = E1D245E40EEE814C00620852 /* accept.icns */; };
 		E1D246D40EEE814C00620852 /* add.icns in Resources */ = {isa = PBXBuildFile; fileRef = E1D245E50EEE814C00620852 /* add.icns */; };
@@ -430,6 +431,7 @@
 		E1BBE45D0E002E45004724B8 /* listener.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = listener.rb; sourceTree = "<group>"; };
 		E1BBE46F0E003140004724B8 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
 		E1BF73190EEC9FF8004DD5F2 /* options.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = options.rb; sourceTree = "<group>"; };
+		E1C1383D0EF06D370040C8AF /* spec_server.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = spec_server.rb; sourceTree = "<group>"; };
 		E1C7449B0E086A1B006DB94E /* preferences_controller.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = preferences_controller.rb; sourceTree = "<group>"; };
 		E1D245E40EEE814C00620852 /* accept.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = accept.icns; sourceTree = "<group>"; };
 		E1D245E50EEE814C00620852 /* add.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = add.icns; sourceTree = "<group>"; };
@@ -915,6 +917,7 @@
 		E193ED7A0DFAAADE00D17070 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				E1C1383D0EF06D370040C8AF /* spec_server.rb */,
 				E1BF73190EEC9FF8004DD5F2 /* options.rb */,
 				E1B605280EE2DF6F00421AEF /* example_runner_job.rb */,
 				84A168A10E68C78F005FF9F3 /* netbeans.rb */,
@@ -1543,6 +1546,7 @@
 				E1D247C00EEE814C00620852 /* zoom_out.icns in Resources */,
 				E1D247C10EEE814C00620852 /* readme.txt in Resources */,
 				E1D247CC0EEE8EAA00620852 /* dashboard_view.rb in Resources */,
+				E1C1383E0EF06D370040C8AF /* spec_server.rb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

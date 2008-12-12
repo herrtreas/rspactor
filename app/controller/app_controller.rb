@@ -3,7 +3,7 @@ require 'osx/cocoa'
 class AppController < OSX::NSObject
   
   attr_accessor :example_start_time
-  attr_accessor :processed_spec_count, :total_spec_count
+  attr_accessor :processed_spec_count, :total_spec_count, :failed_spec_count
   attr_accessor :root
   attr_accessor :run_failed_afterwards
   
@@ -13,6 +13,7 @@ class AppController < OSX::NSObject
     $raw_output = []
     self.processed_spec_count = 0
     self.total_spec_count = 0
+    self.failed_spec_count = 0
     ExampleFiles.init
     SpecRunner.init
   end
@@ -30,14 +31,27 @@ class AppController < OSX::NSObject
     receive :NSFileHandleReadCompletionNotification,  :pipeContentAvailable
     receive :observation_requested,                   :add_request_to_listeners_observation_list    
     receive :example_run_global_start,                :setupActiveBadge
+    receive :spec_server_ready,                       :launchSpecRunnerTask
+    receive :spec_server_failed,                      :specServerFailed
   end
   
   def applicationShouldHandleReopen_hasVisibleWindows(application, has_open_windows)
     post_notification :application_resurrected
   end
+
+  def applicationWillTerminate(notification)
+    $LOG.debug "Exiting.."
+    SpecServer.cleanup
+  end
+  
+  def launchSpecRunnerTask(notification)
+    # TODO: Move the event hook into SpecRunner
+    SpecRunner.launch_current_task
+  end
   
   def spec_run_has_started(notification)
     self.processed_spec_count = 0
+    self.failed_spec_count = 0
     self.total_spec_count = notification.userInfo.first
     self.run_failed_afterwards = false
     @first_failed_notification_posted = nil
@@ -53,6 +67,7 @@ class AppController < OSX::NSObject
     self.processed_spec_count += 1
     unless notification.userInfo.first.backtrace.empty?
       spec = notification.userInfo.first
+      self.failed_spec_count += 1 if spec.state == :failed
       spec.run_time = example_end_time - @example_start_time
       ExampleFiles.add_spec(spec)
       post_notification :spec_run_processed, spec
@@ -80,10 +95,11 @@ class AppController < OSX::NSObject
     @_spec_run_normally_completed = true
   end
   
-  def taskHasFinished(notification)
-    begin     
-      $LOG.debug "Task has finished.."    
+  def taskHasFinished(notification)        
+   begin     
+      return unless notification.object == SpecRunner.task
 
+      $LOG.debug "Task has finished.."
       if SpecRunner.commandAbortedByHand?
         $LOG.debug "Task aborted by hand.."
         post_notification(:spec_run_close)
@@ -103,26 +119,36 @@ class AppController < OSX::NSObject
       post_notification :webview_reload_required_for_specs, specs
       
       SpecRunner.commandHasFinished!
+      post_notification :example_run_global_complete
+      Listener.init($app.root)        
+      
       run_failed_files_afterwards_or_listen
     rescue => e
-      $LOG.error "taskHasFinished: #{e}"
+     $LOG.error "taskHasFinished: #{e}"
     end
+  end
+  
+  def specServerFailed(notification)
+    alert('Could not load the spec_server.', 'Is another spec_server already running?')
   end
   
   def run_failed_files_afterwards_or_listen
     if self.run_failed_afterwards && self.run_failed_afterwards == true
       failed_files_paths = ExampleFiles.failed.collect { |ef| ef.path }
-      return if failed_files_paths.empty?
       if @files_with_passed_specs && !@files_with_passed_specs.empty?
         failed_files_paths.delete_if { |path| @files_with_passed_specs.include?(path) }
         @files_with_passed_specs = nil
       end
-      failed_files_job = ExampleRunnerJob.new(:paths => failed_files_paths)
-      failed_files_job.hide_growl_messages_for_failed_examples = true
-      SpecRunner.run_job(failed_files_job)
+      if failed_files_paths.empty?
+        return false
+      else
+        failed_files_job = ExampleRunnerJob.new(:paths => failed_files_paths)
+        failed_files_job.hide_growl_messages_for_failed_examples = true
+        SpecRunner.run_job(failed_files_job)
+        return true
+      end
     else
-      post_notification :example_run_global_complete
-      Listener.init($app.root)
+      false
     end
   end
   
@@ -155,11 +181,15 @@ class AppController < OSX::NSObject
   end  
   
   def pipeContentAvailable(notification)
-    raw_output = NSString.alloc.initWithData_encoding(notification.userInfo[OSX::NSFileHandleNotificationDataItem], NSASCIIStringEncoding)
-    unless raw_output.empty?
-      $raw_output[0][1] << raw_output
-      $output_pipe_handle.readInBackgroundAndNotify
-      $error_pipe_handle.readInBackgroundAndNotify
+    if notification.object == $output_pipe_handle || notification.object == $error_pipe_handle
+      raw_output = NSString.alloc.initWithData_encoding(notification.userInfo[OSX::NSFileHandleNotificationDataItem], NSASCIIStringEncoding)
+      unless raw_output.empty?
+        $raw_output[0][1] << raw_output
+        $output_pipe_handle.readInBackgroundAndNotify
+        $error_pipe_handle.readInBackgroundAndNotify
+      end
+    else
+      SpecServer.pipeContentAvailable(notification)
     end
   end
   

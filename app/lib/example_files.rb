@@ -103,7 +103,7 @@ class ExampleFiles
   end
   
   def self.sorted_specs_for_all_files(opts = {})
-    opts = { :filter => :all, :sorted => false, :limit => 10 }.merge(opts)
+    opts = { :filter => :all, :sorted => false, :limit => 5 }.merge(opts)
     examples = @@example_files.collect { |path, ef| ef.specs.select { |s| opts[:filter] == :all ? true : s.state == opts[:filter] } }.flatten
     
     if opts[:sorted] && opts[:sorted] == true

@@ -79,6 +79,10 @@ class WindowController < OSX::NSWindowController
     @statusBar.maxValue = notification.userInfo.first
   end
   
+  def specServerLoading(notification)
+    @statusLabel.stringValue = "Loading Spec Server.."
+  end
+  
   def specRunFinished(notification)
     showSilentPanels
   end
@@ -87,7 +91,8 @@ class WindowController < OSX::NSWindowController
     begin
       @statusBar.incrementBy 1.0
       @statusLabel.stringValue = "#{notification.userInfo.first}"
-    rescue
+    rescue => e
+      $LOG.error "Error in specRunFinishedSingleSpec: #{e}"
     end
   end
   
@@ -157,6 +162,7 @@ class WindowController < OSX::NSWindowController
     receive :spec_run_example_pending,  :specRunFinishedSingleSpec
     receive :spec_run_example_failed,   :specRunFinishedSingleSpec
     receive :spec_run_dump_summary,     :updateStatusBarExampleStateCounts    
+    receive :spec_server_loading,       :specServerLoading
     receive :error,                     :specRunFinished
     receive :relocate_and_run,          :relocateDirectoryAndRunSpecs
     receive :application_resurrected,   :resurrectWindow    

@@ -16,9 +16,9 @@ module SpecRunner
     end
     
     def root_location_has_changed?(job)
-      if $app.root and $app.root != job.root
+      if !$app.root || $app.root != job.root
+        SpecServer.root = job.root
         ExampleFiles.clear!
-        $app.post_notification(:map_location_changed)         
       end
       $app.root = job.root      
     end
@@ -36,7 +36,10 @@ module SpecRunner
       args << "--require=#{File.dirname(__FILE__)}/rspactor_formatter.rb"
       args << "-fRSpactorFormatter:STDOUT"
       args << '-L=mtime'
-#      args << '--drb'
+      if Options.use_spec_server? && SpecServer.available?
+        $LOG.debug "Running Examples against spec_server"
+        args << '--drb' 
+      end
       args
     end
     
@@ -76,7 +79,7 @@ module SpecRunner
 
       @task.arguments = args
       @task.launchPath = runner
-      @task.launch
+      launch_current_task
       
       $output_pipe_handle = output_pipe.fileHandleForReading
       $error_pipe_handle = error_pipe.fileHandleForReading
@@ -94,6 +97,18 @@ module SpecRunner
         [runner, args]
       else
         [$app.default_from_key(:spec_bin_path).chomp.strip, args]
+      end
+    end
+    
+    def launch_current_task
+      if Options.use_spec_server? && SpecServer.available?
+        if SpecServer.ready?
+          @task.launch
+        else
+          SpecServer.start
+        end
+      else
+        @task.launch
       end
     end
     
