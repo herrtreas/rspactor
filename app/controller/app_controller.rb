@@ -96,9 +96,12 @@ class AppController < OSX::NSObject
   end
   
   def taskHasFinished(notification)        
-   begin     
-      return unless notification.object == SpecRunner.task
-
+    begin     
+      if notification.object == SpecServer.task
+        SpecServer.bootTaskFinished!
+        return true
+      end
+      
       $LOG.debug "Task has finished.."
       if SpecRunner.commandAbortedByHand?
         $LOG.debug "Task aborted by hand.."

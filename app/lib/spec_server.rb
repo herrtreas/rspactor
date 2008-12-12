@@ -50,12 +50,14 @@ module SpecServer
     end
     
     def running?
-      self.task && send_command("ps aux | grep #{pid}").include?('spec_server')
+      send_command("ps aux | grep #{pid}").include?('spec_server')
     end
 
     def pipeContentAvailable(notification)
       return false unless pipeContentMatching?(notification)
+
       data = readDataFromPipe(notification)
+      $LOG.debug "spec_server: #{data.to_s.strip.chomp}"
       return if data.empty?
       
       case notification.object
@@ -65,7 +67,16 @@ module SpecServer
           $app.post_notification(:spec_server_ready)
         end
       when self.task.standardError.fileHandleForReading
-        $app.post_notification(:spec_server_failed, data)
+        $app.post_notification(:spec_server_failed, data) if data.to_s =~ /error/i
+      end
+    end
+    
+    def bootTaskFinished!
+      if self.running?      
+        self.ready = true
+        $app.post_notification(:spec_server_ready)
+      else
+        $app.post_notification(:spec_server_failed, '')
       end
     end
     
