@@ -2,12 +2,14 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="7.02">
 	<data>
 		<int key="IBDocument.SystemTarget">1050</int>
-		<string key="IBDocument.SystemVersion">9F33</string>
+		<string key="IBDocument.SystemVersion">9G55</string>
 		<string key="IBDocument.InterfaceBuilderVersion">672</string>
-		<string key="IBDocument.AppKitVersion">949.34</string>
-		<string key="IBDocument.HIToolboxVersion">352.00</string>
+		<string key="IBDocument.AppKitVersion">949.43</string>
+		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
+			<integer value="29"/>
+			<integer value="2"/>
 			<integer value="697"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
@@ -312,7 +314,7 @@
 				</object>
 				<string key="NSWindowContentMaxSize">{3.40282e+38, 3.40282e+38}</string>
 				<object class="NSView" key="NSWindowView" id="122296070">
-					<nil key="NSNextResponder"/>
+					<reference key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<object class="NSMutableArray" key="NSSubviews">
 						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -425,7 +427,7 @@
 								<int key="NSButtonFlags2">130</int>
 								<object class="NSCustomResource" key="NSNormalImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">pass_128</string>
+									<string key="NSResourceName">accept_colorful</string>
 								</object>
 								<string key="NSAlternateContents">Number of passed examples</string>
 								<string key="NSKeyEquivalent"/>
@@ -449,7 +451,7 @@
 								<int key="NSButtonFlags2">130</int>
 								<object class="NSCustomResource" key="NSNormalImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">info</string>
+									<string key="NSResourceName">warning_colorful</string>
 								</object>
 								<string key="NSAlternateContents">Number of passed examples</string>
 								<string key="NSKeyEquivalent"/>
@@ -473,7 +475,7 @@
 								<int key="NSButtonFlags2">66</int>
 								<object class="NSCustomResource" key="NSNormalImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">remove</string>
+									<string key="NSResourceName">delete_colorful</string>
 								</object>
 								<string key="NSAlternateContents">Number of passed examples</string>
 								<string key="NSKeyEquivalent"/>
@@ -483,6 +485,7 @@
 						</object>
 					</object>
 					<string key="NSFrameSize">{711, 694}</string>
+					<reference key="NSSuperview"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1920, 1178}}</string>
 				<string key="NSMaxSize">{3.40282e+38, 3.40282e+38}</string>

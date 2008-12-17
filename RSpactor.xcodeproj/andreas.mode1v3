@@ -298,7 +298,7 @@
 							<real>261</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>0 110 1440 768 0 0 1440 878 </string>
+						<string>480 410 1440 768 0 0 1920 1178 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -335,7 +335,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {1157, 0}}</string>
 								<key>RubberWindowFrame</key>
-								<string>0 110 1440 768 0 0 1440 878 </string>
+								<string>480 410 1440 768 0 0 1920 1178 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -357,7 +357,7 @@
 								<key>Frame</key>
 								<string>{{0, 5}, {1157, 722}}</string>
 								<key>RubberWindowFrame</key>
-								<string>0 110 1440 768 0 0 1440 878 </string>
+								<string>480 410 1440 768 0 0 1920 1178 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -381,9 +381,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>E14127630EF31D5200FC4618</string>
+				<string>E12FE2310EF94CCF00B30E2B</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>E14127640EF31D5200FC4618</string>
+				<string>E12FE2320EF94CCF00B30E2B</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -517,13 +517,10 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>1CD10A99069EF8BA00B06720</string>
-		<string>E1A615C10DF82908007DEAC7</string>
 		<string>/Work/rubyphunk/rspactor_app/RSpactor.xcodeproj</string>
-		<string>1C78EAAD065D492600B07095</string>
 	</array>
 	<key>WindowString</key>
-	<string>0 110 1440 768 0 0 1440 878 </string>
+	<string>480 410 1440 768 0 0 1920 1178 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>

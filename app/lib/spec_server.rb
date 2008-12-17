@@ -6,7 +6,7 @@ module SpecServer
     attr_accessor :pid_file
     
     def cleanup
-      stop
+      stop if self.task 
     end
     
     def binary
@@ -46,7 +46,11 @@ module SpecServer
     end
     
     def pid
-      @pid ||= File.open('/tmp/rspactor_spec_server.pid', 'r') { |f| f.readlines }.first.strip.chomp
+      begin
+        @pid ||= File.open('/tmp/rspactor_spec_server.pid', 'r') { |f| f.readlines }.first.strip.chomp
+      rescue
+        @pid = nil
+      end
     end
     
     def running?

@@ -53,6 +53,7 @@ describe SpecServer do
     before(:each) do      
       SpecServer.task = @mock_task = mock('Task')
       SpecServer.stub!(:prepare_task)      
+      SpecServer.stub!(:pid).and_return('111')
       @mock_task.stub!(:running?).and_return(true)
     end
     

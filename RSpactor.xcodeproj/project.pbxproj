@@ -21,6 +21,9 @@
 		E12E4CF90DFF308300355B0E /* pass_128.png in Resources */ = {isa = PBXBuildFile; fileRef = E12E4CF80DFF308300355B0E /* pass_128.png */; };
 		E12F65900E3884F300C16DC6 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E12F658F0E3884F300C16DC6 /* Sparkle.framework */; };
 		E12F65A90E38852300C16DC6 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E12F658F0E3884F300C16DC6 /* Sparkle.framework */; };
+		E12FE23D0EF94DD900B30E2B /* accept_colorful.icns in Resources */ = {isa = PBXBuildFile; fileRef = E12FE23A0EF94DD900B30E2B /* accept_colorful.icns */; };
+		E12FE23E0EF94DD900B30E2B /* delete_colorful.icns in Resources */ = {isa = PBXBuildFile; fileRef = E12FE23B0EF94DD900B30E2B /* delete_colorful.icns */; };
+		E12FE23F0EF94DD900B30E2B /* warning_colorful.icns in Resources */ = {isa = PBXBuildFile; fileRef = E12FE23C0EF94DD900B30E2B /* warning_colorful.icns */; };
 		E13AF6050E0128670042D8BE /* rspactor_bin.rb in Resources */ = {isa = PBXBuildFile; fileRef = E13AF6040E0128670042D8BE /* rspactor_bin.rb */; };
 		E143B0D40EA4B5AE00055FDB /* dashboard.html in Resources */ = {isa = PBXBuildFile; fileRef = E143B0D30EA4B5AE00055FDB /* dashboard.html */; };
 		E143B0E40EA4B76800055FDB /* application.js in Sources */ = {isa = PBXBuildFile; fileRef = E143B0D80EA4B76800055FDB /* application.js */; };
@@ -378,6 +381,9 @@
 		E12E4CED0DFF2E0500355B0E /* warning_128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = warning_128.png; sourceTree = "<group>"; };
 		E12E4CF80DFF308300355B0E /* pass_128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pass_128.png; sourceTree = "<group>"; };
 		E12F658F0E3884F300C16DC6 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
+		E12FE23A0EF94DD900B30E2B /* accept_colorful.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = accept_colorful.icns; sourceTree = "<group>"; };
+		E12FE23B0EF94DD900B30E2B /* delete_colorful.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = delete_colorful.icns; sourceTree = "<group>"; };
+		E12FE23C0EF94DD900B30E2B /* warning_colorful.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = warning_colorful.icns; sourceTree = "<group>"; };
 		E13AF6040E0128670042D8BE /* rspactor_bin.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = rspactor_bin.rb; sourceTree = "<group>"; };
 		E143B0D30EA4B5AE00055FDB /* dashboard.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = dashboard.html; sourceTree = "<group>"; };
 		E143B0D80EA4B76800055FDB /* application.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = application.js; sourceTree = "<group>"; };
@@ -791,6 +797,9 @@
 		E12E4CDF0DFF2D5700355B0E /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				E12FE23A0EF94DD900B30E2B /* accept_colorful.icns */,
+				E12FE23B0EF94DD900B30E2B /* delete_colorful.icns */,
+				E12FE23C0EF94DD900B30E2B /* warning_colorful.icns */,
 				E12E4CF80DFF308300355B0E /* pass_128.png */,
 				E12E4CEC0DFF2E0500355B0E /* failure_128.png */,
 				E12E4CED0DFF2E0500355B0E /* warning_128.png */,
@@ -1547,6 +1556,9 @@
 				E1D247C10EEE814C00620852 /* readme.txt in Resources */,
 				E1D247CC0EEE8EAA00620852 /* dashboard_view.rb in Resources */,
 				E1C1383E0EF06D370040C8AF /* spec_server.rb in Resources */,
+				E12FE23D0EF94DD900B30E2B /* accept_colorful.icns in Resources */,
+				E12FE23E0EF94DD900B30E2B /* delete_colorful.icns in Resources */,
+				E12FE23F0EF94DD900B30E2B /* warning_colorful.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
