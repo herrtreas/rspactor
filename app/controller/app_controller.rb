@@ -132,7 +132,7 @@ class AppController < OSX::NSObject
   end
   
   def specServerFailed(notification)
-    alert('Could not load the spec_server.', 'Is another spec_server already running?')
+    alert('Could not load the spec_server.', 'Please have a look at the log output ("View Log") or disable the spec_server support in your preferences dialog (cmd+,).')
   end
   
   def run_failed_files_afterwards_or_listen

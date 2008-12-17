@@ -71,7 +71,10 @@ module SpecServer
           $app.post_notification(:spec_server_ready)
         end
       when self.task.standardError.fileHandleForReading
-        $app.post_notification(:spec_server_failed, data) if data.to_s =~ /error/i
+        if data.to_s =~ /error/i
+          $raw_output[0][1] << data          
+          $app.post_notification(:spec_server_failed, data)
+        end
       end
     end
     

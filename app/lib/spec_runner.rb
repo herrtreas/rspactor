@@ -103,7 +103,7 @@ module SpecRunner
     def launch_current_task
       if Options.use_spec_server? && SpecServer.available?
         if SpecServer.ready?
-          @task.launch
+          @task.launch unless @task.isRunning
         else
           SpecServer.start
         end

@@ -5,7 +5,7 @@ module Options
     end
     
     def use_spec_server?
-      $app.default_from_key(:generals_auto_activate_spec_server, '1') == '1'
+      $app.default_from_key(:generals_auto_activate_spec_server, '0') == '1'
     end
   end
 end
