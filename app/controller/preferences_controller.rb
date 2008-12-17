@@ -24,6 +24,10 @@ class PreferencesController < OSX::NSWindowController
     end
   end
   
+  ib_action :resetHiddenNotices do |sender|
+    $app.default_for_key('hide_welcome_message', '0')    
+  end
+  
   def initialize
     unless $app.default_from_key(:spec_bin_path, nil)
       spec_bin_path = `/usr/bin/which spec`.strip.chomp

@@ -8,9 +8,9 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="29"/>
-			<integer value="2"/>
 			<integer value="697"/>
+			<integer value="2"/>
+			<integer value="29"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1794,7 +1794,7 @@
 					<object class="NSButton" id="446148051">
 						<reference key="NSNextResponder" ref="405713447"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{18, 58}, {405, 18}}</string>
+						<string key="NSFrame">{{18, 98}, {405, 18}}</string>
 						<reference key="NSSuperview" ref="405713447"/>
 						<int key="NSTag">101</int>
 						<bool key="NSEnabled">YES</bool>
@@ -1817,7 +1817,7 @@
 					<object class="NSButton" id="1070526305">
 						<reference key="NSNextResponder" ref="405713447"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{18, 38}, {289, 18}}</string>
+						<string key="NSFrame">{{18, 78}, {289, 18}}</string>
 						<reference key="NSSuperview" ref="405713447"/>
 						<int key="NSTag">102</int>
 						<bool key="NSEnabled">YES</bool>
@@ -1840,7 +1840,7 @@
 					<object class="NSButton" id="527034836">
 						<reference key="NSNextResponder" ref="405713447"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{18, 18}, {626, 18}}</string>
+						<string key="NSFrame">{{18, 58}, {626, 18}}</string>
 						<reference key="NSSuperview" ref="405713447"/>
 						<int key="NSTag">103</int>
 						<bool key="NSEnabled">YES</bool>
@@ -1860,8 +1860,28 @@
 							<int key="NSPeriodicInterval">25</int>
 						</object>
 					</object>
+					<object class="NSButton" id="892290410">
+						<reference key="NSNextResponder" ref="405713447"/>
+						<int key="NSvFlags">268</int>
+						<string key="NSFrame">{{14, 12}, {171, 32}}</string>
+						<reference key="NSSuperview" ref="405713447"/>
+						<bool key="NSEnabled">YES</bool>
+						<object class="NSButtonCell" key="NSCell" id="944541990">
+							<int key="NSCellFlags">67239424</int>
+							<int key="NSCellFlags2">134217728</int>
+							<string key="NSContents">Reset hidden notices</string>
+							<reference key="NSSupport" ref="766174611"/>
+							<reference key="NSControlView" ref="892290410"/>
+							<int key="NSButtonFlags">-2038284033</int>
+							<int key="NSButtonFlags2">129</int>
+							<string key="NSAlternateContents"/>
+							<string key="NSKeyEquivalent"/>
+							<int key="NSPeriodicDelay">200</int>
+							<int key="NSPeriodicInterval">25</int>
+						</object>
+					</object>
 				</object>
-				<string key="NSFrameSize">{441, 94}</string>
+				<string key="NSFrameSize">{441, 134}</string>
 				<reference key="NSSuperview"/>
 				<string key="NSClassName">NSView</string>
 			</object>
@@ -2604,6 +2624,14 @@
 						<reference key="destination" ref="527034836"/>
 					</object>
 					<int key="connectionID">837</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">resetHiddenNotices:</string>
+						<reference key="source" ref="985540071"/>
+						<reference key="destination" ref="892290410"/>
+					</object>
+					<int key="connectionID">840</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -3507,6 +3535,7 @@
 							<reference ref="446148051"/>
 							<reference ref="1070526305"/>
 							<reference ref="527034836"/>
+							<reference ref="892290410"/>
 						</object>
 						<reference key="parent" ref="117932125"/>
 						<string key="objectName">GeneralsPrefsView</string>
@@ -3726,6 +3755,20 @@
 						<int key="objectID">834</int>
 						<reference key="object" ref="316584410"/>
 						<reference key="parent" ref="527034836"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">838</int>
+						<reference key="object" ref="892290410"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="944541990"/>
+						</object>
+						<reference key="parent" ref="405713447"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">839</int>
+						<reference key="object" ref="944541990"/>
+						<reference key="parent" ref="892290410"/>
 					</object>
 				</object>
 			</object>
@@ -4011,6 +4054,8 @@
 					<string>833.IBAttributePlaceholdersKey</string>
 					<string>833.IBPluginDependency</string>
 					<string>834.IBPluginDependency</string>
+					<string>838.IBPluginDependency</string>
+					<string>839.IBPluginDependency</string>
 					<string>92.IBPluginDependency</string>
 					<string>92.ImportedFromIB2</string>
 				</object>
@@ -4240,7 +4285,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 						</object>
 					</object>
-					<string>{{679, 774}, {441, 94}}</string>
+					<string>{{591, 728}, {441, 134}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<object class="NSMutableDictionary">
 						<string key="NS.key.0">ToolTip</string>
@@ -4353,6 +4398,8 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
 				</object>
 			</object>
@@ -4376,7 +4423,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">837</int>
+			<int key="maxID">840</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -4450,11 +4497,13 @@
 							<string>checkBoxClickedToSaveState:</string>
 							<string>editorCheckBoxClicked:</string>
 							<string>editorSelectChanged:</string>
+							<string>resetHiddenNotices:</string>
 							<string>showWindow:</string>
 							<string>toolbarItemClicked:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>

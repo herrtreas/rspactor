@@ -26,8 +26,8 @@ class HtmlView
     element.setInnerText(text)
   end
   
-  def removeElement(element_id)
+  def hideElement(element_id)
     element = getElementById(element_id)
-    element.remove    
+    element.className = 'hidden'    
   end
 end

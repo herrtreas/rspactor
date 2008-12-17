@@ -9,6 +9,7 @@ describe SpecServer do
   
   describe 'with initialization and cleanup' do
     it 'should terminate the spec_server task' do
+      SpecServer.task = mock('Task')
       SpecServer.should_receive(:stop)
       SpecServer.cleanup
     end

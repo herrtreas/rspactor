@@ -7,6 +7,10 @@ class DashboardView < HtmlView
   end
   
   def update
+    if $app.default_from_key('hide_welcome_message', '0') == '1'
+      hideElement('welcome_message')
+    end    
+    
     if SpecRunner.command_running?
       setInnerHTML('statistics', "<h3>Just a moment. I'm busy running your examples..</h3>")
     else

@@ -171,6 +171,8 @@ class WebviewController < OSX::NSWindowController
       showSpecFileViewForSingleSpec(message)
     elsif context == 'spec_view_from_file_path'
       showSpecFileViewFromFilePath(message)
+    elsif context == 'hide'
+      $app.default_for_key('hide_welcome_message', '1')
     else
       $LOG.debug "No context given: #{message}"
     end

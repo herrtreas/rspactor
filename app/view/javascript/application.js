@@ -20,3 +20,7 @@ function toggleSpecBox(element) {
 		fold_button.innerHTML = '+';		
 	}
 }
+
+function hideElement(element_id) {
+  $(element_id).hide();
+}

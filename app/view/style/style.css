@@ -67,6 +67,10 @@ a:hover {
 	margin: 0px;	
 }
 
+.hidden {
+  display: none;
+}
+
 /* #### INFO BOX #### */
 
 .info {
@@ -75,6 +79,10 @@ a:hover {
 	color: #555;
 	font-size: 12px;
 	padding: 5px;
+}
+
+.info .hide_button {
+  float:right;
 }
 
 .info h3 {
