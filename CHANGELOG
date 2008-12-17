@@ -1,3 +1,27 @@
+== 1.0 / December 17, 2008
+
+=== Changes
+* RSpec environment loads a lot faster (Changed example file loading mechanism)
+* ChangedFilesQueue: RSpactor will remember and run files that have been affected while RSpactor was busy
+* Example View: Additional source snippets for defects that could be located in the application code
+* Run remaining failed examples if a previously failed example is now passing (Use the preferences dialog to deactivate this behavior)
+* RSpactor will also monitor files that have broken a build but which are neither the example (test_spec.rb) nor the tested file (test.rb) (e.g. a view file)
+* Fresh Mac OSX look and feel
+* Added option (preferences dialog) to disabled detailed growl output and only show an example-run-summary
+* Stop running examples either by pressing 'stop' or by hitting 'ctrl+c' (#14)
+* Shortcut and menu item for jumping into the path box (firefox like cmd+l)
+* Process indicator for the dock
+* Dashboard: Show slowest, failed, pending examples
+* RSpactor will automatically use the spec_server if its available (Use the preferences dialog to deactivate this behavior)
+* File list improvements: Double click a file to run its examples
+* File list improvements: Names are colored and include then number of failed examples
+
+=== Fixes
+* Compatibility with RSpec edge
+* Recognize new and deleted files
+* Paths are now working with ~ and pbcopy
+
+
 == 0.9.22 / November 14, 2008
 
 === Fixes
