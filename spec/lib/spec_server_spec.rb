@@ -137,6 +137,8 @@ describe SpecServer do
       
       describe 'posting the state' do
         before(:each) do
+          $raw_output = []
+          $raw_output.unshift([Time.now, ''])      
           @mock_notification.stub!(:object).and_return(@mock_file_handle)
           SpecServer.stub!(:pipeContentMatching?).and_return(true)          
         end

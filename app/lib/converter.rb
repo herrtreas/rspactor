@@ -40,7 +40,7 @@ module Converter
     def formatted_backtrace(spec)
       spec.backtrace.collect do |trace_line|
         alert_line = trim_line_for_alert(trace_line)
-        "<li><a href='#' onclick='alert(\"#{alert_line}\")'>#{trace_line}</a></li>"
+        "<li><a href='#' onclick='alert(\"#{alert_line}@external\")'>#{trace_line}</a></li>"
       end.join('')
     end
 

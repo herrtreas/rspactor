@@ -518,6 +518,8 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>E196B9EA0EFC5E1100179007</string>
+		<string>E196B9EB0EFC5E1100179007</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>E1A615C10DF82908007DEAC7</string>
 		<string>/Work/rubyphunk/rspactor_app/RSpactor.xcodeproj</string>

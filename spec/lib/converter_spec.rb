@@ -19,13 +19,13 @@ describe Converter do
   it 'should format a specs backtrace' do
     @mock_spec.should_receive(:backtrace).and_return(['/path/to/file.rb'])
     trace = Converter.formatted_backtrace(@mock_spec)
-    trace.should eql("<li><a href='#' onclick='alert(\"/path/to/file.rb\")'>/path/to/file.rb</a></li>")
+    trace.should eql("<li><a href='#' onclick='alert(\"/path/to/file.rb@external\")'>/path/to/file.rb</a></li>")
   end
   
   it 'should trim backtrace alerts to only contain file and line number' do
     @mock_spec.should_receive(:backtrace).and_return(['/path/to/file.rb:5:xx:trash'])
     trace = Converter.formatted_backtrace(@mock_spec)
-    trace.should eql("<li><a href='#' onclick='alert(\"/path/to/file.rb:5\")'>/path/to/file.rb:5:xx:trash</a></li>")    
+    trace.should eql("<li><a href='#' onclick='alert(\"/path/to/file.rb:5@external\")'>/path/to/file.rb:5:xx:trash</a></li>")    
   end
   
 end

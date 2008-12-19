@@ -79,11 +79,11 @@ class ExampleFiles
     @@_sorted_files = []
     reset_internal_stats!
   end
-
+  
   def self.passed
     @@_passed_files ||= @@example_files.collect { |path, ef| ef.passed? ? ef : nil }.compact
   end
-
+  
   def self.pending
     @@_pending_files ||= @@example_files.collect { |path, ef| ef.pending? ? ef : nil }.compact
   end
@@ -91,7 +91,7 @@ class ExampleFiles
   def self.failed
     @@_failed_files ||= @@example_files.collect { |path, ef| ef.failed? ? ef : nil }.compact
   end
-
+  
   def self.specs_count(filter = :all)
     count = 0
     if filter == :all      
@@ -112,8 +112,8 @@ class ExampleFiles
       examples[0...(opts[:limit])]
     end
   end  
-
-
+  
+  
   private
   
   def self.find_or_create_example_file_by_spec(spec)
