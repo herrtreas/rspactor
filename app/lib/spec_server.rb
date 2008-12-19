@@ -107,7 +107,8 @@ module SpecServer
     private
    
     def pipeContentMatching?(notification)
-      self.task && notification.object == self.task.standardError.fileHandleForReading || notification.object == self.task.standardOutput.fileHandleForReading
+      return false if self.task.nil?
+      notification.object == self.task.standardError.fileHandleForReading || notification.object == self.task.standardOutput.fileHandleForReading
     end
 
     def readDataFromPipe(notification)
