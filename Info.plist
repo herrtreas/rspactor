@@ -24,6 +24,8 @@
 	<string>com.dynamicdudes.RSpactor</string>
 	<key>SUFeedURL</key>
 	<string>http://rspactorapp.com/assets/updates.xml</string>
+	<key>SUPublicDSAKeyFile</key>
+	<string>dsa_pub.pem</string>
 	<key>SUCheckAtStartup</key>
   <true/>  
  	<key>NSHumanReadableCopyright</key>
