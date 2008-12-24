@@ -10,7 +10,7 @@ class RawOutputView < HtmlView
     html = '<ul class="raw_output">'
     $raw_output.compact.each do |output|
       html << '<li>'
-      html << "<small>#{output[0].strftime("%H:%M:%S")}</small>"
+      html << "<small>#{output[0].strftime("%b %d, %H:%M:%S")}</small>"
       html << '<hr>'
       html << "<pre>#{output[1]}</pre>"
       html << '</li>'
