@@ -2,15 +2,22 @@ require 'osx/cocoa'
 
 class PreferencesController < OSX::NSWindowController
   ib_outlet :panel, :toolbar
-  ib_outlet :generalsPrefsView, :binariesPrefsView, :editorPrefsView, :updatePrefsView
+  ib_outlet :generalsPrefsView, :binariesPrefsView, :editorPrefsView, :updatePrefsView, :speechPrefsView
   ib_outlet :specBinPath, :rubyBinPath, :editorBinPath
   ib_outlet :rubyBinWarning, :specBinWarning, :editorBinWarning
   ib_outlet :editorSelect, :editorCheckBox
   ib_outlet :generalsRerunSpecsCheckBox, :generalsSummarizeGrowl, :generalsAutoActivateSpecServer
+	ib_outlet :speechUseSpeechCheckBox
+	ib_outlet :phraseForTestsPass, :phraseForTestsFail, :phraseForTestsPending
+	ib_outlet :voiceTestsPassSelect, :voiceTestsFailSelect, :voiceTestsPendingSelect
   
   ib_action :toolbarItemClicked
   ib_action :editorCheckBoxClicked
   ib_action :editorSelectChanged
+	ib_action :speechCheckBoxClicked
+	ib_action :voiceTestsPassChanged
+	ib_action :voiceTestsFailChanged
+	ib_action :voiceTestsPendingChanged
   
   
   ib_action :checkBoxClickedToSaveState do |sender|
@@ -46,6 +53,7 @@ class PreferencesController < OSX::NSWindowController
     initToolbar
     initGeneralPrefView
     initEditorPrefView
+		initSpeechPrefView
     validatePreferences
   end
 
@@ -64,11 +72,15 @@ class PreferencesController < OSX::NSWindowController
   def set_default_editor_bin_path
     @editorBinPath.stringValue = $app.default_from_key(:editor_bin_path, '/usr/bin/mate')
   end
-  
+	  
   def controlTextDidEndEditing(notification)
     check_path_and_set_default(:spec_bin_path, @specBinPath, @specBinWarning)  if notification.nil? || notification.object.stringValue == @specBinPath.stringValue
     check_path_and_set_default(:ruby_bin_path, @rubyBinPath, @rubyBinWarning)  if notification.nil? || notification.object.stringValue == @rubyBinPath.stringValue
     check_path_and_set_default(:editor_bin_path, @editorBinPath, @editorBinWarning)  if notification.nil? || notification.object.stringValue == @editorBinPath.stringValue
+
+    $app.default_for_key(:speech_phrase_tests_pass, @phraseForTestsPass.stringValue.chomp.strip) if notification.nil? || notification.object.stringValue == @phraseForTestsPass.stringValue
+    $app.default_for_key(:speech_phrase_tests_fail, @phraseForTestsFail.stringValue.chomp.strip) if notification.nil? || notification.object.stringValue == @phraseForTestsFail.stringValue
+    $app.default_for_key(:speech_phrase_tests_pending, @phraseForTestsPending.stringValue.chomp.strip) if notification.nil? || notification.object.stringValue == @phraseForTestsPending.stringValue
   end
   
   def check_path_and_set_default(key, path_object, warning_object)
@@ -82,7 +94,7 @@ class PreferencesController < OSX::NSWindowController
       warning_object.toolTip = "That path doesn't exist."
     end
   end
-  
+	  
   def initGeneralPrefView
     @generalsRerunSpecsCheckBox.state = $app.default_from_key(:generals_rerun_failed_specs, '1')
     @generalsSummarizeGrowl.state = $app.default_from_key(:generals_summarize_growl_output, '0')
@@ -105,6 +117,28 @@ class PreferencesController < OSX::NSWindowController
     @editorSelect.selectItemWithTitle($app.default_from_key(:editor, 'TextMate'))
     editorCheckBoxClicked(nil)
   end
+	
+	def initSpeechPrefView
+    @speechUseSpeechCheckBox.state = $app.default_from_key(:speech_use_speech, '0')
+		@phraseForTestsPass.stringValue = $app.default_from_key(:speech_phrase_tests_pass, 'All tests passed')
+		@phraseForTestsFail.stringValue = $app.default_from_key(:speech_phrase_tests_fail, 'Tests failed!')
+		@phraseForTestsPending.stringValue = $app.default_from_key(:speech_phrase_tests_pending, 'Tests passed, some pending')
+		
+		voices = NSSpeechSynthesizer.availableVoices
+		default_voice = NSSpeechSynthesizer.defaultVoice
+
+		@voiceTestsPassSelect.removeAllItems
+		@voiceTestsPassSelect.addItemsWithTitles(voices)
+    @voiceTestsPassSelect.selectItemWithTitle($app.default_from_key(:speech_voice_tests_pass, default_voice))
+		@voiceTestsFailSelect.removeAllItems
+		@voiceTestsFailSelect.addItemsWithTitles(voices)
+    @voiceTestsFailSelect.selectItemWithTitle($app.default_from_key(:speech_voice_tests_fail, default_voice))
+		@voiceTestsPendingSelect.removeAllItems
+		@voiceTestsPendingSelect.addItemsWithTitles(voices)
+    @voiceTestsPendingSelect.selectItemWithTitle($app.default_from_key(:speech_voice_tests_pending, default_voice))
+		
+		speechCheckBoxClicked(nil)
+	end
   
   def toolbarSelectableItemIdentifiers(toolbar)
     @toolbaridents ||= begin
@@ -131,6 +165,7 @@ class PreferencesController < OSX::NSWindowController
       when 1: [@binariesPrefsView,  "Executables"]
       when 2: [@editorPrefsView, "Editor"]
       when 3: [@updatePrefsView, "Software Update"]
+      when 4: [@speechPrefsView, "Speech"]
     end
   end
   
@@ -155,6 +190,29 @@ class PreferencesController < OSX::NSWindowController
   def editorSelectChanged(sender)
     $app.default_for_key(:editor, @editorSelect.selectedItem.title)
   end
+	
+	def speechCheckBoxClicked(sender)
+		$app.default_for_key(:speech_use_speech, @speechUseSpeechCheckBox.state)
+    enabled = @speechUseSpeechCheckBox.state != 0
+		@phraseForTestsPass.enabled = enabled
+		@phraseForTestsFail.enabled = enabled
+		@phraseForTestsPending.enabled = enabled
+		@voiceTestsPassSelect.enabled = enabled
+		@voiceTestsFailSelect.enabled = enabled
+		@voiceTestsPendingSelect.enabled = enabled
+	end
+	
+	def voiceTestsPassChanged(sender)
+    $app.default_for_key(:speech_voice_tests_pass, @voiceTestsPassSelect.selectedItem.title)
+	end
+	
+	def voiceTestsFailChanged(sender)
+    $app.default_for_key(:speech_voice_tests_fail, @voiceTestsFailSelect.selectedItem.title)
+	end
+	
+	def voiceTestsPendingChanged(sender)
+    $app.default_for_key(:speech_voice_tests_pending, @voiceTestsPendingSelect.selectedItem.title)
+	end
   
   def windowWillClose(notification)
     validatePreferences
