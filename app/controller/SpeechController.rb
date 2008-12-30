@@ -15,7 +15,6 @@ class SpeechController < OSX::NSObject
     receive :spec_run_dump_summary,     :specRunFinishedWithSummaryDump    
     receive :error,                     :errorPosted    
 		
-		init_phrases_and_voices
 		@speechSynthesizer = NSSpeechSynthesizer.alloc.initWithVoice(@voiceForError)
 	end
 	
@@ -30,14 +29,13 @@ class SpeechController < OSX::NSObject
     return unless speak_results?
 
     duration, example_count, failure_count, pending_count = notification.userInfo
-		#message = "#{example_count} examples, #{failure_count} failed, #{pending_count} pending. Took #{("%0.2f" % duration).to_f} seconds"
 		
 		if failure_count.to_i > 0
 			speak(:failed, failure_count)
 		elsif pending_count.to_i > 0
 			speak(:pending, pending_count)
 		else
-			speak(:pass)
+			speak(:pass, example_count)
 		end
   end
 
@@ -53,30 +51,19 @@ class SpeechController < OSX::NSObject
 		$app.default_from_key(:speech_use_speech) == '1'
 	end
 	
-	def init_phrases_and_voices
-		@phraseForPassed = $app.default_from_key(:speech_phrase_tests_pass)
-		@phraseForFailed = $app.default_from_key(:speech_phrase_tests_fail)
-		@phraseForPending = $app.default_from_key(:speech_phrase_tests_pending)
-		
-		@voiceForPassed = $app.default_from_key(:speech_voice_tests_pass)
-		@voiceForFailed = $app.default_from_key(:speech_voice_tests_fail)
-		@voiceForPending = $app.default_from_key(:speech_voice_tests_pending)
-		@voiceForError = @voiceForFailed
-	end
-	
 	def speak(kind, amount=0)
 		case kind
 		when :pass
-			@speechSynthesizer.setVoice(@voiceForPassed)
-			speechSynthesizer.startSpeakingString(@phraseForPassed)
+			@speechSynthesizer.setVoice($app.default_from_key(:speech_voice_tests_pass))
+			speechSynthesizer.startSpeakingString($app.default_from_key(:speech_phrase_tests_pass).sub(/\?/, amount.to_s))
 		when :failed
-			@speechSynthesizer.setVoice(@voiceForFailed)
-			speechSynthesizer.startSpeakingString(@phraseForFailed)
+			@speechSynthesizer.setVoice($app.default_from_key(:speech_voice_tests_fail))
+			speechSynthesizer.startSpeakingString($app.default_from_key(:speech_phrase_tests_fail).sub(/\?/, amount.to_s))
 		when :pending
-			@speechSynthesizer.setVoice(@voiceForPending)
-			speechSynthesizer.startSpeakingString(@phraseForPending)
+			@speechSynthesizer.setVoice($app.default_from_key(:speech_voice_tests_pending))
+			speechSynthesizer.startSpeakingString($app.default_from_key(:speech_phrase_tests_pending).sub(/\?/, amount.to_s))
 		when :error
-			@speechSynthesizer.setVoice(@voiceForError)
+			@speechSynthesizer.setVoice($app.default_from_key(:speech_voice_tests_fail))
 			speechSynthesizer.startSpeakingString('SpecRunner aborted. Please have a look at the output for more information.')
 		end
 	end
