@@ -1,6 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 require 'window_controller'
 require 'growl_controller'
+require 'speech_controller'
 require 'ext/growl'
 require 'spec_runner'
 require 'example_runner_job'

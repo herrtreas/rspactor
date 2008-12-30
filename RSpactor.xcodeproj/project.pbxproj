@@ -11,7 +11,6 @@
 		4DDCA7080ACC9A6100E082CE /* rb_main.rb in Resources */ = {isa = PBXBuildFile; fileRef = E8F5E25803AEB7C803A81C6F /* rb_main.rb */; };
 		4DDCA70A0ACC9A6100E082CE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		4DDCA70C0ACC9A6100E082CE /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
-		83FAA00A0F02EE0400C60D6E /* SpeechController.rb in Resources */ = {isa = PBXBuildFile; fileRef = 83FAA0090F02EE0400C60D6E /* SpeechController.rb */; };
 		84A168A20E68C78F005FF9F3 /* netbeans.rb in Resources */ = {isa = PBXBuildFile; fileRef = 84A168A10E68C78F005FF9F3 /* netbeans.rb */; };
 		E107C5620DF84D1A00A62C3A /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E107C5610DF84D1A00A62C3A /* WebKit.framework */; };
 		E11B10B70DFDE342006F6CFA /* ns_object.rb in Resources */ = {isa = PBXBuildFile; fileRef = E11B10B60DFDE342006F6CFA /* ns_object.rb */; };
@@ -72,6 +71,7 @@
 		E168D7B60E715F140063AEDE /* APPL.icns in Resources */ = {isa = PBXBuildFile; fileRef = E168D7B50E715F140063AEDE /* APPL.icns */; };
 		E18021CB0ED462DE002B6EC8 /* example_matcher.rb in Resources */ = {isa = PBXBuildFile; fileRef = E18021CA0ED462DE002B6EC8 /* example_matcher.rb */; };
 		E18500EE0E4260E0003D4E1E /* textmate.rb in Resources */ = {isa = PBXBuildFile; fileRef = E18500ED0E4260E0003D4E1E /* textmate.rb */; };
+		E18F112B0F0AE6240023314E /* speech_controller.rb in Resources */ = {isa = PBXBuildFile; fileRef = E18F112A0F0AE6240023314E /* speech_controller.rb */; };
 		E193ED830DFAAADE00D17070 /* app_controller.rb in Resources */ = {isa = PBXBuildFile; fileRef = E193ED770DFAAADE00D17070 /* app_controller.rb */; };
 		E193ED840DFAAADE00D17070 /* drawer_controller.rb in Resources */ = {isa = PBXBuildFile; fileRef = E193ED780DFAAADE00D17070 /* drawer_controller.rb */; };
 		E193ED850DFAAADE00D17070 /* window_controller.rb in Resources */ = {isa = PBXBuildFile; fileRef = E193ED790DFAAADE00D17070 /* window_controller.rb */; };
@@ -374,7 +374,6 @@
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		4DDCA7110ACC9A6100E082CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4DDCA7120ACC9A6100E082CE /* RSpactor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RSpactor.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		83FAA0090F02EE0400C60D6E /* SpeechController.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = SpeechController.rb; sourceTree = "<group>"; };
 		84A168A10E68C78F005FF9F3 /* netbeans.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = netbeans.rb; sourceTree = "<group>"; };
 		E107C5610DF84D1A00A62C3A /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = /System/Library/Frameworks/WebKit.framework; sourceTree = "<absolute>"; };
 		E11B10B60DFDE342006F6CFA /* ns_object.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ns_object.rb; sourceTree = "<group>"; };
@@ -424,6 +423,7 @@
 		E168D7B50E715F140063AEDE /* APPL.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = APPL.icns; sourceTree = "<group>"; };
 		E18021CA0ED462DE002B6EC8 /* example_matcher.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = example_matcher.rb; path = lib/example_matcher.rb; sourceTree = "<group>"; };
 		E18500ED0E4260E0003D4E1E /* textmate.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = textmate.rb; sourceTree = "<group>"; };
+		E18F112A0F0AE6240023314E /* speech_controller.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = speech_controller.rb; sourceTree = "<group>"; };
 		E193ED770DFAAADE00D17070 /* app_controller.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = app_controller.rb; sourceTree = "<group>"; };
 		E193ED780DFAAADE00D17070 /* drawer_controller.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = drawer_controller.rb; sourceTree = "<group>"; };
 		E193ED790DFAAADE00D17070 /* window_controller.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = window_controller.rb; sourceTree = "<group>"; };
@@ -918,13 +918,13 @@
 		E193ED760DFAAADE00D17070 /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				E18F112A0F0AE6240023314E /* speech_controller.rb */,
 				E151EBEB0E09A04500E11BB3 /* webview_controller.rb */,
 				E1C7449B0E086A1B006DB94E /* preferences_controller.rb */,
 				E193ED770DFAAADE00D17070 /* app_controller.rb */,
 				E193ED780DFAAADE00D17070 /* drawer_controller.rb */,
 				E193ED790DFAAADE00D17070 /* window_controller.rb */,
 				E12E4CB90DFF221100355B0E /* growl_controller.rb */,
-				83FAA0090F02EE0400C60D6E /* SpeechController.rb */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -1566,7 +1566,7 @@
 				E12FE23E0EF94DD900B30E2B /* delete_colorful.icns in Resources */,
 				E12FE23F0EF94DD900B30E2B /* warning_colorful.icns in Resources */,
 				E150D5A40EFD08F1004BCA0E /* dsa_pub.pem in Resources */,
-				83FAA00A0F02EE0400C60D6E /* SpeechController.rb in Resources */,
+				E18F112B0F0AE6240023314E /* speech_controller.rb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

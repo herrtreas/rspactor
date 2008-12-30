@@ -74,10 +74,17 @@ class PreferencesController < OSX::NSWindowController
   end
 	  
   def controlTextDidEndEditing(notification)
+    setBinPathsFromNotification(notification)
+    setSpeechPhrasesFromNotification(notification)
+  end
+  
+  def setBinPathsFromNotification(notification)
     check_path_and_set_default(:spec_bin_path, @specBinPath, @specBinWarning)  if notification.nil? || notification.object.stringValue == @specBinPath.stringValue
     check_path_and_set_default(:ruby_bin_path, @rubyBinPath, @rubyBinWarning)  if notification.nil? || notification.object.stringValue == @rubyBinPath.stringValue
     check_path_and_set_default(:editor_bin_path, @editorBinPath, @editorBinWarning)  if notification.nil? || notification.object.stringValue == @editorBinPath.stringValue
+  end
 
+  def setSpeechPhrasesFromNotification(notification)
     $app.default_for_key(:speech_phrase_tests_pass, @phraseForTestsPass.stringValue.chomp.strip) if notification.nil? || notification.object.stringValue == @phraseForTestsPass.stringValue
     $app.default_for_key(:speech_phrase_tests_fail, @phraseForTestsFail.stringValue.chomp.strip) if notification.nil? || notification.object.stringValue == @phraseForTestsFail.stringValue
     $app.default_for_key(:speech_phrase_tests_pending, @phraseForTestsPending.stringValue.chomp.strip) if notification.nil? || notification.object.stringValue == @phraseForTestsPending.stringValue

@@ -15,7 +15,7 @@ class SpeechController < OSX::NSObject
     receive :spec_run_dump_summary,     :specRunFinishedWithSummaryDump    
     receive :error,                     :errorPosted    
 		
-		@speechSynthesizer = NSSpeechSynthesizer.alloc.initWithVoice(@voiceForError)
+		@speechSynthesizer = OSX::NSSpeechSynthesizer.alloc.initWithVoice(@voiceForError)
 	end
 	
 	def specRunFinishedSingleSpec(notification)    

@@ -35,6 +35,7 @@ describe PreferencesController do
     @controller.generalsRerunSpecsCheckBox = @mock_generals_rerun_specs
     @controller.stub!(:initToolbar)
     @controller.stub!(:initEditorPrefView)
+    @controller.stub!(:initSpeechPrefView)
     @controller.stub!(:validatePreferences)
   end
   
@@ -85,6 +86,7 @@ describe PreferencesController do
     $app.should_receive(:default_for_key).with(:ruby_bin_path, '/tmp').once
     $app.should_receive(:default_for_key).with(:editor_bin_path, '/tmp').once
     $app.stub!(:file_exist?).and_return(true)
+    @controller.stub!(:setSpeechPhrasesFromNotification)
     @controller.controlTextDidEndEditing(mock_notification)    
   end
   
@@ -92,6 +94,7 @@ describe PreferencesController do
     mock_notification = mock('Object')
     mock_notification.stub!(:object).and_return(@mock_spec_field)
     @controller.should_receive(:check_path_and_set_default).exactly(3).times
+    @controller.stub!(:setSpeechPhrasesFromNotification)
     @controller.controlTextDidEndEditing(mock_notification)    
   end
   
