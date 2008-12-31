@@ -1,33 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="7.03">
+<archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="7.02">
 	<data>
 		<int key="IBDocument.SystemTarget">1050</int>
 		<string key="IBDocument.SystemVersion">9G55</string>
-		<string key="IBDocument.InterfaceBuilderVersion">677</string>
+		<string key="IBDocument.InterfaceBuilderVersion">672</string>
 		<string key="IBDocument.AppKitVersion">949.43</string>
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="2"/>
-			<integer value="585"/>
-			<integer value="841"/>
-			<integer value="697"/>
 			<integer value="29"/>
 			<integer value="305"/>
+			<integer value="697"/>
+			<integer value="2"/>
+			<integer value="841"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<string>com.apple.WebKitIBPlugin</string>
 			<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-		</object>
-		<object class="NSMutableDictionary" key="IBDocument.Metadata">
-			<bool key="EncodedWithXMLCoder">YES</bool>
-			<object class="NSArray" key="dict.sortedKeys">
-				<bool key="EncodedWithXMLCoder">YES</bool>
-			</object>
-			<object class="NSMutableArray" key="dict.values">
-				<bool key="EncodedWithXMLCoder">YES</bool>
-			</object>
 		</object>
 		<object class="NSMutableArray" key="IBDocument.RootObjects" id="1011112108">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1627,7 +1617,7 @@
 				<string key="NSClassName">NSView</string>
 			</object>
 			<object class="NSCustomView" id="881101615">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1782,7 +1772,6 @@
 					</object>
 				</object>
 				<string key="NSFrameSize">{313, 138}</string>
-				<reference key="NSSuperview"/>
 				<string key="NSClassName">NSView</string>
 			</object>
 			<object class="NSCustomView" id="347399454">
@@ -1932,13 +1921,13 @@
 					<object class="NSTextField" id="563284844">
 						<reference key="NSNextResponder" ref="1041558644"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{17, 160}, {124, 17}}</string>
+						<string key="NSFrame">{{36, 160}, {124, 17}}</string>
 						<reference key="NSSuperview" ref="1041558644"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="446941026">
 							<int key="NSCellFlags">67239488</int>
 							<int key="NSCellFlags2">272630784</int>
-							<string key="NSContents">All tests pass:</string>
+							<string key="NSContents">All examples pass:</string>
 							<reference key="NSSupport" ref="766174611"/>
 							<reference key="NSControlView" ref="563284844"/>
 							<reference key="NSBackgroundColor" ref="420721054"/>
@@ -1948,7 +1937,7 @@
 					<object class="NSPopUpButton" id="1014351561">
 						<reference key="NSNextResponder" ref="1041558644"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{263, 127}, {100, 26}}</string>
+						<string key="NSFrame">{{282, 127}, {159, 26}}</string>
 						<reference key="NSSuperview" ref="1041558644"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSPopUpButtonCell" key="NSCell" id="962239886">
@@ -2013,14 +2002,14 @@
 					<object class="NSButton" id="520753187">
 						<reference key="NSNextResponder" ref="1041558644"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{18, 212}, {134, 18}}</string>
+						<string key="NSFrame">{{18, 212}, {164, 18}}</string>
 						<reference key="NSSuperview" ref="1041558644"/>
 						<int key="NSTag">301</int>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="200841675">
 							<int key="NSCellFlags">67239424</int>
 							<int key="NSCellFlags2">0</int>
-							<string key="NSContents">Speak test results</string>
+							<string key="NSContents">Speak example results</string>
 							<reference key="NSSupport" ref="766174611"/>
 							<reference key="NSControlView" ref="520753187"/>
 							<int key="NSButtonFlags">1211912703</int>
@@ -2036,7 +2025,7 @@
 					<object class="NSTextField" id="431746641">
 						<reference key="NSNextResponder" ref="1041558644"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{20, 130}, {238, 22}}</string>
+						<string key="NSFrame">{{39, 130}, {238, 22}}</string>
 						<reference key="NSSuperview" ref="1041558644"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="122623700">
@@ -2053,13 +2042,13 @@
 					<object class="NSTextField" id="191707017">
 						<reference key="NSNextResponder" ref="1041558644"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{17, 105}, {124, 17}}</string>
+						<string key="NSFrame">{{36, 105}, {124, 17}}</string>
 						<reference key="NSSuperview" ref="1041558644"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="690396023">
 							<int key="NSCellFlags">67239488</int>
 							<int key="NSCellFlags2">272630784</int>
-							<string key="NSContents">Tests fail:</string>
+							<string key="NSContents">Examples fail:</string>
 							<reference key="NSSupport" ref="766174611"/>
 							<reference key="NSControlView" ref="191707017"/>
 							<reference key="NSBackgroundColor" ref="420721054"/>
@@ -2069,7 +2058,7 @@
 					<object class="NSPopUpButton" id="297976139">
 						<reference key="NSNextResponder" ref="1041558644"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{263, 72}, {100, 26}}</string>
+						<string key="NSFrame">{{282, 72}, {159, 26}}</string>
 						<reference key="NSSuperview" ref="1041558644"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSPopUpButtonCell" key="NSCell" id="310504326">
@@ -2134,7 +2123,7 @@
 					<object class="NSTextField" id="141954266">
 						<reference key="NSNextResponder" ref="1041558644"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{20, 75}, {238, 22}}</string>
+						<string key="NSFrame">{{39, 75}, {238, 22}}</string>
 						<reference key="NSSuperview" ref="1041558644"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="954737033">
@@ -2151,13 +2140,13 @@
 					<object class="NSTextField" id="696650461">
 						<reference key="NSNextResponder" ref="1041558644"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{17, 50}, {200, 17}}</string>
+						<string key="NSFrame">{{36, 50}, {226, 17}}</string>
 						<reference key="NSSuperview" ref="1041558644"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="444280052">
 							<int key="NSCellFlags">67239488</int>
 							<int key="NSCellFlags2">272630784</int>
-							<string key="NSContents">Tests pass with some pending:</string>
+							<string key="NSContents">Examples pass with some pending:</string>
 							<reference key="NSSupport" ref="766174611"/>
 							<reference key="NSControlView" ref="696650461"/>
 							<reference key="NSBackgroundColor" ref="420721054"/>
@@ -2167,7 +2156,7 @@
 					<object class="NSPopUpButton" id="385163579">
 						<reference key="NSNextResponder" ref="1041558644"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{263, 17}, {100, 26}}</string>
+						<string key="NSFrame">{{282, 17}, {159, 26}}</string>
 						<reference key="NSSuperview" ref="1041558644"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSPopUpButtonCell" key="NSCell" id="371787163">
@@ -2232,7 +2221,7 @@
 					<object class="NSTextField" id="412222205">
 						<reference key="NSNextResponder" ref="1041558644"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{20, 20}, {238, 22}}</string>
+						<string key="NSFrame">{{39, 20}, {238, 22}}</string>
 						<reference key="NSSuperview" ref="1041558644"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="989034622">
@@ -2249,7 +2238,7 @@
 					<object class="NSTextField" id="196311619">
 						<reference key="NSNextResponder" ref="1041558644"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{17, 189}, {405, 17}}</string>
+						<string key="NSFrame">{{36, 189}, {405, 17}}</string>
 						<reference key="NSSuperview" ref="1041558644"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="989548153">
@@ -2264,7 +2253,7 @@ aGVuOg</string>
 						</object>
 					</object>
 				</object>
-				<string key="NSFrameSize">{439, 248}</string>
+				<string key="NSFrameSize">{458, 248}</string>
 				<reference key="NSSuperview"/>
 				<string key="NSClassName">NSView</string>
 			</object>
@@ -3812,8 +3801,8 @@ aGVuOg</string>
 							<reference ref="541596872"/>
 							<reference ref="638969212"/>
 							<reference ref="671140999"/>
-							<reference ref="405572099"/>
 							<reference ref="770329665"/>
+							<reference ref="405572099"/>
 						</object>
 						<reference key="parent" ref="117932125"/>
 						<string key="objectName">EditorPrefsView</string>
@@ -4280,16 +4269,16 @@ aGVuOg</string>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="520753187"/>
-							<reference ref="196311619"/>
 							<reference ref="563284844"/>
+							<reference ref="1014351561"/>
+							<reference ref="431746641"/>
 							<reference ref="191707017"/>
 							<reference ref="297976139"/>
 							<reference ref="141954266"/>
 							<reference ref="696650461"/>
 							<reference ref="385163579"/>
 							<reference ref="412222205"/>
-							<reference ref="431746641"/>
-							<reference ref="1014351561"/>
+							<reference ref="196311619"/>
 						</object>
 						<reference key="parent" ref="117932125"/>
 						<string key="objectName">SpeechPrefsView</string>
@@ -4994,8 +4983,8 @@ aGVuOg</string>
 					<reference ref="9"/>
 					<string>com.apple.WebKitIBPlugin</string>
 					<reference ref="9"/>
-					<string>{{1331, 244}, {711, 694}}</string>
-					<string>{{1331, 244}, {711, 694}}</string>
+					<string>{{135, 106}, {711, 694}}</string>
+					<string>{{135, 106}, {711, 694}}</string>
 					<reference ref="9"/>
 					<reference ref="9"/>
 					<string>{{706, 153}, {711, 694}}</string>
@@ -5026,14 +5015,14 @@ aGVuOg</string>
 					<reference ref="9"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
-					<string>{{122, 946}, {395, 20}}</string>
+					<string>{{122, 836}, {395, 20}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
 					<string>{{0, 1114}, {312, 20}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
-					<string>{{597, 257}, {397, 463}}</string>
-					<string>{{597, 257}, {397, 463}}</string>
+					<string>{{449, 257}, {397, 463}}</string>
+					<string>{{449, 257}, {397, 463}}</string>
 					<reference ref="9"/>
 					<string>{{222, 265}, {397, 279}}</string>
 					<reference ref="6"/>
@@ -5081,7 +5070,7 @@ aGVuOg</string>
 					</object>
 					<string>{{460, 573}, {345, 94}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{589, 919}, {313, 138}}</string>
+					<string>{{533, 718}, {313, 138}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{{192, 569}, {243, 54}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -5130,7 +5119,7 @@ aGVuOg</string>
 							<bool key="EncodedWithXMLCoder">YES</bool>
 						</object>
 					</object>
-					<string>{{388, 728}, {441, 134}}</string>
+					<string>{{388, 722}, {441, 134}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<object class="NSMutableDictionary">
 						<string key="NS.key.0">ToolTip</string>
@@ -5248,7 +5237,7 @@ aGVuOg</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{369, 426}, {439, 248}}</string>
+					<string>{{265, 334}, {458, 248}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
@@ -5277,7 +5266,7 @@ aGVuOg</string>
 						<object class="IBToolTipAttribute" key="NS.object.0">
 							<string key="name">ToolTip</string>
 							<reference key="object" ref="196311619"/>
-							<string key="toolTip">Enter plain text, and optionally insert a question mark (?) where you want the number of tests (passing/failing/pending) indicated.</string>
+							<string key="toolTip">Enter plain text, and optionally insert a question mark (?) where you want the number of examples (passing/failing/pending) indicated.</string>
 						</object>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -5355,10 +5344,19 @@ aGVuOg</string>
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<object class="IBPartialClassDescription">
 					<string key="className">DrawerController</string>
-					<string key="superclassName">NSWindowController</string>
+					<string key="superclassName">OSX</string>
 					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">hideBoxClicked:</string>
-						<string key="NS.object.0">id</string>
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSMutableArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>hideBoxClicked:</string>
+							<string>restoreSizeFromLastSession:</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
+						</object>
 					</object>
 					<object class="NSMutableDictionary" key="outlets">
 						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -5382,7 +5380,7 @@ aGVuOg</string>
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">DrawerController</string>
-					<string key="superclassName">NSWindowController</string>
+					<string key="superclassName">OSX</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBUserSource</string>
 						<string key="minorKey"/>
@@ -5405,7 +5403,7 @@ aGVuOg</string>
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">PreferencesController</string>
-					<string key="superclassName">NSWindowController</string>
+					<string key="superclassName">OSX</string>
 					<object class="NSMutableDictionary" key="actions">
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSMutableArray" key="dict.sortedKeys">
@@ -5414,6 +5412,7 @@ aGVuOg</string>
 							<string>editorCheckBoxClicked:</string>
 							<string>editorSelectChanged:</string>
 							<string>resetHiddenNotices:</string>
+							<string>showWindow:</string>
 							<string>speechCheckBoxClicked:</string>
 							<string>toolbarItemClicked:</string>
 							<string>voiceTestsFailChanged:</string>
@@ -5422,6 +5421,7 @@ aGVuOg</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -5499,7 +5499,7 @@ aGVuOg</string>
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">PreferencesController</string>
-					<string key="superclassName">NSWindowController</string>
+					<string key="superclassName">OSX</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBUserSource</string>
 						<string key="minorKey"/>
@@ -5523,7 +5523,20 @@ aGVuOg</string>
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">SpecTable</string>
-					<string key="superclassName">NSObject</string>
+					<string key="superclassName">OSX</string>
+					<object class="NSMutableDictionary" key="actions">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSMutableArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>addSelectedFileToRunnerQueue:</string>
+							<string>selectFileAndLoadView:</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
+						</object>
+					</object>
 					<object class="NSMutableDictionary" key="outlets">
 						<string key="NS.key.0">specsTable</string>
 						<string key="NS.object.0">id</string>
@@ -5535,7 +5548,7 @@ aGVuOg</string>
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">SpecTable</string>
-					<string key="superclassName">NSObject</string>
+					<string key="superclassName">OSX</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBUserSource</string>
 						<string key="minorKey"/>
@@ -5543,7 +5556,7 @@ aGVuOg</string>
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">WebviewController</string>
-					<string key="superclassName">NSWindowController</string>
+					<string key="superclassName">OSX</string>
 					<object class="NSMutableDictionary" key="actions">
 						<string key="NS.key.0">toolbarItemClicked:</string>
 						<string key="NS.object.0">id</string>
@@ -5552,12 +5565,14 @@ aGVuOg</string>
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>current_spec_file_view</string>
 							<string>tabBar</string>
 							<string>toolbar</string>
 							<string>view</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -5570,7 +5585,7 @@ aGVuOg</string>
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">WebviewController</string>
-					<string key="superclassName">NSWindowController</string>
+					<string key="superclassName">OSX</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBUserSource</string>
 						<string key="minorKey"/>
@@ -5578,7 +5593,7 @@ aGVuOg</string>
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">WindowController</string>
-					<string key="superclassName">NSWindowController</string>
+					<string key="superclassName">OSX</string>
 					<object class="NSMutableDictionary" key="actions">
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSMutableArray" key="dict.sortedKeys">
@@ -5630,7 +5645,7 @@ aGVuOg</string>
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">WindowController</string>
-					<string key="superclassName">NSWindowController</string>
+					<string key="superclassName">OSX</string>
 					<object class="NSMutableDictionary" key="outlets">
 						<string key="NS.key.0">drawerView</string>
 						<string key="NS.object.0">id</string>

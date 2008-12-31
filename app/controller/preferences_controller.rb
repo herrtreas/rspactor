@@ -127,12 +127,12 @@ class PreferencesController < OSX::NSWindowController
 	
 	def initSpeechPrefView
     @speechUseSpeechCheckBox.state = $app.default_from_key(:speech_use_speech, '0')
-		@phraseForTestsPass.stringValue = $app.default_from_key(:speech_phrase_tests_pass, 'All tests passed')
-		@phraseForTestsFail.stringValue = $app.default_from_key(:speech_phrase_tests_fail, 'Tests failed!')
-		@phraseForTestsPending.stringValue = $app.default_from_key(:speech_phrase_tests_pending, 'Tests passed, some pending')
+		@phraseForTestsPass.stringValue = $app.default_from_key(:speech_phrase_tests_pass, 'All examples passed.')
+		@phraseForTestsFail.stringValue = $app.default_from_key(:speech_phrase_tests_fail, 'Examples failed!')
+		@phraseForTestsPending.stringValue = $app.default_from_key(:speech_phrase_tests_pending, 'Examples passed, some pending.')
 		
-		voices = NSSpeechSynthesizer.availableVoices
-		default_voice = NSSpeechSynthesizer.defaultVoice
+		voices = NSSpeechSynthesizer.availableVoices.collect { |v| v.split('.').last }
+		default_voice = NSSpeechSynthesizer.defaultVoice.split('.').last
 
 		@voiceTestsPassSelect.removeAllItems
 		@voiceTestsPassSelect.addItemsWithTitles(voices)

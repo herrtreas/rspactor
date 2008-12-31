@@ -45,6 +45,7 @@ class SpeechController < OSX::NSObject
     speak(:error)    
   end
 
+
 	protected
 			
 	def speak_results?
@@ -72,7 +73,7 @@ class SpeechController < OSX::NSObject
 	  if $app.default_from_key(key).empty?
 	    @speechSynthesizer.setVoice(OSX::NSSpeechSynthesizer.defaultVoice)
 	  else
-		  @speechSynthesizer.setVoice($app.default_from_key(key))
+		  @speechSynthesizer.setVoice("com.apple.speech.synthesis.voice." + $app.default_from_key(key))
 		end
   end
 end
