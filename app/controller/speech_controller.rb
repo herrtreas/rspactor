@@ -54,17 +54,25 @@ class SpeechController < OSX::NSObject
 	def speak(kind, amount=0)
 		case kind
 		when :pass
-			@speechSynthesizer.setVoice($app.default_from_key(:speech_voice_tests_pass))
+		  setVoiceTo :speech_voice_tests_pass
 			speechSynthesizer.startSpeakingString($app.default_from_key(:speech_phrase_tests_pass).sub(/\?/, amount.to_s))
 		when :failed
-			@speechSynthesizer.setVoice($app.default_from_key(:speech_voice_tests_fail))
+		  setVoiceTo :speech_voice_tests_fail
 			speechSynthesizer.startSpeakingString($app.default_from_key(:speech_phrase_tests_fail).sub(/\?/, amount.to_s))
 		when :pending
-			@speechSynthesizer.setVoice($app.default_from_key(:speech_voice_tests_pending))
+		  setVoiceTo :speech_voice_tests_pending
 			speechSynthesizer.startSpeakingString($app.default_from_key(:speech_phrase_tests_pending).sub(/\?/, amount.to_s))
 		when :error
-			@speechSynthesizer.setVoice($app.default_from_key(:speech_voice_tests_fail))
+		  setVoiceTo :speech_voice_tests_fail
 			speechSynthesizer.startSpeakingString('SpecRunner aborted. Please have a look at the output for more information.')
 		end
 	end
+	
+	def setVoiceTo(key)
+	  if $app.default_from_key(key).empty?
+	    @speechSynthesizer.setVoice(OSX::NSSpeechSynthesizer.defaultVoice)
+	  else
+		  @speechSynthesizer.setVoice($app.default_from_key(key))
+		end
+  end
 end
