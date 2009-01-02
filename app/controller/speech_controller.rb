@@ -11,20 +11,12 @@ class SpeechController < OSX::NSObject
   attr_accessor :speechSynthesizer
 
 	def initialize
-		receive :spec_run_example_failed,   :specRunFinishedSingleSpec
     receive :spec_run_dump_summary,     :specRunFinishedWithSummaryDump    
     receive :error,                     :errorPosted    
 		
 		@speechSynthesizer = OSX::NSSpeechSynthesizer.alloc.initWithVoice(@voiceForError)
 	end
-	
-	def specRunFinishedSingleSpec(notification)    
-    return unless speak_results?
-		
-    spec = notification.userInfo.first
-		speak(spec.state)
-  end
-  
+
   def specRunFinishedWithSummaryDump(notification)    
     return unless speak_results?
 
