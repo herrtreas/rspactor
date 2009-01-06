@@ -12,7 +12,7 @@ TARGET                = "RSpactor.app"
 APPVERSION            = File.open('VERSION', 'r') { |f| f.readlines.join("") }
 PUBLISH               = 'yourname@yourhost:path'
 DEFAULT_TARGET        = APPNAME
-DEFAULT_CONFIGURATION = 'Debug'
+DEFAULT_CONFIGURATION = 'Release'
 RELEASE_CONFIGURATION = 'Release'
 
 # Tasks
