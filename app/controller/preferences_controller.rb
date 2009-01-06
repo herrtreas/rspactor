@@ -120,7 +120,7 @@ class PreferencesController < OSX::NSWindowController
   def initEditorPrefView
     @editorCheckBox.state = $app.default_from_key(:editor_integration, '0')
     @editorSelect.removeAllItems
-    @editorSelect.addItemsWithTitles(['TextMate', 'Netbeans'])
+    @editorSelect.addItemsWithTitles(['TextMate', 'Netbeans', 'MacVim'])
     @editorSelect.selectItemWithTitle($app.default_from_key(:editor, 'TextMate'))
     editorCheckBoxClicked(nil)
   end

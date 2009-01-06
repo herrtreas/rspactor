@@ -6,3 +6,10 @@ the Netbeans window freezes after opening a file in it from the command line.
 But one just has to resize the window or hit command+shift+return to make it full
 screen to "unfreeze" it. It's a pain but it's still quicker than opening the file
 manually and scrolling down to the relevant line.
+
+== Building instructions
+
+$ git clone git://github.com/hchoroomi/rspactor.git
+$ cd rspactor
+$ rake package
+
