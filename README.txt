@@ -13,3 +13,8 @@ $ git clone git://github.com/hchoroomi/rspactor.git
 $ cd rspactor
 $ rake package
 
+If you get "ld: framework not found Ruby" on Leopard:
+
+$ cd /Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/Ruby.framework/Versions/Current
+$ sudo ln -s usr/lib/libruby.dylib Ruby
+
