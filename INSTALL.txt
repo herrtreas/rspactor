@@ -1,4 +1,7 @@
-* Simply drop RSpactor.app into your Application directory
+* Drop RSpactor.app into your /Application directory
 
-* Symlink rspactor 's command-line tool: 
-* sudo ln -s /Applications/RSpactor.app/Contents/Resources/rspactor_bin.rb /usr/bin/rspactor
+* Install RSpec if you haven't already: 
+  sudo gem install rspec
+  
+* Symlink RSpactor's command-line tool: 
+  sudo ln -s /Applications/RSpactor.app/Contents/Resources/rspactor_bin.rb /usr/bin/rspactor
