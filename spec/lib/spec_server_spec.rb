@@ -1,10 +1,11 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 require 'spec_server'
+require 'notification'
 
 describe SpecServer do
   before(:each) do
     $app = mock('App')
-    $app.stub!(:post_notification)
+    Notification.stub!(:send)
   end
   
   describe 'with initialization and cleanup' do
@@ -64,7 +65,7 @@ describe SpecServer do
     end
     
     it 'should post a notification after launch' do
-      $app.should_receive(:post_notification).with(:spec_server_loading)
+      Notification.should_receive(:send).with(:spec_server_loading)
       @mock_task.stub!(:launch)
       SpecServer.start
     end
@@ -145,7 +146,7 @@ describe SpecServer do
         
         it 'should post a notification if spec_server is ready' do
           @mock_task.stub!(:standardOutput).and_return(@mock_std_pipe)
-          $app.should_receive(:post_notification).with(:spec_server_ready)
+          Notification.should_receive(:send).with(:spec_server_ready)
           SpecServer.should_receive(:readDataFromPipe).and_return('Ready')
           SpecServer.pipeContentAvailable(@mock_notification)
           SpecServer.should be_ready
@@ -155,7 +156,7 @@ describe SpecServer do
           @mock_notification.stub!(:object).and_return(@mock_error_file_handle)
           @mock_task.stub!(:standardOutput).and_return(@mock_std_pipe)
           @mock_task.stub!(:standardError).and_return(@mock_err_pipe)
-          $app.should_receive(:post_notification).with(:spec_server_failed, 'error')
+          Notification.should_receive(:send).with(:spec_server_failed, 'error')
           SpecServer.should_receive(:readDataFromPipe).and_return('error')
           SpecServer.pipeContentAvailable(@mock_notification)
         end

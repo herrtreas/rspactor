@@ -5,6 +5,7 @@ require 'speech_controller'
 require 'ext/growl'
 require 'spec_runner'
 require 'example_runner_job'
+require 'defaults'
 
 describe WindowController do
   before(:each) do
@@ -66,10 +67,10 @@ describe WindowController do
     
     $app = mock('App')
     $app.stub!(:alert)
-    $app.stub!(:default_for_key)
-    $app.stub!(:default_from_key)
+    Defaults.stub!(:set)
+    Defaults.stub!(:get)
     $app.stub!(:file_exist?).and_return(true)
-    $app.stub!(:post_notification)
+    Notification.stub!(:send)
     SpecRunner.stub!(:run_in_path).and_return(File.dirname(__FILE__))    
   end
   
@@ -132,7 +133,7 @@ describe WindowController do
   end 
   
   it 'should restore the last run path on awake' do
-    $app.should_receive(:default_from_key).with(:spec_run_path).and_return('test')
+    Defaults.should_receive(:get).with(:spec_run_path).and_return('test')
     @mock_pathTextField.should_receive(:stringValue=).with('test')
     @controller.awakeFromNib
   end

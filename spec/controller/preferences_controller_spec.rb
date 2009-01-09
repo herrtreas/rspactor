@@ -1,12 +1,13 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 require 'preferences_controller'
+require 'defaults'
 
 describe PreferencesController do
   before(:each) do
     $app = mock('App')
-    $app.stub!(:default_from_key)
-    $app.stub!(:default_for_key)
     $app.stub!(:file_exist?)
+    Defaults.stub!(:get)
+    Defaults.stub!(:set)
     @controller = PreferencesController.new
     @mock_panel = mock('Panel')
     @mock_spec_field = mock('SpecField', :stringValue => '')
@@ -24,7 +25,7 @@ describe PreferencesController do
     @mock_editor_warning = mock('EditorWarning')
     @mock_editor_warning.stub!(:hidden=)
     @mock_editor_warning.stub!(:toolTip=)
-    @mock_generals_rerun_specs.stub!(:state=)
+    @mock_rerun_specs.stub!(:state=)
     @controller.panel = @mock_panel
     @controller.specBinPath = @mock_spec_field
     @controller.rubyBinPath = @mock_ruby_field
@@ -32,7 +33,7 @@ describe PreferencesController do
     @controller.specBinWarning = @mock_spec_warning
     @controller.rubyBinWarning = @mock_ruby_warning
     @controller.editorBinWarning = @mock_editor_warning
-    @controller.generalsRerunSpecsCheckBox = @mock_generals_rerun_specs
+    @controller.generalsRerunSpecsCheckBox = @mock_rerun_specs
     @controller.stub!(:initToolbar)
     @controller.stub!(:initEditorPrefView)
     @controller.stub!(:initSpeechPrefView)
@@ -59,19 +60,19 @@ describe PreferencesController do
   end
 
   it 'should read the default spec_bin_path from defaults and assign it to spec_bin textfield' do
-    $app.should_receive(:default_from_key).with(:spec_bin_path, '/usr/bin/spec').and_return('/usr/bin/spec')
+    Defaults.should_receive(:get).with(:spec_bin_path, '/usr/bin/spec').and_return('/usr/bin/spec')
     @mock_spec_field.should_receive(:stringValue=).with('/usr/bin/spec')
     @controller.set_default_spec_bin_path
   end
 
   it 'should read the default ruby_bin_path from defaults and assign it to ruby_bin textfield' do
-    $app.should_receive(:default_from_key).with(:ruby_bin_path, '/usr/bin/ruby').and_return('/usr/bin/ruby')
+    Defaults.should_receive(:get).with(:ruby_bin_path, '/usr/bin/ruby').and_return('/usr/bin/ruby')
     @mock_ruby_field.should_receive(:stringValue=).with('/usr/bin/ruby')
     @controller.set_default_ruby_bin_path
   end
 
   it 'should read the default editor_bin_path from defaults and assign it to editor_bin textfield' do
-    $app.should_receive(:default_from_key).with(:editor_bin_path, '/usr/bin/mate').and_return('/usr/bin/mate')
+    Defaults.should_receive(:get).with(:editor_bin_path, '/usr/bin/mate').and_return('/usr/bin/mate')
     @mock_editor_field.should_receive(:stringValue=).with('/usr/bin/mate')
     @controller.set_default_editor_bin_path
   end
@@ -82,9 +83,9 @@ describe PreferencesController do
     @mock_spec_field.stub!(:stringValue).and_return('/tmp')    
     @mock_ruby_field.stub!(:stringValue).and_return('/tmp')    
     @mock_editor_field.stub!(:stringValue).and_return('/tmp')
-    $app.should_receive(:default_for_key).with(:spec_bin_path, '/tmp').once
-    $app.should_receive(:default_for_key).with(:ruby_bin_path, '/tmp').once
-    $app.should_receive(:default_for_key).with(:editor_bin_path, '/tmp').once
+    Defaults.should_receive(:set).with(:spec_bin_path, '/tmp').once
+    Defaults.should_receive(:set).with(:ruby_bin_path, '/tmp').once
+    Defaults.should_receive(:set).with(:editor_bin_path, '/tmp').once
     $app.stub!(:file_exist?).and_return(true)
     @controller.stub!(:setSpeechPhrasesFromNotification)
     @controller.controlTextDidEndEditing(mock_notification)    

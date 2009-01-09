@@ -1,9 +1,9 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 require 'growl_controller'
 require 'ext/growl'
-require 'options'
 require 'spec_object'
 require 'spec_runner'
+require 'defaults'
 
 describe GrowlController do
   before(:each) do
@@ -17,7 +17,7 @@ describe GrowlController do
   end
   
   it 'should growl a processed example' do
-    Options.stub!(:summarize_growl_output?).and_return(false)
+    Defaults.stub!(:summarize_growl_output?).and_return(false)
     spec = SpecObject.new    
     mock_notification = mock('Notification')    
     mock_notification.stub!(:userInfo).and_return([spec])
@@ -26,7 +26,7 @@ describe GrowlController do
   end
   
   it 'should not growl a processed example if summarization is activated (prefs)' do
-    Options.stub!(:summarize_growl_output?).and_return(true)
+    Defaults.stub!(:summarize_growl_output?).and_return(true)
     @controller.growl.should_not_receive(:notify)
     @controller.specRunFinishedSingleSpec(nil)
   end

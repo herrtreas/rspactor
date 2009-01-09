@@ -23,26 +23,26 @@ class PreferencesController < OSX::NSWindowController
   ib_action :checkBoxClickedToSaveState do |sender|
     case sender.tag
     when 101:
-      $app.default_for_key(:generals_rerun_failed_specs, sender.state)      
+      Defaults.set(:rerun_failed_specs, sender.state)      
     when 102:
-      $app.default_for_key(:generals_summarize_growl_output, sender.state)
+      Defaults.set(:summarize_growl_output, sender.state)
     when 103:
-      $app.default_for_key(:generals_auto_activate_spec_server, sender.state)
+      Defaults.set(:auto_activate_spec_server, sender.state)
     end
   end
   
   ib_action :resetHiddenNotices do |sender|
-    $app.default_for_key('hide_welcome_message', '0')    
+    Defaults.set('hide_welcome_message', '0')    
   end
   
   def initialize
-    unless $app.default_from_key(:spec_bin_path, nil)
+    unless Defaults.get(:spec_bin_path, nil)
       spec_bin_path = `/usr/bin/which spec`.strip.chomp
-      $app.default_for_key(:spec_bin_path, spec_bin_path.chomp.strip) unless spec_bin_path.empty?
+      Defaults.set(:spec_bin_path, spec_bin_path.chomp.strip) unless spec_bin_path.empty?
     end
-    unless $app.default_from_key(:ruby_bin_path, nil)
+    unless Defaults.get(:ruby_bin_path, nil)
       ruby_bin_path = `/usr/bin/which ruby`.strip.chomp
-      $app.default_for_key(:ruby_bin_path, ruby_bin_path.chomp.strip) unless ruby_bin_path.empty?
+      Defaults.set(:ruby_bin_path, ruby_bin_path.chomp.strip) unless ruby_bin_path.empty?
     end
   end
   
@@ -62,15 +62,15 @@ class PreferencesController < OSX::NSWindowController
   end
   
   def set_default_spec_bin_path
-    @specBinPath.stringValue = $app.default_from_key(:spec_bin_path, '/usr/bin/spec')
+    @specBinPath.stringValue = Defaults.get(:spec_bin_path, '/usr/bin/spec')
   end
   
   def set_default_ruby_bin_path
-    @rubyBinPath.stringValue = $app.default_from_key(:ruby_bin_path, '/usr/bin/ruby')
+    @rubyBinPath.stringValue = Defaults.get(:ruby_bin_path, '/usr/bin/ruby')
   end
 
   def set_default_editor_bin_path
-    @editorBinPath.stringValue = $app.default_from_key(:editor_bin_path, '/usr/bin/mate')
+    @editorBinPath.stringValue = Defaults.get(:editor_bin_path, '/usr/bin/mate')
   end
 	  
   def controlTextDidEndEditing(notification)
@@ -85,15 +85,15 @@ class PreferencesController < OSX::NSWindowController
   end
 
   def setSpeechPhrasesFromNotification(notification)
-    $app.default_for_key(:speech_phrase_tests_pass, @phraseForTestsPass.stringValue.chomp.strip) if notification.nil? || notification.object.stringValue == @phraseForTestsPass.stringValue
-    $app.default_for_key(:speech_phrase_tests_fail, @phraseForTestsFail.stringValue.chomp.strip) if notification.nil? || notification.object.stringValue == @phraseForTestsFail.stringValue
-    $app.default_for_key(:speech_phrase_tests_pending, @phraseForTestsPending.stringValue.chomp.strip) if notification.nil? || notification.object.stringValue == @phraseForTestsPending.stringValue
+    Defaults.set(:speech_phrase_tests_pass, @phraseForTestsPass.stringValue.chomp.strip) if notification.nil? || notification.object.stringValue == @phraseForTestsPass.stringValue
+    Defaults.set(:speech_phrase_tests_fail, @phraseForTestsFail.stringValue.chomp.strip) if notification.nil? || notification.object.stringValue == @phraseForTestsFail.stringValue
+    Defaults.set(:speech_phrase_tests_pending, @phraseForTestsPending.stringValue.chomp.strip) if notification.nil? || notification.object.stringValue == @phraseForTestsPending.stringValue
   end
   
   def check_path_and_set_default(key, path_object, warning_object)
     path_object.stringValue = path_object.stringValue.chomp.strip
     path = path_object.stringValue
-    $app.default_for_key(key, path)
+    Defaults.set(key, path)
     if File.exist?(path)
       warning_object.hidden = true
     else
@@ -103,9 +103,9 @@ class PreferencesController < OSX::NSWindowController
   end
 	  
   def initGeneralPrefView
-    @generalsRerunSpecsCheckBox.state = $app.default_from_key(:generals_rerun_failed_specs, '1')
-    @generalsSummarizeGrowl.state = $app.default_from_key(:generals_summarize_growl_output, '0')
-    @generalsAutoActivateSpecServer.state = $app.default_from_key(:generals_auto_activate_spec_server, '1')
+    @generalsRerunSpecsCheckBox.state = Defaults.get(:rerun_failed_specs, '1')
+    @generalsSummarizeGrowl.state = Defaults.get(:summarize_growl_output, '0')
+    @generalsAutoActivateSpecServer.state = Defaults.get(:auto_activate_spec_server, '1')
   end
   
   def initToolbar
@@ -118,31 +118,31 @@ class PreferencesController < OSX::NSWindowController
   end
   
   def initEditorPrefView
-    @editorCheckBox.state = $app.default_from_key(:editor_integration, '0')
+    @editorCheckBox.state = Defaults.get(:editor_integration, '0')
     @editorSelect.removeAllItems
-    @editorSelect.addItemsWithTitles(['TextMate', 'Netbeans'])
-    @editorSelect.selectItemWithTitle($app.default_from_key(:editor, 'TextMate'))
+    @editorSelect.addItemsWithTitles(['TextMate', 'Netbeans', 'MacVim'])
+    @editorSelect.selectItemWithTitle(Defaults.get(:editor, 'TextMate'))
     editorCheckBoxClicked(nil)
   end
 	
 	def initSpeechPrefView
-    @speechUseSpeechCheckBox.state = $app.default_from_key(:speech_use_speech, '0')
-		@phraseForTestsPass.stringValue = $app.default_from_key(:speech_phrase_tests_pass, 'All examples passed.')
-		@phraseForTestsFail.stringValue = $app.default_from_key(:speech_phrase_tests_fail, 'Examples failed!')
-		@phraseForTestsPending.stringValue = $app.default_from_key(:speech_phrase_tests_pending, 'Examples passed, some pending.')
+    @speechUseSpeechCheckBox.state = Defaults.get(:speech_use_speech, '0')
+		@phraseForTestsPass.stringValue = Defaults.get(:speech_phrase_tests_pass, 'All examples passed.')
+		@phraseForTestsFail.stringValue = Defaults.get(:speech_phrase_tests_fail, 'Examples failed!')
+		@phraseForTestsPending.stringValue = Defaults.get(:speech_phrase_tests_pending, 'Examples passed, some pending.')
 		
 		voices = NSSpeechSynthesizer.availableVoices.collect { |v| v.split('.').last }
 		default_voice = NSSpeechSynthesizer.defaultVoice.split('.').last
 
 		@voiceTestsPassSelect.removeAllItems
 		@voiceTestsPassSelect.addItemsWithTitles(voices)
-    @voiceTestsPassSelect.selectItemWithTitle($app.default_from_key(:speech_voice_tests_pass, default_voice))
+    @voiceTestsPassSelect.selectItemWithTitle(Defaults.get(:speech_voice_tests_pass, default_voice))
 		@voiceTestsFailSelect.removeAllItems
 		@voiceTestsFailSelect.addItemsWithTitles(voices)
-    @voiceTestsFailSelect.selectItemWithTitle($app.default_from_key(:speech_voice_tests_fail, default_voice))
+    @voiceTestsFailSelect.selectItemWithTitle(Defaults.get(:speech_voice_tests_fail, default_voice))
 		@voiceTestsPendingSelect.removeAllItems
 		@voiceTestsPendingSelect.addItemsWithTitles(voices)
-    @voiceTestsPendingSelect.selectItemWithTitle($app.default_from_key(:speech_voice_tests_pending, default_voice))
+    @voiceTestsPendingSelect.selectItemWithTitle(Defaults.get(:speech_voice_tests_pending, default_voice))
 		
 		speechCheckBoxClicked(nil)
 	end
@@ -188,18 +188,18 @@ class PreferencesController < OSX::NSWindowController
   end  
   
   def editorCheckBoxClicked(sender)
-    $app.default_for_key(:editor_integration, @editorCheckBox.state)
+    Defaults.set(:editor_integration, @editorCheckBox.state)
     enabled = @editorCheckBox.state != 0
     @editorSelect.enabled = enabled
     @editorBinPath.enabled = enabled
   end
   
   def editorSelectChanged(sender)
-    $app.default_for_key(:editor, @editorSelect.selectedItem.title)
+    Defaults.set(:editor, @editorSelect.selectedItem.title)
   end
 	
 	def speechCheckBoxClicked(sender)
-		$app.default_for_key(:speech_use_speech, @speechUseSpeechCheckBox.state)
+		Defaults.set(:speech_use_speech, @speechUseSpeechCheckBox.state)
     enabled = @speechUseSpeechCheckBox.state != 0
 		@phraseForTestsPass.enabled = enabled
 		@phraseForTestsFail.enabled = enabled
@@ -210,15 +210,15 @@ class PreferencesController < OSX::NSWindowController
 	end
 	
 	def voiceTestsPassChanged(sender)
-    $app.default_for_key(:speech_voice_tests_pass, @voiceTestsPassSelect.selectedItem.title)
+    Defaults.set(:speech_voice_tests_pass, @voiceTestsPassSelect.selectedItem.title)
 	end
 	
 	def voiceTestsFailChanged(sender)
-    $app.default_for_key(:speech_voice_tests_fail, @voiceTestsFailSelect.selectedItem.title)
+    Defaults.set(:speech_voice_tests_fail, @voiceTestsFailSelect.selectedItem.title)
 	end
 	
 	def voiceTestsPendingChanged(sender)
-    $app.default_for_key(:speech_voice_tests_pending, @voiceTestsPendingSelect.selectedItem.title)
+    Defaults.set(:speech_voice_tests_pending, @voiceTestsPendingSelect.selectedItem.title)
 	end
   
   def windowWillClose(notification)

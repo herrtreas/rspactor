@@ -1,6 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 require 'app_controller'
+require 'notification'
 require 'service'
 require 'spec_object'
 require 'spec_runner'
@@ -58,7 +59,7 @@ describe AppController do
   it 'should track the processed spec run count' do
     mock_notification = mock('Notification')
     mock_notification.stub!(:userInfo).and_return([@mock_spec])
-    @app.stub!(:post_notification)
+    Notification.stub!(:send)
     old_spec_count = $processed_spec_count
     @app.spec_run_processed(mock_notification)
     @app.processed_spec_count.should_not eql(old_spec_count)
@@ -74,53 +75,5 @@ describe AppController do
   
   it 'should create a global reference of itself' do
     $app.should be_kind_of(AppController)
-  end
-  
-  it 'should allow to post any notification' do
-    mock_center = mock('Center')
-    mock_center.should_receive(:postNotificationName_object_userInfo)
-    @app.stub!(:center).and_return(mock_center)
-    @app.post_notification(:test, 'huhu')
-  end
-  
-  it 'should have a reference to users defaults object' do
-    @app.defaults.should eql(OSX::NSUserDefaults.standardUserDefaults)
-  end
-  
-  it 'should read the defauls object' do
-    @app.defaults.should_receive(:stringForKey).and_return('Test')
-    @app.default_from_key(:test).should eql('Test')
-  end
-  
-  it 'should return the rescue_value if defaults doesnt contain key' do
-    @app.defaults.stub!(:stringForKey).and_return(nil)
-    @app.default_from_key(:test, 'MU').should eql('MU')    
-  end
-  
-  it 'should set a default value' do
-    @app.defaults.should_receive(:setObject_forKey).with('FOOKuchen', 'test')
-    @app.default_for_key(:test, 'FOOKuchen')
-  end
-  
-  it 'should send a notification on the first failing spec' do
-    mock_notification = mock('Notification')
-    mock_notification.stub!(:userInfo).and_return([@mock_spec])
-    @app.stub!(:post_notification)
-    @app.should_receive(:post_notification).once.with(:first_failed_spec, @mock_spec)
-    @app.spec_run_processed(mock_notification)
-    @app.spec_run_processed(mock_notification)
-  end
-  
-  it 'should send a notification about processed specs' do
-    mock_notification = mock('Notification')
-    mock_notification.stub!(:userInfo).and_return([@mock_spec])
-    @app.stub!(:post_notification)
-    @app.should_receive(:post_notification).once.with(:spec_run_processed, @mock_spec)
-    @app.spec_run_processed(mock_notification)
-  end
-  
-  it 'should post a notification if the application gets resurrected' do
-    @app.should_receive(:post_notification).once.with(:application_resurrected)
-    @app.applicationShouldHandleReopen_hasVisibleWindows(nil, nil)    
   end
 end

@@ -54,7 +54,7 @@ class ExampleFiles
     unless @@example_files.delete_if { |path, file| file.suicide? }.empty?
       self.update_sorted_list
       reset_internal_stats!
-      $app.post_notification :file_table_reload_required
+      Notification.send :file_table_reload_required
     end
   end
   

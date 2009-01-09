@@ -18,7 +18,7 @@ class WindowController < OSX::NSWindowController
     initAndSetAutomaticPositionAndSizeStoring
     @growlController = GrowlController.alloc.init
 		@speechController = SpeechController.alloc.init
-    @pathTextField.stringValue = $app.default_from_key(:spec_run_path)
+    @pathTextField.stringValue = Defaults.get(:spec_run_path)
     focusPathTextField    
     hook_events
   end
@@ -68,7 +68,7 @@ class WindowController < OSX::NSWindowController
   
   def specRunPreparation(notification)
     showExampleRunPanels
-    @statusLabel.stringValue = "Loading RSpec environment.."
+    @statusLabel.stringValue = "Loading Test Runner.."
     @statusBar.indeterminate = true
     @statusBar.startAnimation(self)    
   end
@@ -98,7 +98,11 @@ class WindowController < OSX::NSWindowController
   end
   
   def savePathToUserDefaults(path)
-    $app.default_for_key(:spec_run_path, path)
+    Defaults.set(:spec_run_path, path)
+  end
+  
+  def updateStatusBarOnReadySpecServer(notification)
+    @statusLabel.stringValue = "Spec Server ready. Waiting for Test Runner.."
   end
   
   def relocateDirectoryAndRunSpecs(notification)
@@ -125,7 +129,7 @@ class WindowController < OSX::NSWindowController
     self.window.frameUsingName = 'rspactor_main_window'
     self.window.frameAutosaveName = 'rspactor_main_window'
   end
-  
+    
   def resurrectWindow(notification)
     self.window.makeKeyAndOrderFront(self)
   end
@@ -140,15 +144,15 @@ class WindowController < OSX::NSWindowController
   end
   
   def valid_bin_paths?
-    unless File.exist?($app.default_from_key(:spec_bin_path, ''))
+    unless File.exist?(Defaults.get(:spec_bin_path, ''))
       $app.alert("Cannot find your RSpec executable.", "Please check 'Preferences > Executables > RSpec'.")
       return false
     end
-    unless File.exist?($app.default_from_key(:ruby_bin_path, ''))
+    unless File.exist?(Defaults.get(:ruby_bin_path, ''))
       $app.alert("Cannot find your Ruby executable.", "Please check 'Preferences > Executables > Ruby'.")
       return false
     end
-    if $app.default_from_key(:editor_integration) == '1' && !File.exist?($app.default_from_key(:editor_bin_path, ''))
+    if Defaults.get(:editor_integration) == '1' && !File.exist?(Defaults.get(:editor_bin_path, ''))
       $app.alert("Cannot find your editor executable.", "Please check 'Preferences > Editor > Executable'.")
       return false
     end
@@ -156,16 +160,17 @@ class WindowController < OSX::NSWindowController
   end
 
   def hook_events
-    receive :spec_run_invoked,          :specRunPreparation    
-    receive :spec_run_start,            :specRunStarted
-    receive :spec_run_close,            :specRunFinished
-    receive :spec_run_example_passed,   :specRunFinishedSingleSpec
-    receive :spec_run_example_pending,  :specRunFinishedSingleSpec
-    receive :spec_run_example_failed,   :specRunFinishedSingleSpec
-    receive :spec_run_dump_summary,     :updateStatusBarExampleStateCounts    
-    receive :spec_server_loading,       :specServerLoading
-    receive :error,                     :specRunFinished
-    receive :relocate_and_run,          :relocateDirectoryAndRunSpecs
-    receive :application_resurrected,   :resurrectWindow    
+    Notification.subscribe self, :spec_run_invoked          => :specRunPreparation    
+    Notification.subscribe self, :spec_run_start            => :specRunStarted
+    Notification.subscribe self, :spec_run_close            => :specRunFinished
+    Notification.subscribe self, :spec_run_example_passed   => :specRunFinishedSingleSpec
+    Notification.subscribe self, :spec_run_example_pending  => :specRunFinishedSingleSpec
+    Notification.subscribe self, :spec_run_example_failed   => :specRunFinishedSingleSpec
+    Notification.subscribe self, :spec_run_dump_summary     => :updateStatusBarExampleStateCounts    
+    Notification.subscribe self, :spec_server_loading       => :specServerLoading
+    Notification.subscribe self, :error                     => :specRunFinished
+    Notification.subscribe self, :relocate_and_run          => :relocateDirectoryAndRunSpecs
+    Notification.subscribe self, :application_resurrected   => :resurrectWindow    
+    Notification.subscribe self, :spec_server_ready         => :updateStatusBarOnReadySpecServer
   end    
 end

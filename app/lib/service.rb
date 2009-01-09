@@ -24,12 +24,8 @@ module Service
       Time.now
     end
 
-    def center
-      OSX::NSNotificationCenter.defaultCenter
-    end
-    
     def incoming(name, *args)
-      center.postNotificationName_object_userInfo(name, self, args)
+      Notification.send name, *args
     end
     
   end

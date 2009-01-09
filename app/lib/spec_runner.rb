@@ -26,7 +26,7 @@ module SpecRunner
     def process_queue
       return false if command_running?      
       unless self.queue.empty?
-        $app.post_notification :spec_run_invoked
+        Notification.send :spec_run_invoked
         run_command(create_runner_arguments(self.queue.next_files))
       end
     end
@@ -36,7 +36,7 @@ module SpecRunner
       args << "--require=#{File.dirname(__FILE__)}/rspactor_formatter.rb"
       args << "-fRSpactorFormatter:STDOUT"
       args << '-L=mtime'
-      if Options.use_spec_server? && SpecServer.available?
+      if Defaults.use_spec_server? && SpecServer.available?
         $LOG.debug "Running Examples against spec_server"
         args << '--drb' 
       end
@@ -63,7 +63,7 @@ module SpecRunner
     def run_command(args)
       return false if command_running?
       
-      $app.post_notification :example_run_global_start
+      Notification.send :example_run_global_start
       
       @@command_running = true
       @@command_manually_aborted = false
@@ -92,16 +92,16 @@ module SpecRunner
 
     def prepare_running_environment(args)
       if File.exist?(File.join($app.root, 'script/spec'))
-        runner = "#{$app.default_from_key(:ruby_bin_path).chomp.strip}"
+        runner = "#{Defaults.get(:ruby_bin_path).chomp.strip}"
         args = args.unshift "#{$app.root}/script/spec"
         [runner, args]
       else
-        [$app.default_from_key(:spec_bin_path).chomp.strip, args]
+        [Defaults.get(:spec_bin_path).chomp.strip, args]
       end
     end
     
     def launch_current_task
-      if Options.use_spec_server? && SpecServer.available?
+      if Defaults.use_spec_server? && SpecServer.available?
         if SpecServer.ready?
           @task.launch unless @task.isRunning
         else

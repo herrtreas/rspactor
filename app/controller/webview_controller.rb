@@ -119,7 +119,7 @@ class WebviewController < OSX::NSWindowController
   end
   
   def editor_integration_enabled?
-    $app.default_from_key(:editor_integration) == '1'
+    Defaults.get(:editor_integration) == '1'
   end
   
   def reloadWebViewBeforeExampleRun(notification)
@@ -159,11 +159,13 @@ class WebviewController < OSX::NSWindowController
     message, context = message.split('@')
     if context == 'external'
       return unless editor_integration_enabled?
-      case $app.default_from_key(:editor)
+      case Defaults.get(:editor)
       when 'TextMate'
         TextMate.open_file_with_line(message)
       when 'Netbeans'
         Netbeans.open_file_with_line(message)
+      when 'MacVim'
+        MacVim.open_file_with_line(message)
       else
         TextMate.open_file_with_line(message)
       end
@@ -172,18 +174,18 @@ class WebviewController < OSX::NSWindowController
     elsif context == 'spec_view_from_file_path'
       showSpecFileViewFromFilePath(message)
     elsif context == 'hide'
-      $app.default_for_key('hide_welcome_message', '1')
+      Defaults.set('hide_welcome_message', '1')
     else
       $LOG.debug "No context given: #{message}"
     end
   end
   
   def hook_events
-    receive :fileToWebViewLoadingRequired,              :showSpecFileViewFromTable
-    receive :first_failed_spec,                         :showSpecFileViewFromSpec
-    receive :example_run_global_start,                  :reloadWebViewBeforeExampleRun
-    receive :spec_run_processed,                        :reloadWebView
-    receive :example_run_global_complete,               :reloadWebViewAfterExampleRun
-    receive :webview_reload_required_for_specs,         :reloadWebViewForSpecs    
+    Notification.subscribe self, :fileToWebViewLoadingRequired      => :showSpecFileViewFromTable
+    Notification.subscribe self, :first_failed_spec                 => :showSpecFileViewFromSpec
+    Notification.subscribe self, :example_run_global_start          => :reloadWebViewBeforeExampleRun
+    Notification.subscribe self, :spec_run_processed                => :reloadWebView
+    Notification.subscribe self, :example_run_global_complete       => :reloadWebViewAfterExampleRun
+    Notification.subscribe self, :webview_reload_required_for_specs => :reloadWebViewForSpecs    
   end
 end

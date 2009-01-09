@@ -6,10 +6,10 @@ class DrawerController < OSX::NSWindowController
   
   def awakeFromNib
     restoreSizeFromLastSession
-    @hideBox.state = $app.default_from_key(:hide_box_state, 0)
+    @hideBox.state = Defaults.get(:hide_box_state, 0)
     set_filter(@hideBox.state)
     @drawer.openOnEdge(0)
-    receive :retain_focus_on_drawer,  :setFocusOnTable
+    Notification.subscribe self, :retain_focus_on_drawer => :setFocusOnTable
   end
   
   def setFocusOnTable(notification)
@@ -17,18 +17,18 @@ class DrawerController < OSX::NSWindowController
   end
   
   def hideBoxClicked(sender)
-    $app.default_for_key(:hide_box_state, sender.state)
+    Defaults.set(:hide_box_state, sender.state)
     set_filter(sender.state)
-    $app.post_notification :file_table_reload_required
+    Notification.send :file_table_reload_required
   end
 
   def drawerWillResizeContents_toSize(sender, to_size)
-    $app.default_for_key(:files_drawer_width, to_size.width)
+    Defaults.set(:files_drawer_width, to_size.width)
     to_size
   end
   
   def restoreSizeFromLastSession
-    drawer_size = $app.default_from_key(:files_drawer_width)
+    drawer_size = Defaults.get(:files_drawer_width)
     if !drawer_size.empty?
       size = OSX::NSSize.new
       size.width = drawer_size

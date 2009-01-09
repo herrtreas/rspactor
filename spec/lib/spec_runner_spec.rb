@@ -4,11 +4,13 @@ require 'listener'
 require 'runner_queue'
 require 'example_files'
 require 'example_runner_job'
+require 'defaults'
+require 'notification'
 
 describe SpecRunner do
   before(:each) do
     $app = mock('App')        
-    $app.stub!(:post_notification)
+    Notification.stub!(:send)
     $app.stub!(:default_from_key).and_return('')
     $app.stub!(:root=)
     $app.stub!(:root).and_return($fpath_rails)
@@ -33,12 +35,12 @@ describe SpecRunner do
   
   it 'should use "spec" binary per default' do
     $app.stub!(:root).and_return($fpath_simple)
-    $app.should_receive(:default_from_key).with(:spec_bin_path).and_return('spec_bin')
+    Defaults.should_receive(:get).with(:spec_bin_path).and_return('spec_bin')
     SpecRunner.prepare_running_environment([])[0].should eql('spec_bin')
   end
   
   it 'should use "script/spec" if available' do
-    $app.should_receive(:default_from_key).with(:ruby_bin_path).twice.and_return('ruby_bin')
+    Defaults.should_receive(:get).with(:ruby_bin_path).twice.and_return('ruby_bin')
     SpecRunner.prepare_running_environment([])[0].should eql("ruby_bin") 
     SpecRunner.prepare_running_environment([])[1].should eql(["#{$app.root}/script/spec"])
   end
@@ -50,7 +52,7 @@ describe SpecRunner do
     
   it 'should post a "spec_run_start" notification' do
     SpecRunner.stub!(:run_command)
-    $app.should_receive(:post_notification).with(:spec_run_invoked)
+    Notification.should_receive(:send).with(:spec_run_invoked)
     SpecRunner.run_job(@job)    
   end
   

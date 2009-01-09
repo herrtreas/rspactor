@@ -19,24 +19,24 @@ class AppController < OSX::NSObject
   end
   
   def applicationDidFinishLaunching(notification)
+    Notification.subscribe self, :spec_run_start                          => :spec_run_has_started     
+    Notification.subscribe self, :example_run_example_started             => :exampleRunExampleStarted 
+    Notification.subscribe self, :spec_run_example_passed                 => :spec_run_processed       
+    Notification.subscribe self, :spec_run_example_pending                => :spec_run_processed       
+    Notification.subscribe self, :spec_run_example_failed                 => :spec_run_processed       
+    Notification.subscribe self, :spec_run_close                          => :specRunFinished          
+    Notification.subscribe self, :spec_attached_to_file                   => :specAttachedToFile       
+    Notification.subscribe self, :NSTaskDidTerminateNotification          => :taskHasFinished
+    Notification.subscribe self, :NSFileHandleReadCompletionNotification  => :pipeContentAvailable
+    Notification.subscribe self, :observation_requested                   => :add_request_to_listeners_observation_list    
+    Notification.subscribe self, :example_run_global_start                => :setupActiveBadge
+    Notification.subscribe self, :spec_server_ready                       => :launchSpecRunnerTask
+    Notification.subscribe self, :spec_server_failed                      => :specServerFailed
     Service.init
-    receive :spec_run_start,                          :spec_run_has_started
-    receive :example_run_example_started,             :exampleRunExampleStarted
-    receive :spec_run_example_passed,                 :spec_run_processed
-    receive :spec_run_example_pending,                :spec_run_processed
-    receive :spec_run_example_failed,                 :spec_run_processed
-    receive :spec_run_close,                          :specRunFinished
-    receive :spec_attached_to_file,                   :specAttachedToFile
-    receive :NSTaskDidTerminateNotification,          :taskHasFinished
-    receive :NSFileHandleReadCompletionNotification,  :pipeContentAvailable
-    receive :observation_requested,                   :add_request_to_listeners_observation_list    
-    receive :example_run_global_start,                :setupActiveBadge
-    receive :spec_server_ready,                       :launchSpecRunnerTask
-    receive :spec_server_failed,                      :specServerFailed
   end
   
   def applicationShouldHandleReopen_hasVisibleWindows(application, has_open_windows)
-    post_notification :application_resurrected
+    Notification.send :application_resurrected
   end
 
   def applicationWillTerminate(notification)
@@ -70,16 +70,16 @@ class AppController < OSX::NSObject
       self.failed_spec_count += 1 if spec.state == :failed
       spec.run_time = example_end_time - @example_start_time
       ExampleFiles.add_spec(spec)
-      post_notification :spec_run_processed, spec
+      Notification.send :spec_run_processed, spec
       if spec.state == :failed && @first_failed_notification_posted.nil?
         @first_failed_notification_posted = true
-        post_notification :first_failed_spec, spec
+        Notification.send :first_failed_spec, spec
       end
     end
   end
   
   def specAttachedToFile(notification)
-    return unless $app.default_from_key(:generals_rerun_failed_specs, '1') == '1'
+    return unless Defaults.get(:generals_rerun_failed_specs, '1') == '1'
     return unless notification.userInfo.first.file_object
     return unless notification.userInfo.first.previous_state
     
@@ -105,10 +105,10 @@ class AppController < OSX::NSObject
       $LOG.debug "Task has finished.."
       if SpecRunner.commandAbortedByHand?
         $LOG.debug "Task aborted by hand.."
-        post_notification(:spec_run_close)
+        Notification.send(:spec_run_close)
       elsif !@_spec_run_normally_completed && notification.object.terminationStatus != 0 && !SpecRunner.commandFinished?
         $LOG.debug "Task aborted.."
-        post_notification(:error)        
+        Notification.send(:error)        
       else
         setupBadgeWithFailedSpecCount(ExampleFiles.total_failed_spec_count)      
       end
@@ -119,10 +119,10 @@ class AppController < OSX::NSObject
       $error_pipe_handle.closeFile
 
       specs = ExampleFiles.clear_tainted_specs_on_all_files!.flatten.compact.select { |spec| spec && spec.file_object }      
-      post_notification :webview_reload_required_for_specs, specs
+      Notification.send :webview_reload_required_for_specs, specs
       
       SpecRunner.commandHasFinished!
-      post_notification :example_run_global_complete
+      Notification.send :example_run_global_complete
       Listener.init($app.root)        
       
       run_failed_files_afterwards_or_listen
@@ -155,26 +155,6 @@ class AppController < OSX::NSObject
     end
   end
   
-  def center
-    OSX::NSNotificationCenter.defaultCenter
-  end
-  
-  def defaults
-    OSX::NSUserDefaults.standardUserDefaults
-  end
-  
-  def default_from_key(key, rescue_value = '')
-    defaults.stringForKey(key) || rescue_value
-  end
-  
-  def default_for_key(key, value)
-    defaults.setObject_forKey(value, key.to_s)
-  end
-  
-  def post_notification(name, *args)
-    center.postNotificationName_object_userInfo(name.to_s, self, args)    
-  end
-  
   def alert(message, information)
     alert = NSAlert.alloc.init
     alert.alertStyle = OSX::NSCriticalAlertStyle
@@ -197,7 +177,7 @@ class AppController < OSX::NSObject
   end
   
   def add_request_to_listeners_observation_list(notification)
-    Listener.add_request_to_observation_list(notification)
+    Listener.add_request_to_observation_listnotification
   end
 
   def setupDefaultBadge
