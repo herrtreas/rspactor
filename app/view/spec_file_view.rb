@@ -29,7 +29,7 @@ class SpecFileView < HtmlView
       spec_html << "#{spec.to_s}"
       spec_html << "</p>"
       spec_html << "<div #{spec.state == :passed && !opts[:only] ? "style='display: none'" : ""}>"
-      spec_html << "<p class='spec_message'>#{h(spec.message)}</p>" if spec.message
+      spec_html << formatted_message(h(spec.message)) if spec.message
       if spec.full_file_path != spec.file_of_first_backtrace_line
         spec_html << "<div class='sub_file_path'>#{spec.file_of_first_backtrace_line}</div>"
         spec_html << "<p class='spec_code'>#{Converter.source_to_html(spec, :force_file_at_first_backtrace_line => true)}</p>"
@@ -48,4 +48,16 @@ class SpecFileView < HtmlView
     button = spec.state == :passed && !opts[:expanded] ? "+" : "-"
     "<span class='fold_button'>#{button}</span>"
   end
+
+  # inspired by Rails's ActionView::Helpers::TextHelper#simpleFormat
+  def formatted_message(text)
+    start_tag = %Q(<p class="spec_message">)
+    text = text.to_s.dup
+    text.gsub!(/\r\n?/, "\n")                    # \r\n and \r -> \n
+    text.gsub!(/\n\n+/, "</p>\n\n<p>")  # 2+ newline  -> paragraph
+    text.gsub!(/([^\n]\n)(?=[^\n])/, '\1<br />') # 1 newline   -> br
+    text.insert 0, start_tag
+    text << "</p>"
+  end
+
 end

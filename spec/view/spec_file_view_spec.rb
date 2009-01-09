@@ -59,4 +59,27 @@ describe SpecFileView do
     @spec_file_view.update
     @spec_file_view.file.name.should eql('Test.rb')
   end
+
+  it "should call formatted_message if there is a message" do
+    @spec_file_view.should_receive(:formatted_message).with(@mock_spec_object.message).and_return "formatted test"
+    @spec_file_view.update
+  end
+
+  describe "#formatted_message" do
+
+    it "should properly format the given text" do
+      @spec_file_view.formatted_message(nil).should == %Q(<p class="spec_message"></p>)
+
+      @spec_file_view.formatted_message("crazy\r\n cross\r platform linebreaks").should == %Q(<p class="spec_message">crazy\n<br /> cross\n<br /> platform linebreaks</p>)
+      @spec_file_view.formatted_message("A paragraph\n\nand another one!").should == %Q(<p class="spec_message">A paragraph</p>\n\n<p>and another one!</p>)
+      @spec_file_view.formatted_message("A paragraph\n With a newline").should == %Q(<p class="spec_message">A paragraph\n<br /> With a newline</p>)
+
+      text = "A\nB\nC\nD".freeze
+      @spec_file_view.formatted_message(text).should == %Q(<p class="spec_message">A\n<br />B\n<br />C\n<br />D</p>)
+
+      text = "A\r\n  \nB\n\n\r\n\t\nC\nD".freeze
+      @spec_file_view.formatted_message(text).should == %Q(<p class="spec_message">A\n<br />  \n<br />B</p>\n\n<p>\t\n<br />C\n<br />D</p>)
+    end
+
+  end
 end
