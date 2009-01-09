@@ -32,7 +32,7 @@ class ExampleFile
     end
     
     request_observation_if_needed(spec)
-    $app.post_notification :spec_attached_to_file, spec
+    Notification.send :spec_attached_to_file, spec
   end
   
   def merge_specs(old_spec, new_spec)    
@@ -107,7 +107,7 @@ class ExampleFile
   
   def request_observation_if_needed(spec)    
     if spec.file_of_first_backtrace_line != spec.full_file_path
-      $app.post_notification :observation_requested, spec.file_of_first_backtrace_line, spec
+      Notification.send :observation_requested, spec.file_of_first_backtrace_line, spec
     end    
   end
 end

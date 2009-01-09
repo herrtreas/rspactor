@@ -11,8 +11,8 @@ class SpeechController < OSX::NSObject
   attr_accessor :speechSynthesizer
 
 	def initialize
-    receive :spec_run_dump_summary,     :specRunFinishedWithSummaryDump    
-    receive :error,                     :errorPosted    
+    Notification.subscribe self, :spec_run_dump_summary => :specRunFinishedWithSummaryDump    
+    Notification.subscribe self, :error                 => :errorPosted    
 		
 		@speechSynthesizer = OSX::NSSpeechSynthesizer.alloc.initWithVoice(@voiceForError)
 	end

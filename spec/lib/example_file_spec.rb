@@ -5,7 +5,7 @@ describe ExampleFile do
   before(:each) do
     $app = mock('App')
     $app.stub!(:root)
-    $app.stub!(:post_notification)
+    Notification.stub!(:send)
     @example_file = ExampleFile.new(:path => '/path/to/hello.rb')
   end
   

@@ -9,7 +9,7 @@ class DrawerController < OSX::NSWindowController
     @hideBox.state = Defaults.get(:hide_box_state, 0)
     set_filter(@hideBox.state)
     @drawer.openOnEdge(0)
-    receive :retain_focus_on_drawer,  :setFocusOnTable
+    Notification.subscribe self, :retain_focus_on_drawer => :setFocusOnTable
   end
   
   def setFocusOnTable(notification)
@@ -19,7 +19,7 @@ class DrawerController < OSX::NSWindowController
   def hideBoxClicked(sender)
     Defaults.set(:hide_box_state, sender.state)
     set_filter(sender.state)
-    $app.post_notification :file_table_reload_required
+    Notification.send :file_table_reload_required
   end
 
   def drawerWillResizeContents_toSize(sender, to_size)

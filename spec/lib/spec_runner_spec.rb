@@ -5,11 +5,12 @@ require 'runner_queue'
 require 'example_files'
 require 'example_runner_job'
 require 'defaults'
+require 'notification'
 
 describe SpecRunner do
   before(:each) do
     $app = mock('App')        
-    $app.stub!(:post_notification)
+    Notification.stub!(:send)
     $app.stub!(:default_from_key).and_return('')
     $app.stub!(:root=)
     $app.stub!(:root).and_return($fpath_rails)
@@ -51,7 +52,7 @@ describe SpecRunner do
     
   it 'should post a "spec_run_start" notification' do
     SpecRunner.stub!(:run_command)
-    $app.should_receive(:post_notification).with(:spec_run_invoked)
+    Notification.should_receive(:send).with(:spec_run_invoked)
     SpecRunner.run_job(@job)    
   end
   

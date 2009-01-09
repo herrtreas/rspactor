@@ -181,11 +181,11 @@ class WebviewController < OSX::NSWindowController
   end
   
   def hook_events
-    receive :fileToWebViewLoadingRequired,              :showSpecFileViewFromTable
-    receive :first_failed_spec,                         :showSpecFileViewFromSpec
-    receive :example_run_global_start,                  :reloadWebViewBeforeExampleRun
-    receive :spec_run_processed,                        :reloadWebView
-    receive :example_run_global_complete,               :reloadWebViewAfterExampleRun
-    receive :webview_reload_required_for_specs,         :reloadWebViewForSpecs    
+    Notification.subscribe self, :fileToWebViewLoadingRequired      => :showSpecFileViewFromTable
+    Notification.subscribe self, :first_failed_spec                 => :showSpecFileViewFromSpec
+    Notification.subscribe self, :example_run_global_start          => :reloadWebViewBeforeExampleRun
+    Notification.subscribe self, :spec_run_processed                => :reloadWebView
+    Notification.subscribe self, :example_run_global_complete       => :reloadWebViewAfterExampleRun
+    Notification.subscribe self, :webview_reload_required_for_specs => :reloadWebViewForSpecs    
   end
 end

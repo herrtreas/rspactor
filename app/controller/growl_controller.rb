@@ -10,9 +10,9 @@ class GrowlController < OSX::NSObject
     @growl = GrowlNotifier.alloc.initWithDelegate(self)
     @growl.start(:RSpactor, [MESSAGE_KIND, CLICKED_KIND])
     
-    receive :spec_run_example_failed,   :specRunFinishedSingleSpec
-    receive :spec_run_dump_summary,     :specRunFinishedWithSummaryDump    
-    receive :error,                     :errorPosted    
+    Notification.subscribe self, :spec_run_example_failed =>  :specRunFinishedSingleSpec
+    Notification.subscribe self, :spec_run_dump_summary   =>  :specRunFinishedWithSummaryDump    
+    Notification.subscribe self, :error                   =>  :errorPosted    
   end
   
   def specRunFinishedSingleSpec(notification)    

@@ -7,9 +7,9 @@ class SpecTable < OSX::NSObject
 
   
   def awakeFromNib
-    receive :spec_run_processed,                        :specRunFinishedSingleSpec
-    receive :first_failed_spec,                         :markFileContainingFirstFailedSpec
-    receive :file_table_reload_required,                :reload_required
+    Notification.subscribe self, :spec_run_processed          => :specRunFinishedSingleSpec
+    Notification.subscribe self, :first_failed_spec           => :markFileContainingFirstFailedSpec
+    Notification.subscribe self, :file_table_reload_required  => :reload_required
     
     @specsTable.setTarget(self)
     @specsTable.setAction(:selectFileAndLoadView)
@@ -22,7 +22,7 @@ class SpecTable < OSX::NSObject
   
   def selectFileAndLoadView(sender)
     @selectedSpecFile = ExampleFiles.file_by_index(@specsTable.selectedRow)
-    $app.post_notification :fileToWebViewLoadingRequired, @specsTable
+    Notification.send :fileToWebViewLoadingRequired, @specsTable
   end
   
   def addSelectedFileToRunnerQueue(sender)
@@ -45,7 +45,7 @@ class SpecTable < OSX::NSObject
     @specsTable.reloadData
     if @selectedSpecFile
       index = ExampleFiles.index_for_file(@selectedSpecFile)
-      $app.post_notification :retain_focus_on_drawer
+      Notification.send :retain_focus_on_drawer
       @specsTable.selectRowIndexes_byExtendingSelection(NSIndexSet.new.initWithIndex(index), false)
     end
   end

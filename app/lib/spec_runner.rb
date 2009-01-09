@@ -26,7 +26,7 @@ module SpecRunner
     def process_queue
       return false if command_running?      
       unless self.queue.empty?
-        $app.post_notification :spec_run_invoked
+        Notification.send :spec_run_invoked
         run_command(create_runner_arguments(self.queue.next_files))
       end
     end
@@ -63,7 +63,7 @@ module SpecRunner
     def run_command(args)
       return false if command_running?
       
-      $app.post_notification :example_run_global_start
+      Notification.send :example_run_global_start
       
       @@command_running = true
       @@command_manually_aborted = false

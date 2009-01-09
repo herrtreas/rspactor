@@ -160,17 +160,17 @@ class WindowController < OSX::NSWindowController
   end
 
   def hook_events
-    receive :spec_run_invoked,          :specRunPreparation    
-    receive :spec_run_start,            :specRunStarted
-    receive :spec_run_close,            :specRunFinished
-    receive :spec_run_example_passed,   :specRunFinishedSingleSpec
-    receive :spec_run_example_pending,  :specRunFinishedSingleSpec
-    receive :spec_run_example_failed,   :specRunFinishedSingleSpec
-    receive :spec_run_dump_summary,     :updateStatusBarExampleStateCounts    
-    receive :spec_server_loading,       :specServerLoading
-    receive :error,                     :specRunFinished
-    receive :relocate_and_run,          :relocateDirectoryAndRunSpecs
-    receive :application_resurrected,   :resurrectWindow    
-    receive :spec_server_ready,         :updateStatusBarOnReadySpecServer
+    Notification.subscribe self, :spec_run_invoked          => :specRunPreparation    
+    Notification.subscribe self, :spec_run_start            => :specRunStarted
+    Notification.subscribe self, :spec_run_close            => :specRunFinished
+    Notification.subscribe self, :spec_run_example_passed   => :specRunFinishedSingleSpec
+    Notification.subscribe self, :spec_run_example_pending  => :specRunFinishedSingleSpec
+    Notification.subscribe self, :spec_run_example_failed   => :specRunFinishedSingleSpec
+    Notification.subscribe self, :spec_run_dump_summary     => :updateStatusBarExampleStateCounts    
+    Notification.subscribe self, :spec_server_loading       => :specServerLoading
+    Notification.subscribe self, :error                     => :specRunFinished
+    Notification.subscribe self, :relocate_and_run          => :relocateDirectoryAndRunSpecs
+    Notification.subscribe self, :application_resurrected   => :resurrectWindow    
+    Notification.subscribe self, :spec_server_ready         => :updateStatusBarOnReadySpecServer
   end    
 end

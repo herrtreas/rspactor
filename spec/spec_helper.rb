@@ -11,7 +11,6 @@ $fpath_rails    = File.join(File.dirname(__FILE__), 'fixtures/maps/rails')
 
 require 'osx/cocoa'
 require 'string'
-require 'ns_object'
 require 'log'
 
 # Disable Logger output in test environment

@@ -70,7 +70,7 @@ describe WindowController do
     Defaults.stub!(:set)
     Defaults.stub!(:get)
     $app.stub!(:file_exist?).and_return(true)
-    $app.stub!(:post_notification)
+    Notification.stub!(:send)
     SpecRunner.stub!(:run_in_path).and_return(File.dirname(__FILE__))    
   end
   

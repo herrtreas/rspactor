@@ -3,11 +3,12 @@ require 'drawer_controller'
 require 'example_files'
 require 'example_matcher'
 require 'defaults'
+require 'notification'
 
 describe DrawerController do
   before(:each) do
     $app = mock('App')
-    $app.stub!(:post_notification)
+    Notification.stub!(:send)
     $app.stub!(:default_for_key)
     $app.stub!(:default_from_key)
     
@@ -56,7 +57,7 @@ describe DrawerController do
   end
   
   it 'should post a "spec_file_table_reload_required" notification on hideButtonClick' do
-    $app.should_receive(:post_notification).with(:file_table_reload_required)
+    Notification.should_receive(:send).with(:file_table_reload_required)
     mock_sender = mock('Sender', :state => 1)
     @controller.hideBoxClicked(mock_sender)
   end

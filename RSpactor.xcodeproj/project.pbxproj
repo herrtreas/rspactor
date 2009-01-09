@@ -13,8 +13,8 @@
 		4DDCA70C0ACC9A6100E082CE /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		84A168A20E68C78F005FF9F3 /* netbeans.rb in Resources */ = {isa = PBXBuildFile; fileRef = 84A168A10E68C78F005FF9F3 /* netbeans.rb */; };
 		E107C5620DF84D1A00A62C3A /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E107C5610DF84D1A00A62C3A /* WebKit.framework */; };
-		E11B10B70DFDE342006F6CFA /* ns_object.rb in Resources */ = {isa = PBXBuildFile; fileRef = E11B10B60DFDE342006F6CFA /* ns_object.rb */; };
 		E11E86A10F1798A40064A9E4 /* defaults.rb in Resources */ = {isa = PBXBuildFile; fileRef = E11E86A00F1798A40064A9E4 /* defaults.rb */; };
+		E11E86BB0F17B3680064A9E4 /* notification.rb in Resources */ = {isa = PBXBuildFile; fileRef = E11E86BA0F17B3680064A9E4 /* notification.rb */; };
 		E12E4CBA0DFF221100355B0E /* growl_controller.rb in Resources */ = {isa = PBXBuildFile; fileRef = E12E4CB90DFF221100355B0E /* growl_controller.rb */; };
 		E12E4CBD0DFF246100355B0E /* growl.rb in Resources */ = {isa = PBXBuildFile; fileRef = E12E4CBC0DFF246100355B0E /* growl.rb */; };
 		E12E4CEF0DFF2E0500355B0E /* failure_128.png in Resources */ = {isa = PBXBuildFile; fileRef = E12E4CEC0DFF2E0500355B0E /* failure_128.png */; };
@@ -376,8 +376,8 @@
 		4DDCA7120ACC9A6100E082CE /* RSpactor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RSpactor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84A168A10E68C78F005FF9F3 /* netbeans.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = netbeans.rb; sourceTree = "<group>"; };
 		E107C5610DF84D1A00A62C3A /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = /System/Library/Frameworks/WebKit.framework; sourceTree = "<absolute>"; };
-		E11B10B60DFDE342006F6CFA /* ns_object.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ns_object.rb; sourceTree = "<group>"; };
 		E11E86A00F1798A40064A9E4 /* defaults.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = defaults.rb; sourceTree = "<group>"; };
+		E11E86BA0F17B3680064A9E4 /* notification.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = notification.rb; sourceTree = "<group>"; };
 		E12E4CB90DFF221100355B0E /* growl_controller.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = growl_controller.rb; sourceTree = "<group>"; };
 		E12E4CBC0DFF246100355B0E /* growl.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = growl.rb; sourceTree = "<group>"; };
 		E12E4CEC0DFF2E0500355B0E /* failure_128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = failure_128.png; sourceTree = "<group>"; };
@@ -794,7 +794,6 @@
 			isa = PBXGroup;
 			children = (
 				E1E958300E55A4F9006C3B9B /* string.rb */,
-				E11B10B60DFDE342006F6CFA /* ns_object.rb */,
 			);
 			path = ns_ext;
 			sourceTree = "<group>";
@@ -802,6 +801,7 @@
 		E11E869F0F1798A40064A9E4 /* helper */ = {
 			isa = PBXGroup;
 			children = (
+				E11E86BA0F17B3680064A9E4 /* notification.rb */,
 				E11E86A00F1798A40064A9E4 /* defaults.rb */,
 			);
 			path = helper;
@@ -1288,7 +1288,6 @@
 				E193ED8A0DFAAADE00D17070 /* service.rb in Resources */,
 				E193ED8B0DFAAADE00D17070 /* spec_object.rb in Resources */,
 				E193ED8C0DFAAADE00D17070 /* spec_runner.rb in Resources */,
-				E11B10B70DFDE342006F6CFA /* ns_object.rb in Resources */,
 				E14951780DFED46A006E0F89 /* spec_table.rb in Resources */,
 				E12E4CBA0DFF221100355B0E /* growl_controller.rb in Resources */,
 				E12E4CBD0DFF246100355B0E /* growl.rb in Resources */,
@@ -1575,6 +1574,7 @@
 				E150D5A40EFD08F1004BCA0E /* dsa_pub.pem in Resources */,
 				E18F112B0F0AE6240023314E /* speech_controller.rb in Resources */,
 				E11E86A10F1798A40064A9E4 /* defaults.rb in Resources */,
+				E11E86BB0F17B3680064A9E4 /* notification.rb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 require 'service'
-
+require 'notification'
 
 describe Service do
   it 'should init its drb server on startup' do
@@ -18,10 +18,8 @@ describe Service do
     Service.incoming(:test, 1,1,1)
   end
   
-  it 'should post notifications for incoming message calls' do
-    mock_center = mock('Center')
-    Service.stub!(:center).and_return(mock_center)
-    mock_center.should_receive(:postNotificationName_object_userInfo).with(:buddy_is_rockin, Service, [true, 'hell'])
+  it 'should post notifications for incoming message calls' do    
+    Notification.should_receive(:send).with(:buddy_is_rockin, true, 'hell')
     Service.incoming(:buddy_is_rockin, true, 'hell')    
   end
 end
