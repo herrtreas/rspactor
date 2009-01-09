@@ -25,7 +25,7 @@ class SpecFileView < HtmlView
     specs_to_show.each do |spec|
       spec_html << '<li class="spec">'
       spec_html << "<p class='spec_title spec_title_#{spec.state}' onclick='toggleSpecBox(this);'>"
-      spec_html << fold_button(spec, :expanded => true)
+      spec_html << fold_button(spec)
       spec_html << "#{spec.to_s}"
       spec_html << "</p>"
       spec_html << "<div #{spec.state == :passed && !opts[:only] ? "style='display: none'" : ""}>"
@@ -45,7 +45,7 @@ class SpecFileView < HtmlView
   end
   
   def fold_button(spec, opts = {})
-    button = spec.state == :passed && !opts[:expanded] ? "+" : "-"
+    button = spec.state == :passed ? "+" : "-"
     "<span class='fold_button'>#{button}</span>"
   end
 end
