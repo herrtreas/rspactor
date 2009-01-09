@@ -19,4 +19,8 @@ def clean_logs
   FileUtils.rm_f(Dir.glob("#{ENV['HOME']}/Library/Logs/rspactor.log.*"))
 end
 
+def trace(message)
+  $LOG.debug "TRACE: #{message} @@ #{caller.first}"
+end
+
 init_logger
