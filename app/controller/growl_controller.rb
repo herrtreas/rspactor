@@ -16,7 +16,7 @@ class GrowlController < OSX::NSObject
   end
   
   def specRunFinishedSingleSpec(notification)    
-    return if Options.summarize_growl_output?
+    return if Defaults.summarize_growl_output?
     return if $app.failed_spec_count >= 11
 
     spec = notification.userInfo.first

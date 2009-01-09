@@ -5,7 +5,6 @@ require 'runner_queue'
 require 'example_files'
 require 'example_runner_job'
 require 'defaults'
-require 'options'
 
 describe SpecRunner do
   before(:each) do

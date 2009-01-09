@@ -36,7 +36,7 @@ module SpecRunner
       args << "--require=#{File.dirname(__FILE__)}/rspactor_formatter.rb"
       args << "-fRSpactorFormatter:STDOUT"
       args << '-L=mtime'
-      if Options.use_spec_server? && SpecServer.available?
+      if Defaults.use_spec_server? && SpecServer.available?
         $LOG.debug "Running Examples against spec_server"
         args << '--drb' 
       end
@@ -101,7 +101,7 @@ module SpecRunner
     end
     
     def launch_current_task
-      if Options.use_spec_server? && SpecServer.available?
+      if Defaults.use_spec_server? && SpecServer.available?
         if SpecServer.ready?
           @task.launch unless @task.isRunning
         else

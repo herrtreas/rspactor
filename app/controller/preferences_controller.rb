@@ -23,11 +23,11 @@ class PreferencesController < OSX::NSWindowController
   ib_action :checkBoxClickedToSaveState do |sender|
     case sender.tag
     when 101:
-      Defaults.set(:generals_rerun_failed_specs, sender.state)      
+      Defaults.set(:rerun_failed_specs, sender.state)      
     when 102:
-      Defaults.set(:generals_summarize_growl_output, sender.state)
+      Defaults.set(:summarize_growl_output, sender.state)
     when 103:
-      Defaults.set(:generals_auto_activate_spec_server, sender.state)
+      Defaults.set(:auto_activate_spec_server, sender.state)
     end
   end
   
@@ -103,9 +103,9 @@ class PreferencesController < OSX::NSWindowController
   end
 	  
   def initGeneralPrefView
-    @generalsRerunSpecsCheckBox.state = Defaults.get(:generals_rerun_failed_specs, '1')
-    @generalsSummarizeGrowl.state = Defaults.get(:generals_summarize_growl_output, '0')
-    @generalsAutoActivateSpecServer.state = Defaults.get(:generals_auto_activate_spec_server, '1')
+    @generalsRerunSpecsCheckBox.state = Defaults.get(:rerun_failed_specs, '1')
+    @generalsSummarizeGrowl.state = Defaults.get(:summarize_growl_output, '0')
+    @generalsAutoActivateSpecServer.state = Defaults.get(:auto_activate_spec_server, '1')
   end
   
   def initToolbar
