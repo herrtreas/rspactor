@@ -279,7 +279,7 @@
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 0}, {185, 709}}</string>
+							<string>{{0, 0}, {0, 0}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -340,7 +340,7 @@
 						</dict>
 						<dict>
 							<key>Proportion</key>
-							<string>722pt</string>
+							<string>0pt</string>
 							<key>Tabs</key>
 							<array>
 								<dict>
@@ -354,7 +354,7 @@
 									<key>GeometryConfiguration</key>
 									<dict>
 										<key>Frame</key>
-										<string>{{10, 27}, {1233, 695}}</string>
+										<string>{{10, 27}, {0, -27}}</string>
 									</dict>
 									<key>Module</key>
 									<string>XCDetailModule</string>
@@ -417,7 +417,7 @@
 						</dict>
 					</array>
 					<key>Proportion</key>
-					<string>1233pt</string>
+					<string>0pt</string>
 				</dict>
 			</array>
 			<key>Name</key>
@@ -436,11 +436,11 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>E1C876420F0B08EF000ACBCF</string>
+				<string>E1DF9E670F0E59CD00238A35</string>
 				<string>1CA23ED40692098700951B8B</string>
-				<string>E1C876430F0B08EF000ACBCF</string>
+				<string>E1DF9E680F0E59CD00238A35</string>
 				<string>E18F11200F0AE2FF0023314E</string>
-				<string>E1C876440F0B08EF000ACBCF</string>
+				<string>E1DF9E690F0E59CD00238A35</string>
 				<string>1CA23EDF0692099D00951B8B</string>
 				<string>1CA23EE00692099D00951B8B</string>
 				<string>1CA23EE10692099D00951B8B</string>
