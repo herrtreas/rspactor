@@ -7,7 +7,7 @@ class DashboardView < HtmlView
   end
   
   def update
-    if $app.default_from_key('hide_welcome_message', '0') == '1'
+    if Defaults.get('hide_welcome_message', '0') == '1'
       hideElement('welcome_message')
     end    
     

@@ -2,6 +2,7 @@ require File.dirname(__FILE__) + '/../spec_helper'
 require 'drawer_controller'
 require 'example_files'
 require 'example_matcher'
+require 'defaults'
 
 describe DrawerController do
   before(:each) do
@@ -33,7 +34,7 @@ describe DrawerController do
   end
   
   it 'should set the hideBox state on startup by defaults' do
-    $app.should_receive(:default_from_key).and_return(1)    
+    Defaults.should_receive(:get).and_return(1)    
     @controller.stub!(:restoreSizeFromLastSession)    
     @mock_hide_box.should_receive(:state=).with(1)
     @controller.awakeFromNib
@@ -66,7 +67,7 @@ describe DrawerController do
   end
   
   it 'should use defaults or store the current size on restoreSize' do
-    $app.should_receive(:default_from_key).with(:files_drawer_width).and_return('10')
+    Defaults.should_receive(:get).with(:files_drawer_width).and_return('10')
     @mock_drawer.should_receive(:setContentSize)
     @controller.restoreSizeFromLastSession
   end

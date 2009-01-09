@@ -19,7 +19,6 @@ class AppController < OSX::NSObject
   end
   
   def applicationDidFinishLaunching(notification)
-    Service.init
     receive :spec_run_start,                          :spec_run_has_started
     receive :example_run_example_started,             :exampleRunExampleStarted
     receive :spec_run_example_passed,                 :spec_run_processed
@@ -33,6 +32,7 @@ class AppController < OSX::NSObject
     receive :example_run_global_start,                :setupActiveBadge
     receive :spec_server_ready,                       :launchSpecRunnerTask
     receive :spec_server_failed,                      :specServerFailed
+    Service.init
   end
   
   def applicationShouldHandleReopen_hasVisibleWindows(application, has_open_windows)
@@ -79,7 +79,7 @@ class AppController < OSX::NSObject
   end
   
   def specAttachedToFile(notification)
-    return unless $app.default_from_key(:generals_rerun_failed_specs, '1') == '1'
+    return unless Defaults.get(:generals_rerun_failed_specs, '1') == '1'
     return unless notification.userInfo.first.file_object
     return unless notification.userInfo.first.previous_state
     
@@ -157,19 +157,7 @@ class AppController < OSX::NSObject
   
   def center
     OSX::NSNotificationCenter.defaultCenter
-  end
-  
-  def defaults
-    OSX::NSUserDefaults.standardUserDefaults
-  end
-  
-  def default_from_key(key, rescue_value = '')
-    defaults.stringForKey(key) || rescue_value
-  end
-  
-  def default_for_key(key, value)
-    defaults.setObject_forKey(value, key.to_s)
-  end
+  end  
   
   def post_notification(name, *args)
     center.postNotificationName_object_userInfo(name.to_s, self, args)    

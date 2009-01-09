@@ -33,7 +33,7 @@ module Converter
       else
         alert_line = spec.full_file_path + ':' + spec.line.to_s
       end
-      css_class = ($app.default_from_key(:editor_integration) == '1') ? 'code editor_integration_enabled' : 'code'
+      css_class = (Defaults.get(:editor_integration) == '1') ? 'code editor_integration_enabled' : 'code'
       "<div class='#{css_class}' onclick='alert(\"#{alert_line}@external\")'>#{lines.join("\n")}</div>"
     end
     

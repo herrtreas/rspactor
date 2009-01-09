@@ -83,25 +83,6 @@ describe AppController do
     @app.post_notification(:test, 'huhu')
   end
   
-  it 'should have a reference to users defaults object' do
-    @app.defaults.should eql(OSX::NSUserDefaults.standardUserDefaults)
-  end
-  
-  it 'should read the defauls object' do
-    @app.defaults.should_receive(:stringForKey).and_return('Test')
-    @app.default_from_key(:test).should eql('Test')
-  end
-  
-  it 'should return the rescue_value if defaults doesnt contain key' do
-    @app.defaults.stub!(:stringForKey).and_return(nil)
-    @app.default_from_key(:test, 'MU').should eql('MU')    
-  end
-  
-  it 'should set a default value' do
-    @app.defaults.should_receive(:setObject_forKey).with('FOOKuchen', 'test')
-    @app.default_for_key(:test, 'FOOKuchen')
-  end
-  
   it 'should send a notification on the first failing spec' do
     mock_notification = mock('Notification')
     mock_notification.stub!(:userInfo).and_return([@mock_spec])

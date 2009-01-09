@@ -119,7 +119,7 @@ class WebviewController < OSX::NSWindowController
   end
   
   def editor_integration_enabled?
-    $app.default_from_key(:editor_integration) == '1'
+    Defaults.get(:editor_integration) == '1'
   end
   
   def reloadWebViewBeforeExampleRun(notification)
@@ -159,7 +159,7 @@ class WebviewController < OSX::NSWindowController
     message, context = message.split('@')
     if context == 'external'
       return unless editor_integration_enabled?
-      case $app.default_from_key(:editor)
+      case Defaults.get(:editor)
       when 'TextMate'
         TextMate.open_file_with_line(message)
       when 'Netbeans'
@@ -174,7 +174,7 @@ class WebviewController < OSX::NSWindowController
     elsif context == 'spec_view_from_file_path'
       showSpecFileViewFromFilePath(message)
     elsif context == 'hide'
-      $app.default_for_key('hide_welcome_message', '1')
+      Defaults.set('hide_welcome_message', '1')
     else
       $LOG.debug "No context given: #{message}"
     end

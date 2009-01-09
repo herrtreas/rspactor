@@ -4,6 +4,7 @@ require 'html_view'
 require 'spec_file_view'
 require 'textmate'
 require 'netbeans'
+require 'defaults'
 
 describe WebviewController do
   before(:each) do
@@ -48,24 +49,24 @@ describe WebviewController do
   end
 
   it 'should know if editor integration is enabled' do
-    $app.should_receive(:default_from_key).with(:editor_integration).and_return('1')    
+    Defaults.should_receive(:get).with(:editor_integration).and_return('1')    
     @controller.editor_integration_enabled?.should be_true
   end
 
   it 'should know if editor integration is disabled' do
-    $app.should_receive(:default_from_key).with(:editor_integration).and_return('0')    
+    Defaults.should_receive(:get).with(:editor_integration).and_return('0')    
     @controller.editor_integration_enabled?.should be_false
   end
 
   it 'should not try to run an editor if integration is disabled' do
     @controller.stub!(:editor_integration_enabled?).and_return(false)
-    $app.should_not_receive(:default_from_key)
+    Defaults.should_not_receive(:get)
     @controller.webView_runJavaScriptAlertPanelWithMessage(nil, 'test.rb:5@external')
   end
 
   it "should open Netbeans if the nb bin path is set" do
     @controller.stub!(:editor_integration_enabled?).and_return(true)
-    $app.stub!(:default_from_key).and_return 'Netbeans'
+    Defaults.stub!(:get).and_return 'Netbeans'
     Netbeans.should_receive(:open_file_with_line)
     @controller.webView_runJavaScriptAlertPanelWithMessage(nil, 'test.rb:5@external')
   end

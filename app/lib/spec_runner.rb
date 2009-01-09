@@ -92,11 +92,11 @@ module SpecRunner
 
     def prepare_running_environment(args)
       if File.exist?(File.join($app.root, 'script/spec'))
-        runner = "#{$app.default_from_key(:ruby_bin_path).chomp.strip}"
+        runner = "#{Defaults.get(:ruby_bin_path).chomp.strip}"
         args = args.unshift "#{$app.root}/script/spec"
         [runner, args]
       else
-        [$app.default_from_key(:spec_bin_path).chomp.strip, args]
+        [Defaults.get(:spec_bin_path).chomp.strip, args]
       end
     end
     

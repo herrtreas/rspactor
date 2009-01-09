@@ -18,7 +18,7 @@ class WindowController < OSX::NSWindowController
     initAndSetAutomaticPositionAndSizeStoring
     @growlController = GrowlController.alloc.init
 		@speechController = SpeechController.alloc.init
-    @pathTextField.stringValue = $app.default_from_key(:spec_run_path)
+    @pathTextField.stringValue = Defaults.get(:spec_run_path)
     focusPathTextField    
     hook_events
   end
@@ -98,7 +98,7 @@ class WindowController < OSX::NSWindowController
   end
   
   def savePathToUserDefaults(path)
-    $app.default_for_key(:spec_run_path, path)
+    Defaults.set(:spec_run_path, path)
   end
   
   def updateStatusBarOnReadySpecServer(notification)
@@ -129,7 +129,7 @@ class WindowController < OSX::NSWindowController
     self.window.frameUsingName = 'rspactor_main_window'
     self.window.frameAutosaveName = 'rspactor_main_window'
   end
-  
+    
   def resurrectWindow(notification)
     self.window.makeKeyAndOrderFront(self)
   end
@@ -144,15 +144,15 @@ class WindowController < OSX::NSWindowController
   end
   
   def valid_bin_paths?
-    unless File.exist?($app.default_from_key(:spec_bin_path, ''))
+    unless File.exist?(Defaults.get(:spec_bin_path, ''))
       $app.alert("Cannot find your RSpec executable.", "Please check 'Preferences > Executables > RSpec'.")
       return false
     end
-    unless File.exist?($app.default_from_key(:ruby_bin_path, ''))
+    unless File.exist?(Defaults.get(:ruby_bin_path, ''))
       $app.alert("Cannot find your Ruby executable.", "Please check 'Preferences > Executables > Ruby'.")
       return false
     end
-    if $app.default_from_key(:editor_integration) == '1' && !File.exist?($app.default_from_key(:editor_bin_path, ''))
+    if Defaults.get(:editor_integration) == '1' && !File.exist?(Defaults.get(:editor_bin_path, ''))
       $app.alert("Cannot find your editor executable.", "Please check 'Preferences > Editor > Executable'.")
       return false
     end
