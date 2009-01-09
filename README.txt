@@ -9,7 +9,7 @@ manually and scrolling down to the relevant line.
 
 == Building instructions
 
-$ git clone git://github.com/hchoroomi/rspactor.git
+$ git clone git://github.com/rubyphunk/rspactor.git
 $ cd rspactor
 $ rake package
 
