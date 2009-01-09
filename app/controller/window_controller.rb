@@ -68,7 +68,7 @@ class WindowController < OSX::NSWindowController
   
   def specRunPreparation(notification)
     showExampleRunPanels
-    @statusLabel.stringValue = "Loading RSpec environment.."
+    @statusLabel.stringValue = "Loading Test Runner.."
     @statusBar.indeterminate = true
     @statusBar.startAnimation(self)    
   end
@@ -99,6 +99,10 @@ class WindowController < OSX::NSWindowController
   
   def savePathToUserDefaults(path)
     $app.default_for_key(:spec_run_path, path)
+  end
+  
+  def updateStatusBarOnReadySpecServer(notification)
+    @statusLabel.stringValue = "Spec Server ready. Waiting for Test Runner.."
   end
   
   def relocateDirectoryAndRunSpecs(notification)
@@ -167,5 +171,6 @@ class WindowController < OSX::NSWindowController
     receive :error,                     :specRunFinished
     receive :relocate_and_run,          :relocateDirectoryAndRunSpecs
     receive :application_resurrected,   :resurrectWindow    
+    receive :spec_server_ready,         :updateStatusBarOnReadySpecServer
   end    
 end
