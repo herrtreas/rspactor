@@ -63,7 +63,7 @@ module SpecRunner
     def run_command(args)
       return false if command_running?
       
-      Notification.send_with_me self, :example_run_global_start
+      Notification.send :example_run_global_start
       
       @@command_running = true
       @@command_manually_aborted = false
