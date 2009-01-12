@@ -233,5 +233,6 @@ class AppController < OSX::NSObject
     NSApp.setApplicationIconImage(icon_buffer)
     icon_buffer.release
     attributes.release
+    return  # Totally necessary to avoid seg faults..
   end
 end
