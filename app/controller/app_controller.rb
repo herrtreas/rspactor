@@ -16,6 +16,7 @@ class AppController < OSX::NSObject
     self.failed_spec_count = 0
     ExampleFiles.init
     SpecRunner.init
+    Notification.init
   end
   
   def applicationDidFinishLaunching(notification)
