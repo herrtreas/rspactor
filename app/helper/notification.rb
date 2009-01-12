@@ -22,6 +22,10 @@ class Notification < OSX::NSObject
     )          
   end  
   
+  def self.send_with_me(send_by, name, *args)
+    OSX::NSNotificationCenter.defaultCenter.postNotificationName_object_userInfo(name.to_s, send_by, args)    
+  end
+  
   def send(name, *args)
     OSX::NSNotificationCenter.defaultCenter.postNotificationName_object_userInfo(name.to_s, self, args)    
   end    
