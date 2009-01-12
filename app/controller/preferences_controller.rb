@@ -27,7 +27,7 @@ class PreferencesController < OSX::NSWindowController
     when 102:
       Defaults.set(:summarize_growl_output, sender.state)
     when 103:
-      Defaults.set(:auto_activate_spec_server, sender.state)
+      Defaults.set(:use_spec_server, sender.state)
     end
   end
   
@@ -105,7 +105,7 @@ class PreferencesController < OSX::NSWindowController
   def initGeneralPrefView
     @generalsRerunSpecsCheckBox.state = Defaults.get(:rerun_failed_specs, '1')
     @generalsSummarizeGrowl.state = Defaults.get(:summarize_growl_output, '0')
-    @generalsAutoActivateSpecServer.state = Defaults.get(:auto_activate_spec_server, '1')
+    @generalsAutoActivateSpecServer.state = Defaults.get(:use_spec_server, '1')
   end
   
   def initToolbar
