@@ -17,7 +17,7 @@ module RSpactor
     
     def start
       load_dotfile
-      puts "** RSpactor is now watching at '#{dir}'"
+      puts "** RSpactor, now watching at '#{dir}'"
       Spork.start if options[:spork]
       Celerity.start(dir) if options[:celerity]
       start_interactor
@@ -68,6 +68,8 @@ module RSpactor
     end
     
     def run_cucumber_command(tags = '@wip:2', clear = @options[:clear])
+      return unless File.exist?(File.join(dir, 'features'))
+      
       system("clear;") if clear
       puts "** Running all #{tags} tagged features..."
       cmd = [ruby_opts, cucumber_runner, cucumber_opts(tags)].flatten.join(' ')
