@@ -121,7 +121,7 @@ describe RSpactor::Runner do
       @runner.stub!(:start_interactor)
       @runner.stub!(:start_listener)
       setup
-      $stdout.string.chomp.should == "** RSpactor is now watching at '/my/path'"
+      $stdout.string.chomp.should == "** RSpactor, now watching at '/my/path'"
     end
     
     context "dotfile" do

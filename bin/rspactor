@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-require 'rspactor/runner'
+require File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib/rspactor'))
 
 RSpactor::Runner.start({
   :coral => ARGV.delete('--coral'),
