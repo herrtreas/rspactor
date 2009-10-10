@@ -1,2 +1,0 @@
-describe 'test' do
-end
