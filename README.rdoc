@@ -1,0 +1,20 @@
+=== Install
+
+  git clone git://github.com/rubyphunk/rspactor.git
+  cd rspactor
+  gem build rspactor.gemspec
+  sudo gem install rspactor-VERSION.gem
+
+=== Usage
+
+  cd /path/to/rails/root/
+  rspactor
+
+=== Command Line Options
+
+* <code> --coral    </code>
+* <code> --celerity </code>
+* <code> --spork    </code>
+* <code> --view     </code>
+* <code> --clear    </code>
+* <code> --run_in   </code>
