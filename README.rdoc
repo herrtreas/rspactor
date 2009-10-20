@@ -14,7 +14,7 @@
 
 * <code> --coral    </code>
 * <code> --celerity </code>
-* <code> --spork    </code>
+* <code> --drb      </code>
 * <code> --view     </code>
 * <code> --clear    </code>
 * <code> --run_in   </code>
