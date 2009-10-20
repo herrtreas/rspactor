@@ -69,7 +69,7 @@ module RSpactor
         when 'config/database.yml', 'db/schema.rb', 'spec/factories.rb'
           candidates << 'models'
         when 'config/boot.rb', 'config/environment.rb', %r:^config/environments/:, %r:^config/initializers/:, %r:^vendor/:, 'spec/spec_helper.rb'
-          Spork.reload if runner.options[:spork]
+          runner.spork.reload if runner.spork
           Celerity.restart if runner.options[:celerity]
           candidates << 'spec'
         when %r:^config/:

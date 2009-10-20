@@ -10,12 +10,26 @@ module RSpactor
       ticker
     end
     
-    def self.ticker_msg(msg, seconds_to_wait = 3)
+    def self.ticker_msg(msg, seconds_to_wait = 3, &block)
       $stdout.print msg
-      seconds_to_wait.times do
-        $stdout.print('.')
-        $stdout.flush
-        sleep 1
+      if block
+        @yielding_ticker = true
+        Thread.new do
+          loop do
+            $stdout.print('.') if @yielding_ticker == true
+            $stdout.flush
+            sleep 1.0
+          end
+        end
+        
+        yield
+        @yielding_ticker = false
+      else
+        seconds_to_wait.times do
+          $stdout.print('.')
+          $stdout.flush
+          sleep 1
+        end
       end
       $stdout.puts "\n"
     end
