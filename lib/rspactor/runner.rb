@@ -7,7 +7,7 @@ module RSpactor
       new(run_in, options).start
     end
     
-    attr_reader :dir, :options, :inspector, :interactor
+    attr_reader :dir, :options, :inspector, :interactor, :spork
     
     def initialize(dir, options = {})
       @dir = dir
@@ -18,7 +18,7 @@ module RSpactor
     def start
       load_dotfile
       puts "** RSpactor, now watching at '#{dir}'"
-      Spork.start if options[:spork]
+      (@spork = Spork.new(self)) && @spork.start if options[:spork]
       Celerity.start(dir) if options[:celerity]
       start_interactor
       start_listener
