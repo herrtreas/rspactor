@@ -5,14 +5,14 @@ module RSpactor
   # Assumes Rails-like directory structure
   class Inspector
     EXTENSIONS = %w(rb erb builder haml rhtml rxml yml conf opts feature)
-    
+
     attr_reader :runner, :root
-    
+
     def initialize(runner)
       @runner = runner
       @root = runner.dir
     end
-    
+
     def determine_files(file)
       candidates = translate(file)
       cucumberable = candidates.delete('cucumber')
@@ -20,27 +20,27 @@ module RSpactor
         candidates.reject! { |candidate| candidate.index("#{dir}/") == 0 }
       end
       files = candidates.select { |candidate| File.exists? candidate }
-      
-      if files.empty? && !candidates.empty? && !cucumberable 
+
+      if files.empty? && !candidates.empty? && !cucumberable
         $stderr.puts "doesn't exist: #{candidates.inspect}"
       end
-      
+
       files << 'cucumber' if cucumberable
       files
     end
-    
+
     # mappings for Rails are inspired by autotest mappings in rspec-rails
     def translate(file)
       file = file.sub(%r:^#{Regexp.escape(root)}/:, '')
       candidates = []
-      
+
       if spec_file?(file)
         candidates << file
       elsif cucumber_file?(file)
         candidates << 'cucumber'
       else
         spec_file = append_spec_file_extension(file)
-        
+
         case file
         when %r:^app/:
           if file =~ %r:^app/controllers/application(_controller)?.rb$:
@@ -49,7 +49,7 @@ module RSpactor
             candidates << 'helpers' << 'views'
           elsif !file.include?("app/views/") || runner.options[:view]
             candidates << spec_file.sub('app/', '')
-            
+
             if file =~ %r:^app/(views/.+\.[a-z]+)\.[a-z]+$:
               candidates << append_spec_file_extension($1)
             elsif file =~ %r:app/helpers/(\w+)_helper.rb:
@@ -80,7 +80,7 @@ module RSpactor
           candidates << spec_file
         end
       end
-      
+
       candidates.map do |candidate|
         if candidate == 'cucumber'
           candidate
@@ -91,7 +91,7 @@ module RSpactor
         end
       end
     end
-    
+
     def append_spec_file_extension(file)
       if File.extname(file) == ".rb"
         file.sub(/.rb$/, "_spec.rb")
@@ -99,7 +99,7 @@ module RSpactor
         file + "_spec.rb"
       end
     end
-    
+
     def spec_file?(file)
       file =~ /^spec\/.+_spec.rb$/
     end

@@ -2,14 +2,14 @@ require 'timeout'
 
 module RSpactor
   class Interactor
-    
+
     attr_reader :runner
-    
+
     def initialize(runner)
       @runner = runner
       ticker
     end
-    
+
     def self.ticker_msg(msg, seconds_to_wait = 3, &block)
       $stdout.print msg
       if block
@@ -21,7 +21,7 @@ module RSpactor
             sleep 1.0
           end
         end
-        
+
         yield
         @yielding_ticker = false
       else
@@ -33,7 +33,7 @@ module RSpactor
       end
       $stdout.puts "\n"
     end
-    
+
     def wait_for_enter_key(msg, seconds_to_wait, clear = runner.options[:clear])
       begin
         Timeout::timeout(seconds_to_wait) do
@@ -48,7 +48,7 @@ module RSpactor
         ticker(:stop => true)
       end
     end
-    
+
     def start_termination_handler
       @main_thread = Thread.current
       Thread.new do
@@ -71,9 +71,9 @@ module RSpactor
         end
       end
     end
-    
+
     private
-    
+
     def ticker(opts = {})
       if opts[:stop]
         $stdout.puts "\n"
@@ -90,7 +90,7 @@ module RSpactor
         end
       end
     end
-    
+
     def write(msg)
       $stdout.print(msg)
       $stdout.flush
